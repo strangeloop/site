@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100929035252) do
+ActiveRecord::Schema.define(:version => 20101227022055) do
+
+  create_table "countries", :force => true do |t|
+    t.string   "abbrev"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "images", :force => true do |t|
     t.string   "image_mime_type"
@@ -134,6 +141,63 @@ ActiveRecord::Schema.define(:version => 20100929035252) do
   add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_name_and_sluggable_type_and_scope_and_sequence", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
+  create_table "speakers", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "bio"
+    t.integer  "state_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "speakers_talks", :id => false, :force => true do |t|
+    t.integer "speaker_id"
+    t.integer "talk_id"
+  end
+
+  create_table "states", :force => true do |t|
+    t.string   "abbrev"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "talk_lengths", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "talk_types", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "talks", :force => true do |t|
+    t.string   "title"
+    t.text     "abstract"
+    t.text     "prereqs"
+    t.text     "comments"
+    t.text     "av_requirement"
+    t.integer  "talk_type_id"
+    t.integer  "talk_length_id"
+    t.integer  "video_approval_id"
+    t.integer  "track_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tracks", :force => true do |t|
+    t.string   "abbrev"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_plugins", :force => true do |t|
     t.integer "user_id"
     t.string  "name"
@@ -155,5 +219,11 @@ ActiveRecord::Schema.define(:version => 20100929035252) do
   end
 
   add_index "users", ["id"], :name => "index_users_on_id"
+
+  create_table "video_approvals", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
