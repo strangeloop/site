@@ -93,6 +93,15 @@ ActiveRecord::Schema.define(:version => 20101227022055) do
   add_index "pages", ["parent_id"], :name => "index_pages_on_parent_id"
   add_index "pages", ["rgt"], :name => "index_pages_on_rgt"
 
+  create_table "proposals", :force => true do |t|
+    t.string   "title"
+    t.string   "speaker_name"
+    t.string   "speaker_email"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "refinery_settings", :force => true do |t|
     t.string   "name"
     t.text     "value"

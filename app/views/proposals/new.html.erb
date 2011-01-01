@@ -1,0 +1,7 @@
+<h1>Submit a new proposal</h1>
+<% semantic_form_for @proposal do |proposal| %>
+  <% proposal.inputs :name => 'Speaker' do %>
+    <%= proposal.inputs :title, :speaker_name, :speaker_email, :description %>
+  <% end %>
+  <%= proposal.commit_button 'Submit proposal' %>
+<% end %>

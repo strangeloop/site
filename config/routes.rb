@@ -1,5 +1,7 @@
 Refinery::Application.routes.draw do
 
+  resources :proposals
+
   # REFINERY CMS ================================================================
 
   filter(:refinery_locales) if defined?(RoutingFilter::RefineryLocales) # optionally use i18n.
