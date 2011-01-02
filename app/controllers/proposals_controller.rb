@@ -4,6 +4,8 @@ class ProposalsController < ApplicationController
   end
 
   def create
+    @proposal = Proposal.new params[:proposal]
+    @proposal.save
   end
 
   def index
