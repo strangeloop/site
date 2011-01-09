@@ -2,7 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
 
-
 gem 'formtastic', '~> 1.1.0'
 
 group :development, :test do
@@ -12,10 +11,11 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rspec'
   gem 'shoulda'
-  #gem 'factory_girl_rails'
-  #gem 'rails3-generators'
-  ##gem 'capybara-envjs'
+  gem 'factory_girl_rails'
+  gem 'rails3-generators'
+  #gem 'capybara-envjs'
 end
 
 
