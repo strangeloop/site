@@ -11,6 +11,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'ZenTest'
   gem 'rspec'
   gem 'shoulda'
   gem 'factory_girl_rails'
@@ -59,7 +60,7 @@ group :development, :test do
   # FIXME: Update json_pure to 1.4.7 when it is released
   gem 'json_pure', "1.4.6a", :git => "git://github.com/flori/json", :ref => "2c0f8d"
   # Factory Girl
-  gem 'factory_girl'
+  #gem 'factory_girl'
   gem "#{'j' if java}ruby-prof" unless defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
   # Autotest
   gem 'autotest'

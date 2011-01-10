@@ -1,5 +1,5 @@
 Factory.define :user do |f|
-  f.login 'admin'
+  f.username 'admin'
   f.email 'admin@theconference.com'
   f.password 'secret'
   f.password_confirmation {|u| u.password }

@@ -237,6 +237,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ZenTest
   autotest
   autotest-notification
   autotest-rails
@@ -244,7 +245,6 @@ DEPENDENCIES
   capybara!
   cucumber-rails
   database_cleaner
-  factory_girl
   factory_girl_rails
   formtastic (~> 1.1.0)
   friendly_id!
