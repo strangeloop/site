@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110109225867) do
+ActiveRecord::Schema.define(:version => 20110118040848) do
 
   create_table "countries", :force => true do |t|
     t.string   "abbrev"
@@ -29,6 +29,26 @@ ActiveRecord::Schema.define(:version => 20110109225867) do
     t.datetime "updated_at"
     t.string   "image_uid"
     t.string   "image_ext"
+  end
+
+  create_table "inquiries", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "message"
+    t.integer  "position"
+    t.boolean  "open",       :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "spam",       :default => false
+  end
+
+  create_table "inquiry_settings", :force => true do |t|
+    t.string   "name"
+    t.text     "value"
+    t.boolean  "destroyable"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "page_part_translations", :force => true do |t|
@@ -56,10 +76,10 @@ ActiveRecord::Schema.define(:version => 20110109225867) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "meta_keywords"
-    t.text     "meta_description"
     t.string   "browser_title"
     t.string   "title"
+    t.string   "meta_keywords"
+    t.text     "meta_description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -94,6 +114,15 @@ ActiveRecord::Schema.define(:version => 20110109225867) do
   add_index "pages", ["lft"], :name => "index_pages_on_lft"
   add_index "pages", ["parent_id"], :name => "index_pages_on_parent_id"
   add_index "pages", ["rgt"], :name => "index_pages_on_rgt"
+
+  create_table "proposals", :force => true do |t|
+    t.string   "title"
+    t.string   "speaker_name"
+    t.string   "speaker_email"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "refinery_settings", :force => true do |t|
     t.string   "name"
@@ -151,21 +180,14 @@ ActiveRecord::Schema.define(:version => 20110109225867) do
     t.string   "email"
     t.string   "phone"
     t.text     "bio"
-    t.integer  "state_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state"
   end
 
   create_table "speakers_talks", :id => false, :force => true do |t|
     t.integer "speaker_id"
     t.integer "talk_id"
-  end
-
-  create_table "states", :force => true do |t|
-    t.string   "abbrev"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "talk_lengths", :force => true do |t|
