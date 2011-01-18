@@ -110,6 +110,7 @@ GEM
     babosa (0.2.1)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    carmen (0.2.4)
     celerity (0.8.7)
     childprocess (0.1.6)
       ffi (~> 0.6.3)
@@ -238,6 +239,7 @@ DEPENDENCIES
   autotest-rails
   awesome_print
   capybara!
+  carmen (= 0.2.4)
   cucumber-rails
   database_cleaner
   factory_girl_rails
