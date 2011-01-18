@@ -7,4 +7,8 @@ class Speaker < ActiveRecord::Base
 
   validates_inclusion_of :state, :in => Carmen::state_codes,
   :message => "%{value} is not a valid state code"
+
+  validates_inclusion_of :country, :in => Carmen::country_codes,
+  :message => "%{value} is not a valid state code"  
+
 end

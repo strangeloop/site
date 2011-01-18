@@ -8,5 +8,9 @@ describe Speaker do
   Carmen::state_codes.each do |field|
     it {should allow_value(field).for(:state)}
   end
+
+  Carmen::country_codes.each do |field|
+    it {should allow_value(field).for(:country)}
+  end
   
 end
