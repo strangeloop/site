@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110118044820) do
+ActiveRecord::Schema.define(:version => 20110122040052) do
 
   create_table "images", :force => true do |t|
     t.string   "image_mime_type"
@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20110118044820) do
     t.datetime "updated_at"
     t.string   "state"
     t.string   "country"
+    t.integer  "conf_year"
   end
 
   create_table "speakers_talks", :id => false, :force => true do |t|

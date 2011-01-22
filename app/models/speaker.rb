@@ -9,6 +9,8 @@ class Speaker < ActiveRecord::Base
   :message => "%{value} is not a valid state code"
 
   validates_inclusion_of :country, :in => Carmen::country_codes,
-  :message => "%{value} is not a valid state code"  
+  :message => "%{value} is not a valid state code"
+
+  before_create AddConfYear
 
 end
