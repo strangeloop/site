@@ -5,13 +5,14 @@ describe Speaker do
     it {should validate_presence_of field}
   end
 
-  Carmen::state_codes.each do |field|
-    it {should allow_value(field).for(:state)}
-  end
+  it {should allow_value("MO").for(:state)}
+  it {should allow_value("IL").for(:state)}
+  it {should allow_value("CA").for(:state)}
+  it {should_not allow_value("ZZ").for(:state)}
 
-  Carmen::country_codes.each do |field|
-    it {should allow_value(field).for(:country)}
-  end
+  it {should allow_value("US").for(:country)}
+  it {should allow_value("CA").for(:country)}
+  it {should_not allow_value("ZZ").for(:country)}
 
   context "Tests needing a basic record to exist" do
   before do
