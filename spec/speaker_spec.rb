@@ -21,11 +21,16 @@ describe Speaker do
                               :phone => "d",
                               :bio => "e",
                               :state => "MO",
-                              :country => "US")
+                              :country => "US",
+                              :phone => "111-111-1111")
     end
 
     it "should auto add the current year as conf_year" do
       @model.conf_year.should == Time.now.year
     end
   end
+
+  it {should allow_value("123-456-7891").for(:phone)}
+  it {should allow_value("1234567891").for(:phone)}
+  it {should_not allow_value("123-7891").for(:phone)}
 end
