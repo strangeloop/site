@@ -17,5 +17,14 @@ describe Talk do
     end
   end
 
-  
+  [:talk_type, :track, :talk_length, :video_approval].each do |field| 
+    it {should belong_to field}
+  end
+
+  it {should have_and_belong_to_many :speakers}
+
+  [:abstract, :prereqs, :comments, :av_requirement].each do |field|
+    it {should have_db_column(field).of_type(:text)}
+  end
+
 end
