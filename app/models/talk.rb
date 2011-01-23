@@ -9,4 +9,6 @@ class Talk < ActiveRecord::Base
   [:title, :abstract].each do |field|
     validates field, :presence => true
   end
+
+  before_create AddConfYear
 end

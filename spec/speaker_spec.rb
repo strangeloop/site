@@ -13,7 +13,7 @@ describe Speaker do
     it {should allow_value(field).for(:country)}
   end
 
-  context "creating a record to test auto populated fields" do
+  context "Tests needing a basic record to exist" do
   before do
       @model = Speaker.create(:first_name => "a",
                               :last_name => "b",
