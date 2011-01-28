@@ -7,23 +7,21 @@ gem 'formtastic', '~> 1.1.0'
 gem 'carmen', '0.2.4'
 
 group :development, :test do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
-  gem 'awesome_print'
+  gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
+  gem 'awesome_print', '~> 0.3.1'
   #gem 'ruby-debug'
-  gem 'ruby-debug19'
+  gem 'ruby-debug19', '~> 0.11.6'
 end
 
 group :production do
   gem 'pg', '0.9.0'
-  gem 'unicorn'
+  #gem 'unicorn' 
 end
 
 group :test do
-  #gem 'ZenTest'
-  #gem 'rspec'
-  gem 'shoulda'
-  gem 'factory_girl_rails'
-  gem 'rails3-generators'
+  gem 'shoulda', '~> 2.11.3'
+  gem 'factory_girl_rails', '~> 1.0.1'
+  gem 'rails3-generators', '~> 0.17.2'
   #gem 'capybara-envjs'
 end
 
@@ -38,21 +36,21 @@ group :development, :test do
   # RSpec
   gem 'rspec-rails',            '= 2.3'
   # Cucumber
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'cucumber-rails'
-  gem 'launchy'
-  gem 'gherkin'
+  gem 'capybara', '~> 0.4.1'
+  gem 'database_cleaner', '~> 0.6.0'
+  gem 'cucumber-rails', '~> 0.3.2'
+  gem 'launchy', '~> 0.3.7'
+  gem 'gherkin', '~> 2.3.3'
   gem 'spork' unless Bundler::WINDOWS
   gem 'rack-test',              '~> 0.5.6'
-  gem 'json_pure'
+  gem 'json_pure', '~> 1.5.1'
   # Factory Girl
   #gem 'factory_girl'
   gem "#{'j' if RUBY_PLATFORM == 'java'}ruby-prof" unless defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
   # Autotest
-  gem 'autotest'
-  gem 'autotest-rails'
-  gem 'autotest-notification'
+  gem 'autotest', '~> 4.4.6'
+  gem 'autotest-rails', '~> 4.1.0'
+  gem 'autotest-notification', '~> 2.3.1'
 end
 
 # END REFINERY CMS ============================================================
