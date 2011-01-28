@@ -9,8 +9,8 @@ gem 'carmen', '0.2.4'
 group :development, :test do
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
   gem 'awesome_print', '~> 0.3.1'
-  #gem 'ruby-debug'
-  gem 'ruby-debug19', '~> 0.11.6'
+  gem 'ruby-debug', '~> 0.10.4'
+  #gem 'ruby-debug19', '~> 0.11.6'
 end
 
 group :production do
