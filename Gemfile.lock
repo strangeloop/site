@@ -1,72 +1,3 @@
-GIT
-  remote: git://github.com/flori/json
-  revision: 2c0f8d2c9b15a33b8d10ffcb1959aef54d320b57
-  ref: 2c0f8d
-  specs:
-    json_pure (1.4.6a)
-
-GIT
-  remote: git://github.com/parndt/capybara
-  revision: 4cfe882c982682e71c13c877e7f14fd862a9e565
-  specs:
-    capybara (0.4.0)
-      celerity (>= 0.7.9)
-      culerity (>= 0.2.4)
-      mime-types (>= 1.16)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      selenium-webdriver (>= 0.0.27)
-      xpath (~> 0.1.2)
-
-GIT
-  remote: git://github.com/parndt/friendly_id
-  revision: 25fc52ae9e88efeb60f0737c0736b75cc2c96a53
-  branch: globalize3
-  specs:
-    friendly_id (3.1.8)
-      babosa (~> 0.2.0)
-
-GIT
-  remote: git://github.com/refinerycms/routing-filter
-  revision: e967b4b3952e613156f41cf28fa2d72bc7377823
-  specs:
-    routing-filter (0.2.2)
-      actionpack
-
-GIT
-  remote: git://github.com/resolve/refinerycms-generators
-  revision: 6fccf10bd401ca34bb9ddfb0c0224a4f21aeda3e
-  specs:
-    refinerycms-generators (0.9.9)
-
-GIT
-  remote: git://github.com/resolve/refinerycms-i18n
-  revision: 45d88236991395ce686ba0c147ebf9bf9ff1f6c3
-  specs:
-    refinerycms-i18n (0.9.9)
-      refinerycms (>= 0.9.8)
-      routing-filter (~> 0.1)
-
-GIT
-  remote: git://github.com/resolve/refinerycms.git
-  revision: 4d993c0af3ed0432aed703c94d723be422a2ba23
-  branch: master
-  specs:
-    refinerycms (0.9.9)
-      acts_as_indexed (~> 0.6.6)
-      bundler (~> 1.0.5)
-      devise (~> 1.1)
-      dragonfly (~> 0.8.2)
-      friendly_id (~> 3.1.8)
-      globalize3 (>= 0.1.0.beta)
-      moretea-awesome_nested_set (= 1.4.3.1)
-      rack-cache (~> 0.5.2)
-      rails (~> 3.0.3)
-      rdoc (>= 2.5.11)
-      truncate_html (= 0.4)
-      will_paginate (~> 3.0.pre)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -99,6 +30,7 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     acts_as_indexed (0.6.6)
+    archive-tar-minitar (0.5.2)
     arel (2.0.7)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
@@ -107,9 +39,18 @@ GEM
     autotest-rails (4.1.0)
       ZenTest
     awesome_print (0.3.1)
-    babosa (0.2.1)
+    babosa (0.2.2)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    capybara (0.4.1.1)
+      celerity (>= 0.7.9)
+      culerity (>= 0.2.4)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      selenium-webdriver (>= 0.0.27)
+      xpath (~> 0.1.3)
     carmen (0.2.4)
     celerity (0.8.7)
     childprocess (0.1.6)
@@ -124,7 +65,7 @@ GEM
       term-ansicolor (~> 1.0.5)
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
-    culerity (0.2.14)
+    culerity (0.2.15)
     database_cleaner (0.6.0)
     devise (1.1.5)
       bcrypt-ruby (~> 2.1.2)
@@ -144,6 +85,8 @@ GEM
       actionpack (>= 2.3.0)
       activesupport (>= 2.3.0)
       i18n (>= 0.4.0)
+    friendly_id_globalize3 (3.2.0)
+      babosa (~> 0.2.1)
     gherkin (2.3.3)
       json (~> 1.4.6)
     globalize3 (0.1.0.beta)
@@ -151,10 +94,13 @@ GEM
       activerecord (>= 3.0.0)
     i18n (0.5.0)
     json (1.4.6)
+    json_pure (1.5.1)
+    kgio (2.1.1)
     launchy (0.3.7)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
-    linecache (0.43)
+    linecache19 (0.5.11)
+      ruby_core_source (>= 0.1.4)
     mail (2.2.14)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -164,6 +110,7 @@ GEM
     moretea-awesome_nested_set (1.4.3.1)
       activerecord (~> 3.0.0)
     nokogiri (1.4.4)
+    pg (0.9.0)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-cache (0.5.3)
@@ -189,6 +136,26 @@ GEM
       thor (~> 0.14.4)
     rake (0.8.7)
     rdoc (3.4)
+    refinerycms (0.9.9)
+      acts_as_indexed (~> 0.6.6)
+      bundler (~> 1.0.5)
+      devise (~> 1.1)
+      dragonfly (~> 0.8.2)
+      friendly_id_globalize3 (~> 3.2.0)
+      globalize3 (>= 0.1.0.beta)
+      moretea-awesome_nested_set (= 1.4.3.1)
+      rack-cache (~> 0.5.2)
+      rails (~> 3.0.3)
+      rdoc (>= 2.5.11)
+      truncate_html (~> 0.5)
+      will_paginate (~> 3.0.pre)
+    refinerycms-generators (0.9.9.1)
+      refinerycms (>= 0.9.9)
+    refinerycms-i18n (0.9.9.7)
+      refinerycms (>= 0.9.8)
+      routing-filter (>= 0.2.3)
+    routing-filter (0.2.3)
+      actionpack
     rspec (2.3.0)
       rspec-core (~> 2.3.0)
       rspec-expectations (~> 2.3.0)
@@ -202,12 +169,17 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.3.0)
-    ruby-debug (0.10.4)
-      columnize (>= 0.1)
-      ruby-debug-base (~> 0.10.4.0)
-    ruby-debug-base (0.10.4)
-      linecache (>= 0.3)
+    ruby-debug-base19 (0.11.24)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby_core_source (>= 0.1.4)
+    ruby-debug19 (0.11.6)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby-debug-base19 (>= 0.11.19)
     ruby-prof (0.9.2)
+    ruby_core_source (0.1.4)
+      archive-tar-minitar (>= 0.5.2)
     rubyzip (0.9.4)
     selenium-webdriver (0.1.2)
       childprocess (~> 0.1.5)
@@ -221,8 +193,11 @@ GEM
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
-    truncate_html (0.4.0)
+    truncate_html (0.5.0)
     tzinfo (0.3.23)
+    unicorn (3.3.1)
+      kgio (~> 2.1)
+      rack
     warden (1.0.3)
       rack (>= 1.0.0)
     will_paginate (3.0.pre2)
@@ -233,32 +208,30 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ZenTest
   autotest
   autotest-notification
   autotest-rails
   awesome_print
-  capybara!
+  capybara
   carmen (= 0.2.4)
   cucumber-rails
   database_cleaner
   factory_girl_rails
   formtastic (~> 1.1.0)
-  friendly_id!
   gherkin
-  json_pure (= 1.4.6a)!
+  json_pure
   launchy
+  pg (= 0.9.0)
   rack-test (~> 0.5.6)
   rails (= 3.0.3)
   rails3-generators
-  refinerycms!
-  refinerycms-generators (~> 0.9.9)!
-  refinerycms-i18n!
-  routing-filter!
-  rspec
+  refinerycms (= 0.9.9)
+  refinerycms-generators (~> 0.9)
+  refinerycms-i18n (~> 0.9)
   rspec-rails (= 2.3)
-  ruby-debug
+  ruby-debug19
   ruby-prof
   shoulda
   spork
   sqlite3-ruby
+  unicorn
