@@ -1,0 +1,20 @@
+nl:
+  plugins:
+    proposals:
+      title: Proposals
+  admin:
+    proposals:
+      index:
+        title: Proposals
+        create_new: Maak een nieuwe Proposal
+        reorder: Wijzig de volgorde van de Proposals
+        reorder_done: Klaar met het wijzingen van de volgorde van de Proposals
+        sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+        no_items_yet: Er zijn nog geen Proposals. Druk op 'Maak een nieuwe Proposal' om de eerste aan te maken.
+      proposal:
+        view_live_html: Bekijk deze proposal op de website <br/><em>(opent een nieuw venster)</em>
+        edit: Bewerk deze proposal
+        delete: Verwijder deze proposal voor eeuwig
+  proposals:
+    show:
+      other: Andere Proposals

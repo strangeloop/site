@@ -1,0 +1,24 @@
+lolcat:
+  shared:
+    admin:
+      image_picker:
+        image: IMAGE
+  plugins:
+    proposals:
+      title: Proposals
+  admin:
+    proposals:
+      index:
+        title: Proposals
+        create_new: CREATE NEW Proposal
+        reorder: REORDR Proposals
+        reorder_done: DUN REORDERIN Proposals
+        sorry_no_results: SRY! THAR R NO RESULTS FINDZ.
+        no_items_yet: THAR R NO Proposals YET. CLICK "CREATE NEW Proposal" 2 ADD UR FURST proposal.
+      proposal:
+        view_live_html: VIEW DIS proposal LIV <BR/><EM>(OPENS IN NEW WINDOW)</EM>
+        edit: EDIT DIS proposal
+        delete: REMOOV DIS proposal FOREVR
+  proposals:
+    show:
+      other: OTHR Proposals
