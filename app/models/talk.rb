@@ -10,4 +10,6 @@ class Talk < ActiveRecord::Base
   end
 
   before_create AddConfYear
+
+  accepts_nested_attributes_for :speakers
 end

@@ -1,0 +1,21 @@
+<h1>Submit a talk</h1>
+<% semantic_form_for [@speakers, @talk] do |talk_form| %>
+  <% talk_form.inputs do %>
+    <%= talk_form.input :title %>
+    <%= talk_form.input :abstract %>
+    <%= talk_form.input :talk_type %>
+    <%= talk_form.input :track %>
+    <%= talk_form.input :talk_length %>
+    <%= talk_form.input :video_approval %>
+    <%= talk_form.input :comments %>
+    <%= talk_form.input :prereqs %>
+    <%= talk_form.input :av_requirement %>
+    <%= talk_form.inputs :first_name, :last_name, :email, :phone,
+        :bio, :state, :country, :phone, :for => :speakers,
+        :name => "Speaker #%i" %>
+    
+  <% end %>
+  <% talk_form.buttons do %>
+    <%= talk_form.commit_button %>
+  <% end %>
+<% end %>

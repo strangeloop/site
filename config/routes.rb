@@ -1,5 +1,5 @@
 Conf::Application.routes.draw do
-
+  resources :talks
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
