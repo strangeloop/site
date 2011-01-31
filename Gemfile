@@ -34,23 +34,23 @@ gem 'refinerycms',              '= 0.9.9'
 
 group :development, :test do
   # RSpec
-  gem 'rspec-rails',            '= 2.3'
+  gem 'rspec-rails', '~> 2.4.1'
   # Cucumber
   gem 'capybara', '~> 0.4.1'
   gem 'database_cleaner', '~> 0.6.0'
   gem 'cucumber-rails', '~> 0.3.2'
   gem 'launchy', '~> 0.3.7'
-  gem 'gherkin', '~> 2.3.3'
-  gem 'spork' unless Bundler::WINDOWS
+  gem 'gherkin'
+  gem 'spork', '>= 0.9.0.rc2' unless Bundler::WINDOWS
   gem 'rack-test',              '~> 0.5.6'
   gem 'json_pure', '~> 1.5.1'
   # Factory Girl
   #gem 'factory_girl'
   gem "#{'j' if RUBY_PLATFORM == 'java'}ruby-prof" unless defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
   # Autotest
-  gem 'autotest', '~> 4.4.6'
-  gem 'autotest-rails', '~> 4.1.0'
-  gem 'autotest-notification', '~> 2.3.1'
+  gem 'autotest'
+  gem 'autotest-rails'
+  gem 'autotest-notification'
 end
 
 # END REFINERY CMS ============================================================
@@ -72,3 +72,5 @@ gem 'refinerycms-i18n',         '~> 0.9'
 
 
 # END USER DEFINED
+
+gem 'refinerycms-proposals', '0.1', :path => 'vendor/engines'

@@ -5,6 +5,8 @@ def setup_environment
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
+  require 'shoulda/integrations/rspec2'
+  require 'spork/ext/ruby-debug'
 
   # Requires supporting files with custom matchers and macros, etc,
   # in ./support/ and its subdirectories.
@@ -31,6 +33,7 @@ def setup_environment
 end
 
 def each_run
+  require 'factory_girl_rails'
 end
 
 unless RbConfig::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!

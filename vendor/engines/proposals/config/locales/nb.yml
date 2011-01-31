@@ -1,0 +1,20 @@
+nb:
+  plugins:
+    proposals:
+      title: Proposals
+  admin:
+    proposals:
+      index:
+        title: Proposals
+        create_new: Lag en ny Proposal
+        reorder: Endre rekkefølgen på Proposals
+        reorder_done: Ferdig å endre rekkefølgen Proposals
+        sorry_no_results: Beklager! Vi fant ikke noen resultater.
+        no_items_yet: Det er ingen Proposals enda. Klikk på "Lag en ny Proposal" for å legge til din første proposal.
+      proposal:
+        view_live_html: Vis hvordan denne proposal ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+        edit: Rediger denne proposal
+        delete: Fjern denne proposal permanent
+  proposals:
+    show:
+      other: Andre Proposals

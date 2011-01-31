@@ -1,0 +1,24 @@
+en:
+  shared:
+    admin:
+      image_picker:
+        image: image
+  plugins:
+    proposals:
+      title: Proposals
+  admin:
+    proposals:
+      index:
+        title: Proposals
+        create_new: Add New Proposal
+        reorder: Reorder Proposals
+        reorder_done: Done Reordering Proposals
+        sorry_no_results: Sorry! There are no results found.
+        no_items_yet: There are no talks ready for review
+      proposal:
+        view_live_html: View this proposal live <br/><em>(opens in a new window)</em>
+        edit: Edit this proposal
+        delete: Remove this proposal forever
+  proposals:
+    show:
+      other: Other Proposals

@@ -1,0 +1,11 @@
+<% content_for :body_content_left do %>
+  <ul id="proposals">
+    <% @proposals.each do |proposal| %>
+      <li>
+        <%= link_to proposal.status, proposal_url(proposal) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>
