@@ -8,16 +8,31 @@ describe Talk do
   context "Tests needing a basic record to exit" do
     before do
       @model = Talk.create(:title => "a",
-                           :abstract => "b")
-
+                           :abstract => "b",
+                           :talk_type => :deep)
     end
 
     it "should auto add the current year as conf_year" do
       @model.conf_year.should == Time.now.year
     end
+
+    it "has a different value fora symbol" do
+      @model.talk_type.to_sym == "Deep Dive"
+    end
+
+    it "has a different value fora symbol" do
+      @model.talk_type= :intro
+      @model.talk_type.to_sym == "Intro"
+    end
+
+    it "has a different value fora symbol" do
+      @model.talk_type = :survey
+      @model.talk_type.to_sym == "Survey"
+    end
+
   end
 
-  [:talk_type, :track, :talk_length].each do |field| 
+  [:track, :talk_length].each do |field| 
     it {should belong_to field}
   end
 
@@ -36,5 +51,14 @@ describe Talk do
       should_not allow_value(:chinaski).for(:video_approval)
     end.should raise_error(ArgumentError, ":chinaski is not one of {:maybe, :no, :yes}")
   end
-
+  
+  [:deep, :intro, :survey].each do |field|
+    it { should allow_value(field).for(:talk_type) }
+  end
+  
+  it "allows only attributes in the enum" do
+    lambda do
+      should_not allow_value(:chinaski).for(:talk_type)
+    end.should raise_error(ArgumentError, ":chinaski is not one of {:deep, :intro, :survey}")
+  end
 end

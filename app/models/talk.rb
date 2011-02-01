@@ -5,8 +5,8 @@ class Talk < ActiveRecord::Base
   end
 
   has_enumeration :video_approval, [:yes, :no, :maybe]
-  
-  belongs_to :talk_type
+  has_enumeration :talk_type, :deep => "Deep Dive", :intro => "Intro", :survey => "Survey"
+
   belongs_to :track
   belongs_to :talk_length
 
