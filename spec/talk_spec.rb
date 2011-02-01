@@ -31,8 +31,10 @@ describe Talk do
     it { should allow_value(field).for(:video_approval) }
   end
 
-# The below test behaves has it should (throws an error) but shoulda
-#  isn't handling it properly  
-#  it { should_not allow_value(:chinaski).for(:video_approval) }
+  it "allows only attributes in the enum" do
+    lambda do
+      should_not allow_value(:chinaski).for(:video_approval)
+    end.should raise_error(ArgumentError, ":chinaski is not one of {:maybe, :no, :yes}")
+  end
 
 end
