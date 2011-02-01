@@ -6,6 +6,8 @@ gem 'formtastic', '~> 1.1.0'
 
 gem 'carmen', '0.2.4'
 
+gem 'has_enumeration'
+
 group :development, :test do
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
   gem 'awesome_print', '~> 0.3.1'

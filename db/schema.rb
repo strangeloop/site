@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110130165658) do
+ActiveRecord::Schema.define(:version => 20110131054434) do
 
   create_table "images", :force => true do |t|
     t.string   "image_mime_type"
@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(:version => 20110130165658) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "meta_keywords"
     t.string   "browser_title"
-    t.text     "meta_description"
+    t.string   "meta_keywords"
     t.string   "title"
+    t.text     "meta_description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -186,11 +186,11 @@ ActiveRecord::Schema.define(:version => 20110130165658) do
     t.text     "av_requirement"
     t.integer  "talk_type_id"
     t.integer  "talk_length_id"
-    t.integer  "video_approval_id"
     t.integer  "track_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "conf_year"
+    t.string   "video_approval"
   end
 
   create_table "tracks", :force => true do |t|
@@ -229,11 +229,5 @@ ActiveRecord::Schema.define(:version => 20110130165658) do
   end
 
   add_index "users", ["id"], :name => "index_users_on_id"
-
-  create_table "video_approvals", :force => true do |t|
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end
