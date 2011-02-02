@@ -25,7 +25,5 @@ describe Proposal do
       p.talk = Talk.new(:title => 'Writing a conf site', :abstract => 'Moar codez')
       p.should be_valid
     end
-    
   end
-
 end

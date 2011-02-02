@@ -20,3 +20,26 @@ Factory.define :reviewer, :parent => :refinery_user do |u|
     user.roles << Role[:reviewer]
   end
 end
+
+Factory.define :speaker do |s|
+  s.first_name 'Earl'
+  s.last_name 'Grey'
+  s.email 'earl@grey.com'
+  s.bio 'Hot tea afficionado'
+  s.phone '314-444-1234'
+  s.state 'MO'
+  s.country 'US'
+end
+
+Factory.define :talk_type do |type|
+  type.name 'tutorial'
+  type.description 'Session meant to teach a specific lesson'
+end
+
+Factory.define :talk do |t|
+  t.title 'Sample Talk'
+  t.abstract 'A talk about samples'
+  t.talk_type { Factory(:talk_type) }
+  t.speakers { [Factory(:speaker)] }
+end
+
