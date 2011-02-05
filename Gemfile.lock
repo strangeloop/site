@@ -96,8 +96,6 @@ GEM
     globalize3 (0.1.0.beta)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
-    has_enumeration (1.0.2)
-      activerecord (>= 2.3.8)
     i18n (0.5.0)
     json (1.4.6)
     json_pure (1.5.1)
@@ -217,7 +215,6 @@ DEPENDENCIES
   factory_girl_rails (~> 1.0.1)
   formtastic (~> 1.1.0)
   gherkin
-  has_enumeration
   json_pure (~> 1.5.1)
   launchy (~> 0.3.7)
   pg (= 0.9.0)
