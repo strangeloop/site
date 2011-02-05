@@ -9,25 +9,12 @@ describe Talk do
     before do
       @model = Talk.create(:title => "a",
                            :abstract => "b",
-                           :talk_type => :deep)
+                           :video_approval => "Yes",
+                           :talk_type => "Intro")
     end
 
     it "should auto add the current year as conf_year" do
       @model.conf_year.should == Time.now.year
-    end
-
-    it "has a different value fora symbol" do
-      @model.talk_type.to_sym == "Deep Dive"
-    end
-
-    it "has a different value fora symbol" do
-      @model.talk_type= :intro
-      @model.talk_type.to_sym == "Intro"
-    end
-
-    it "has a different value fora symbol" do
-      @model.talk_type = :survey
-      @model.talk_type.to_sym == "Survey"
     end
 
   end
@@ -42,23 +29,14 @@ describe Talk do
     it {should have_db_column(field).of_type(:text)}
   end
 
-  [:yes, :no, :maybe].each do |field|
+  ["Yes", "No", "Maybe"].each do |field|
     it { should allow_value(field).for(:video_approval) }
   end
 
-  it "allows only attributes in the enum" do
-    lambda do
-      should_not allow_value(:chinaski).for(:video_approval)
-    end.should raise_error(ArgumentError, ":chinaski is not one of {:maybe, :no, :yes}")
-  end
-  
-  [:deep, :intro, :survey].each do |field|
+  ["Deep Dive", "Intro", "Survey"].each do |field|
     it { should allow_value(field).for(:talk_type) }
   end
-  
-  it "allows only attributes in the enum" do
-    lambda do
-      should_not allow_value(:chinaski).for(:talk_type)
-    end.should raise_error(ArgumentError, ":chinaski is not one of {:deep, :intro, :survey}")
-  end
+  it {should_not allow_value("chinaski").for(:video_approval)}  
+  it {should_not allow_value("chinaski").for(:talk_type)}  
+
 end

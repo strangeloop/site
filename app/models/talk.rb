@@ -4,16 +4,24 @@ class Talk < ActiveRecord::Base
     validates field, :presence => true
   end
 
-  has_enumeration :video_approval, [:yes, :no, :maybe]
-  has_enumeration :talk_type, :deep => "Deep Dive", :intro => "Intro", :survey => "Survey"
-
   belongs_to :track
   belongs_to :talk_length
 
   has_and_belongs_to_many :speakers
 
-  before_create AddConfYear
-
   accepts_nested_attributes_for :speakers
 
+  def self.video_approvals
+    ["Yes", "No", "Maybe"]
+  end
+
+  def self.talk_types
+    ["Deep Dive", "Intro", "Survey"]
+  end
+
+  validates_inclusion_of :video_approval, :in =>     ["Yes", "No", "Maybe"]
+  validates_inclusion_of :talk_type, :in =>     ["Deep Dive", "Intro", "Survey"]
+
+  before_create AddConfYear
+  
 end
