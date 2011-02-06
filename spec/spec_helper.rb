@@ -1,4 +1,7 @@
 require 'rbconfig'
+require 'factory_girl'
+require File.join(File.dirname(__FILE__), '../vendor/engines/proposals/spec/factories')
+
 def setup_environment
   # This file is copied to ~/spec when you run 'rails generate rspec'
   # from the project root directory.

@@ -14,6 +14,15 @@ module Refinery
             :class => Proposal,
             :title => 'status'
           }
+
+          class <<plugin
+            alias old_title title
+            def title
+              pending = Proposal.pending_count
+              return "#{old_title} (#{pending})" unless pending == 0
+              old_title
+            end
+          end
         end
       end
     end

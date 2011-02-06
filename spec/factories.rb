@@ -5,7 +5,7 @@ Factory.define :user do |u|
   u.password_confirmation "greenandjuicy"
 end
 
-Factory.define :refinery_user, :parent => :user do |u|
+Factory.define :admin, :parent => :user do |u|
   u.roles { [ Role[:refinery] ] }
 
   u.after_create do |user|
@@ -15,7 +15,7 @@ Factory.define :refinery_user, :parent => :user do |u|
   end
 end
 
-Factory.define :reviewer, :parent => :refinery_user do |u|
+Factory.define :reviewer, :parent => :admin do |u|
   u.after_create do |user|
     user.roles << Role[:reviewer]
   end
