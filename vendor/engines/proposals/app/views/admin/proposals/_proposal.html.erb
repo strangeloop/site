@@ -1,18 +1,11 @@
 <li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(proposal) -%>">
   <span class='title'>
-    <%= proposal.status %>
-    <span class="preview">&nbsp;</span>
+    <%= title_for proposal %> ( <%= speaker_for proposal %> )
+    <span class="preview"> - <%= track_for proposal %> - </span>
   </span>
+  <span class="title"><%= proposal.status %></span>
   <span class='actions'>
-    <%= link_to refinery_icon_tag("application_go.png"), proposal_url(proposal),
-        :title => t('.view_live_html'),
-        :target => "_blank" %>
     <%= link_to refinery_icon_tag("application_edit.png"), edit_admin_proposal_path(proposal),
-         :title => t('.edit') %>
-    <%= link_to refinery_icon_tag("delete.png"), admin_proposal_path(proposal),
-        :class => "cancel confirm-delete",
-        :title => t('.delete'),
-        :confirm => t('message', :scope => 'shared.admin.delete', :title => proposal.status),
-        :method => :delete %>
+        :title => t('.edit') %>
   </span>
 </li>

@@ -36,10 +36,16 @@ Factory.define :talk_type do |type|
   type.description 'Session meant to teach a specific lesson'
 end
 
+Factory.define :track do |t|
+  t.abbrev 'mobile'
+  t.description 'Highlights mobile device app development'
+end
+
 Factory.define :talk do |t|
   t.title 'Sample Talk'
   t.abstract 'A talk about samples'
   t.talk_type { Factory(:talk_type) }
   t.speakers { [Factory(:speaker)] }
+  t.track { Factory(:track) }
 end
 
