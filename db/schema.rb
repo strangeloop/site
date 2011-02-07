@@ -11,6 +11,7 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20110205041825) do
+
   create_table "images", :force => true do |t|
     t.string   "image_mime_type"
     t.string   "image_name"
