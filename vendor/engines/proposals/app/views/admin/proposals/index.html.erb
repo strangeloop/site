@@ -1,6 +1,8 @@
 <div id='records'>
   <% if searching? %>
     <h2><%= t('results_for', :scope => 'shared.admin.search', :query => params[:search]) %></h2>
+  <% else %>
+    <h2><%= t('.all_proposals') %></h2>
   <% end %>
   <% if @proposals.any? %>
     <%= will_paginate @proposals %>

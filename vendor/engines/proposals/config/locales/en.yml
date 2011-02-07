@@ -10,6 +10,7 @@ en:
     proposals:
       index:
         title: Proposals
+        all_proposals: Proposed Talks 
         create_new: Add New Proposal
         reorder: Reorder Proposals
         reorder_done: Done Reordering Proposals
