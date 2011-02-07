@@ -1,4 +1,25 @@
 <h2>Talk Submitted</h2>
 <p>
-Success!!!
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Abstract</th>
+      <th>Talk Type</th>
+      <th>Talk Length</th>
+      <th>Video Approval</th>
+      <th>Comments</th>
+      <th>Prereqs</th>
+      <th>Audio/Visual Requirements</th>
+    </tr>
+    <tr>
+      <td><%= @talk.title %></td>
+      <td><%= @talk.abstract %></td>
+      <td><%= @talk.talk_type %></td>
+      <td><%= @talk.talk_length %></td>
+      <td><%= @talk.video_approval %></td>
+      <td><%= @talk.comments %></td>
+      <td><%= @talk.prereqs %></td>
+      <td><%= @talk.av_requirement %></td>
+    </tr>
+  </table>
 </p>

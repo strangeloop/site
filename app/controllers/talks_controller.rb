@@ -9,6 +9,6 @@ class TalksController < ApplicationController
   def create
     @talk = Talk.new params[:talk]
     @talk.save
-
+    @talk
   end
 end
