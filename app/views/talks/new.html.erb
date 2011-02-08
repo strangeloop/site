@@ -12,6 +12,13 @@
     <%= talk_form.input :av_requirement %>
     <%= talk_form.inputs :name => "Speaker", :for  => :speakers do |speaker_form| %>
       <%= speaker_form.input :first_name %>
+      <%= speaker_form.input :last_name %>
+      <%= speaker_form.input :email %>
+      <%= speaker_form.input :bio %>
+      <%= speaker_form.input :phone %>
+      <%= speaker_form.input :state, :as => :select, :collection =>
+      Carmen::state_codes %>
+      <%= speaker_form.input :country, :as => :select, :collection =>  Carmen::country_codes %>
     <% end %>
   <% end %>   
   <%= talk_form.buttons do %>
