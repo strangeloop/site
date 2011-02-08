@@ -13,7 +13,7 @@ describe Admin::ProposalsHelper do
   end
 
   it "show the track" do
-    view.track_for(proposal).should == 'mobile'
+    view.track_for(proposal).should == 'JVM'
   end
 
   it "shows the title for a talk" do

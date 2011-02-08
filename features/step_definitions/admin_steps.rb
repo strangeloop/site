@@ -19,9 +19,8 @@ Transform /^table:title,by,track,status$/ do |table|
     talk = Factory.create(:talk, :title => hash[:title])
     name = hash[:by].split(' ')
     speaker = Factory.create(:speaker, :first_name => name.first, :last_name => name.last)
-    track = Factory.create(:track, :abbrev => hash[:track])
     proposal = Proposal.new :status => hash[:status]
-    {:talk => talk, :speaker => speaker, :track => track, :proposal => proposal}
+    {:talk => talk, :speaker => speaker, :proposal => proposal}
   end
 end
 

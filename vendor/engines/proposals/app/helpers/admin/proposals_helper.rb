@@ -10,7 +10,7 @@ module Admin
     end
   
     def track_for(proposal)
-      proposal.talk.track.abbrev
+      proposal.talk.track
     end
   end  
 end

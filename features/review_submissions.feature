@@ -11,12 +11,12 @@ Feature: As a conference talks reviewer
   Scenario: Reviewer visits Proposals when one talk has been submitted
     Given the following talks have been submitted:
       | title     | by       | track  | status    |
-      | Free Beer | Bud Hops | mobile | submitted |
+      | Free Beer | Bud Hops | JVM | submitted |
     And I am a logged in reviewer
     When I follow "Proposals (1)"
     Then I should see "Proposed Talks"
     And I should see "Free Beer"
     And I should see "Bud Hops"
-    And I should see "mobile"
+    And I should see "JVM"
     And I should see "submitted"
     

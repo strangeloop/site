@@ -31,21 +31,13 @@ Factory.define :speaker do |s|
   s.country 'US'
 end
 
-Factory.define :talk_type do |type|
-  type.name 'tutorial'
-  type.description 'Session meant to teach a specific lesson'
-end
-
-Factory.define :track do |t|
-  t.abbrev 'mobile'
-  t.description 'Highlights mobile device app development'
-end
-
 Factory.define :talk do |t|
   t.title 'Sample Talk'
   t.abstract 'A talk about samples'
-  t.talk_type { Factory(:talk_type) }
+  t.talk_type 'Intro'
+  t.track 'JVM'
+  t.video_approval 'Yes'
+  t.talk_length '5 Minutes'
   t.speakers { [Factory(:speaker)] }
-  t.track { Factory(:track) }
 end
 
