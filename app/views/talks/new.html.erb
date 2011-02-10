@@ -1,6 +1,6 @@
 <h1>Submit a talk</h1>
-<%= semantic_form_for [@speakers, @talk] do |talk_form| %>
-  <%= talk_form.inputs do %>
+<% semantic_form_for [@speakers, @talk] do |talk_form| %>
+  <% talk_form.inputs do %>
     <%= talk_form.input :title %>
     <%= talk_form.input :abstract %>
     <%= talk_form.input :talk_type, :as => :select, :collection => Talk.talk_types %>
@@ -10,7 +10,7 @@
     <%= talk_form.input :comments %>
     <%= talk_form.input :prereqs %>
     <%= talk_form.input :av_requirement %>
-    <%= talk_form.inputs :name => "Speaker", :for  => :speakers do |speaker_form| %>
+    <% talk_form.inputs :name => "Speaker", :for  => :speakers do |speaker_form| %>
       <%= speaker_form.input :first_name %>
       <%= speaker_form.input :last_name %>
       <%= speaker_form.input :email %>
@@ -21,7 +21,7 @@
       <%= speaker_form.input :country, :as => :select, :collection =>  Carmen::country_codes %>
     <% end %>
   <% end %>   
-  <%= talk_form.buttons do %>
+  <% talk_form.buttons do %>
     <%= talk_form.commit_button %>
   <% end %>
 <% end %>
