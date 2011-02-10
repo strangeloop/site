@@ -34,7 +34,7 @@ gem 'refinerycms',              '= 0.9.9'
 
 group :development, :test do
   # RSpec
-  gem 'rspec-rails', '~> 2.4.1'
+  gem 'rspec-rails', '~> 2.5.0'
   # Cucumber
   gem 'capybara', '~> 0.4.1'
   gem 'database_cleaner', '~> 0.6.0'
