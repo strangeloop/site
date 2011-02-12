@@ -23,21 +23,21 @@ end
 
 Factory.define :speaker do |s|
   s.first_name 'Earl'
-  s.last_name 'Grey'
-  s.email 'earl@grey.com'
-  s.bio 'Hot tea afficionado'
-  s.phone '314-444-1234'
-  s.state 'MO'
-  s.country 'US'
+  s.last_name  'Grey'
+  s.email      'earl@grey.com'
+  s.bio        'Hot tea afficionado'
+  s.phone      '314-444-1234'
+  s.state      'MO'
+  s.country    'US'
 end
 
 Factory.define :talk do |t|
-  t.title 'Sample Talk'
-  t.abstract 'A talk about samples'
-  t.talk_type 'Intro'
-  t.track 'JVM'
+  t.title          'Sample Talk'
+  t.abstract       'A talk about samples'
+  t.talk_type      'Intro'
+  t.track          'JVM'
   t.video_approval 'Yes'
-  t.talk_length '5 Minutes'
-  t.speakers { [Factory(:speaker)] }
+  t.talk_length    '5 Minutes'
+  t.speakers       { [Factory(:speaker)] }
 end
 
