@@ -1,0 +1,13 @@
+Dear <%= @talk.speakers[0].first_name %> <%= @talk.speakers[0].last_name%>
+
+Thank you for your Strange Loop <%= @talk.conf_year %> talk submission.
+
+We will review the submission and notify you if your talk is acceptd.
+
+Below is the information you submitted for this talk.
+
+-----------------------------------------------------------------------------------
+Title:  <%= @talk.title %>
+Abstract: <%= @talk.abstract %>
+Talk Length: <%= @talk.talk_length %>
+Comments: <%= @talk.comments %>
