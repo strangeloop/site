@@ -17,6 +17,16 @@ en:
         sorry_no_results: Sorry! There are no results found.
         no_items_yet: There are no talks ready for review
       proposal:
+        title: Title
+        abstract: Abstract
+        av_requirement: A/V Requirement
+        video_approval: Video Approval
+        talk_type: Talk Type
+        track: Track
+        talk_length: Talk Length
+        by: Speaker
+        bio: Bio
+        status: Review Status
         view_live_html: View this proposal live <br/><em>(opens in a new window)</em>
         edit: Edit this proposal
         delete: Remove this proposal forever

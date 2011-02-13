@@ -1,19 +1,45 @@
-<%= form_for [:admin, @proposal] do |f| -%>
-  <%= render :partial => "/shared/admin/error_messages", :locals => {
-    :object => @proposal,
-    :include_object_name => true
-  } %>
-  
-  <div class='field'>
-    <%= f.label :status -%>
-    <%= f.text_field :status, :class => 'larger widest' -%>
+
+<%= render :partial => '/shared/admin/error_messages', :locals => {
+  :object => @proposal,
+  :include_object_name => true
+} %>
+
+<div id="records">
+
+  <% [:title, :abstract, :av_requirement, :video_approval, 
+      :talk_type, :track, :talk_length].each do |field| %>
+
+    <div class='left-column'>
+      <%= t(field, :scope  => 'admin.proposals.proposal') -%>
+    </div>
+    <div class='right-column'>
+      <%= @proposal.talk.send(field) -%>
+    </div>
+
+  <% end %>
+
+  <% @proposal.talk.speakers.each do |speaker| %>
+
+    <div class='left-column'>
+      <%= t('by', :scope  => 'admin.proposals.proposal') -%>
+    </div>
+    <div class="right-column">
+      <%= "#{speaker.first_name} #{speaker.last_name}" -%>
+    </div>
+    <div class="left-column">
+      <%= t('bio', :scope  => 'admin.proposals.proposal') -%>
+    </div>
+    <div class="right-column">
+      <%= speaker.bio -%>
+    </div>
+  <% end %>
+
+  <div class="left-column">
+      <%= t('status', :scope  => 'admin.proposals.proposal') -%>
   </div>
+
+  <div class="right-column">
+    <%= @proposal.status -%>
+  </div> 
+</div>
   
-  <%= render :partial => "/shared/admin/form_actions",
-              :locals => {
-                :f => f,
-                :continue_editing => false,
-                :delete_title => t('delete', :scope => 'admin.proposals.proposal'),
-                :delete_confirmation => t('message', :scope => 'shared.admin.delete', :title => @proposal.status)
-              } %>
-<% end -%>

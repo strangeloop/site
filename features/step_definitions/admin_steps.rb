@@ -24,6 +24,26 @@ Transform /^table:title,by,track,status$/ do |table|
   end
 end
 
+Transform /^table:title,by,abstract,bio,av req,approve video,talk type,track,length,status$/ do |table|
+  table.hashes.map do |hash|
+    talk = Factory.create(:talk, 
+                          :title          => hash[:title],
+                          :abstract       => hash[:abstract],
+                          :av_requirement => hash[:"av req"],
+                          :video_approval => hash[:"approve video"],
+                          :talk_type      => hash[:"talk type"],
+                          :track          => hash[:track],
+                          :talk_length    => hash[:length])
+    name = hash[:by].split(' ')
+    speaker = Factory.create(:speaker, 
+                             :first_name => name.first, 
+                             :last_name => name.last,
+                             :bio => hash[:bio])
+    proposal = Proposal.new :status => hash[:status]
+    {:talk => talk, :speaker => speaker, :proposal => proposal}
+  end
+end
+
 Given /^the following talks have been submitted:$/ do |table|
   table.each do |group|
     talk = group[:talk]

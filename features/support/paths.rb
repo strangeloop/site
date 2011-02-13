@@ -14,6 +14,9 @@ module NavigationHelpers
     when /the new talks page/
       '/talks/new.html'
 
+    when /the review proposals page/
+      '/refinery/proposals' #TODO: Remove 'refinery' from admin path 
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
