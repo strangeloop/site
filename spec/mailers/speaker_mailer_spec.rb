@@ -16,12 +16,13 @@ describe SpeakerMailer do
     !ActionMailer::Base.deliveries.size.should == 1
     @email.to[0].should == @talk.speakers[0].email
     @email.from[0].should == "notifications@strangeloop.com"
-    assert @email.body =~ /#{@talk.speakers[0].first_name}/
-    assert @email.body =~ /#{@talk.speakers[0].last_name}/
-    assert @email.body =~ /Thank you for your Strange Loop.*submission/
-    assert @email.body =~ /#{@talk.title}/
-    assert @email.body =~ /#{@talk.abstract}/
-    assert @email.body =~ /#{@talk.talk_length}/
-    assert @email.body =~ /#{@talk.comments}/
+    [/#{@talk.speakers[0].first_name}/,
+     /#{@talk.speakers[0].last_name}/,
+     /#{@talk.title}/,
+     /#{@talk.abstract}/,
+     /#{@talk.talk_length}/,
+     /#{@talk.comments}/].each do |text|
+      assert @email.body =~ text
+    end
   end
 end
