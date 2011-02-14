@@ -14,3 +14,6 @@ When /^(?:|I )select "([^"]*)"(?: in "([^"]*)")?$/ do |item, box|
   select(item, :from => box)
 end
 
+When /^an email should be sent$/ do
+  !ActionMailer::Base.deliveries.size.should == 1
+end

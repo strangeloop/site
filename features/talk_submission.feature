@@ -36,6 +36,7 @@ Feature: As an anonymous user I can enter a talk along with
       And I should see "555-555-5555"
       And I should see "MO"
       And I should see "US"
+      And an email should be sent
       
       
       
