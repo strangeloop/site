@@ -30,5 +30,7 @@ class Talk < ActiveRecord::Base
   validates_inclusion_of :talk_length, :in => talk_lengths
 
   before_create AddConfYear
+
+  acts_as_taggable_on :tags
   
 end

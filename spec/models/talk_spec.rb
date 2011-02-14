@@ -5,20 +5,23 @@ describe Talk do
     it {should validate_presence_of field}
   end
 
-  context "Tests needing a basic record to exit" do
+
+  it "should auto add the current year as conf_year" do
+    Factory(:talk).conf_year.should == Time.now.year
+  end
+
+  context "Tests with tags" do
     before do
-      @model = Talk.create(:title => "a",
-                           :abstract => "b",
-                           :video_approval => "Yes",
-                           :talk_type => "Intro",
-                           :track => "JVM",
-                           :talk_length => "5 Minutes")
+      @model = Factory(:talk)
+      @model.tag_list = "Ruby, Rails"
+      @model.save
     end
 
-    it "should auto add the current year as conf_year" do
-      @model.conf_year.should == Time.now.year
+    it "Should be tagged" do
+      Talk.tagged_with("Ruby").size.should == 1
+      Talk.tagged_with("Rails").size.should == 1
+      Talk.tagged_with("Cobol").size.should == 0
     end
-
   end
 
   it {should have_and_belong_to_many :speakers}
@@ -41,5 +44,7 @@ describe Talk do
                       Talk.talk_types => :talk_type,
                       Talk.tracks => :track,
                       Talk.talk_lengths => :talk_length })
+
+  
   
 end
