@@ -17,3 +17,4 @@ end
 When /^an email should be sent$/ do
   !ActionMailer::Base.deliveries.size.should == 1
 end
+

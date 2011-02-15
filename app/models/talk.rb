@@ -32,5 +32,7 @@ class Talk < ActiveRecord::Base
   before_create AddConfYear
 
   acts_as_taggable_on :tags
+
+  accepts_nested_attributes_for :tags
   
 end

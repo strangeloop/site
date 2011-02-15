@@ -20,11 +20,12 @@ Feature: As an anonymous user I can enter a talk along with
       And I select "Deep Dive" in "Talk type"
       And I select "5 Minutes" in "Talk length"
       And I select "No" in "talk_video_approval"
-
       And I select "MO" in "State"
       And I select "US" in "Country"
-      And I press "Create Talk"
+      And I fill in "Tags" with "theory, clojure"      
+
       
+      And I press "Create Talk"
       Then I should see "Squashing NP Hard Problems with Clojure"
       And I should see "Deep Dive"
       And I should see "5 Minutes"
@@ -36,7 +37,10 @@ Feature: As an anonymous user I can enter a talk along with
       And I should see "555-555-5555"
       And I should see "MO"
       And I should see "US"
+      And I should see "theory"
+      And I should see "clojure"   
       And an email should be sent
+      
       
       
       

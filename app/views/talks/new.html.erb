@@ -10,6 +10,7 @@
     <%= talk_form.input :comments %>
     <%= talk_form.input :prereqs %>
     <%= talk_form.input :av_requirement %>
+    <%= talk_form.input :tag_list, :label => "Tags", :as => :string %>
     <%= talk_form.inputs :name => "Speaker", :for  => :speakers do |speaker_form| %>
       <%= speaker_form.input :first_name %>
       <%= speaker_form.input :last_name %>
