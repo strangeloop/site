@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(:version => 20110214040815) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "browser_title"
     t.string   "meta_keywords"
-    t.string   "title"
+    t.string   "browser_title"
     t.text     "meta_description"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -97,6 +97,19 @@ ActiveRecord::Schema.define(:version => 20110214040815) do
   end
 
   add_index "proposals", ["id"], :name => "index_proposals_on_id"
+
+  create_table "rates", :force => true do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.integer  "stars",         :null => false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
+  add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
 
   create_table "refinery_settings", :force => true do |t|
     t.string   "name"

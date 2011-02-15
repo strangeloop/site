@@ -17,6 +17,10 @@ module NavigationHelpers
     when /the review proposals page/
       '/refinery/proposals' #TODO: Remove 'refinery' from admin path 
 
+    when /the default proposal review page/
+      prop = Factory(:proposal)
+      "/refinery/proposals/#{prop.id}/edit"
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

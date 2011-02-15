@@ -56,3 +56,11 @@ Given /^the following talks have been submitted:$/ do |table|
   end
 end
 
+When /^I rate the proposal with (\d+) stars$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^the default proposal should have a (\d+) star rating$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+

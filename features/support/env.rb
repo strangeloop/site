@@ -6,20 +6,13 @@
 
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path(File.dirname(__FILE__) + '/../../config/environment')
+require File.expand_path(File.dirname(__FILE__) + '/../../vendor/engines/proposals/spec/factories')
 
+require 'capybara'
+require 'cucumber/rails'
 require 'cucumber/formatter/unicode' # Remove this line if you don't want Cucumber Unicode support
-require 'cucumber/rails/world'
-require 'cucumber/rails/active_record'
-require 'cucumber/web/tableish'
 
 require 'factory_girl/step_definitions'
-
-require 'capybara/rails'
-require 'capybara/cucumber'
-require 'capybara/session'
-#Below is commented out to avoid a problem mentioned here:
-#https://github.com/aslakhellesoy/cucumber-rails/issues/issue/77
-#require 'cucumber/rails/capybara_javascript_emulation' # Lets you click links with onclick javascript handlers without using @culerity or @javascript
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd

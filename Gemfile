@@ -1,10 +1,9 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
-
 gem 'formtastic', '~> 1.1.0'
-
 gem 'carmen', '0.2.4'
+gem 'ajaxful_rating', '~> 3.0.0.beta3'
 
 gem 'acts-as-taggable-on'
 
@@ -39,7 +38,7 @@ group :development, :test do
   # Cucumber
   gem 'capybara', '~> 0.4.1'
   gem 'database_cleaner', '~> 0.6.0'
-  gem 'cucumber-rails', '~> 0.3.2'
+  gem 'cucumber-rails', '~> 0.4.0.beta.1'
   gem 'launchy', '~> 0.3.7'
   gem 'gherkin'
   gem 'spork', '>= 0.9.0.rc3' unless Bundler::WINDOWS
