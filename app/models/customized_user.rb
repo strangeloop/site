@@ -7,9 +7,7 @@ class UserCustomizer
 
   def self.load
     User.class_eval do
-      def something
-        'I am a foo'
-      end
+      ajaxful_rater
     end
   end
 end

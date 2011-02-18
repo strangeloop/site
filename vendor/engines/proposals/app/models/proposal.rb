@@ -1,5 +1,6 @@
 class Proposal < ActiveRecord::Base
   belongs_to :talk
+  ajaxful_rateable :stars => 5, :dimensions => [:appeal]
 
   acts_as_indexed :fields => [:status]
   
