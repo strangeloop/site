@@ -38,10 +38,11 @@ Feature: As a conference talks reviewer
     And I should see "50 Minutes"
     And I should see "submitted"
 
+  @javascript
   Scenario: Reviewer submits a proposal rating
     Given a proposal exists
     And I am a logged in reviewer
     And I am on the default proposal review page
-    When I rate the proposal with 3 out of 5 stars
+    When I rate the proposal with 3 stars
     Then the default proposal should have a 3 out of 5 star rating
 

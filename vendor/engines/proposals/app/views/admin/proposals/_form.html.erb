@@ -1,4 +1,3 @@
-
 <%= render :partial => '/shared/admin/error_messages', :locals => {
   :object => @proposal,
   :include_object_name => true
@@ -42,4 +41,8 @@
     <%= @proposal.status -%>
   </div> 
 </div>
+
+<h3>Your rating:</h3>
+<%= render :partial => 'rating', :locals => { :proposal => @proposal } %>
+
   

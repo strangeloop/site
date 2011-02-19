@@ -1,0 +1,4 @@
+<%= ratings_for proposal, 
+                :remote_options => { :url => rate_admin_proposal_path(proposal) },
+                :show_user_rating => true,
+                :dimension => [:appeal] %>

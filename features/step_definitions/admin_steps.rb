@@ -56,11 +56,11 @@ Given /^the following talks have been submitted:$/ do |table|
   end
 end
 
-When /^I rate the proposal with (\d+) out of (\d+) stars$/ do |rating, maximum|
-  click_link "Rate #{rating} out of #{maximum}"
+When /^I rate the proposal with (\d+) stars$/ do |rating|
+  click_link rating
 end
 
 Then /^the default proposal should have a (\d+) out of (\d+) star rating$/ do |rating, maximum|
-  page.all("//div/ul/li[@class='show-value']").value.should == "Global rating average: #{}.0 out of #{maximum}"
+  page.should have_content("Your rating: #{rating} out of #{maximum}")
 end
 
