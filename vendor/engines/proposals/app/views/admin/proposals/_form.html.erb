@@ -3,44 +3,52 @@
   :include_object_name => true
 } %>
 
-<div id="records">
+<table border="0" cellpadding="10px" cellpadding="0">
 
   <% [:title, :abstract, :av_requirement, :video_approval, 
       :talk_type, :track, :talk_length].each do |field| %>
 
-    <div class='left-column'>
-      <%= t(field, :scope  => 'admin.proposals.proposal') -%>
-    </div>
-    <div class='right-column'>
-      <%= @proposal.talk.send(field) -%>
-    </div>
+    <tr>
+      <td>
+        <%= t(field, :scope  => 'admin.proposals.proposal') -%>
+      </td>
+      <td>
+        <%= @proposal.talk.send(field) -%>
+      </td>
+    </tr>
 
   <% end %>
 
   <% @proposal.talk.speakers.each do |speaker| %>
 
-    <div class='left-column'>
-      <%= t('by', :scope  => 'admin.proposals.proposal') -%>
-    </div>
-    <div class="right-column">
-      <%= "#{speaker.first_name} #{speaker.last_name}" -%>
-    </div>
-    <div class="left-column">
-      <%= t('bio', :scope  => 'admin.proposals.proposal') -%>
-    </div>
-    <div class="right-column">
-      <%= speaker.bio -%>
-    </div>
+    <tr>
+      <td>
+        <%= t('by', :scope  => 'admin.proposals.proposal') -%>
+      </td>
+      <td>
+        <%= "#{speaker.first_name} #{speaker.last_name}" -%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= t('bio', :scope  => 'admin.proposals.proposal') -%>
+      </td>
+      <td>
+        <%= speaker.bio -%>
+      </td>
+    </tr>
   <% end %>
 
-  <div class="left-column">
+  <tr>
+    <td>
       <%= t('status', :scope  => 'admin.proposals.proposal') -%>
-  </div>
+    </td>
 
-  <div class="right-column">
-    <%= @proposal.status -%>
-  </div> 
-</div>
+    <td>
+      <%= @proposal.status -%>
+    </td> 
+  </tr>
+</table>
 
 <h3>Your rating:</h3>
 <%= render :partial => 'rating', :locals => { :proposal => @proposal } %>
