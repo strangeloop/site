@@ -7,6 +7,10 @@ gem 'ajaxful_rating', '~> 3.0.0.beta3'
 
 gem 'acts-as-taggable-on'
 
+gem 'rack-cache', :require => 'rack/cache'
+gem 'dragonfly', '0.8.2'
+
+
 group :development, :test do
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
   gem 'awesome_print', '~> 0.3.2'
