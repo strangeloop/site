@@ -46,3 +46,13 @@ Feature: As a conference talks reviewer
     When I rate the proposal with 3 stars
     Then the default proposal should have a 3 out of 5 star rating
 
+
+  Scenario: Conference Organizer views proposal review ratings
+    Given a proposal exists
+    And a reviewer exists
+    And I am a logged in organizer
+    And the proposal was rated with 3 stars by "reviewer" 
+    When I am on the default proposal review page
+    Then I should see "Reviewed by: reviewer"
+    And I should see "3 out of 5"
+

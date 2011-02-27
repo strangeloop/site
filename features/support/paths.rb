@@ -18,7 +18,7 @@ module NavigationHelpers
       '/refinery/proposals' #TODO: Remove 'refinery' from admin path 
 
     when /the default proposal review page/
-      prop = Factory(:proposal)
+      prop = Proposal.first
       "/refinery/proposals/#{prop.id}/edit"
 
     # Add more mappings here.

@@ -16,11 +16,21 @@ Factory.define :admin, :parent => :user do |u|
 end
 
 Factory.define :reviewer, :parent => :user do |u|
+  u.username "reviewer"
   u.after_create do |user|
     user.plugins.create(:name => "refinery_dashboard", :position => 0)
     user.plugins.create(:name => "proposals", :position => 1)
     [:refinery, :reviewer].each{|role| user.roles << Role[role] }
   end
+end
+
+Factory.define :alternate_reviewer, :parent => :reviewer do |u|
+  u.username 'alternate_reviewer'
+end
+
+Factory.define :organizer, :parent => :reviewer do |u|
+  u.username 'organizer'
+  u.after_create {|user| user.roles << Role[:organizer] }
 end
 
 Factory.define :speaker do |s|

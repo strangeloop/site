@@ -5,8 +5,8 @@ def login
   click_button("submit_button")
 end
 
-Given /^I am a logged in reviewer$/ do
-  @user ||= Factory(:reviewer)
+Given /^I am a logged in (\w+)$/ do |role|
+  @user ||= Factory(role.to_sym)
   login
 end
 
@@ -63,4 +63,9 @@ end
 Then /^the default proposal should have a (\d+) out of (\d+) star rating$/ do |rating, maximum|
   page.should have_content("Your rating: #{rating} out of #{maximum}")
 end
+
+Given /^the proposal was rated with (\d+) star[s]? by "([^"]*)"$/ do |stars, reviewer|
+  Proposal.first.rate(stars.to_i, User.find_by_username(reviewer), 'appeal')
+end
+
 
