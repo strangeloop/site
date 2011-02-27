@@ -50,6 +50,13 @@
   </tr>
 </table>
 
+<% display_for :organizer do %>
+  <h3>Other ratings:</h3>
+  <% for rater in @proposal.raters('appeal') %>
+    <%= render :partial => 'reviews', :locals => { :rater => rater, :proposal => @proposal } unless rater == current_user %>
+  <% end %>
+<% end %>
+
 <h3>Your rating:</h3>
 <%= render :partial => 'rating', :locals => { :proposal => @proposal } %>
 
