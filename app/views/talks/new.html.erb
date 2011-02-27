@@ -18,7 +18,8 @@
       <%= speaker_form.input :bio %>
       <%= speaker_form.input :phone %>
       <%= speaker_form.input :state, :as => :select, :collection => Carmen::state_codes %>
-      <%= speaker_form.input :country, :as => :select, :collection =>  Carmen::country_codes %>
+      <%= speaker_form.input :country, :as => :select, :collection => Carmen::country_codes %>
+      <%= speaker_form.input :image, :as => :file %>
     <% end %>
   <% end %>   
   <%= talk_form.buttons do %>

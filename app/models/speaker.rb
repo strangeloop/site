@@ -13,6 +13,8 @@ class Speaker < ActiveRecord::Base
   validates_inclusion_of :country, :in => Carmen::country_codes,
   :message => "%{value} is not a valid state code"
 
+  image_accessor :image
+
   before_create AddConfYear
 
 end
