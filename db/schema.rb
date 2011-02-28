@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110225044302) do
+ActiveRecord::Schema.define(:version => 20110227213422) do
 
   create_table "images", :force => true do |t|
     t.string   "image_mime_type"
@@ -160,6 +160,15 @@ ActiveRecord::Schema.define(:version => 20110225044302) do
   add_index "slugs", ["locale"], :name => "index_slugs_on_locale"
   add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_name_sluggable_type_scope_and_sequence", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
+  create_table "speaker_images", :force => true do |t|
+    t.string   "uid"
+    t.binary   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "speaker_images", ["uid"], :name => "index_speaker_images_on_uid"
 
   create_table "speakers", :force => true do |t|
     t.string   "first_name"
