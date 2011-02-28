@@ -4,4 +4,8 @@ class SpeakerImage < ActiveRecord::Base
     validates field, :presence => true
   end
 
+  def self.find_by_uid(uid)
+    self.where(:uid => uid).first
+  end
+
 end
