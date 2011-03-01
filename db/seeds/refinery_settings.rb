@@ -1,6 +1,8 @@
 [
-  {:name => "site_name", :value => "Company Name"},
+  {:name => "site_name", :value => "Strange Loop"},
   {:name => "new_page_parts", :value => false, :form_type => 'check_box'},
+  {:name => "frontend_refinery_stylesheets_enabled", :value => false, :form_type => 'check_box'},
+  {:name => "superuser_can_assign_roles", :value => true, :form_type => 'check_box'},
   {:name => "activity_show_limit", :value => 7},
   {:name => "preferred_image_view", :value => :grid},
   {:name => "analytics_page_code", :value => "UA-xxxxxx-x"},
