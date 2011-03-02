@@ -1,6 +1,9 @@
 require 'rbconfig'
 require 'factory_girl'
+require 'warden'
+require 'devise/test_helpers'
 require File.join(File.dirname(__FILE__), '../vendor/engines/proposals/spec/factories')
+require File.join(File.dirname(__FILE__), '../vendor/engines/proposals/spec/spec_helper')
 
 def setup_environment
   # This file is copied to ~/spec when you run 'rails generate rspec'
@@ -32,6 +35,10 @@ def setup_environment
     # instead of true.
     config.use_transactional_fixtures = true
     config.use_instantiated_fixtures  = false
+
+    config.include Devise::TestHelpers, :type => :controller
+    #ControllerMacros adds login for different roles (defined in Proposal engine)
+    config.extend ControllerMacros, :type => :controller
   end
 end
 
@@ -80,3 +87,5 @@ def capture_stdout(&block)
   end
  fake.string
 end
+
+

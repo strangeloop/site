@@ -5,6 +5,7 @@ module Admin
             :title_attribute => 'status'
 
     def rate
+      return unless current_user.has_role? :reviewer
       @proposal = Proposal.find(params[:id])
       @proposal.rate(params[:stars], current_user, params[:dimension])
       @params = params
