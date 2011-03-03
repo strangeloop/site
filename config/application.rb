@@ -44,5 +44,12 @@ module Conf
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
       g.template_engine :erubis
     end
+
+    config.middleware.insert_after 'Rack::Lock', 'Dragonfly::Middleware', :strangeloop, '/tsl-media'
+    config.middleware.insert_before 'Dragonfly::Middleware', 'Rack::Cache', {
+      :verbose     => true,
+      :metastore   => "file:#{Rails.root}/tmp/dragonfly/cache/meta",
+      :entitystore => "file:#{Rails.root}/tmp/dragonfly/cache/body"
+    }
   end
 end

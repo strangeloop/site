@@ -14,21 +14,13 @@ describe Speaker do
   it {should allow_value("CA").for(:country)}
   it {should_not allow_value("ZZ").for(:country)}
 
-  context "Tests needing a basic record to exist" do
-  before do
-      @model = Speaker.create(:first_name => "a",
-                              :last_name => "b",
-                              :email  => "c",
-                              :phone => "d",
-                              :bio => "e",
-                              :state => "MO",
-                              :country => "US",
-                              :phone => "111-111-1111")
-    end
+  let!(:model){Factory(:speaker)}
+  let!(:img){SpeakerImage.first}
 
-    it "should auto add the current year as conf_year" do
-      @model.conf_year.should == Time.now.year
-    end
+  it "should auto add the current year as conf_year" do
+    model.conf_year.should == Time.now.year
+    img.uid.should == Digest::MD5.hexdigest(model.email)
+    img.image == 'foo'
   end
 
   it {should allow_value("123-456-7891").for(:phone)}

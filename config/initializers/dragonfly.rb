@@ -1,7 +1,13 @@
-require 'dragonfly/rails/images'
+require 'dragonfly'
 
 app = Dragonfly[:strangeloop]
+app.configure_with(:imagemagick)
+app.configure_with(:rails)
 
-app.configure do |c|
-  c.datastore = RelationalDragonflyStore.new
-end
+app.define_macro(ActiveRecord::Base, :image_accessor)
+app.datastore = RelationalDragonflyStore.new
+
+
+
+
+
