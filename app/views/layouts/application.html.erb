@@ -9,13 +9,11 @@
       <header>
         <%= render :partial => "/shared/header" -%>
       </header>
-      <section id='page'>
-        <%= yield %>
-      </section>
-      <footer>
-        <%= render :partial => "/shared/footer" -%>
-      </footer>
+      <%= yield %>
     </div>
+    <footer>
+    <%= render :partial => "/shared/footer" -%>
+    </footer>
     <%= render :partial => '/layouts/custom_javascripts' %>
     <%= render :partial => "/shared/javascripts" %>
   </body>
