@@ -5,7 +5,7 @@
   <body>
     <%= site_bar -%>
     <%= render :partial => "/shared/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
-    <div id="page_container">
+    <div id="container">
       <header>
         <%= render :partial => "/shared/header" -%>
       </header>

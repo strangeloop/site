@@ -90,6 +90,7 @@ button {  width: auto; overflow: visible; }
 .center_block {width:880px; margin: 0 auto}
 
 .cufon-loading .s_button, .cufon-loading .slider_title, .cufon-loading .page_title, .cufon-loading .price_table, .cufon-loading .price_button, .cufon-loading .slider_txt, .cufon-loading .cont_design_title, .cufon-loading .button2, .cufon-loading .sf-menu > li > a, .cufon-loading .number, .cufon-loading .price, .cufon-loading .price_list, .cufon-loading h4, .cufon-loading h3,  .cufon-loading .page_description, .cufon-loading .carousel_button span  { visibility: hidden !important; }
+ul.sf-menu { margin-top: 10px; font-weight: bold }
 
 
 
