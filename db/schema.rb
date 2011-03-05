@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(:version => 20110227213422) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "browser_title"
     t.string   "meta_keywords"
-    t.string   "title"
+    t.string   "browser_title"
     t.text     "meta_description"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(:version => 20110227213422) do
 
   create_table "speaker_images", :force => true do |t|
     t.string   "uid"
-    t.binary   "image"
+    t.binary   "db_image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -181,7 +181,7 @@ ActiveRecord::Schema.define(:version => 20110227213422) do
     t.string   "state"
     t.string   "country"
     t.integer  "conf_year"
-    t.string   "image_uid"
+    t.string   "db_image_uid"
   end
 
   create_table "speakers_talks", :id => false, :force => true do |t|

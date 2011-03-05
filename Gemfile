@@ -9,6 +9,7 @@ gem 'acts-as-taggable-on'
 
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '0.8.2'
+gem 'uuidtools', '~> 2.1.2'
 
 
 group :development, :test do

@@ -19,8 +19,7 @@ describe Speaker do
 
   it "should auto add the current year as conf_year" do
     model.conf_year.should == Time.now.year
-    img.uid.should == Digest::MD5.hexdigest(model.email)
-    img.image == 'foo'
+    img.uid.should == model.db_image_uid
   end
 
   it {should allow_value("123-456-7891").for(:phone)}

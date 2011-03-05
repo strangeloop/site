@@ -1,10 +1,10 @@
 class RelationalDragonflyStore
 
   def store(temp_object, opts={})
-    email_hash = Digest::MD5.hexdigest(opts[:email])
-    SpeakerImage.create(:uid => email_hash, 
-                         :image => temp_object.data)
-    email_hash
+    timestamp = UUIDTools::UUID.timestamp_create.to_s
+    SpeakerImage.create(:uid => timestamp, 
+                         :db_image => temp_object.data)
+    timestamp
   end
 
   def retrieve(uid)
@@ -12,7 +12,7 @@ class RelationalDragonflyStore
     if speaker_image.nil?
       [nil, {}]
     else
-      [speaker_image.image, {}]
+      [speaker_image.db_image, {}]
     end
   end
 

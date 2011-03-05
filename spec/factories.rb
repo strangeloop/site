@@ -31,7 +31,7 @@ Factory.define :speaker do |s|
   s.phone      '314-444-1234'
   s.state      'MO'
   s.country    'US'
-  s.image      'foo'
+  s.db_image   'foo'
 end
 
 Factory.define :talk do |t|
