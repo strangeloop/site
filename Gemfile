@@ -42,7 +42,7 @@ group :development, :test do
   gem 'cucumber-rails', '~> 0.4.0.beta.1'
   gem 'launchy', '~> 0.3.7'
   gem 'gherkin'
-  gem 'spork', '>= 0.9.0.rc3' unless Bundler::WINDOWS
+  gem 'spork', '>= 0.9.0.rc4' unless Bundler::WINDOWS
   gem 'rack-test',              '~> 0.5.6'
   gem 'json_pure', '~> 1.5.1'
   # Factory Girl
