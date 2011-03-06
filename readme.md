@@ -4,7 +4,7 @@ To get started, you'll need rvm and bundler
 
 `$> gem install rvm --no-rdoc --no-ri`
 
-`$> rvm install 1.8.7`
+`$> rvm install ree`
 
 The cd out of the top directory, and back in (this should trigger RVM to
 notice the .rvmrc file).  Then:
