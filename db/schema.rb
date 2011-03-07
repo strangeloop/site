@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110227213422) do
+ActiveRecord::Schema.define(:version => 20110307000126) do
 
   create_table "images", :force => true do |t|
     t.string   "image_mime_type"
@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(:version => 20110227213422) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "meta_keywords"
     t.string   "browser_title"
-    t.text     "meta_description"
+    t.string   "meta_keywords"
     t.string   "title"
+    t.text     "meta_description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -163,9 +163,9 @@ ActiveRecord::Schema.define(:version => 20110227213422) do
 
   create_table "speaker_images", :force => true do |t|
     t.string   "uid"
-    t.binary   "db_image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.binary   "db_image"
   end
 
   add_index "speaker_images", ["uid"], :name => "index_speaker_images_on_uid"

@@ -19,7 +19,7 @@
       <%= speaker_form.input :phone %>
       <%= speaker_form.input :state, :as => :select, :collection => Carmen::state_codes %>
       <%= speaker_form.input :country, :as => :select, :collection => Carmen::country_codes %>
-      <%= speaker_form.input :image, :as => :file %>
+      <%= speaker_form.input :db_image, :as => :file %>
     <% end %>
   <% end %>   
   <%= talk_form.buttons do %>
