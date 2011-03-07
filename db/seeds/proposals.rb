@@ -5,13 +5,3 @@ User.find(:all).each do |user|
   end
 end
 
-page = Page.create(
-  :title => 'Proposals',
-  :link_url => '/proposals',
-  :deletable => false,
-  :position => ((Page.maximum(:position, :conditions => {:parent_id => nil}) || -1)+1),
-  :menu_match => '^/proposals(\/|\/.+?|)$'
-)
-Page.default_parts.each do |default_page_part|
-  page.parts.create(:title => default_page_part, :body => nil)
-end
