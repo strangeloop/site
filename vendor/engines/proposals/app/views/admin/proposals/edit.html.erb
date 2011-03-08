@@ -1,1 +1,84 @@
-<%= render :partial => "form" %>
+<%= render :partial => '/shared/admin/error_messages', :locals => {
+  :object => @proposal,
+  :include_object_name => true
+} %>
+
+<div id='actions'>
+  <h2><%= t('.details')%></h2>
+  <p>
+    <strong><%= t('.age') %>:</strong> <%= time_ago_in_words(@proposal.created_at) %>
+  </p>
+  <h2><%= t('.actions') %></h2>
+  <ul>
+    <li>
+      <%= link_to t('.back_to_all_proposals'), {:action => 'index'}, :class => "back_icon" %>
+    </li>
+  </ul>
+</div>
+
+
+<div id='records'>
+  <h2><%= t('.proposal') %></h2>
+
+  <table id="inquiry">
+    <tbody>
+
+      <% [:title, :abstract, :av_requirement, :video_approval, 
+        :talk_type, :track, :talk_length].each do |field| %>
+
+          <tr>
+            <td>
+              <strong><%= t(".#{ field }") -%></strong>
+            </td>
+            <td>
+              <%= @proposal.talk.send(field) -%>
+            </td>
+          </tr>
+
+        <% end %>
+
+        <% @proposal.talk.speakers.each do |speaker| %>
+
+          <tr>
+            <td>
+              <strong><%= t('.by') -%></strong>
+            </td>
+            <td>
+              <%= "#{speaker.first_name} #{speaker.last_name}" -%>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong><%= t('.bio') -%></strong>
+            </td>
+            <td>
+              <%= speaker.bio -%>
+            </td>
+          </tr>
+        <% end %>
+
+        <tr>
+          <td>
+            <strong><%= t('.status') -%></strong>
+          </td>
+
+          <td>
+            <%= @proposal.status -%>
+          </td> 
+        </tr>
+      </tbody>
+    </table>
+
+    <% display_for :organizer do %>
+      <h3><%= t('.other_ratings') -%>:</h3>
+      <% for rater in @proposal.raters('appeal') %>
+        <%= render :partial => 'reviews', :locals => { :rater => rater, :proposal => @proposal } unless rater == current_user %>
+      <% end %>
+    <% end %>
+
+    <h3><%= t('.your_rating') -%>:</h3>
+    <%= render :partial => 'rating', :locals => { :proposal => @proposal } %>
+
+
+</div>  
+

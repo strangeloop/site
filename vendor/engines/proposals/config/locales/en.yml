@@ -16,7 +16,8 @@ en:
         reorder_done: Done Reordering Proposals
         sorry_no_results: Sorry! There are no results found.
         no_items_yet: There are no talks ready for review
-      proposal:
+      edit:
+        proposal: Proposal
         title: Title
         abstract: Abstract
         av_requirement: A/V Requirement
@@ -27,9 +28,12 @@ en:
         by: Speaker
         bio: Bio
         status: Review Status
-        view_live_html: View this proposal live <br/><em>(opens in a new window)</em>
-        edit: Edit this proposal
-        delete: Remove this proposal forever
+        back_to_all_proposals: Back to all proposals
+        details: Details
+        age: Age
+        actions: Actions
+        other_ratings: Other Ratings
+        your_rating: Your Rating
   proposals:
     show:
       other: Other Proposals
