@@ -24,8 +24,6 @@ class CreateInquiries < ActiveRecord::Migration
       t.datetime "created_at"
       t.datetime "updated_at"
     end unless ::InquirySetting.table_exists?
-
-    load(Rails.root.join('db', 'seeds', 'pages_for_inquiries.rb').to_s)
   end
 
   def self.down
