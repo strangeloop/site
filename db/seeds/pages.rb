@@ -1,8 +1,10 @@
 page_position = -1
 
 home_page = Page.create(:title => "Home",
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => false,
-            :show_in_menu => false,            
+            :show_in_menu => false,
             :link_url => "/",
             :menu_match => "^/$",
             :position => (page_position += 1))
@@ -24,6 +26,8 @@ home_page.parts.create({
 
 home_page_position = -1
 page_not_found_page = home_page.children.create(:title => "Page not found",
+            :custom_title => '',
+            :custom_title_type => 'text',
             :menu_match => "^/404$",
             :show_in_menu => false,
             :deletable => false,
@@ -35,6 +39,8 @@ page_not_found_page.parts.create({
             })
 
 about_us_page = Page.create(:title => "About",
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (page_position += 1),
             :link_url => "/about",
@@ -47,6 +53,9 @@ about_us_page.parts.create({
 
 about_page_position = -1
 team_page = about_us_page.children.create(:title => "Team",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (about_page_position += 1),
             :path => "About - Team")
@@ -57,6 +66,9 @@ team_page.parts.create({
             })
 
 history_path = about_us_page.children.create(:title => "History",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (about_page_position),
             :path => "About - History")
@@ -67,6 +79,9 @@ history_path.parts.create({
             })
 
 volunteers_page = about_us_page.children.create(:title => "Volunteers",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (about_page_position),
             :path => "About - Volunteers")
@@ -76,22 +91,13 @@ volunteers_page.parts.create({
               :position => 0
             })
 
-contact_page = about_us_page.children.create(:title => "Contact",
-            :deletable => true,
-            :position => (about_page_position),
-            :link_url => '/contact',
-            :menu_match => "^/contact$",
-            :path => "About - Contact")
-contact_page.parts.create({
-              :title => "Body",
-              :body => "<p>Nothing goes here.  This is a placeholder for the Contact engine.</p>",
-              :position => 0
-            })
-
 faq_path = about_us_page.children.create(:title => "FAQ",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (about_page_position),
-            :path => "Abou' - FAQ")
+            :path => "About - FAQ")
 faq_path.parts.create({
               :title => "Body",
               :body => "<p>FAQ info goes here</p>",
@@ -124,6 +130,9 @@ attendees_page.parts.create({
 
 attendees_page_position = -1
 register_page = attendees_page.children.create(:title => "Register",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (attendees_page_position += 1),
             :path => "Attendees - Register")
@@ -134,6 +143,9 @@ register_page.parts.create({
             })
 
 connect_page = attendees_page.children.create(:title => "Connect",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (attendees_page_position),
             :link_url => '/connect',
@@ -145,6 +157,9 @@ connect_page.parts.create({
             })
 
 venue_page = attendees_page.children.create(:title => "Venue",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (attendees_page_position),
             :path => "Attendees - Venue")
@@ -155,6 +170,9 @@ venue_page.parts.create({
             })
 
 travel_page = attendees_page.children.create(:title => "Travel",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (attendees_page_position),
             :path => "Attendees - Travel")
@@ -165,6 +183,9 @@ travel_page.parts.create({
             })
 
 activities_page = attendees_page.children.create(:title => "Things to do",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (attendees_page_position),
             :path => "Attendees - Things to do")
@@ -175,6 +196,9 @@ activities_page.parts.create({
             })
 
 apps_page = attendees_page.children.create(:title => "Apps",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (attendees_page_position),
             :path => "Attendees - Apps")
@@ -198,6 +222,9 @@ schedule_page.parts.create({
 
 schedule_page_position = -1
 speakers_page = schedule_page.children.create(:title => "Speakers",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (schedule_page_position += 1),
             :link_url => '/speakers',
@@ -210,6 +237,9 @@ speakers_page.parts.create({
             })
 
 talks_page = schedule_page.children.create(:title => "Talks",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (schedule_page_position),
             :link_url => '/talks',
@@ -221,6 +251,9 @@ talks_page.parts.create({
             })
 
 content_page = schedule_page.children.create(:title => "Content",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (schedule_page_position),
             :path => "Schedule - Content")
@@ -243,6 +276,9 @@ sponsors_page.parts.create({
 
 sponsors_page_position = -1
 prospectus_page = sponsors_page.children.create(:title => "Prospectus",
+            :show_in_menu => false,
+            :custom_title => '',
+            :custom_title_type => 'text',
             :deletable => true,
             :position => (sponsors_page_position += 1),
             :path => "Sponsors - Prospectus")
