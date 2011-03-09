@@ -19,7 +19,7 @@ describe Speaker do
 
   it "should auto add the current year as conf_year" do
     model.conf_year.should == Time.now.year
-    img.uid.should == model.db_image_uid
+    model.db_image.data.should == SpeakerImage.find_by_uid(model.db_image_uid).db_image
   end
 
   it {should allow_value("123-456-7891").for(:phone)}
