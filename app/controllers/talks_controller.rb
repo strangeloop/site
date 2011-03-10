@@ -10,8 +10,8 @@ class TalksController < ApplicationController
   
   def create
     @talk = Talk.new params[:talk]
-    print @talk.tags
     @talk.save
+    Proposal.create :status => 'submitted', :talk => @talk
     SpeakerMailer.talk_submission_email @talk
     @talk
   end

@@ -15,7 +15,6 @@ describe Speaker do
   it {should_not allow_value("ZZ").for(:country)}
 
   let!(:model){Factory(:speaker)}
-  let!(:img){SpeakerImage.first}
 
   it "should auto add the current year as conf_year" do
     model.conf_year.should == Time.now.year
