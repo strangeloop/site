@@ -78,4 +78,15 @@ describe Proposal do
     end
   end
 
+  context "comments" do
+    let(:proposal){Factory(:proposal)}
+    before do
+      proposal.comments.create(:title => "foo", :comment => "comment1")
+      proposal.comments.create(:title => "bar", :comment => "comment2")
+      proposal.save
+    end
+    describe "commenting" do
+      specify {proposal.comments.all.size.should == 2}
+    end
+  end
 end

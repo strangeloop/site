@@ -3,6 +3,8 @@ class Proposal < ActiveRecord::Base
   ajaxful_rateable :stars => 5, :dimensions => [:appeal]
 
   acts_as_indexed :fields => [:status]
+
+  acts_as_commentable
   
   validates_inclusion_of :status, :in => %w(submitted under\ review accepted rejected)
   validates_presence_of :talk
