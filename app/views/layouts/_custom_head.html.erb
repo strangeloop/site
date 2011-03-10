@@ -1,5 +1,6 @@
 <% content_for :stylesheets do %>
   <%= stylesheet_link_tag 'style' %>
   <%= stylesheet_link_tag '/javascripts/superfish/css/superfish.css' %>
+  <%= auto_discovery_link_tag(:rss, news_items_url(:format => 'rss')) %>
 <% end %>
 <%= render :partial => "/shared/head" %>
