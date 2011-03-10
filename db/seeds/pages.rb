@@ -104,18 +104,6 @@ faq_path.parts.create({
               :position => 0
             })
 
-
-news_page = Page.create(:title => "News",
-            :deletable => true,
-            :position => (page_position += 1),
-            :link_url => '/news',
-            :menu_match => "^/news$")
-news_page.parts.create({
-              :title => "Body",
-              :body => "<p>Nothing goes here.  This is a placeholder for the News engine.</p>",
-              :position => 0
-            })
-
 attendees_page = Page.create(:title => "Attendees",
             :deletable => true,
             :position => (page_position += 1),
