@@ -1,0 +1,20 @@
+  <div class="footer_box_header">
+     <h4><%= link_to footer_menu.title, footer_menu.url %></h4>
+  </div>
+
+  <div class="bottom_box">
+    <ul>
+      <li>
+        <ul>
+          <% footer_menu.children.each do |child| -%>
+            <li>
+              <%= link_to(child.url) do %>
+              <span><%= child.title %></span>
+              <% end -%>
+            </li>
+          <% end -%>
+        </ul>
+      </li>
+    </ul>
+  </div>
+

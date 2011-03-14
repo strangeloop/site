@@ -1,134 +1,19 @@
-<div class="push"></div>
 <div class="foot">
   <div class="footer">
     <div class="copy">
       <%= t('.copyright1') -%> &copy; <%= t('.copyright2', :year => Time.now.year,
                                             :site_name => RefinerySetting.find_or_set(:site_name, "Company Name")) %>
-                <span style="margin-left: 10px;">
-                  <a href="http://www.twitter.com" target="_blank"><img src="images/socialmedia/twitter.png" style="border: none; margin-left :5px;"/></a>
-                  <a href="http://www.facebook.com" target="_blank"><img src="images/socialmedia/facebook.png" style="border: none; margin-left :5px;" /></a>
-                  <a href="http://www.linkedin.com" target="_blank"><img src="images/socialmedia/linkedin.png" style="border: none; margin-left :5px;" /></a>		
-                </span>
-              </div>
+      <span style="margin-left: 10px;">
+        <a href="http://www.twitter.com" target="_blank"><img src="/images/socialmedia/twitter.png" style="border: none; margin-left :5px;"/></a>
+        <a href="http://www.facebook.com" target="_blank"><img src="/images/socialmedia/facebook.png" style="border: none; margin-left :5px;" /></a>
+        <a href="http://www.linkedin.com" target="_blank"><img src="/images/socialmedia/linkedin.png" style="border: none; margin-left :5px;" /></a>		
+      </span>
+    </div>
 
-
-              <div class="footer_box" id="resources_box"> 
-                <div class="footer_box_header"> 
-                  <h4><a href="#">Sponsors</a></h4> 
-                </div> 
-
-                <div class="bottom_box"> 
-                  <ul> 
-                    <li>
-                      <ul>
-                        <li><a href="#"><span>Prospectus</span></a></li>
-                      </ul>
-                    </li>
-
-                  </li>
-                </ul> 
-              </div>
-
-
-              <div class="footer_box_header"> 
-                <h4><a href="#">Archive</a></h4> 
-              </div> 
-
-              <div class="bottom_box"> 
-                <ul> 
-                  <li>
-                    <ul>
-                      <li><a href="#"><span>2010</span></a></li>
-                      <li><a href="#"><span>2009</span></a></li>
-                    </ul>
-                  </li>
-
-                </li>
-              </ul> 
-            </div> 
-
-          </div> 		
-
-
-          <div class="footer_box" id="resources_box"> 
-            <div class="footer_box_header"> 
-              <h4><a href="#">Schedule</a></h4> 
-            </div> 
-
-            <div class="bottom_box"> 
-              <ul> 
-                <li>
-                  <ul>
-                    <li><a href="#"><span>Speakers</span></a></li>
-                    <li><a href="#"><span>Talks</span></a></li>
-                    <li><a href="#"><span>Schedule</span></a></li>
-                    <li><a href="#"><span>Content</span></a></li>
-                  </ul>
-                </li>
-
-              </li>
-            </ul> 
-          </div> 
-
-          <div class="footer_box_header" style="margin-top: 5px;"> 
-            <h4><a href="#">Volunteers</a></h4> 
-          </div> 
-        </div> 	
-
-
-        <div class="footer_box" id="resources_box"> 
-          <div class="footer_box_header"> 
-            <h4><a href="#">Attendees</a></h4> 
-          </div> 
-
-          <div class="bottom_box"> 
-            <ul> 
-
-              <li>
-                <ul>
-                  <li><a href="#"><span>Register</span></a></li>
-                  <li><a href="#"><span>Connect</span></a></li>
-                  <li><a href="#"><span>Venue</span></a></li>
-                  <li><a href="#"><span>Travel</span></a></li>
-                  <li><a href="#"><span>Things to do</span></a></li>
-                  <li><a href="#"><span>Apps</span></a></li>
-                </ul>
-              </li>
-
-            </li>
-          </ul> 
-        </div> 	
-      </div>
-
-      <div class="footer_box" id="resources_box"> 
-        <div class="footer_box_header"> 
-          <h4><a href="#">About Us</a></h4> 
-        </div> 
-
-        <div class="bottom_box"> 
-          <ul> 
-            <li>
-              <ul>
-                <li><a href="#"><span>Team</span></a></li>
-                <li><a href="#"><span>History</span></a></li>
-                <li><a href="#"><span>FAQ</span></a></li> 
-              </ul>
-            </li>
-
-          </li>
-        </ul> 
-      </div> 
-
-      <div class="footer_box_header" style="margin-top: 5px;"> 
-        <h4><a href="#">Contact</a></h4> 
-      </div> 		
-
-      <div class="footer_box_header" style="margin-top: 5px;"> 
-        <h4><a href="#">News</a></h4> 
-      </div> 			
-
-    </div> 
+    <% link_tree(@menu_pages).reverse.each do |page_group| -%>
+    <div class="footer_box resources_box">
+      <%= render :partial => 'shared/footer_menu', :collection => page_group %>
+    </div>
+    <% end -%>
   </div>
-
 </div>
-
