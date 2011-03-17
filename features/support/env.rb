@@ -5,8 +5,11 @@
 # files.
 
 ENV["RAILS_ENV"] ||= "test"
-require File.expand_path(File.dirname(__FILE__) + '/../../config/environment')
-require File.expand_path(File.dirname(__FILE__) + '/../../vendor/engines/proposals/spec/factories')
+
+[ 'config/environment', 
+  'vendor/engines/proposals/spec/factories'].each do |path|
+  require File.expand_path(File.dirname(__FILE__) + '/../../' + path)
+end
 
 require 'capybara'
 require 'cucumber/rails'
