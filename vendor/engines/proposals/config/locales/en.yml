@@ -33,6 +33,11 @@ en:
         actions: Actions
         other_ratings: Other Ratings
         your_rating: Your Rating
+        add_comment: Add Comment
+        comments: Comments
+      add_comment:
+        comment_button: Add Comment
+
   proposals:
     show:
       other: Other Proposals

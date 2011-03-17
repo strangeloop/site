@@ -1,0 +1,6 @@
+<%= form_tag(:action => :add_comment, :method => :post) do %>
+<%= text_area_tag(:comment, "", :size => "24x6") %>
+<%= hidden_field_tag(:proposal_id,  @proposal.id ) %>
+<%= submit_tag t('.comment_button') -%>
+<% end%>
+

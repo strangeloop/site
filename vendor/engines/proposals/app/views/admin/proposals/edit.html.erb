@@ -66,6 +66,20 @@
             <%= @proposal.status -%>
           </td> 
         </tr>
+
+      <tr>
+        <td>
+          <strong><%= t('.comments') -%></strong>
+        </td>
+
+        <td>
+          <% @proposal.comments_by_user(current_user).each do |comment| %>
+          <pre><%= comment.comment.to_s %> </pre>
+          <br/>
+          <% end %>
+        </td> 
+        </tr>
+
       </tbody>
     </table>
 
@@ -77,7 +91,11 @@
     <% end %>
 
     <h3><%= t('.your_rating') -%>:</h3>
-    <%= render :partial => 'rating', :locals => { :proposal => @proposal } %>
+    <%= render :partial => 'rating', :locals => { :proposal =>
+    @proposal } %>
+
+    <h3><%= t('.add_comment') -%>:</h3>
+    <%= render :partial => 'add_comment', :locals => { :proposal => @proposal } %>
 
 
 </div>  

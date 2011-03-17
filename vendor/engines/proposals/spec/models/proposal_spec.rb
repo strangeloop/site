@@ -80,13 +80,16 @@ describe Proposal do
 
   context "comments" do
     let(:proposal){Factory(:proposal)}
+    let(:user){Factory(:user)}
     before do
-      proposal.comments.create(:title => "foo", :comment => "comment1")
-      proposal.comments.create(:title => "bar", :comment => "comment2")
+      proposal.comments.create(:title => "foo", :comment => "comment1", :user => user)
+      proposal.comments.create(:title => "bar", :comment => "comment2", :user => user)
       proposal.save
     end
     describe "commenting" do
       specify {proposal.comments.all.size.should == 2}
+      specify {Proposal.find_comments_by_user(user).size.should == 2}
+      specify {proposal.comments_by_user(user).size.should == 2}
     end
   end
 end

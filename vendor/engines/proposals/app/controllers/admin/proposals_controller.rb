@@ -10,5 +10,12 @@ module Admin
       @proposal.rate(params[:stars], current_user, params[:dimension])
       @params = params
     end
+
+    def add_comment
+      @proposal = Proposal.find(params[:proposal_id])
+      @proposal.comments.create(:comment => params[:comment], :user => current_user)
+      @proposal.save
+      render "edit"
+    end
   end
 end

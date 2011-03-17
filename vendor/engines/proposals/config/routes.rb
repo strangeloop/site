@@ -9,6 +9,7 @@ Refinery::Application.routes.draw do
       end
 
       post :rate, :on => :member
+      post :add_comment, :on => :member
     end
   end
 end

@@ -13,6 +13,10 @@ class Proposal < ActiveRecord::Base
     where(:status => ['submitted', 'under review'])
   }
 
+  def comments_by_user(user)
+    comments_ordered_by_submitted.select{|item| item.user_id == user.id}
+  end
+
   def self.pending_count
     self.pending.count
   end
