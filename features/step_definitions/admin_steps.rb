@@ -5,8 +5,8 @@ def login
   click_button("submit_button")
 end
 
-Given /^I am a logged in (\w+)$/ do |role|
-  @user ||= Factory(role.to_sym)
+Given /^I am a logged in (\w+\s?\w*)$/ do |role|
+  @user ||= Factory(role.gsub(' ', '_').to_sym)
   login
 end
 

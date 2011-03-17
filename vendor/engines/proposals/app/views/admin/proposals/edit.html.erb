@@ -83,20 +83,19 @@
       </tbody>
     </table>
 
-    <% display_for :organizer do %>
+    <% if current_user.has_role? :organizer -%>
       <h3><%= t('.other_ratings') -%>:</h3>
-      <% for rater in @proposal.raters('appeal') %>
+      <% for rater in @proposal.raters('appeal') -%>
         <%= render :partial => 'reviews', :locals => { :rater => rater, :proposal => @proposal } unless rater == current_user %>
       <% end %>
     <% end %>
 
-    <h3><%= t('.your_rating') -%>:</h3>
-    <%= render :partial => 'rating', :locals => { :proposal =>
-    @proposal } %>
-
-    <h3><%= t('.add_comment') -%>:</h3>
-    <%= render :partial => 'add_comment', :locals => { :proposal => @proposal } %>
-
+    <% if current_user.has_role? :reviewer -%>
+      <h3><%= t('.your_rating') -%>:</h3>
+      <%= render :partial => 'rating', :locals => { :proposal => @proposal } %>
+      <h3><%= t('.add_comment') -%>:</h3>
+      <%= render :partial => 'add_comment', :locals => { :proposal => @proposal } %>
+    <% end -%>
 
 </div>  
 

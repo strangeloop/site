@@ -2,6 +2,12 @@ Feature: As a conference talks reviewer
   I need to see talks ready to be reviewed
   So that I can curate the talks for an upcoming conference
 
+  Scenario: Non-reviewer visits Proposal
+    Given a proposal exists
+    And I am a logged in admin
+    When I am on the default proposal review page
+    Then I should not see "Your Rating"
+
   Scenario: Reviewer visits Proposals tab before any talk submitted
     Given I am a logged in reviewer
     And there are no submitted talks
