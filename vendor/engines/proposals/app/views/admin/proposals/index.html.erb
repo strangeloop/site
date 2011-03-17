@@ -32,10 +32,6 @@
                     } %>
       </li>
     <% end %>
-    <li>
-      <%= link_to t('.create_new'), new_admin_proposal_url,
-                   :class => "add_icon" %>
-    </li>
   <% if !searching? and Proposal.count > 1 and Admin::ProposalsController.sortable? %>
     <li>
       <%= link_to t('.reorder', :what => "Proposals"),
