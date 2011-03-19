@@ -12,9 +12,5 @@ module Admin
     def track_for(proposal)
       proposal.talk.track
     end
-
-    def display_for(role)
-      yield if current_user.has_role? role
-    end
   end  
 end
