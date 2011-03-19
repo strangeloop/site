@@ -24,4 +24,6 @@ describe Speaker do
   it {should allow_value("123-456-7891").for(:phone)}
   it {should allow_value("1234567891").for(:phone)}
   it {should_not allow_value("123-7891").for(:phone)}
+
+  it{ should_not allow_value("x" * 801).for(:bio)}
 end

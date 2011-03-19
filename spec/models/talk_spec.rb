@@ -45,6 +45,7 @@ describe Talk do
                       Talk.tracks => :track,
                       Talk.talk_lengths => :talk_length })
 
-  
+  it{ should_not allow_value("x" * 56).for(:title)}
+  it{ should_not allow_value("x" * 1201).for(:abstract)}
   
 end
