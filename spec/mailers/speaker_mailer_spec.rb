@@ -18,7 +18,6 @@ describe SpeakerMailer do
     email.cc[0].should == sub_admin1.email
     email.cc[1].should == sub_admin2.email
     [/#{talk.speakers[0].first_name}/,
-     /#{talk.speakers[0].last_name}/,
      /#{talk.title}/,
      /#{talk.abstract}/,
      /#{talk.talk_length}/,
