@@ -540,3 +540,6 @@ nav {position:absolute; top:0px; right:0}
 .pic_speaker {float:left; background:#fff; padding:8px; line-height:0px; font-size:0px; margin-right:18px; margin-bottom:20px; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px;}	
 	
 
+.freetext {
+    height: 100px;
+}
