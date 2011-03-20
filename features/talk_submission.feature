@@ -8,18 +8,18 @@ Feature: As an anonymous user I can enter a talk along with
       When I fill in the following:
       | Title | Squashing NP Hard Problems with Clojure |
       | Abstract | Using only functions, sequences and three toothpicks I will make 3 SAT solvable in O(n) time |
-      | Comments | Already have my solution approved by Karp |
-      | Prereqs | Solving other NP-Hard problems in O(n) time |
-      | Av requirement | Just need a projector capable of displaying two lines of code |
-      | First name | Clem |
-      | Last name | Esterbill |
+      | Reviewer Comments | Already have my solution approved by Karp |
+      | Prerequisites | Solving other NP-Hard problems in O(n) time |
+      | Audio/Video Requirement | Just need a projector capable of displaying two lines of code |
+      | First Name | Clem |
+      | Last Name | Esterbill |
       | Email | clem_esterbill@fictionaldns.com |
       | Bio | Background info here |
       | Phone | 555-555-5555 |
       
-      And I select "Deep Dive" in "Talk type"
-      And I select "5 Minutes" in "Talk length"
-      And I select "No" in "talk_video_approval"
+      And I select "Deep Dive" in "Talk Type"
+      And I select "5 Minutes" in "Talk Format"
+      And I select "No" in "Video Approval"
       And I select "MO" in "State"
       And I select "US" in "Country"
       And I fill in "Tags" with "theory, clojure"      

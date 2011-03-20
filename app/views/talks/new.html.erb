@@ -1,27 +1,30 @@
 <h1>Submit a talk</h1>
 <%= semantic_form_for [@speakers, @talk] do |talk_form| %>
   <%= talk_form.inputs do %>
-    <%= talk_form.input :title %>
-    <%= talk_form.input :abstract %>
-    <%= talk_form.input :talk_type, :as => :select, :collection => Talk.talk_types %>
-    <%= talk_form.input :talk_length, :as => :select, :collection => Talk.talk_lengths%>
-    <%= talk_form.input :video_approval, :as => :select, :collection => Talk.video_approvals %>
-    <%= talk_form.input :comments %>
-    <%= talk_form.input :prereqs %>
-    <%= talk_form.input :av_requirement %>
-    <%= talk_form.input :tag_list, :label => "Tags", :as => :string %>
+    <%= talk_form.input :title, :label => t('.title')%>
+    <%= talk_form.input :abstract, :label => t('.abstract') %>
+    <%= talk_form.input :talk_type, :label => t('.talk_type'),
+        :as => :select, :collection => Talk.talk_types %>
+    <%= talk_form.input :talk_length, :label => t('.talk_length'), 
+        :as => :select, :collection => Talk.talk_lengths%>
+    <%= talk_form.input :video_approval, :label => t('.video_approval'),
+        :as => :select, :collection => Talk.video_approvals %>
+    <%= talk_form.input :comments, :label => t('.comments')%>
+    <%= talk_form.input :prereqs, :label => t('.prereqs')%>
+    <%= talk_form.input :av_requirement, :label => t('.av_req')%>
+    <%= talk_form.input :tag_list, :label => t('.tags'), :as => :string %>
     <%= talk_form.inputs :name => "Speaker", :for  => :speakers do |speaker_form| %>
-      <%= speaker_form.input :first_name %>
-      <%= speaker_form.input :last_name %>
-      <%= speaker_form.input :email %>
-      <%= speaker_form.input :bio %>
-      <%= speaker_form.input :phone %>
-      <%= speaker_form.input :state, :as => :select, :collection => Carmen::state_codes %>
-      <%= speaker_form.input :country, :as => :select, :collection => Carmen::country_codes %>
-      <%= speaker_form.input :db_image, :as => :file %>
+      <%= speaker_form.input :first_name, :label => t('.fname') %>
+      <%= speaker_form.input :last_name, :label => t('.lname') %>
+      <%= speaker_form.input :email, :label => t('.email') %>
+      <%= speaker_form.input :bio, :label => t('.bio') %>
+      <%= speaker_form.input :phone, :label => t('.phone') %>
+      <%= speaker_form.input :state, :label => t('.state'), :as => :select, :collection => Carmen::state_codes %>
+      <%= speaker_form.input :country, :label => t('.country'), :as => :select, :collection => Carmen::country_codes %>
+      <%= speaker_form.input :db_image, :label => t('.image'), :as => :file %>
     <% end %>
   <% end %>   
   <%= talk_form.buttons do %>
-    <%= talk_form.commit_button %>
+    <%= talk_form.commit_button%>
   <% end %>
 <% end %>

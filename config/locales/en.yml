@@ -6,3 +6,24 @@ en:
     footer:
       copyright1: "Copyright"
       copyright2: "%{year} %{site_name}. All rights reserved."
+
+  talks:      
+    new:
+      title: "Title"
+      abstract: "Abstract"
+      talk_type: "Talk Type"
+      talk_length: "Talk Format"
+      video_approval: "Video Approval"
+      comments: "Reviewer Comments"
+      prereqs: "Prerequisites"
+      av_req: "Audio/Video Requirements"
+      tags: "Tags"
+      fname: "First Name"
+      lname: "Last Name"
+      email: "Email"
+      bio: "Bio"
+      phone: "Phone"
+      state: "State"
+      country: "Country"
+      image: "Profile Image"
+      commit: "Submit Talk"
