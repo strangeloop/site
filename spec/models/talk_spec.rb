@@ -42,7 +42,6 @@ describe Talk do
     
   test_enum_fields( {Talk.video_approvals => :video_approval,
                       Talk.talk_types => :talk_type,
-                      Talk.tracks => :track,
                       Talk.talk_lengths => :talk_length })
 
   it{ should_not allow_value("x" * 56).for(:title)}

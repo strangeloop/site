@@ -4,7 +4,6 @@
     <%= talk_form.input :title %>
     <%= talk_form.input :abstract %>
     <%= talk_form.input :talk_type, :as => :select, :collection => Talk.talk_types %>
-    <%= talk_form.input :track, :as => :select, :collection => Talk.tracks%>
     <%= talk_form.input :talk_length, :as => :select, :collection => Talk.talk_lengths%>
     <%= talk_form.input :video_approval, :as => :select, :collection => Talk.video_approvals %>
     <%= talk_form.input :comments %>

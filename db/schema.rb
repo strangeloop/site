@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110310052133) do
+ActiveRecord::Schema.define(:version => 20110319234328) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -261,7 +261,6 @@ ActiveRecord::Schema.define(:version => 20110310052133) do
     t.integer  "conf_year"
     t.string   "video_approval"
     t.string   "talk_type"
-    t.string   "track"
     t.string   "talk_length"
   end
 

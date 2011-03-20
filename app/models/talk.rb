@@ -16,17 +16,12 @@ class Talk < ActiveRecord::Base
     ["Deep Dive", "Intro", "Survey", "Other"]
   end
 
-  def self.tracks
-    ["Languages", "JVM", "NoSQL"]
-  end
-
   def self.talk_lengths
     ["5 Minutes", "50 Minutes", "80 Minutes"]
   end
 
   validates_inclusion_of :video_approval, :in => video_approvals
   validates_inclusion_of :talk_type, :in => talk_types
-  validates_inclusion_of :track, :in => tracks
   validates_inclusion_of :talk_length, :in => talk_lengths
 
   validates_length_of :title, :maximum => 55

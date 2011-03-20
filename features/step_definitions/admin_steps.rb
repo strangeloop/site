@@ -14,7 +14,7 @@ Given /^there are no submitted talks$/ do
   Proposal.destroy_all  
 end
 
-Transform /^table:title,by,track,status$/ do |table|
+Transform /^table:title,by,status$/ do |table|
   table.hashes.map do |hash|
     talk = Factory.create(:talk, :title => hash[:title])
     name = hash[:by].split(' ')
@@ -24,7 +24,7 @@ Transform /^table:title,by,track,status$/ do |table|
   end
 end
 
-Transform /^table:title,by,abstract,bio,av req,approve video,talk type,track,length,status$/ do |table|
+Transform /^table:title,by,abstract,bio,av req,approve video,talk type,length,status$/ do |table|
   table.hashes.map do |hash|
     talk = Factory.create(:talk, 
                           :title          => hash[:title],
@@ -32,7 +32,6 @@ Transform /^table:title,by,abstract,bio,av req,approve video,talk type,track,len
                           :av_requirement => hash[:"av req"],
                           :video_approval => hash[:"approve video"],
                           :talk_type      => hash[:"talk type"],
-                          :track          => hash[:track],
                           :talk_length    => hash[:length])
     name = hash[:by].split(' ')
     speaker = Factory.create(:speaker, 
@@ -48,7 +47,6 @@ Given /^the following talks have been submitted:$/ do |table|
   table.each do |group|
     talk = group[:talk]
     talk.speakers = [ group[:speaker] ]
-    talk.track = group[:track]
     talk.save
     proposal = group[:proposal]
     proposal.talk = talk

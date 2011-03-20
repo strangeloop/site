@@ -9,8 +9,5 @@ module Admin
       "#{speaker.first_name} #{speaker.last_name}"
     end
   
-    def track_for(proposal)
-      proposal.talk.track
-    end
   end  
 end
