@@ -8,20 +8,30 @@
     <%= talk_form.input :talk_length, :label => t('.talk_length'), 
         :as => :select, :collection => Talk.talk_lengths%>
     <%= talk_form.input :video_approval, :label => t('.video_approval'),
-        :as => :select, :collection => Talk.video_approvals %>
-    <%= talk_form.input :comments, :label => t('.comments')%>
-    <%= talk_form.input :prereqs, :label => t('.prereqs')%>
-    <%= talk_form.input :av_requirement, :label => t('.av_req')%>
-    <%= talk_form.input :tag_list, :label => t('.tags'), :as => :string %>
+        :as => :select, :collection => Talk.video_approvals, :hint => t('.video_approval_hint')%>
+    <%= talk_form.input :comments, :label => t('.comments'),
+        :hint => t('.comments_hint')%>
+    <%= talk_form.input :prereqs, :label => t('.prereqs'),
+        :hint => t('.prereq_hint')%>
+    <%= talk_form.input :av_requirement, :label => t('.av_req'),
+        :hint => t('.av_req_hint')%>
+    <%= talk_form.input :tag_list, :label => t('.tags'),
+        :as => :string, :hint => t('.tags_hint') %>
     <%= talk_form.inputs :name => "Speaker", :for  => :speakers do |speaker_form| %>
       <%= speaker_form.input :first_name, :label => t('.fname') %>
       <%= speaker_form.input :last_name, :label => t('.lname') %>
       <%= speaker_form.input :email, :label => t('.email') %>
       <%= speaker_form.input :bio, :label => t('.bio') %>
-      <%= speaker_form.input :phone, :label => t('.phone') %>
-      <%= speaker_form.input :state, :label => t('.state'), :as => :select, :collection => Carmen::state_codes %>
-      <%= speaker_form.input :country, :label => t('.country'), :as => :select, :collection => Carmen::country_codes %>
-      <%= speaker_form.input :db_image, :label => t('.image'), :as => :file %>
+      <%= speaker_form.input :phone, :label => t('.phone'),
+          :hint => t('.phone_hint')%>
+      <%= speaker_form.input :state, :label => t('.state'),
+          :as => :select, :collection => Carmen::state_codes, 
+          :hint => t('.state_hint')%>
+      <%= speaker_form.input :country, :label => t('.country'),
+          :as => :select, :collection => Carmen::country_codes, 
+          :hint => t('.country_hint')%>
+      <%= speaker_form.input :db_image, :label => t('.image'),
+          :as => :file, :hint => t('.image_hint')%>
     <% end %>
   <% end %>   
   <%= talk_form.buttons do %>
