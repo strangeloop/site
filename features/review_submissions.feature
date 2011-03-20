@@ -83,5 +83,15 @@ Feature: As a conference talks reviewer
     Then I should see "Reviewed by: reviewer"
     And I should see "3 out of 5"
 
-
+  Scenario: Conference organizer approves proposals
+    Given a proposal exists
+    And there are no sessions
+    And I am a logged in organizer
+    And I am on the default proposal review page
+    When I approve the proposal
+    Then I should see "Approved"
+    And I follow "Proposals"
+    Then I should see "There are no talks ready for review"
+    And I follow "Sessions"
+    Then I should see 1 session
 
