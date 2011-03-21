@@ -72,7 +72,7 @@
           <strong><%= t('.comments') -%></strong>
         </td>
 
-        <td>
+        <td id="comments">
           <% @proposal.comments_by_user(current_user).each do |comment| %>
           <pre><%= comment.comment.to_s %> </pre>
           <br/>

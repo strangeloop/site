@@ -12,10 +12,10 @@ module Admin
     end
 
     def add_comment
-      @proposal = Proposal.find(params[:proposal_id])
-      @proposal.comments.create(:comment => params[:comment], :user => current_user)
-      @proposal.save
-      render "edit"
+      proposal = Proposal.find(params[:proposal_id])
+      proposal.comments.create(:comment => params[:comment], :user => current_user)
+      proposal.save
+      @comment = params[:comment]
     end
   end
 end

@@ -1,6 +1,6 @@
-<%= form_tag(:action => :add_comment, :method => :post) do %>
-<%= text_area_tag(:comment, '', :class => 'field') %>
+<%= form_tag url_for(:action => :add_comment), :remote => true do %>
+<%= text_area_tag(:comment, '', :id => 'comment-field', :class => 'field') %>
 <%= hidden_field_tag(:proposal_id,  @proposal.id ) %>
 <%= submit_tag t('.comment_button') -%>
-<% end%>
+<% end %>
 
