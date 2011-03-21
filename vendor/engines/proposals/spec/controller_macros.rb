@@ -1,3 +1,5 @@
+# Provides a convenience method for simulating login via
+# an administrative user (to get through the devise authentication)
 module ControllerMacros
   def login_reviewer
     before(:each) do
