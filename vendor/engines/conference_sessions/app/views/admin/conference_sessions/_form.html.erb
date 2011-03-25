@@ -1,0 +1,38 @@
+<%= form_for [:admin, @conference_session] do |f| -%>
+  <%= render :partial => "/shared/admin/error_messages", :locals => {
+          :object => @conference_session,
+          :include_object_name => true
+        } %>
+  
+  <div class='field'>
+    <%= f.label :start_time -%>
+    <%= f.datetime_select :start_time -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :talk -%>
+    <%= f.text_field :talk -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :title -%>
+    <%= f.text_field :title -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :slides -%>
+    <%= render :partial => "/shared/admin/resource_picker", :locals => {
+          :f => f,
+          :field => :slides_id,
+          :resource => @conference_session.slides,
+        } %>
+  </div>
+  
+  <%= render :partial => "/shared/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('delete', :scope => 'admin.conference_sessions.conference_session'),
+                :delete_confirmation => t('message', :scope => 'shared.admin.delete', :title => @conference_session.title)
+              } %>
+<% end -%>

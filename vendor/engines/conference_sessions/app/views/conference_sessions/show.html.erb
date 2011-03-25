@@ -1,0 +1,45 @@
+<% content_for :body_content_title do %>
+  <%= @conference_session.title %>
+<% end %>
+
+<% content_for :body_content_left do %>
+  <section>
+    <h1>Start Time</h1>
+    <p>
+      <%=raw @conference_session.start_time %>
+    </p>
+  </section>
+  <section>
+    <h1>Talk</h1>
+    <p>
+      <%=raw @conference_session.talk %>
+    </p>
+  </section>
+  <section>
+    <h1>Title</h1>
+    <p>
+      <%=raw @conference_session.title %>
+    </p>
+  </section>
+  <section>
+    <h1>Slides</h1>
+    <p>
+      <%= link_to 'slides', @conference_session.slides.url %>
+    </p>
+  </section>
+<% end %>
+
+<% content_for :body_content_right do %>
+  <aside>
+    <h2><%= t('.other') %></h2>
+    <ul id="conference_sessions">
+      <% @conference_sessions.each do |conference_session| %>
+        <li>
+          <%= link_to conference_session.title, conference_session_url(conference_session) %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>
