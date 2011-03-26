@@ -17,5 +17,12 @@ module Admin
       @proposal.save
       render "edit"
     end
+
+    def approve_proposal
+      @proposal = Proposal.find(params[:id])
+      @proposal[:status] = "accepted"
+      @proposal.save
+      render "edit"
+    end
   end
 end

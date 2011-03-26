@@ -85,13 +85,13 @@ Feature: As a conference talks reviewer
 
   Scenario: Conference organizer approves proposals
     Given a proposal exists
-    And there are no sessions
+    And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
-    When I approve the proposal
-    Then I should see "Approved"
+    When I accept the proposal
+    Then I should see "accepted"
     And I follow "Proposals"
     Then I should see "There are no talks ready for review"
-    And I follow "Sessions"
-    Then I should see 1 session
+    And I follow "Conference Sessions"
+    Then I should see 1 conference session
 

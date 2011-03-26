@@ -88,6 +88,8 @@
       <% for rater in @proposal.raters('appeal') -%>
         <%= render :partial => 'reviews', :locals => { :rater => rater, :proposal => @proposal } unless rater == current_user %>
       <% end %>
+      <%= button_to "Approve Talk", { :action => "approve_proposal",
+      :proposal => @proposal}%>
     <% end %>
 
     <% if current_user.has_role? :reviewer -%>
@@ -96,6 +98,5 @@
       <h3><%= t('.add_comment') -%>:</h3>
       <%= render :partial => 'add_comment', :locals => { :proposal => @proposal } %>
     <% end -%>
-
 </div>  
 
