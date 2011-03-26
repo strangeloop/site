@@ -46,11 +46,20 @@ Feature: As a conference talks reviewer
     Given a proposal exists
     And a reviewer exists
     And I am a logged in organizer
-    And the proposal was rated with 3 stars by "reviewer" 
+    And the proposal was rated with 3 stars by reviewer
     When I am on the default proposal review page
-    Then I should see "Reviewed by: reviewer"
+    Then I should see "Feedback from: reviewer"
     And I should see "3 out of 5"
 
+  Scenario: Conference Organizer views reviewer comments
+    Given a proposal exists
+    And a reviewer exists
+    And I am a logged in organizer
+    And a comment "Like it" was added to the proposal by reviewer
+    When I am on the default proposal review page
+    Then I should see "Feedback from: reviewer"
+    And I should see "Like it"
+  
   @javascript
   Scenario: Reviewer comments on a proposal
     Given a proposal exists

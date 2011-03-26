@@ -37,7 +37,7 @@
 
         <% end %>
 
-        <% @proposal.talk.speakers.each do |speaker| %>
+        <% for speaker in @proposal.talk.speakers %>
 
           <tr>
             <td>
@@ -73,9 +73,8 @@
         </td>
 
         <td id="comments">
-          <% @proposal.comments_by_user(current_user).each do |comment| %>
-          <pre><%= comment.comment.to_s %> </pre>
-          <br/>
+          <% for comment in @proposal.comments_by_user(current_user) %>
+          <p><%= comment.comment %></p>
           <% end %>
         </td> 
         </tr>
@@ -84,16 +83,21 @@
     </table>
 
     <% if current_user.has_role? :organizer -%>
-      <h3><%= t('.other_ratings') -%>:</h3>
-      <% for rater in @proposal.raters('appeal') -%>
-        <%= render :partial => 'reviews', :locals => { :rater => rater, :proposal => @proposal } unless rater == current_user %>
+      <% @proposal.comments_and_appeal_ratings.each_pair do |user, comment_rating_hash| -%>
+        <% next if user == current_user -%>
+
+        <div class="feedback">
+          <strong><%= "#{t('.from_reviewer')}: #{user.username}" %></strong>
+          <%= render :partial => 'reviews', :locals => { :rater => user, :proposal => @proposal } %>
+          <%= render :partial => 'comment', :collection => comment_rating_hash[:comments]  %>
+        </div>
+
       <% end %>
     <% end %>
 
     <% if current_user.has_role? :reviewer -%>
-      <h3><%= t('.your_rating') -%>:</h3>
+      <strong><%= t('.your_rating') -%>:</strong>
       <%= render :partial => 'rating', :locals => { :proposal => @proposal } %>
-      <h3><%= t('.add_comment') -%>:</h3>
       <%= render :partial => 'add_comment', :locals => { :proposal => @proposal } %>
     <% end -%>
 

@@ -30,10 +30,9 @@ en:
         details: Details
         age: Age
         actions: Actions
-        other_ratings: Other Ratings
-        your_rating: Your Rating
-        add_comment: Add Comment
-        comments: Comments
+        your_rating: Your feedback
+        comments: Your Comments
+        from_reviewer: Feedback from
       add_comment:
         comment_button: Add Comment
 

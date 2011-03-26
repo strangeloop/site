@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe Proposal do
 
+  let(:reviewer) {Factory(:reviewer)}
+  let(:user){Factory(:user)}
+  let(:admin){Factory(:admin)}
+  
+
   def valid_attributes(options = {})
     { :id => 1, :status => 'submitted' }.merge(options)
   end
@@ -58,13 +63,13 @@ describe Proposal do
   end
 
   it "cannot have an appeal rating greater than 5" do
-    Factory(:proposal).rate(6, Factory(:reviewer), :appeal).should be_false
+    Factory(:proposal).rate(6, reviewer, :appeal).should be_false
   end
 
   context "stores ratings" do
     let (:prop) {
       Factory(:proposal).tap{ |p| 
-        p.rate(3, Factory(:reviewer), :appeal)
+        p.rate(3, reviewer, :appeal)
         p.save
       }
     }
@@ -79,8 +84,7 @@ describe Proposal do
   end
 
   context "comments" do
-    let(:proposal){Factory(:proposal)}
-    let(:user){Factory(:user)}
+    let(:proposal){ Factory(:proposal) }
     before do
       proposal.comments.create(:title => "foo", :comment => "comment1", :user => user)
       proposal.comments.create(:title => "bar", :comment => "comment2", :user => user)
@@ -90,6 +94,35 @@ describe Proposal do
       specify {proposal.comments.all.size.should == 2}
       specify {Proposal.find_comments_by_user(user).size.should == 2}
       specify {proposal.comments_by_user(user).size.should == 2}
+    end
+  end
+
+  context "groups comments and ratings" do
+    let(:proposal){ 
+      Factory(:proposal).tap{ |p|
+        p.comments.create!(:title => 'foo', :comment => 'bar', :user => user)
+        p.rate(2, user, :appeal)
+        p.rate(3, reviewer, :appeal)
+        p.comments.create!(:title => 'hey', :comment => 'now', :user => admin)
+      }
+    }
+
+    describe "by user id" do
+      specify {
+        hash = proposal.comments_and_appeal_ratings
+        hash[user][:rating].stars.should == 2
+        check_one_comment_list hash[user][:comments], 'foo', 'bar'
+        hash[reviewer][:rating].stars.should == 3
+        check_one_comment_list hash[admin][:comments], 'hey', 'now'
+      }
+    end
+
+    def check_one_comment_list(comment_list, title, text)
+      comment_list.size.should == 1
+      comment_list.first.tap{|comment|
+        comment.title.should == title
+        comment.comment.should == text
+      }
     end
   end
 end

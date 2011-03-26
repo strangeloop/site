@@ -54,7 +54,12 @@ Then /^the default proposal should have a (\d+) out of (\d+) star rating$/ do |r
   page.should have_content("Your rating: #{rating} out of #{maximum}")
 end
 
-Given /^the proposal was rated with (\d+) star[s]? by "([^"]*)"$/ do |stars, reviewer|
+Given /^the proposal was rated with (\d+) star[s]? by (.*)$/ do |stars, reviewer|
   Proposal.first.rate(stars.to_i, User.find_by_username(reviewer), 'appeal')
 end
+
+Given /^a comment "([^"]*)" was added to the proposal by (.*)$/ do |comment, reviewer|
+  Proposal.first.tap{|p| p.comments.create(:comment => comment, :user => User.find_by_username(reviewer))}.save
+end
+
 

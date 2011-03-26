@@ -20,4 +20,18 @@ class Proposal < ActiveRecord::Base
   def self.pending_count
     self.pending.count
   end
+
+  # Returns hash of comments and ratings (appeal dimension) that uses user
+  # as the key. Each value is a hash with :comments and :rating as its key.
+  # The :comments value is a list of comments from the user for this proposal
+  # The :rating is a single rating
+  def comments_and_appeal_ratings
+    collector = Hash.new{|hash, key| hash[key] = {} }
+    comments_ordered_by_submitted.each{|comment| 
+      values_hash = collector[comment.user]
+      (values_hash[:comments] ||= []) << comment
+    }
+    rates(:appeal).each{|rating| collector[rating.rater][:rating] = rating }
+    collector
+  end
 end
