@@ -88,10 +88,27 @@ Feature: As a conference talks reviewer
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
-    When I accept the proposal
+    Then I press "Approve"
     Then I should see "accepted"
     And I follow "Proposals"
-    Then I should see "There are no talks ready for review"
+    Then I should see "accepted"
     And I follow "Conference Sessions"
     Then I should see 1 conference session
+
+  Scenario: Conference organizer rejects an approved proposals
+    Given a proposal exists
+    And there are no conference sessions
+    And I am a logged in organizer
+    And I am on the default proposal review page
+    Then I press "Approve"
+    Then I should see "accepted"
+    Then I follow "Proposals"
+    Then I should see "accepted"
+    And I am on the default proposal review page    
+    Then I press "Reject Talk"
+    Then I should see "rejected"
+    Then I follow "Proposals"
+    Then I should see "rejected"
+
+    
 

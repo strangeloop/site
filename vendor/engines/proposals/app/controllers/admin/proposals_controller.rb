@@ -18,11 +18,21 @@ module Admin
       render "edit"
     end
 
+    def update_proposal_status(id, status)
+      proposal = Proposal.find(id)
+      proposal[:status] = status
+      proposal.save
+      proposal
+    end
+
     def approve_proposal
-      @proposal = Proposal.find(params[:id])
-      @proposal[:status] = "accepted"
-      @proposal.save
-      render "edit"
+      update_proposal_status(params[:id], "accepted")
+      redirect_to :action => :index
+    end
+
+    def reject_proposal
+      update_proposal_status(params[:id], "rejected")
+      redirect_to :action => :index
     end
   end
 end

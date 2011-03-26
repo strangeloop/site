@@ -11,6 +11,7 @@ Refinery::Application.routes.draw do
       post :rate, :on => :member
       post :add_comment, :on => :member
       post :approve_proposal, :on => :member
+      post :reject_proposal, :on => :member
     end
   end
 end
