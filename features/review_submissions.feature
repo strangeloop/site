@@ -92,7 +92,9 @@ Feature: As a conference talks reviewer
     Then I should see "accepted"
     And I follow "Proposals"
     Then I should see "accepted"
+    Then show me the page           
     When I am on the default conference session page
+    Then show me the page                 
     Then I should see "Start time"
 
   Scenario: Conference organizer rejects an approved proposals
