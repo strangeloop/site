@@ -26,7 +26,8 @@ module Admin
     end
 
     def approve_proposal
-      update_proposal_status(params[:id], "accepted")
+      proposal = update_proposal_status(params[:id], "accepted")
+      conf_session = ConferenceSession.create(:talk => proposal.talk, :title => proposal.talk.title) 
       redirect_to :action => :index
     end
 

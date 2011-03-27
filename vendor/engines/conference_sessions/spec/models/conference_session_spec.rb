@@ -29,4 +29,6 @@ describe ConferenceSession do
     
   end
 
+  it {should belong_to :talk}
+
 end

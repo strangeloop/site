@@ -92,8 +92,8 @@ Feature: As a conference talks reviewer
     Then I should see "accepted"
     And I follow "Proposals"
     Then I should see "accepted"
-    And I follow "Conference Sessions"
-    Then I should see 1 conference session
+    When I am on the default conference session page
+    Then I should see "Start time"
 
   Scenario: Conference organizer rejects an approved proposals
     Given a proposal exists
@@ -104,7 +104,7 @@ Feature: As a conference talks reviewer
     Then I should see "accepted"
     Then I follow "Proposals"
     Then I should see "accepted"
-    And I am on the default proposal review page    
+    And I am on the default proposal review page
     Then I press "Reject Talk"
     Then I should see "rejected"
     Then I follow "Proposals"

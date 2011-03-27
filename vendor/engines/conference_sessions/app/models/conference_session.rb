@@ -5,4 +5,5 @@ class ConferenceSession < ActiveRecord::Base
   validates :title, :presence => true, :uniqueness => true
   
   belongs_to :slides, :class_name => 'Resource'
+  belongs_to :talk
 end

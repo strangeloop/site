@@ -21,6 +21,10 @@ module NavigationHelpers
       prop = Proposal.first
       "/refinery/proposals/#{prop.id}/edit"
 
+    when /the default conference session page/
+      conf_session = ConferenceSession.first
+      "/refinery/conference_sessions/#{conf_session.id}/edit"
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
