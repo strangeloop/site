@@ -68,6 +68,7 @@ Feature: As a conference talks reviewer
     When I fill in "comment" with "My comments here"
     And I press "Add Comment"
     Then I should see "My comments here"
+    And I should see "under review"
     
   @javascript
   Scenario: Reviewer submits a proposal rating
@@ -76,5 +77,6 @@ Feature: As a conference talks reviewer
     And I am on the default proposal review page
     When I rate the proposal with 3 stars
     Then the default proposal should have a 3 out of 5 star rating
+    And I should see "under review"
 
 

@@ -1,21 +1,29 @@
 module Admin
   class ProposalsController < Admin::BaseController
+    before_filter(:only => [:rate, :add_comment]) do
+      redirect_to(root_path, :status => 401) unless current_user.has_role? :reviewer
+    end
 
     crudify :proposal,
             :title_attribute => 'status'
 
     def rate
-      return unless current_user.has_role? :reviewer
       @proposal = Proposal.find(params[:id])
       @proposal.rate(params[:stars], current_user, params[:dimension])
       @params = params
+      #the reload is needed in case the status changed, 
+      #I wish this could be more elegant
+      @proposal.reload
     end
 
     def add_comment
-      proposal = Proposal.find(params[:proposal_id])
+      proposal = Proposal.find(params[:id])
       proposal.comments.create(:comment => params[:comment], :user => current_user)
-      proposal.save
       @comment = params[:comment]
+      #the reload is needed in case the status changed, 
+      #I wish this could be more elegant      
+      proposal.reload
+      @status = proposal.status
     end
   end
 end

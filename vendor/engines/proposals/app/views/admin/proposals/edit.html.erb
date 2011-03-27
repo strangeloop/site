@@ -62,9 +62,7 @@
             <strong><%= t('.status') -%></strong>
           </td>
 
-          <td>
-            <%= @proposal.status -%>
-          </td> 
+          <td id='proposal_status'><%= @proposal.status -%></td> 
         </tr>
 
       <tr>
@@ -86,7 +84,7 @@
       <% @proposal.comments_and_appeal_ratings.each_pair do |user, comment_rating_hash| -%>
         <% next if user == current_user -%>
 
-        <div class="feedback">
+        <div class="<%= cycle("on", "off") %>">
           <strong><%= "#{t('.from_reviewer')}: #{user.username}" %></strong>
           <%= render :partial => 'reviews', :locals => { :rater => user, :proposal => @proposal } %>
           <%= render :partial => 'comment', :collection => comment_rating_hash[:comments]  %>
