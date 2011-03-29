@@ -43,7 +43,10 @@ end
 
 Factory.define :organizer, :parent => :reviewer do |u|
   u.username 'organizer'
-  u.after_create {|user| user.roles << Role[:organizer] }
+  u.after_create do |user|
+    user.plugins.create(:name => "conference_sessions", :position => 1)
+    user.roles << Role[:organizer]
+  end
 end
 
 Factory.define :speaker do |s|
