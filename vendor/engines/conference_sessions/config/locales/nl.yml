@@ -1,0 +1,20 @@
+nl:
+  plugins:
+    conference_sessions:
+      title: Conference Sessions
+  admin:
+    conference_sessions:
+      index:
+        title: Conference Sessions
+        create_new: Maak een nieuwe Conference Session
+        reorder: Wijzig de volgorde van de Conference Sessions
+        reorder_done: Klaar met het wijzingen van de volgorde van de Conference Sessions
+        sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+        no_items_yet: Er zijn nog geen Conference Sessions. Druk op 'Maak een nieuwe Conference Session' om de eerste aan te maken.
+      conference_session:
+        view_live_html: Bekijk deze conference session op de website <br/><em>(opent een nieuw venster)</em>
+        edit: Bewerk deze conference session
+        delete: Verwijder deze conference session voor eeuwig
+  conference_sessions:
+    show:
+      other: Andere Conference Sessions
