@@ -1,1 +1,49 @@
-<%= render :partial => "form" %>
+<!--<%= render :partial => "form" %>-->
+
+<div id='records'>
+  <h2><%= @conference_session.talk.title %></h2>
+  <table id="inquiry">
+    <tbody>
+      
+      <% [:title, :abstract, :talk_type, :talk_length].each do |field| %>
+
+          <tr>
+            <td>
+              <strong><%= t(".#{ field }") -%></strong>
+            </td>
+            <td>
+              <%= @conference_session.talk.send(field) -%>
+            </td>
+          </tr>
+
+        <% end %>
+          <tr>
+            <td>
+              <strong><%= t(".name") -%></strong>
+            </td>
+            <td>
+              <%= @conference_session.talk.speakers[0].first_name -%> <%= @conference_session.talk.speakers[0].last_name -%>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong><%= t(".bio") -%></strong>
+            </td>
+            <td>
+              <%= @conference_session.talk.speakers[0].bio -%>
+            </td>
+          </tr>
+<!--      <tr>
+            <td>
+              <strong><%= t(".image") -%></strong>
+            </td>
+            <td>
+              <%= image_tag @conference_session.talk.speakers[0].db_image.url %>
+            </td>
+          </tr>-->
+      </tbody>
+    </table>
+
+</div>
+
+
