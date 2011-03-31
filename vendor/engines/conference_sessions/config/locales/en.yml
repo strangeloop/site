@@ -1,0 +1,24 @@
+en:
+  shared:
+    admin:
+      image_picker:
+        image: image
+  plugins:
+    conference_sessions:
+      title: Conference Sessions
+  admin:
+    conference_sessions:
+      index:
+        title: Conference Sessions
+        create_new: Add New Conference Session
+        reorder: Reorder Conference Sessions
+        reorder_done: Done Reordering Conference Sessions
+        sorry_no_results: Sorry! There are no results found.
+        no_items_yet: There are no Conference Sessions yet. Click "Add New Conference Session" to add your first conference session.
+      conference_session:
+        view_live_html: View this conference session live <br/><em>(opens in a new window)</em>
+        edit: Edit this conference session
+        delete: Remove this conference session forever
+  conference_sessions:
+    show:
+      other: Other Conference Sessions

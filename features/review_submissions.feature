@@ -79,4 +79,32 @@ Feature: As a conference talks reviewer
     Then the default proposal should have a 3 out of 5 star rating
     And I should see "under review"
 
+  Scenario: Conference organizer approves proposals
+    Given a proposal exists
+    And there are no conference sessions
+    And I am a logged in organizer
+    And I am on the default proposal review page
+    Then I press "Approve"
+    Then I should see "accepted"
+    And I follow "Proposals"
+    Then I should see "accepted"
+    When I am on the default conference session page
+    Then I should see "Start time"
+
+  Scenario: Conference organizer rejects an approved proposals
+    Given a proposal exists
+    And there are no conference sessions
+    And I am a logged in organizer
+    And I am on the default proposal review page
+    Then I press "Approve"
+    Then I should see "accepted"
+    Then I follow "Proposals"
+    Then I should see "accepted"
+    And I am on the default proposal review page
+    Then I press "Reject Talk"
+    Then I should see "rejected"
+    Then I follow "Proposals"
+    Then I should see "rejected"
+
+    
 

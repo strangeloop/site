@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110319234328) do
+ActiveRecord::Schema.define(:version => 20110325035759) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(:version => 20110319234328) do
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "conference_sessions", :force => true do |t|
+    t.datetime "start_time"
+    t.integer  "talk_id"
+    t.string   "title"
+    t.integer  "slides_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "conference_sessions", ["id"], :name => "index_conference_sessions_on_id"
 
   create_table "images", :force => true do |t|
     t.string   "image_mime_type"
@@ -93,10 +105,10 @@ ActiveRecord::Schema.define(:version => 20110319234328) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "title"
     t.string   "browser_title"
     t.string   "meta_keywords"
     t.text     "meta_description"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

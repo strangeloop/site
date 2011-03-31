@@ -1,0 +1,20 @@
+nb:
+  plugins:
+    conference_sessions:
+      title: Conference Sessions
+  admin:
+    conference_sessions:
+      index:
+        title: Conference Sessions
+        create_new: Lag en ny Conference Session
+        reorder: Endre rekkefølgen på Conference Sessions
+        reorder_done: Ferdig å endre rekkefølgen Conference Sessions
+        sorry_no_results: Beklager! Vi fant ikke noen resultater.
+        no_items_yet: Det er ingen Conference Sessions enda. Klikk på "Lag en ny Conference Session" for å legge til din første conference session.
+      conference_session:
+        view_live_html: Vis hvordan denne conference session ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+        edit: Rediger denne conference session
+        delete: Fjern denne conference session permanent
+  conference_sessions:
+    show:
+      other: Andre Conference Sessions

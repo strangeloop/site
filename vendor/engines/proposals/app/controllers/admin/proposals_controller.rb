@@ -25,5 +25,23 @@ module Admin
       proposal.reload
       @status = proposal.status
     end
+
+    def update_proposal_status(id, status)
+      proposal = Proposal.find(id)
+      proposal[:status] = status
+      proposal.save
+      proposal
+    end
+
+    def approve_proposal
+      proposal = update_proposal_status(params[:id], "accepted")
+      conf_session = ConferenceSession.create(:talk => proposal.talk, :title => proposal.talk.title) 
+      redirect_to :action => :index
+    end
+
+    def reject_proposal
+      update_proposal_status(params[:id], "rejected")
+      redirect_to :action => :index
+    end
   end
 end

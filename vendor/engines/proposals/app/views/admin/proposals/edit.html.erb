@@ -91,6 +91,13 @@
         </div>
 
       <% end %>
+      <% if @proposal.status != 'accepted' %>
+      <%= button_to "Approve Talk", { :action => "approve_proposal",
+      :proposal => @proposal}%>
+      <% else %>
+      <%= button_to "Reject Talk", { :action => "reject_proposal",
+      :proposal => @proposal} %>
+      <% end %>
     <% end %>
 
     <% if current_user.has_role? :reviewer -%>
@@ -98,6 +105,5 @@
       <%= render :partial => 'rating', :locals => { :proposal => @proposal } %>
       <%= render :partial => 'add_comment', :locals => { :proposal => @proposal } %>
     <% end -%>
-
 </div>  
 

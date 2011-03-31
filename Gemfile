@@ -81,3 +81,5 @@ gem 'refinerycms-i18n',         '~> 0.9'
 # END USER DEFINED
 
 gem 'refinerycms-proposals', '0.1', :path => 'vendor/engines'
+
+gem 'refinerycms-conference_sessions', '1.0', :path => 'vendor/engines'
