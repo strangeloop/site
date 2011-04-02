@@ -58,8 +58,29 @@ Given /^the proposal was rated with (\d+) star[s]? by (.*)$/ do |stars, reviewer
   Proposal.first.rate(stars.to_i, User.find_by_username(reviewer), 'appeal')
 end
 
+def check_email(body)
+  speaker = Factory(:speaker)
+  ActionMailer::Base.deliveries.size.should == 1
+  email = ActionMailer::Base.deliveries[0]
+  email.to[0].should == speaker.email
+  email.body.include?(body).should be_true
+  ActionMailer::Base.deliveries.clear
+end
+
+And /^a congrats email should be sent to the submitter$/ do
+  check_email "Congrats"
+end
+
+And /^a rejection email should be sent to the submitter$/ do
+  ActionMailer::Base.deliveries.delete_at 0
+  check_email "isn't a good fit"
+end
+
+
 Given /^a comment "([^"]*)" was added to the proposal by (.*)$/ do |comment, reviewer|
   Proposal.first.tap{|p| p.comments.create(:comment => comment, :user => User.find_by_username(reviewer))}.save
 end
+
+
 
 

@@ -6,11 +6,26 @@ class SpeakerMailer < ActionMailer::Base
   def find_reviewer_admins()
     Role[:submission_admin].users.collect{|u| u.email}
   end
+
+  def send_email_with_cc(talk, subject)
+    mail(:to => talk.speakers[0].email,
+         :cc => find_reviewer_admins,
+         :subject => subject)
+  end
+    
   
   def talk_submission_email(talk)
     @talk = talk
-    mail(:to => @talk.speakers[0].email,
-         :cc => find_reviewer_admins,
-         :subject => "Your talk was successfully submitted")
+    send_email_with_cc(talk, "Your talk was successfully submitted")
+  end
+
+  def talk_accepted_email(talk)
+    @talk = talk
+    send_email_with_cc(talk, "Strange Loop Talk proposal accepted")
+  end
+
+  def talk_rejected_email(talk)
+    @talk = talk
+    send_email_with_cc(talk, "Trange Loop Talk proposal rejected")
   end
 end
