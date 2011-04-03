@@ -5,7 +5,6 @@ class TalksController < ApplicationController
     @speaker_array[0] = Speaker.new
     @talk = Talk.new
     @talk.speakers = @speaker_array
-    @talk
   end
   
   def create
@@ -13,6 +12,5 @@ class TalksController < ApplicationController
     @talk.save
     Proposal.create :status => 'submitted', :talk => @talk
     SpeakerMailer.talk_submission_email @talk
-    @talk
   end
 end
