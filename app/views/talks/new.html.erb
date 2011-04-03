@@ -35,12 +35,11 @@
       <%= speaker_form.input :bio, :label => t('.bio') , :input_html => { :class => "freetext" }%>
       <%= speaker_form.input :phone, :label => t('.phone'),
           :hint => t('.phone_hint')%>
-      <%= speaker_form.input :state, :label => t('.state'),
-          :as => :select, :collection => Carmen::state_codes, 
-          :hint => t('.state_hint')%>
+      <%= speaker_form.input :city, :label => t('.city'), 
+          :hint => t('.city_hint')%>
+      <%= speaker_form.input :state, :label => t('.state') %>
       <%= speaker_form.input :country, :label => t('.country'),
-          :as => :select, :collection => Carmen::country_codes, 
-          :hint => t('.country_hint')%>
+          :as => :select, :collection => Carmen::country_names %>
       <%= speaker_form.input :db_image, :label => t('.image'),
           :as => :file, :hint => t('.image_hint')%>
     <% end %>
