@@ -1,3 +1,5 @@
+<%= render :partial => 'shared/formtastic' %>
+
 <h1>Submit a talk</h1>
 <%= semantic_form_for [@speakers, @talk] do |talk_form| %>
   <%= talk_form.inputs do %>
