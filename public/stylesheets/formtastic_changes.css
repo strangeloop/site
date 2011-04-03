@@ -20,6 +20,7 @@ form.formtastic fieldset > ol > li {
 form.formtastic fieldset > ol > li label {
   text-align: right;
   margin-right: 0.8em;
+  color: #000;
 }
 
 form.formtastic fieldset > ol > li.text textarea {
@@ -37,7 +38,6 @@ form.formtastic fieldset {
   padding-top: 1.5em;
   padding-bottom: 1.5em;
   background-color: white;  
-  width: 70%
 }
 
 form.formtastic fieldset.buttons {
@@ -46,6 +46,11 @@ form.formtastic fieldset.buttons {
 
 form.formtastic fieldset.buttons li {
   padding-left: 2.5em;
+}
+
+form.formtastic legend {
+  font-size: 25px;
+  padding-left: 3.5em;
 }
 
 

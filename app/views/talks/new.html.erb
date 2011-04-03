@@ -1,6 +1,15 @@
 <%= render :partial => 'shared/formtastic' %>
+<div class="row_top_tile_sub">
+  <div class="container_12">
+    <div class="grid_8">
+      <div class="page_title">
+        Submit a talk
+      </div>
+    </div>
+  </div>
+</div>
 
-<h1>Submit a talk</h1>
+<div class="container_12">
 <%= semantic_form_for [@speakers, @talk] do |talk_form| %>
   <%= talk_form.inputs do %>
     <%= talk_form.input :title, :label => t('.title')%>
@@ -19,7 +28,7 @@
         :hint => t('.av_req_hint'), :input_html => { :class => "freetext" }%>
     <%= talk_form.input :tag_list, :label => t('.tags'),
         :as => :string, :hint => t('.tags_hint') %>
-    <%= talk_form.inputs :name => "Speaker", :for  => :speakers do |speaker_form| %>
+    <%= talk_form.inputs :name => t('.speaker'), :for  => :speakers do |speaker_form| %>
       <%= speaker_form.input :first_name, :label => t('.fname') %>
       <%= speaker_form.input :last_name, :label => t('.lname') %>
       <%= speaker_form.input :email, :label => t('.email') %>
@@ -37,6 +46,7 @@
     <% end %>
   <% end %>   
   <%= talk_form.buttons do %>
-    <%= talk_form.commit_button%>
+    <%= talk_form.commit_button :label => t('.commit')%>
   <% end %>
 <% end %>
+</div>

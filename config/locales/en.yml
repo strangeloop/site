@@ -23,6 +23,7 @@ en:
       av_req_hint: "All speakers will be provided with power and a VGA cable connector for the projector, and a wireless mic as appropriate to the room.  If you need anything else (for example: sound from your computer), please indicate it here."
       tags: "Tags"
       tags_hint: "Please list tags, comma-delimited, related to your talk.  Good tags include the language you're using, key libraries, concepts, etc.  These tags will likely be modified to create common tags between talks before they are posted on the web site."
+      speaker: "Speaker"
       fname: "First Name"
       lname: "Last Name"
       email: "Email"
@@ -35,4 +36,4 @@ en:
       country_hint: "This private field is used for an estimate of travel cost."
       image: "Profile Image"
       image_hint: "Image height and width info goes here when we know it"
-      commit: "Submit Talk"
+      commit: "Send Talk Proposal"
