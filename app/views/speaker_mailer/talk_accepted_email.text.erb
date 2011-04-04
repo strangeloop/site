@@ -1,0 +1,11 @@
+Dear <%= @talk.speakers[0].first_name %>,
+
+Congrats!  Your talk has been accepted
+...
+
+Below is the information you submitted for this talk:
+-----------------------------------------------------------------------------------
+Title:  <%= @talk.title %>
+Abstract: <%= @talk.abstract %>
+Talk Length: <%= @talk.talk_length %>
+Comments: <%= @talk.comments %>
