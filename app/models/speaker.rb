@@ -5,14 +5,6 @@ class Speaker < ActiveRecord::Base
     validates field, :presence => true
   end
 
-  validates_format_of :phone, :with => /\d{3}-?\d{3}-?\d{4}/,  :message => "Phone number is XXX-XXX-XXXX"
-  
-  validates_inclusion_of :state, :in => Carmen::state_codes,
-  :message => "%{value} is not a valid state code"
-
-  validates_inclusion_of :country, :in => Carmen::country_codes,
-  :message => "%{value} is not a valid state code"
-
   validates_length_of :bio, :maximum => 800
 
   db_image_accessor :db_image

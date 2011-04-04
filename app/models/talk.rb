@@ -1,6 +1,6 @@
 class Talk < ActiveRecord::Base
 
-  [:title, :abstract].each do |field|
+  [:title, :abstract, :video_approval, :talk_type].each do |field|
     validates field, :presence => true
   end
 

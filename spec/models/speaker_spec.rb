@@ -8,11 +8,9 @@ describe Speaker do
   it {should allow_value("MO").for(:state)}
   it {should allow_value("IL").for(:state)}
   it {should allow_value("CA").for(:state)}
-  it {should_not allow_value("ZZ").for(:state)}
 
   it {should allow_value("US").for(:country)}
   it {should allow_value("CA").for(:country)}
-  it {should_not allow_value("ZZ").for(:country)}
 
   let!(:model){Factory(:speaker)}
 
@@ -23,7 +21,6 @@ describe Speaker do
 
   it {should allow_value("123-456-7891").for(:phone)}
   it {should allow_value("1234567891").for(:phone)}
-  it {should_not allow_value("123-7891").for(:phone)}
 
   it{ should_not allow_value("x" * 801).for(:bio)}
 end

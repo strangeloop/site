@@ -20,7 +20,6 @@ Feature: As an anonymous user I can enter a talk along with
       | State | MO |
       
       And I select "Deep Dive" in "Talk Type"
-      And I select "5 Minutes" in "Talk Format"
       And I select "No" in "Video Approval"
       And I select "United States" in "Country"
       And I fill in "Tags" with "theory, clojure"      
@@ -28,7 +27,7 @@ Feature: As an anonymous user I can enter a talk along with
       When I press "Send Talk Proposal"
       Then I should see "Squashing NP Hard Problems with Clojure"
       And I should see "Deep Dive"
-      And I should see "5 Minutes"
+      And I should see "50 Minutes"
       And I should see "Karp"
       And I should see "projector"
       And I should see "Clem Esterbill"

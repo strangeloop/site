@@ -9,8 +9,11 @@ class TalksController < ApplicationController
   
   def create
     @talk = Talk.new params[:talk]
-    @talk.save
-    Proposal.create :status => 'submitted', :talk => @talk
-    SpeakerMailer.talk_submission_email @talk
+    if @talk.save
+      Proposal.create :status => 'submitted', :talk => @talk
+      SpeakerMailer.talk_submission_email @talk
+    else
+      render :new
+    end
   end
 end
