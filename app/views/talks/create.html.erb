@@ -1,75 +1,45 @@
-<h2>Talk Submitted</h2>
-<h2>Talk Info</h2>
-<p>
-  <table>
-    <tr>
-      <th>Title</th>
-      <td><%= @talk.title %></td>
-    </tr>
-    <tr>
-      <th>Abstract</th>
-      <td><%= @talk.abstract %></td>
-    </tr>
-    <tr>
-      <th>Talk Type</th>
-      <td><%= @talk.talk_type %></td>
-    </tr>
-    <tr>
-      <th>Talk Length</th>
-      <td><%= @talk.talk_length %></td>
-    </tr>
-    <tr>
-      <th>Video Approval</th>
-      <td><%= @talk.video_approval %></td>
-    </tr>
-    <tr>
-      <th>Comments</th>
-      <td><%= @talk.comments %></td>
-
-    </tr>
-    <tr>
-      <th>Prereqs</th>
-      <td><%= @talk.prereqs %></td>
-    </tr>
-    <tr>
-      <th>Audio/Visual Requirements</th>
-      <td><%= @talk.av_requirement %></td>
-    </tr>
-    <tr>
-      <th>Tags</th>
-      <td><%= @talk.tag_list %></td>
-    </tr>
-  </table>
-<h2>Speaker Info</h2>
-<table>
-  <tr>
-    <th>Name</th>
-    <td><%= @talk.speakers[0].first_name + " " +  @talk.speakers[0].last_name %></td>
-  </tr>
-  <tr>
-    <th>Email</th>
-    <td><%= @talk.speakers[0].email %></td>
-  </tr>  
-  <tr>
-    <th>Bio</th>
-    <td><%= @talk.speakers[0].bio %></td>
-  </tr>
-  <tr>
-    <th>Phone</th>
-    <td><%= @talk.speakers[0].phone %></td>
-  </tr>
-  <tr>
-    <th>City</th>
-    <td><%= @talk.speakers[0].city %></td>
-  </tr>
-  <tr>
-    <th>State</th>
-    <td><%= @talk.speakers[0].state %></td>
-  </tr>
-  <tr>
-    <th>Country</th>
-    <td><%= @talk.speakers[0].country %></td>
-  </tr>    
-
-</table>
-</p>
+<div class="container_12">
+  <div class="overflow p3 pad3">
+    <h3>Talk Submitted</h3>
+  </div>
+  <ul class="list4">
+    <li>Title</li>
+    <li><%= @talk.title %></li>
+    <li>Abstract</li>
+    <li><%= @talk.abstract %></li>
+    <li>Talk Type</li>
+    <li><%= @talk.talk_type %></li>
+    <li>Talk Length</li>
+    <li><%= @talk.talk_length %></li>
+    <li>Video Approval</li>
+    <li><%= @talk.video_approval %></li>
+    <li>Comments</li>
+    <li><%= @talk.comments %></li>
+    <li>Prereqs</li>
+    <li><%= @talk.prereqs %></li>
+    <li>Audio/Visual Requirements</li>
+    <li><%= @talk.av_requirement %></li>
+    <li>Tags</li>
+    <li><%= @talk.tag_list %></li>
+  </ul>
+  <div class="overflow p3">
+    <h3>Speaker Info</h3>
+  </div>
+  <ul class="list4">
+    <li>Name</li>
+    <li><%= @talk.speakers[0].first_name + " " +  @talk.speakers[0].last_name %></li>
+    <li>Email</li>
+    <li><%= @talk.speakers[0].email %></li>
+    <li>Bio</li>
+    <li><%= @talk.speakers[0].bio %></li>
+    <li>Phone</li>
+    <li><%= @talk.speakers[0].phone %></li>
+    <li>City</li>
+    <li><%= @talk.speakers[0].city %></li>
+    <li>State</li>
+    <li><%= @talk.speakers[0].state %></li>
+    <li>Country</li>
+    <li><%= @talk.speakers[0].country %></li>
+  </ul>
+</div>
+<div class="push"></div>
