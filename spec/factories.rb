@@ -3,6 +3,7 @@ Factory.define :user do |u|
   u.sequence(:email) { |n| "person#{n}@cucumber.com" }
   u.password  "greenandjuicy"
   u.password_confirmation "greenandjuicy"
+  u.password_salt '9s9s9fjfj9998yudu8gjdbjbjcjs'
 end
 
 Factory.define :admin, :parent => :user do |u|
