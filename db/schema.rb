@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110403210902) do
+ActiveRecord::Schema.define(:version => 20110406113152) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -105,9 +105,7 @@ ActiveRecord::Schema.define(:version => 20110403210902) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.text     "meta_description"
-    t.string   "browser_title"
-    t.string   "meta_keywords"
+    t.string   "custom_title"
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -116,22 +114,17 @@ ActiveRecord::Schema.define(:version => 20110403210902) do
   add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
-    t.string   "title"
     t.integer  "parent_id"
     t.integer  "position"
     t.string   "path"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "meta_keywords"
-    t.text     "meta_description"
     t.boolean  "show_in_menu",        :default => true
     t.string   "link_url"
     t.string   "menu_match"
     t.boolean  "deletable",           :default => true
-    t.string   "custom_title"
     t.string   "custom_title_type",   :default => "none"
     t.boolean  "draft",               :default => false
-    t.string   "browser_title"
     t.boolean  "skip_to_first_child", :default => false
     t.integer  "lft"
     t.integer  "rgt"
@@ -202,6 +195,19 @@ ActiveRecord::Schema.define(:version => 20110403210902) do
 
   add_index "roles_users", ["role_id", "user_id"], :name => "index_roles_users_on_role_id_and_user_id"
   add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id"
+
+  create_table "seo_meta", :force => true do |t|
+    t.integer  "seo_meta_id"
+    t.string   "seo_meta_type"
+    t.string   "browser_title"
+    t.string   "meta_keywords"
+    t.text     "meta_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "seo_meta", ["id"], :name => "index_seo_meta_on_id"
+  add_index "seo_meta", ["seo_meta_id", "seo_meta_type"], :name => "index_seo_meta_on_seo_meta_id_and_seo_meta_type"
 
   create_table "slugs", :force => true do |t|
     t.string   "name"
@@ -290,7 +296,6 @@ ActiveRecord::Schema.define(:version => 20110403210902) do
     t.string   "username",             :null => false
     t.string   "email",                :null => false
     t.string   "encrypted_password",   :null => false
-    t.string   "password_salt",        :null => false
     t.string   "persistence_token"
     t.datetime "created_at"
     t.datetime "updated_at"

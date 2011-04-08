@@ -43,7 +43,6 @@ about_us_page = Page.create(:title => "About",
             :custom_title_type => 'text',
             :deletable => true,
             :position => (page_position += 1),
-            :link_url => "/about",
             :menu_match => "^/about$")
 about_us_page.parts.create({
               :title => "Body",
@@ -107,7 +106,6 @@ faq_path.parts.create({
 attendees_page = Page.create(:title => "Attendees",
             :deletable => true,
             :position => (page_position += 1),
-            :link_url => '/attendees',
             :menu_match => "^/attendees$")
 
 attendees_page.parts.create({
@@ -136,7 +134,6 @@ connect_page = attendees_page.children.create(:title => "Connect",
             :custom_title_type => 'text',
             :deletable => true,
             :position => (attendees_page_position),
-            :link_url => '/connect',
             :menu_match => "^/connect$")
 connect_page.parts.create({
               :title => "Body",
@@ -199,7 +196,6 @@ apps_page.parts.create({
 schedule_page = Page.create(:title => "Schedule",
             :deletable => true,
             :position => (page_position += 1),
-            :link_url => '/schedule',
             :menu_match => "^/schedule$")
 
 schedule_page.parts.create({
@@ -215,7 +211,6 @@ speakers_page = schedule_page.children.create(:title => "Speakers",
             :custom_title_type => 'text',
             :deletable => true,
             :position => (schedule_page_position += 1),
-            :link_url => '/speakers',
             :menu_match => "^/speakers$",
             :path => "Schedule - Speakers")
 speakers_page.parts.create({
@@ -230,7 +225,6 @@ talks_page = schedule_page.children.create(:title => "Talks",
             :custom_title_type => 'text',
             :deletable => true,
             :position => (schedule_page_position),
-            :link_url => '/talks',
             :menu_match => "^/talks$")
 talks_page.parts.create({
               :title => "Body",
@@ -254,7 +248,6 @@ content_page.parts.create({
 sponsors_page = Page.create(:title => "Sponsors",
             :deletable => true,
             :position => (page_position += 1),
-            :link_url => "/sponsors",
             :menu_match => "^/sponsors$")
 sponsors_page.parts.create({
               :title => "Body",
