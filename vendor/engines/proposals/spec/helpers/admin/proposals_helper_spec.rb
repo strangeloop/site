@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Admin::ProposalsHelper do
   class MockView < ActionView::Base
+    include ApplicationHelper
     include Admin::ProposalsHelper
   end
 
@@ -9,7 +10,7 @@ describe Admin::ProposalsHelper do
   let(:view) { MockView.new }
 
   it "show a reasonable speakername" do
-    view.speaker_for(proposal).should == 'Earl Grey'
+    view.speaker_for(proposal.talk).should == 'Earl Grey'
   end
 
   it "shows the title for a talk" do

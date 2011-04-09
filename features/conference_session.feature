@@ -1,4 +1,6 @@
 Feature: As a user I can see talks I might want to attend
+  Background:
+    Given an admin exists
 
   Scenario: Conference organizer approves proposals
     Given a proposal exists
@@ -13,7 +15,15 @@ Feature: As a user I can see talks I might want to attend
     And I should see "Talk Length"   
     And I should see "Name"
     
- 
+  Scenario: Site visitors see published keynote
+    Given a keynote session exists
+    When I am on the sessions page
+    Then I should see "Keynote:"
+    And I should see "Hank Moody"
+    And I should see a link with "Unemployable" to "http://unemployable.com"
+    And I should see a link with "@hankypanky" to "http://twitter.com/hankypanky"
+    And I should see "God Hates Us All"
+    And I should see "Single father, living a player lifestyle in California."
 
 
     

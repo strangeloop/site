@@ -1,6 +1,6 @@
 <li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(proposal) -%>">
   <span class='title'>
-    <%= link_to "#{title_for proposal} ( #{speaker_for proposal} )", edit_admin_proposal_path(proposal) %>
+    <%= link_to "#{title_for proposal} ( #{speaker_for proposal.talk } )", edit_admin_proposal_path(proposal) %>
   </span>
   <span class="title"><%= proposal.status %></span>
 </li>

@@ -1,11 +1,8 @@
-<% content_for :body_content_left do %>
-  <ul id="conference_sessions">
-    <% @conference_sessions.each do |conference_session| %>
-      <li>
-        <%= link_to conference_session.title, conference_session_url(conference_session) %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="overflow p1">
+<% @conference_sessions.each do |session| %>
 
-<%= render :partial => "/shared/content_page" %>
+  <%= render :partial => 'keynote', :locals => { :talk => session.talk,
+                                                 :speaker => session.talk.speakers.first,
+                                                 :session => session } %>
+<% end %>
+</div>

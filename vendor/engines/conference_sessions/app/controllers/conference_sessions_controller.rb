@@ -1,12 +1,8 @@
 class ConferenceSessionsController < ApplicationController
 
   before_filter :find_all_conference_sessions
-  before_filter :find_page
 
   def index
-    # you can use meta fields from your model instead (e.g. browser_title)
-    # by swapping @page for @conference_session in the line below:
-    present(@page)
   end
 
   def show
@@ -21,10 +17,6 @@ protected
 
   def find_all_conference_sessions
     @conference_sessions = ConferenceSession.find(:all, :order => "position ASC")
-  end
-
-  def find_page
-    @page = Page.find_by_link_url("/conference_sessions")
   end
 
 end

@@ -20,6 +20,11 @@ module ApplicationHelper
     end.map{|groups| groups[:pages]}
   end
 
+  def speaker_for(talk)
+    speaker = talk.speakers.first
+    "#{speaker.first_name} #{speaker.last_name}"
+  end
+
   private
   def tree_row_height
     7

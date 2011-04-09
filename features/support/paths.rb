@@ -31,6 +31,9 @@ module NavigationHelpers
       conf_session = ConferenceSession.first
       "/refinery/conference_sessions/#{conf_session.id}/edit"
 
+    when /the sessions page/
+      '/sessions'
+
     else
       begin
         page_name =~ /the (.*) page/

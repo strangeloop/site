@@ -1,5 +1,5 @@
 Refinery::Application.routes.draw do
-  resources :conference_sessions, :only => [:index, :show]
+  resources :conference_sessions, :path => '/sessions', :only => [:index, :show]
 
   scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
     resources :conference_sessions, :except => :show do

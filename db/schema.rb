@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110409220034) do
+ActiveRecord::Schema.define(:version => 20110409191006) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -245,6 +245,9 @@ ActiveRecord::Schema.define(:version => 20110409220034) do
     t.integer  "conf_year"
     t.string   "db_image_uid"
     t.string   "city"
+    t.string   "twitter_id"
+    t.string   "company"
+    t.string   "company_url"
   end
 
   create_table "speakers_talks", :id => false, :force => true do |t|
