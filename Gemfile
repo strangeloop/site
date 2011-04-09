@@ -32,8 +32,6 @@ group :test do
   #gem 'capybara-envjs'
 end
 
-
-
 # REFINERY CMS ================================================================
 
 # Specify the Refinery CMS core:
@@ -72,10 +70,6 @@ gem 'refinerycms-news',         '~> 1.0'
 # gem 'refinerycms-theming',      '~> 0.9.9'
 # gem 'refinerycms-search',       '~> 0.9.8'
 # gem 'refinerycms-blog',         '~> 1.1'
-
-# Add i18n support (optional, you can remove this if you really want to).
-gem 'refinerycms-i18n',         '~> 0.9'
-
 
 # END USER DEFINED
 
