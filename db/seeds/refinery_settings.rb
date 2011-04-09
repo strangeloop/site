@@ -3,6 +3,7 @@
   {:name => "new_page_parts", :value => true, :form_type => 'check_box'},
   {:name => "default_page_parts", :value => ["Top", "Middle", "Bottom"]},
   {:name => "frontend_refinery_stylesheets_enabled", :value => false, :form_type => 'check_box'},
+  {:name => "cache_menu", :value => true, :form_type => 'check_box'},
   {:name => "superuser_can_assign_roles", :value => true, :form_type => 'check_box'},
   {:name => "activity_show_limit", :value => 7},
   {:name => "preferred_image_view", :value => :grid},
