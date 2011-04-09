@@ -11,6 +11,12 @@ module NavigationHelpers
     when /the home\s?page/
       '/'
 
+    # Add more mappings here.
+    # Here is an example that pulls values out of the Regexp:
+    #
+    #   when /^(.*)'s profile page$/i
+    #     user_profile_path(User.find_by_login($1))
+
     when /the new talks page/
       '/talks/new.html'
 
@@ -24,12 +30,6 @@ module NavigationHelpers
     when /the default conference session page/
       conf_session = ConferenceSession.first
       "/refinery/conference_sessions/#{conf_session.id}/edit"
-
-    # Add more mappings here.
-    # Here is an example that pulls values out of the Regexp:
-    #
-    #   when /^(.*)'s profile page$/i
-    #     user_profile_path(User.find_by_login($1))
 
     else
       begin
