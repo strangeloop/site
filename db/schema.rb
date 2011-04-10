@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110406113152) do
+ActiveRecord::Schema.define(:version => 20110409220034) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -105,10 +105,10 @@ ActiveRecord::Schema.define(:version => 20110406113152) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "custom_title"
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "custom_title"
   end
 
   add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
@@ -281,6 +281,31 @@ ActiveRecord::Schema.define(:version => 20110406113152) do
     t.string   "video_approval"
     t.string   "talk_type"
     t.string   "talk_length"
+  end
+
+  create_table "user_metadata", :force => true do |t|
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.date     "dob"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "gender"
+    t.string   "city"
+    t.string   "region"
+    t.string   "country"
+    t.string   "postal_code"
+    t.string   "home_phone"
+    t.string   "work_phone"
+    t.string   "cell_phone"
+    t.string   "email"
+    t.string   "company_name"
+    t.string   "twitter_id"
+    t.string   "blog_url"
+    t.string   "reg_id"
+    t.string   "reg_status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_plugins", :force => true do |t|
