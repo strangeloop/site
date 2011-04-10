@@ -27,9 +27,13 @@
   </div>
   <ul class="list4">
     <li>Name</li>
-    <li><%= @talk.speakers[0].first_name + " " +  @talk.speakers[0].last_name %></li>
+    <li><%= speaker_for(@talk) %></li>
     <li>Email</li>
     <li><%= @talk.speakers[0].email %></li>
+    <li>Twitter ID:</li>
+    <li><%= link_to "@#{@talk.speakers[0].twitter_id}", "http://twitter.com/#{@talk.speakers[0].twitter_id}" %></li>
+    <li>Company</li>
+    <li><%= link_to @talk.speakers[0].company, @talk.speakers[0].company_url %></li>
     <li>Bio</li>
     <li><%= @talk.speakers[0].bio %></li>
     <li>Phone</li>

@@ -14,6 +14,9 @@ Feature: As an anonymous user I can enter a talk along with
       | First Name | Clem |
       | Last Name | Esterbill |
       | Email | clem_esterbill@fictionaldns.com |
+      | Twitter ID | clemtweets |
+      | Company | Clemalamadingdong |
+      | Company Website | http://clem.com | 
       | Bio | Background info here |
       | Phone | 555-555-5555 |
       | City | St. Louis |
@@ -32,6 +35,8 @@ Feature: As an anonymous user I can enter a talk along with
       And I should see "projector"
       And I should see "Clem Esterbill"
       And I should see "clem_esterbill@fictionaldns.com"
+      And I should see a link with "@clemtweets" to "http://twitter.com/clemtweets"
+      And I should see a link with "Clemalamadingdong" to "http://clem.com"
       And I should see "Background info here"
       And I should see "555-555-5555"
       And I should see "St. Louis"
