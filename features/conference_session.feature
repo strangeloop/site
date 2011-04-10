@@ -1,5 +1,5 @@
 Feature: As a user I can see talks I might want to attend
-  Background:
+  Background: The site requires a user before serving public content
     Given an admin exists
 
   Scenario: Conference organizer approves proposals
@@ -18,8 +18,7 @@ Feature: As a user I can see talks I might want to attend
   Scenario: Site visitors see published keynote
     Given a keynote session exists
     When I am on the sessions page
-    Then I should see "Keynote:"
-    And I should see "Hank Moody"
+    Then I should see "Keynote: Hank Moody"
     And I should see a link with "Unemployable" to "http://unemployable.com"
     And I should see a link with "@hankypanky" to "http://twitter.com/hankypanky"
     And I should see "God Hates Us All"
