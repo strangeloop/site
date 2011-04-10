@@ -1,6 +1,7 @@
 class CreateUserMetadata < ActiveRecord::Migration
   def self.up
     create_table :user_metadata do |t|
+      t.references :user
       t.string :first_name
       t.string :middle_name
       t.string :last_name

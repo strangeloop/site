@@ -284,6 +284,7 @@ ActiveRecord::Schema.define(:version => 20110409220034) do
   end
 
   create_table "user_metadata", :force => true do |t|
+    t.integer  "user_id"
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
