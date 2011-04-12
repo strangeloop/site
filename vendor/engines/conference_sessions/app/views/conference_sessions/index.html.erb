@@ -1,8 +1,24 @@
 <div class="overflow p1">
-<% @conference_sessions.each do |session| %>
+  <% @sessions_by_format['keynote'].each do |session| %>
 
   <%= render :partial => 'keynote', :locals => { :talk => session.talk,
                                                  :speaker => session.talk.speakers.first,
                                                  :session => session } %>
-<% end %>
+  <% end %>
 </div>
+
+<% if @sessions_by_format.include? 'workshop' -%>
+  <div class="overflow p3">
+    <h3>Workshops</h3>
+    <hr>
+  </div>
+  <% @sessions_by_format['workshop'].each_slice(4) do |session_group| -%>
+    <div class="overflow p3">
+      <% session_group.each do |session| -%>
+        <%= render :partial => 'workshop', :locals => { :talk => session.talk,
+                                                        :speaker => session.talk.speakers.first,
+                                                        :session => session } %>
+      <% end -%>
+    </div>
+  <% end -%>
+<% end -%>
