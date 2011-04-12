@@ -1,5 +1,5 @@
 <% content_for :body_content_title do %>
-  <%= @conference_session.title %>
+  <%= @conference_session.talk.title %>
 <% end %>
 
 <% content_for :body_content_left do %>
@@ -10,15 +10,9 @@
     </p>
   </section>
   <section>
-    <h1>Talk</h1>
+    <h1>Talk Title</h1>
     <p>
-      <%=raw @conference_session.talk %>
-    </p>
-  </section>
-  <section>
-    <h1>Title</h1>
-    <p>
-      <%=raw @conference_session.title %>
+      <%=raw @conference_session.talk.title %>
     </p>
   </section>
   <section>
@@ -35,7 +29,7 @@
     <ul id="conference_sessions">
       <% @conference_sessions.each do |conference_session| %>
         <li>
-          <%= link_to conference_session.title, conference_session_url(conference_session) %>
+          <%= link_to conference_session.talk.title, conference_session_url(conference_session) %>
         </li>
       <% end %>
     </ul>

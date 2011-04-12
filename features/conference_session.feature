@@ -12,17 +12,25 @@ Feature: As a user I can see talks I might want to attend
     And I should see "Title"
     And I should see "Abstract"
     And I should see "Talk Type"
-    And I should see "Talk Length"   
     And I should see "Name"
     
   Scenario: Site visitors see published keynote
     Given a keynote session exists
     When I am on the sessions page
+    Then I should not see "Workshops"
     Then I should see "Keynote: Hank Moody"
     And I should see a link with "Unemployable" to "http://unemployable.com"
     And I should see a link with "@hankypanky" to "http://twitter.com/hankypanky"
     And I should see "God Hates Us All"
     And I should see "Single father, living a player lifestyle in California."
+
+  Scenario: Site visitors see published workshops
+    Given a workshop session exists
+    When I am on the sessions page
+    Then I should see "Workshops"
+    And I should see "Winning with Tiger Blood"
+    And I should see a link with "Charlie Sheen" to "http://winning.com"
+    And I should see a link with "@adonisdna" to "http://twitter.com/adonisdna"
 
 
     

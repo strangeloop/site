@@ -4,8 +4,7 @@
   <h2><%= @conference_session.talk.title %></h2>
   <table id="inquiry">
     <tbody>
-      
-      <% [:title, :abstract, :talk_type, :talk_length].each do |field| %>
+      <% [:title, :abstract, :talk_type].each do |field| %>
 
           <tr>
             <td>

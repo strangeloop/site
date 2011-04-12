@@ -20,7 +20,6 @@ describe SpeakerMailer do
     [/#{talk.speakers[0].first_name}/,
      /#{talk.title}/,
      /#{talk.abstract}/,
-     /#{talk.talk_length}/,
      /#{talk.comments}/].each do |text|
       assert email.body =~ text
     end

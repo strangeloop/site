@@ -35,7 +35,7 @@ module Admin
 
     def approve_proposal
       proposal = update_proposal_status(params[:id], "accepted")
-      ConferenceSession.create(:talk => proposal.talk, :title => proposal.talk.title)
+      ConferenceSession.create(:talk => proposal.talk)
       SpeakerMailer.talk_accepted_email(proposal.talk).deliver
       redirect_to :action => :index
     end

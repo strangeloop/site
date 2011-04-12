@@ -30,7 +30,6 @@ Feature: As an anonymous user I can enter a talk along with
       When I press "Send Talk Proposal"
       Then I should see "Squashing NP Hard Problems with Clojure"
       And I should see "Deep Dive"
-      And I should see "50 Minutes"
       And I should see "Karp"
       And I should see "projector"
       And I should see "Clem Esterbill"

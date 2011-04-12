@@ -1,9 +1,13 @@
 class ConferenceSession < ActiveRecord::Base
-
-  acts_as_indexed :fields => [:title]
-
-  validates :title, :presence => true, :uniqueness => true
-  
   belongs_to :slides, :class_name => 'Resource'
   belongs_to :talk
+
+  #acts_as_indexed :fields => [:title]
+
+  validates_inclusion_of :format, :in => %w(keynote workshop talk lightning undefined)
+  validates_presence_of :talk
+  
+  def format
+    self[:format] || 'undefined'
+  end
 end

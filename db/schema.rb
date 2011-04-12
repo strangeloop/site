@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110409191006) do
+ActiveRecord::Schema.define(:version => 20110410225113) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -29,11 +29,11 @@ ActiveRecord::Schema.define(:version => 20110409191006) do
   create_table "conference_sessions", :force => true do |t|
     t.datetime "start_time"
     t.integer  "talk_id"
-    t.string   "title"
     t.integer  "slides_id"
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "format"
   end
 
   add_index "conference_sessions", ["id"], :name => "index_conference_sessions_on_id"
@@ -283,7 +283,6 @@ ActiveRecord::Schema.define(:version => 20110409191006) do
     t.integer  "conf_year"
     t.string   "video_approval"
     t.string   "talk_type"
-    t.string   "talk_length"
   end
 
   create_table "user_metadata", :force => true do |t|
