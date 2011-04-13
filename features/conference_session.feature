@@ -18,7 +18,8 @@ Feature: As a user I can see talks I might want to attend
     Given a keynote session exists
     When I am on the sessions page
     Then I should not see "Workshops"
-    Then I should see "Keynote: Hank Moody"
+    And I should not see "Sessions"
+    And I should see "Keynote: Hank Moody"
     And I should see a link with "Unemployable" to "http://unemployable.com"
     And I should see a link with "@hankypanky" to "http://twitter.com/hankypanky"
     And I should see "God Hates Us All"
@@ -28,9 +29,19 @@ Feature: As a user I can see talks I might want to attend
     Given a workshop session exists
     When I am on the sessions page
     Then I should see "Workshops"
+    And I should not see "Sessions"
     And I should see "Winning with Tiger Blood"
     And I should see a link with "Charlie Sheen" to "http://winning.com"
     And I should see a link with "@adonisdna" to "http://twitter.com/adonisdna"
+
+  Scenario: Site visitors see published talks
+    Given a talk session exists
+    When I am on the sessions page
+    Then I should not see "Workshops"
+    And I should see "Sessions"
+    And I should see "Sample Talk"
+    And I should see a link with "Earl Grey" to "http://teabaggery.com"
+    And I should see a link with "@earlofgrey" to "http://twitter.com/earlofgrey"
 
 
     

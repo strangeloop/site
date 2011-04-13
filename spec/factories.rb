@@ -50,14 +50,16 @@ Factory.define :organizer, :parent => :reviewer do |u|
 end
 
 Factory.define :speaker do |s|
-  s.first_name 'Earl'
-  s.last_name  'Grey'
-  s.email      'earl@grey.com'
-  s.bio        'Hot tea afficionado'
-  s.phone      '314-444-1234'
-  s.state      'MO'
-  s.country    'US'
-  s.db_image   'foo'
+  s.first_name  'Earl'
+  s.last_name   'Grey'
+  s.email       'earl@grey.com'
+  s.twitter_id  'earlofgrey'
+  s.company_url 'http://teabaggery.com'
+  s.bio         'Hot tea afficionado'
+  s.phone       '314-444-1234'
+  s.state       'MO'
+  s.country     'US'
+  s.db_image    'foo'
 end
 
 Factory.define :talk do |t|

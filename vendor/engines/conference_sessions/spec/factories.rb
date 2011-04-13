@@ -37,3 +37,8 @@ Factory.define :workshop_session, :parent => :conference_session do |ws|
   ws.talk { Factory(:workshop_talk) }
 end
 
+Factory.define :talk_session, :parent => :conference_session do |ws|
+  ws.format 'talk'
+  ws.talk { Factory(:talk) }
+end
+

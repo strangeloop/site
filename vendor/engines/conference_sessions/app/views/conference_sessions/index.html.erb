@@ -7,18 +7,11 @@
   <% end %>
 </div>
 
-<% if @sessions_by_format.include? 'workshop' -%>
-  <div class="overflow p3">
-    <h3>Workshops</h3>
-    <hr>
-  </div>
-  <% @sessions_by_format['workshop'].each_slice(4) do |session_group| -%>
-    <div class="overflow p3">
-      <% session_group.each do |session| -%>
-        <%= render :partial => 'workshop', :locals => { :talk => session.talk,
-                                                        :speaker => session.talk.speakers.first,
-                                                        :session => session } %>
-      <% end -%>
-    </div>
-  <% end -%>
-<% end -%>
+<%= render :partial => 'session_groups', :locals => { :sessions_by_format => @sessions_by_format,
+                                                      :format => 'workshop',
+                                                      :label => t('.workshops')} %>
+
+<%= render :partial => 'session_groups', :locals => { :sessions_by_format => @sessions_by_format, 
+                                                      :format => 'talk',
+                                                      :label => t('.sessions') } %>
+

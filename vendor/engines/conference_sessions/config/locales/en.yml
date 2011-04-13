@@ -31,5 +31,8 @@ en:
         
         
   conference_sessions:
+    index:
+      workshops: Workshops
+      sessions: Sessions
     show:
       other: Other Conference Sessions
