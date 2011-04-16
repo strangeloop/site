@@ -40,12 +40,18 @@
         <% for speaker in @proposal.talk.speakers %>
 
           <tr>
+          	<td>
+              <strong><%= t('.image') %></strong>
+            </td>
+            <% debugger -%>
+            <td><%= image_fu speaker.db_image  %></td>
+          </tr>
+          <tr>
             <td>
               <strong><%= t('.by') -%></strong>
             </td>
             <td>
               <%= "#{speaker.first_name} #{speaker.last_name}" -%>
-              <%= image_tag speaker.db_image.url %>
             </td>
           </tr>
           <tr>
