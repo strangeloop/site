@@ -12,7 +12,6 @@ describe RegOnlineController do
   # http://localhost:4000/reg_online/new.html
   it "should save user meta" do
     pending
-    post :new, :first_name => "Clem"
-
+    post :create,  "FirstName" => "Clem"
   end
 end

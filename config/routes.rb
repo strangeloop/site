@@ -1,7 +1,7 @@
 Conf::Application.routes.draw do
   resources :talks
   match '/media/*dragonfly', :to => Dragonfly[:strangeloop]
-  post 'reg_online/new'
+  post 'reg_online/callback', :to => "reg_online#create"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -26,6 +26,6 @@ class SpeakerMailer < ActionMailer::Base
 
   def talk_rejected_email(talk)
     @talk = talk
-    send_email_with_cc(talk, "Trange Loop Talk proposal rejected")
+    send_email_with_cc(talk, "Strange Loop Talk proposal rejected")
   end
 end

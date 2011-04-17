@@ -19,7 +19,8 @@ class RegOnlineController < ApplicationController
     "HomePhone" => :home_phone,
     "Mobile" => :cell_phone}  
 
-  def new
+  def create
+    debugger
     # Fields TODO - dob, middle_name?, twitter_id, blog_url,
     # company_name
     um = UserMetadata.new
