@@ -1,6 +1,8 @@
 Conf::Application.routes.draw do
   resources :talks
   match '/media/*dragonfly', :to => Dragonfly[:strangeloop]
+  post 'reg_online/new'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

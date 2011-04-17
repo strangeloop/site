@@ -1,9 +1,3 @@
-GIT
-  remote: git://github.com/strangeloop/regonline-ruby
-  revision: dab58acf3b5ec110f69fc7ca1b3dae6f10a03288
-  specs:
-    regonline-ruby (0.0.1)
-
 PATH
   remote: vendor/engines
   specs:
@@ -260,7 +254,7 @@ DEPENDENCIES
   awesome_print (~> 0.3.2)
   capybara (~> 0.4.1)
   carmen (= 0.2.4)
-  cucumber-rails (~> 0.4.1)
+  cucumber-rails (~> 0.4.0.beta.1)
   database_cleaner (~> 0.6.0)
   dragonfly (= 0.8.2)
   factory_girl_rails (~> 1.0.1)
@@ -277,7 +271,6 @@ DEPENDENCIES
   refinerycms-inquiries (~> 0.9.9.9)
   refinerycms-news (~> 1.0)
   refinerycms-proposals (= 0.1)!
-  regonline-ruby!
   rspec-rails (~> 2.5.0)
   ruby-debug (~> 0.10.4)
   ruby-prof
