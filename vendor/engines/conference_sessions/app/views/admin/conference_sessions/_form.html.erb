@@ -8,10 +8,15 @@
     <%= f.label :start_time -%>
     <%= f.datetime_select :start_time -%>
   </div>
+
+  <div class="field">
+    <%= f.label :position %>
+    <%= f.text_field :position %>
+  </div>
   
   <div class='field'>
-    <%= f.label :talk -%>
-    <%= f.text_field :talk -%>
+    <%= f.label :format -%>
+    <%= f.select(:format, ConferenceSession::format_options) -%>
   </div>
   
   <div class='field'>
