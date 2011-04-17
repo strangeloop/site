@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe ConferenceSession do
+  let(:talk) { Factory(:talk) }
+  let(:conference_session) { ConferenceSession.new(:talk => talk) }
 
   context "validations" do
     
@@ -13,7 +15,6 @@ describe ConferenceSession do
     end
 
     context "the simplest form" do
-      let(:conference_session) { ConferenceSession.new(:talk => Factory(:talk)) }
 
       it "is valid with just a talk and no format" do
         conference_session.should be_valid
@@ -40,5 +41,9 @@ describe ConferenceSession do
 
   it {should belong_to :talk}
   it {should belong_to :slides}
+
+  it "gets its title from its talk" do
+    conference_session.title.should == talk.title
+  end
 end
 

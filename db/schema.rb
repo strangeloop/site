@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110410225113) do
+ActiveRecord::Schema.define(:version => 20110417010121) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -34,8 +34,10 @@ ActiveRecord::Schema.define(:version => 20110410225113) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "format"
+    t.string   "cached_slug"
   end
 
+  add_index "conference_sessions", ["cached_slug"], :name => "index_conference_sessions_on_cached_slug", :unique => true
   add_index "conference_sessions", ["id"], :name => "index_conference_sessions_on_id"
 
   create_table "images", :force => true do |t|
@@ -105,10 +107,10 @@ ActiveRecord::Schema.define(:version => 20110410225113) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
+    t.string   "custom_title"
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "custom_title"
   end
 
   add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"

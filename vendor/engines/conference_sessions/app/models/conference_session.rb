@@ -6,8 +6,14 @@ class ConferenceSession < ActiveRecord::Base
 
   validates_inclusion_of :format, :in => %w(keynote workshop talk lightning undefined)
   validates_presence_of :talk
+
+  has_friendly_id :title, :use_slug => true
   
   def format
     self[:format] || 'undefined'
+  end
+
+  def title
+    talk.title
   end
 end

@@ -1,6 +1,6 @@
 <div class="grid_3 speaker">
   <div style="float: left;">
-    <h4><%= link_to talk.title, conference_session_path(session) %></h4>
+    <h4><%= link_to talk.title, session %></h4>
     <h5><%= link_to speaker_for(talk), speaker.company_url %></h5>
     <%= link_to content_tag(:span, "@#{speaker.twitter_id}"), "http://twitter.com/#{speaker.twitter_id}" %>    
   </div>
