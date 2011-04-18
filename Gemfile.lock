@@ -1,4 +1,9 @@
 PATH
+  remote: ../regonline-ruby
+  specs:
+    regonline-ruby (0.0.1)
+
+PATH
   remote: vendor/engines
   specs:
     refinerycms-conference_sessions (1.0)
@@ -271,6 +276,7 @@ DEPENDENCIES
   refinerycms-inquiries (~> 0.9.9.9)
   refinerycms-news (~> 1.0)
   refinerycms-proposals (= 0.1)!
+  regonline-ruby!
   rspec-rails (~> 2.5.0)
   ruby-debug (~> 0.10.4)
   ruby-prof
