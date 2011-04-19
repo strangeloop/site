@@ -7,7 +7,7 @@ class Speaker < ActiveRecord::Base
 
   validates_length_of :bio, :maximum => 800
 
-  db_image_accessor :db_image
+  belongs_to :image
 
   before_create AddConfYear
 

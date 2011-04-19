@@ -41,8 +41,10 @@
       <%= speaker_form.input :state, :label => t('.state') %>
       <%= speaker_form.input :country, :label => t('.country'),
           :as => :select, :collection => Carmen::country_names %>
-      <%= speaker_form.input :db_image, :label => t('.image'),
+      <%= speaker_form.inputs :name => t('.image'), :for => :image do |image_form| %>
+        <%= image_form.input :image, :label => t('.image'),
           :as => :file, :hint => t('.image_hint')%>
+      <% end -%>
     <% end %>
   <% end %>   
   <%= talk_form.buttons do %>

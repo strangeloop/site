@@ -1,5 +1,5 @@
 class TalksController < ApplicationController
-  expose(:talk) { Talk.new( params[:talk] || {:speakers => [Speaker.new]}) }
+  expose(:talk) { build_talk(params) }
   expose(:speaker) { talk.speakers.first }
 
   def new
@@ -12,5 +12,13 @@ class TalksController < ApplicationController
     else
       render :new
     end
+  end
+
+  private
+  def build_talk(params)
+    return Talk.new(:speakers => [Speaker.new]) if params["talk"].nil?
+    image_param = params["talk"]["speakers_attributes"]["0"].delete("image")
+    image = Image.new(image_param) if image_param
+    Talk.new(params["talk"]).tap{|t| t.speakers.first.image = image if image}
   end
 end
