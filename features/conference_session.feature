@@ -43,5 +43,17 @@ Feature: As a user I can see talks I might want to attend
     And I should see a link with "Earl Grey" to "http://teabaggery.com"
     And I should see a link with "@earlofgrey" to "http://twitter.com/earlofgrey"
 
+  Scenario: Site visitor views a session detail
+    Given a keynote session exists
+    And I am on the sessions page
+    When I follow "God Hates Us All"
+    Then I should be on the session details page for God Hates Us All
+    Then I should see "Hank Moody"
+    And I should see a link with "Unemployable" to "http://unemployable.com"
+    And I should see a link with "@hankypanky" to "http://twitter.com/hankypanky"
+    And I should see "God Hates Us All"
+    And I should see "A writer tries to juggle his career, his relationship with his daughter and his ex-girlfriend, as well as his appetite for beautiful women."
+    And I should see "Single father, living a player lifestyle in California."
+    
 
     

@@ -24,9 +24,10 @@ en:
         title: Title
         abstract: Abstract
         talk_type: Talk Type
+        format: Format
         bio: Bio
-        talk_length: Talk Length
         name: Name
+        image: Image
 
         
         

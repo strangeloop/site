@@ -4,44 +4,44 @@
   </div>
   <ul class="list4">
     <li>Title</li>
-    <li><%= @talk.title %></li>
+    <li><%= talk.title %></li>
     <li>Abstract</li>
-    <li><%= @talk.abstract %></li>
+    <li><%= talk.abstract %></li>
     <li>Talk Type</li>
-    <li><%= @talk.talk_type %></li>
+    <li><%= talk.talk_type %></li>
     <li>Video Approval</li>
-    <li><%= @talk.video_approval %></li>
+    <li><%= talk.video_approval %></li>
     <li>Comments</li>
-    <li><%= @talk.comments %></li>
+    <li><%= talk.comments %></li>
     <li>Prereqs</li>
-    <li><%= @talk.prereqs %></li>
+    <li><%= talk.prereqs %></li>
     <li>Audio/Visual Requirements</li>
-    <li><%= @talk.av_requirement %></li>
+    <li><%= talk.av_requirement %></li>
     <li>Tags</li>
-    <li><%= @talk.tag_list %></li>
+    <li><%= talk.tag_list %></li>
   </ul>
   <div class="overflow p3">
     <h3>Speaker Info</h3>
   </div>
   <ul class="list4">
     <li>Name</li>
-    <li><%= speaker_for(@talk) %></li>
+    <li><%= speaker_for(talk) %></li>
     <li>Email</li>
-    <li><%= @talk.speakers[0].email %></li>
+    <li><%= speaker.email %></li>
     <li>Twitter ID:</li>
-    <li><%= link_to "@#{@talk.speakers[0].twitter_id}", "http://twitter.com/#{@talk.speakers[0].twitter_id}" %></li>
+    <li><%= link_to "@#{speaker.twitter_id}", "http://twitter.com/#{speaker.twitter_id}" %></li>
     <li>Company</li>
-    <li><%= link_to @talk.speakers[0].company, @talk.speakers[0].company_url %></li>
+    <li><%= link_to speaker.company, speaker.company_url %></li>
     <li>Bio</li>
-    <li><%= @talk.speakers[0].bio %></li>
+    <li><%= speaker.bio %></li>
     <li>Phone</li>
-    <li><%= @talk.speakers[0].phone %></li>
+    <li><%= speaker.phone %></li>
     <li>City</li>
-    <li><%= @talk.speakers[0].city %></li>
+    <li><%= speaker.city %></li>
     <li>State</li>
-    <li><%= @talk.speakers[0].state %></li>
+    <li><%= speaker.state %></li>
     <li>Country</li>
-    <li><%= @talk.speakers[0].country %></li>
+    <li><%= speaker.country %></li>
   </ul>
 </div>
 <div class="push"></div>

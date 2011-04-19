@@ -34,6 +34,10 @@ module NavigationHelpers
     when /the sessions page/
       '/sessions'
 
+    when /the session details page for (.*)$/
+      friendly_id = $1.downcase.gsub(' ', '-').gsub("\"", '')
+      "/sessions/#{friendly_id}"
+
     else
       begin
         page_name =~ /the (.*) page/

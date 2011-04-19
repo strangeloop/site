@@ -1,7 +1,5 @@
-<!--<%= render :partial => "form" %>-->
-
 <div id='records'>
-  <h2><%= @conference_session.talk.title %></h2>
+  <h2><%= t('.conference_session') %></h2>
   <table id="inquiry">
     <tbody>
       <% [:title, :abstract, :talk_type].each do |field| %>
@@ -32,17 +30,20 @@
               <%= @conference_session.talk.speakers[0].bio -%>
             </td>
           </tr>
-<!--      <tr>
+          <tr>
             <td>
               <strong><%= t(".image") -%></strong>
             </td>
             <td>
               <%= image_tag @conference_session.talk.speakers[0].db_image.url %>
             </td>
-          </tr>-->
+          </tr>
       </tbody>
     </table>
-
+<p></p>
+<p></p>
+<%= render :partial => "form" %>
+    
 </div>
 
 

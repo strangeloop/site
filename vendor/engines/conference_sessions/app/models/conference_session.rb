@@ -4,10 +4,20 @@ class ConferenceSession < ActiveRecord::Base
 
   #acts_as_indexed :fields => [:title]
 
-  validates_inclusion_of :format, :in => %w(keynote workshop talk lightning undefined)
+  def self.format_options
+    %w(keynote workshop talk lightning undefined)
+  end
+
+  validates_inclusion_of :format, :in => format_options
   validates_presence_of :talk
+
+  has_friendly_id :title, :use_slug => true
   
   def format
     self[:format] || 'undefined'
+  end
+
+  def title
+    talk.title
   end
 end
