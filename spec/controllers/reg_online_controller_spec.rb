@@ -18,15 +18,11 @@ describe RegOnlineController do
     
   before(:each) do
     @controller = RegOnlineController.new
-    @stub_regonline = Object.new
+    @stub_regonline = RegOnline.new :username => "foo", :password => "bar"
     @um = UserMetadata.new
     @params_map = post_params
   end
 
-  #Not able to get rspec tests to call controllers properly, leaving
-  #this out.  Tested via command line with the below command:
-  # curl -d "FirstName=Clem&LastName=Esterbill&Email=foo@bar.com&RegisterId=1234" 
-  # http://localhost:4000/reg_online/new.html
   it "should not save users that have not be validated" do
     @stub_regonline.stub!(:get_custom_user_info).and_return(false)
     @um.should_not_receive(:save)

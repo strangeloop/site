@@ -13,9 +13,7 @@ gem 'uuidtools', '~> 2.1.2'
 
 gem 'acts_as_commentable', '3.0.1'
 
-#gem 'regonline-ruby', :git =>
-#'git://github.com/strangeloop/regonline-ruby'
-gem 'regonline-ruby', :path => '../regonline-ruby'
+gem 'regonline-ruby', :git => 'git://github.com/strangeloop/regonline-ruby'
 
 group :development, :test do
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
