@@ -49,6 +49,10 @@ Factory.define :organizer, :parent => :reviewer do |u|
   end
 end
 
+#Factory.define :image do |i|
+  #i.image File.new(File.expand_path('../uploads/image.jpeg', __FILE__))
+#end
+
 Factory.define :speaker do |s|
   s.first_name  'Earl'
   s.last_name   'Grey'
@@ -59,7 +63,7 @@ Factory.define :speaker do |s|
   s.phone       '314-444-1234'
   s.state       'MO'
   s.country     'US'
-  s.db_image    'foo'
+  #s.image       { Factory(:image) }
 end
 
 Factory.define :talk do |t|

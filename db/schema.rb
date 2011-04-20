@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110419021210) do
+ActiveRecord::Schema.define(:version => 20110417010121) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -29,16 +29,25 @@ ActiveRecord::Schema.define(:version => 20110419021210) do
   create_table "conference_sessions", :force => true do |t|
     t.datetime "start_time"
     t.integer  "talk_id"
+    t.string   "format"
     t.integer  "slides_id"
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "format"
     t.string   "cached_slug"
   end
 
   add_index "conference_sessions", ["cached_slug"], :name => "index_conference_sessions_on_cached_slug", :unique => true
   add_index "conference_sessions", ["id"], :name => "index_conference_sessions_on_id"
+
+  create_table "datastore_images", :force => true do |t|
+    t.string   "uid"
+    t.binary   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "datastore_images", ["uid"], :name => "index_datastore_images_on_uid"
 
   create_table "images", :force => true do |t|
     t.string   "image_mime_type"
@@ -225,15 +234,6 @@ ActiveRecord::Schema.define(:version => 20110419021210) do
   add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_name_sluggable_type_scope_and_sequence", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
-  create_table "speaker_images", :force => true do |t|
-    t.string   "uid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.binary   "db_image"
-  end
-
-  add_index "speaker_images", ["uid"], :name => "index_speaker_images_on_uid"
-
   create_table "speakers", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -245,12 +245,11 @@ ActiveRecord::Schema.define(:version => 20110419021210) do
     t.string   "state"
     t.string   "country"
     t.integer  "conf_year"
-    t.string   "db_image_uid"
+    t.integer  "image_id"
     t.string   "city"
     t.string   "twitter_id"
     t.string   "company"
     t.string   "company_url"
-    t.integer  "image_id"
   end
 
   create_table "speakers_talks", :id => false, :force => true do |t|

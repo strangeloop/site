@@ -1,6 +1,6 @@
-class SpeakerImage < ActiveRecord::Base
+class DatastoreImage < ActiveRecord::Base
 
-  [:uid, :db_image].each do |field|
+  [:uid, :image].each do |field|
     validates field, :presence => true
   end
 

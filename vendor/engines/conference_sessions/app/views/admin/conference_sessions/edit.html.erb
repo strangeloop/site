@@ -35,7 +35,7 @@
               <strong><%= t(".image") -%></strong>
             </td>
             <td>
-              <%= image_tag @conference_session.talk.speakers[0].db_image.url %>
+              <%= image_fu @conference_session.talk.speakers[0].image %>
             </td>
           </tr>
       </tbody>

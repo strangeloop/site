@@ -4,7 +4,7 @@ class CreateConferenceSessions < ActiveRecord::Migration
     create_table :conference_sessions do |t|
       t.datetime :start_time
       t.references :talk
-      t.string :title
+      t.string :format
       t.integer :slides_id
       t.integer :position
 
