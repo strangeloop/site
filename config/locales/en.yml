@@ -37,6 +37,6 @@ en:
       city_hint: "City, State, and Country are private fields used for an estimate of travel cost."
       state: "State"
       country: "Country"
-      image: "Profile Image"
-      image_hint: "Image height and width info goes here when we know it"
+      image: "Speaker Image"
+      image_hint: "Ideally 450 x 450 image less than 1MB in size"
       commit: "Send Talk Proposal"
