@@ -25,8 +25,8 @@ group :development, :test do
 end
 
 group :production do
-  #gem 'pg', '0.9.0'
-  #gem 'unicorn' 
+  gem 'mysql2', '0.2.7'
+  gem 'unicorn', '3.6.0'
 end
 
 group :test do
@@ -70,13 +70,10 @@ end
 # Specify additional Refinery CMS Engines here (all optional):
 gem 'refinerycms-inquiries',    '~> 0.9.9.9'
 gem 'refinerycms-news',         '~> 1.0'
-# gem 'refinerycms-portfolio',    '~> 0.9.9'
-# gem 'refinerycms-theming',      '~> 0.9.9'
 # gem 'refinerycms-search',       '~> 0.9.8'
-# gem 'refinerycms-blog',         '~> 1.1'
 
 # END USER DEFINED
 
-gem 'refinerycms-proposals', '0.1', :path => 'vendor/engines'
+gem 'refinerycms-proposals', '1.0', :path => 'vendor/engines'
 
 gem 'refinerycms-conference_sessions', '1.0', :path => 'vendor/engines'

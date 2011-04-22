@@ -10,11 +10,7 @@ PATH
   remote: vendor/engines
   specs:
     refinerycms-conference_sessions (1.0)
-
-PATH
-  remote: vendor/engines
-  specs:
-    refinerycms-proposals (0.1)
+    refinerycms-proposals (1.0)
 
 GEM
   remote: http://rubygems.org/
@@ -126,6 +122,7 @@ GEM
     i18n (0.5.0)
     json (1.5.1)
     json_pure (1.5.1)
+    kgio (2.3.3)
     launchy (0.3.7)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
@@ -138,6 +135,7 @@ GEM
     mime-types (1.16)
     moretea-awesome_nested_set (1.4.3.1)
       activerecord (~> 3.0.0)
+    mysql2 (0.2.7)
     nokogiri (1.4.4)
     ntlm-http (0.1.1)
     orm_adapter (0.0.4)
@@ -255,6 +253,9 @@ GEM
       polyglot (>= 0.3.1)
     truncate_html (0.5.0)
     tzinfo (0.3.26)
+    unicorn (3.6.0)
+      kgio (~> 2.3)
+      rack
     uuidtools (2.1.2)
     warden (1.0.3)
       rack (>= 1.0.0)
@@ -285,6 +286,7 @@ DEPENDENCIES
   gherkin
   json_pure (~> 1.5.1)
   launchy (~> 0.3.7)
+  mysql2 (= 0.2.7)
   rack-cache
   rack-test (~> 0.5.6)
   rails (= 3.0.5)
@@ -293,7 +295,7 @@ DEPENDENCIES
   refinerycms-conference_sessions (= 1.0)!
   refinerycms-inquiries (~> 0.9.9.9)
   refinerycms-news (~> 1.0)
-  refinerycms-proposals (= 0.1)!
+  refinerycms-proposals (= 1.0)!
   regonline-ruby!
   rspec-rails (~> 2.5.0)
   ruby-debug (~> 0.10.4)
@@ -301,4 +303,5 @@ DEPENDENCIES
   shoulda (~> 2.11.3)
   spork (>= 0.9.0.rc4)
   sqlite3-ruby (~> 1.3.2)
+  unicorn (= 3.6.0)
   uuidtools (~> 2.1.2)
