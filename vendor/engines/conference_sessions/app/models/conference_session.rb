@@ -3,6 +3,7 @@ class ConferenceSession < ActiveRecord::Base
   belongs_to :talk
 
   #acts_as_indexed :fields => [:title]
+  accepts_nested_attributes_for :talk
 
   def self.format_options
     %w(keynote workshop talk lightning undefined)

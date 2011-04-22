@@ -2,44 +2,16 @@
   <h2><%= t('.conference_session') %></h2>
   <table id="inquiry">
     <tbody>
-      <% [:title, :abstract, :talk_type].each do |field| %>
-
-          <tr>
-            <td>
-              <strong><%= t(".#{ field }") -%></strong>
-            </td>
-            <td>
-              <%= @conference_session.talk.send(field) -%>
-            </td>
-          </tr>
-
-        <% end %>
-          <tr>
-            <td>
-              <strong><%= t(".name") -%></strong>
-            </td>
-            <td>
-              <%= @conference_session.talk.speakers[0].first_name -%> <%= @conference_session.talk.speakers[0].last_name -%>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong><%= t(".bio") -%></strong>
-            </td>
-            <td>
-              <%= @conference_session.talk.speakers[0].bio -%>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong><%= t(".image") -%></strong>
-            </td>
-            <td>
-              <%= image_fu @conference_session.talk.speakers[0].image, :medium %>
-            </td>
-          </tr>
-      </tbody>
-    </table>
+      <tr>
+        <td>
+          <strong><%= t(".image") -%></strong>
+        </td>
+        <td>
+          <%= image_fu @conference_session.talk.speakers[0].image, :medium %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 <p></p>
 <p></p>
 <%= render :partial => "form" %>
