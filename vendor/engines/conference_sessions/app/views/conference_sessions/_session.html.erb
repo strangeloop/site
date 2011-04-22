@@ -1,4 +1,5 @@
 <div class="grid_3 speaker">
+  <%= link_to image_fu(speaker.image, :small), session, :class => 'pic_speaker', :rel => ' ' %>
   <div style="float: left;">
     <h4><%= link_to talk.title, session %></h4>
     <h5><%= link_to speaker_for(talk), speaker.company_url %></h5>
