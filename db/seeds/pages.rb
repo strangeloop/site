@@ -193,51 +193,51 @@ apps_page.parts.create({
               :position => 0
             })
 
-schedule_page = Page.create(:title => "Schedule",
+sessions_page = Page.create(:title => "Sessions",
             :deletable => true,
             :position => (page_position += 1),
-            :menu_match => "^/schedule$")
+            :menu_match => "^/sessions$")
 
-schedule_page.parts.create({
+sessions_page.parts.create({
               :title => "Body",
               :body => "<p>No content goes here. Placeholder for dynamic schedule page.</p>",
               :position => 0
             })
 
-schedule_page_position = -1
-speakers_page = schedule_page.children.create(:title => "Speakers",
+sessions_page_position = -1
+speakers_page = sessions_page.children.create(:title => "Speakers",
             :show_in_menu => false,
             :custom_title => '',
             :custom_title_type => 'text',
             :deletable => true,
-            :position => (schedule_page_position += 1),
+            :position => (sessions_page_position += 1),
             :menu_match => "^/speakers$",
-            :path => "Schedule - Speakers")
+            :path => "Sessions - Speakers")
 speakers_page.parts.create({
               :title => "Body",
               :body => "<p>No content goes here. Placeholder for dynamic speaker page.</p>",
               :position => 0
             })
 
-talks_page = schedule_page.children.create(:title => "Talks",
+schedule_page = sessions_page.children.create(:title => "Schedule",
             :show_in_menu => false,
             :custom_title => '',
             :custom_title_type => 'text',
             :deletable => true,
-            :position => (schedule_page_position),
+            :position => (sessions_page_position),
             :menu_match => "^/talks$")
-talks_page.parts.create({
+sessions_page.parts.create({
               :title => "Body",
               :body => "<p>No content goes here. Placeholder for dynamic talks page.</p>",
               :position => 0
             })
 
-content_page = schedule_page.children.create(:title => "Content",
+content_page = sessions_page.children.create(:title => "Content",
             :show_in_menu => false,
             :custom_title => '',
             :custom_title_type => 'text',
             :deletable => true,
-            :position => (schedule_page_position),
+            :position => (sessions_page_position),
             :path => "Schedule - Content")
 content_page.parts.create({
               :title => "Body",
