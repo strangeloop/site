@@ -6,7 +6,7 @@
     <li>Title</li>
     <li><%= talk.title %></li>
     <li>Abstract</li>
-    <li><%= talk.abstract %></li>
+    <li><%= raw textilize(talk.abstract) %></li>
     <li>Talk Type</li>
     <li><%= talk.talk_type %></li>
     <li>Video Approval</li>
@@ -33,7 +33,7 @@
     <li>Company</li>
     <li><%= link_to speaker.company, speaker.company_url %></li>
     <li>Bio</li>
-    <li><%= speaker.bio %></li>
+    <li><%= raw textilize(speaker.bio) %></li>
     <li>Phone</li>
     <li><%= speaker.phone %></li>
     <li>City</li>

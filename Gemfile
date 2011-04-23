@@ -16,6 +16,7 @@ gem 'acts_as_commentable', '3.0.1'
 gem 'regonline-ruby', :git => 'git://github.com/strangeloop/regonline-ruby'
 gem 'friendly_id_globalize3', '~> 3.2.1'
 gem 'decent_exposure', '~> 1.0'
+gem 'RedCloth', '~> 4.2'
 
 group :development, :test do
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'

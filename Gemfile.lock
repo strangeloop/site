@@ -15,6 +15,7 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
+    RedCloth (4.2.7)
     ZenTest (4.5.0)
     abstract (1.0.0)
     actionmailer (3.0.5)
@@ -267,6 +268,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth (~> 4.2)
   acts-as-taggable-on
   acts_as_commentable (= 3.0.1)
   ajaxful_rating (~> 3.0.0.beta3)

@@ -11,6 +11,7 @@ en:
     new:
       title: "Title"
       abstract: "Abstract"
+      abstract_hint: "Supports Textile markup"
       talk_type: "Talk Type"
       talk_length: "Talk Format"
       video_approval: "Video Approval"
@@ -31,6 +32,7 @@ en:
       company: "Company"
       company_url: "Company Website"
       bio: "Bio"
+      bio_hint: "Supports Textile markup"
       phone: "Phone"
       phone_hint: "Optional, for emergency contact"
       city: "City"

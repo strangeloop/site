@@ -11,14 +11,13 @@ Feature: As a user I can see talks I might want to attend
     Then I am on the default conference session page
     And I should see "Title"
     And I should see "Abstract"
-    And I should see "Talk Type"
-    And I should see "Name"
+    And I should see "Talk type"
     
   Scenario: Site visitors see published keynote
     Given a keynote session exists
     When I am on the sessions page
     Then I should not see "Workshops"
-    And I should not see "Sessions"
+    And I should not see "Talks"
     And I should see "Keynote: Hank Moody"
     And I should see a link with "Unemployable" to "http://unemployable.com"
     And I should see a link with "@hankypanky" to "http://twitter.com/hankypanky"
@@ -29,7 +28,7 @@ Feature: As a user I can see talks I might want to attend
     Given a workshop session exists
     When I am on the sessions page
     Then I should see "Workshops"
-    And I should not see "Sessions"
+    And I should not see "Talks"
     And I should see "Winning with Tiger Blood"
     And I should see a link with "Charlie Sheen" to "http://winning.com"
     And I should see a link with "@adonisdna" to "http://twitter.com/adonisdna"
@@ -38,7 +37,7 @@ Feature: As a user I can see talks I might want to attend
     Given a talk session exists
     When I am on the sessions page
     Then I should not see "Workshops"
-    And I should see "Sessions"
+    And I should see "Talks"
     And I should see "Sample Talk"
     And I should see a link with "Earl Grey" to "http://teabaggery.com"
     And I should see a link with "@earlofgrey" to "http://twitter.com/earlofgrey"

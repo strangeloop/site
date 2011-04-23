@@ -5,14 +5,14 @@
       <%= image_fu(speaker.image, :large) %>
 
       <h3><%= talk.title %></h3>
-      <p><%= talk.abstract %></p>
+      <%= raw textilize(talk.abstract) %>
       <p></p>
       <h4><%= speaker_for(talk) %></h4>
       <h5><%= link_to speaker.company, speaker.company_url %></h5>
       <%= twitter_link speaker.twitter_id %>
       <p>
         <strong>Bio:</strong>
-        <%= speaker.bio %>
+        <%= raw textilize(speaker.bio) %>
       </p>
     </div>
   </div>

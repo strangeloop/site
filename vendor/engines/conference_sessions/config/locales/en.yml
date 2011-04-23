@@ -34,6 +34,6 @@ en:
   conference_sessions:
     index:
       workshops: Workshops
-      sessions: Sessions
+      talks: Talks
     show:
       other: Other Conference Sessions
