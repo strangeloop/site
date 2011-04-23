@@ -25,6 +25,10 @@ module ApplicationHelper
     "#{speaker.first_name} #{speaker.last_name}"
   end
 
+  def twitter_link(twitter_id = '', tag_type = :strong)
+    link_to(content_tag(tag_type, "@#{twitter_id}"), "http://twitter.com/#{twitter_id}") unless twitter_id.blank?
+  end
+
   private
   def tree_row_height
     7

@@ -35,4 +35,22 @@ describe ApplicationHelper do
     end
   end
 
+  context "#twitter_link" do
+    it "returns a link when a string is passed" do
+      twitter_link('foo').should == "<a href=\"http://twitter.com/foo\"><strong>@foo</strong></a>"
+    end
+
+    it "supports a supplied content tag for the twitter name" do
+      twitter_link('foo', :fart).should == "<a href=\"http://twitter.com/foo\"><fart>@foo</fart></a>"
+    end
+
+    it "retuns nil if no twitter id is supplied" do
+      twitter_link.should be_nil
+    end
+
+    it "returns nil if an empty string is supplied for twitter id" do
+      twitter_link(nil).should be_nil
+    end
+  end
+
 end

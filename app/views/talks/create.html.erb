@@ -29,7 +29,7 @@
     <li>Email</li>
     <li><%= speaker.email %></li>
     <li>Twitter ID:</li>
-    <li><%= link_to "@#{speaker.twitter_id}", "http://twitter.com/#{speaker.twitter_id}" %></li>
+    <li><%= twitter_link speaker.twitter_id %></li>
     <li>Company</li>
     <li><%= link_to speaker.company, speaker.company_url %></li>
     <li>Bio</li>

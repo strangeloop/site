@@ -4,7 +4,7 @@
     <%= link_to "Keynote: #{speaker_for(talk)}", session %>
   </h4>
   <h5><%= link_to speaker.company, speaker.company_url %></h5>
-  <%= link_to content_tag(:strong, "@#{speaker.twitter_id}"), "http://twitter.com/#{speaker.twitter_id}" %>
+  <%= twitter_link speaker.twitter_id %>
   <p></p>
   <h4><%= link_to content_tag(:em, talk.title), session %></h4>
   <p></p>
