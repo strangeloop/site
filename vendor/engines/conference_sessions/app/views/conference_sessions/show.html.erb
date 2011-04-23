@@ -1,16 +1,20 @@
-<div class="grid_6 p3 speaker">
-  <%= image_fu(speaker.image, :large) %>
-  
-  <h3><%= talk.title %></h3>
-  <p><%= talk.abstract %></p>
-  <p></p>
-  <h4><%= speaker_for(talk) %></h4>
-  <h5><%= link_to speaker.company, speaker.company_url %></h5>
-  <%= link_to content_tag(:strong, "@#{speaker.twitter_id}"), "http://twitter.com/#{speaker.twitter_id}" %>
-  <p>
-    <strong>Bio:</strong>
-    <%= speaker.bio %>
-  </p>
-</div>
+<div id="main" class="shape">
+  <div class="container_12 pad3">
 
+    <div class="grid_6 p3 speaker">
+      <%= image_fu(speaker.image, :large) %>
+
+      <h3><%= talk.title %></h3>
+      <p><%= talk.abstract %></p>
+      <p></p>
+      <h4><%= speaker_for(talk) %></h4>
+      <h5><%= link_to speaker.company, speaker.company_url %></h5>
+      <%= link_to content_tag(:strong, "@#{speaker.twitter_id}"), "http://twitter.com/#{speaker.twitter_id}" %>
+      <p>
+        <strong>Bio:</strong>
+        <%= speaker.bio %>
+      </p>
+    </div>
+  </div>
+</div>
 

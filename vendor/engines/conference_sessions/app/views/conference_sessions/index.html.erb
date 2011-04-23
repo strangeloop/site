@@ -1,17 +1,30 @@
-<div class="overflow p1">
-  <% sessions_by_format['keynote'].each do |session| %>
-
-  <%= render :partial => 'keynote', :locals => { :talk => session.talk,
-                                                 :speaker => session.talk.speakers.first,
-                                                 :session => session } %>
-  <% end %>
+<div class="row_top_tile_sub">
+  <div class="container_12">
+    <div class="grid_8">
+      <div class="page_title">
+        <%= "#{Time.now.year} Sessions" %>
+      </div>
+    </div>
+  </div>
 </div>
+<div id="main" class="shape">
+  <div class="container_12 pad3">
+    <div class="overflow p1">
+      <% sessions_by_format['keynote'].each do |session| %>
 
-<%= render :partial => 'session_groups', :locals => { :sessions_by_format => sessions_by_format,
-                                                      :format => 'workshop',
-                                                      :label => t('.workshops')} %>
+        <%= render :partial => 'keynote', :locals => { :talk => session.talk,
+          :speaker => session.talk.speakers.first,
+          :session => session } %>
+      <% end %>
+    </div>
 
-<%= render :partial => 'session_groups', :locals => { :sessions_by_format => sessions_by_format, 
-                                                      :format => 'talk',
-                                                      :label => t('.sessions') } %>
+    <%= render :partial => 'session_groups', :locals => { :sessions_by_format => sessions_by_format,
+      :format => 'workshop',
+      :label => t('.workshops')} %>
 
+    <%= render :partial => 'session_groups', :locals => { :sessions_by_format => sessions_by_format,
+      :format => 'talk',
+      :label => t('.sessions') } %>
+
+  </div>
+</div>
