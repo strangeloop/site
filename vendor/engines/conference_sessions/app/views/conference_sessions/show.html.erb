@@ -9,7 +9,7 @@
       <p></p>
       <h4><%= speaker_for(talk) %></h4>
       <h5><%= link_to speaker.company, speaker.company_url %></h5>
-      <%= link_to content_tag(:strong, "@#{speaker.twitter_id}"), "http://twitter.com/#{speaker.twitter_id}" %>
+      <%= twitter_link speaker.twitter_id %>
       <p>
         <strong>Bio:</strong>
         <%= speaker.bio %>
