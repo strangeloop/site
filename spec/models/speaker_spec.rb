@@ -26,4 +26,11 @@ describe Speaker do
   it {should allow_value("1234567891").for(:phone)}
 
   it{ should_not allow_value("x" * 801).for(:bio)}
+  
+  it "string value should equal first name and last name" do
+  	speaker = Speaker.new
+  	speaker.first_name = "Hillary"
+  	speaker.last_name = "Mason"
+  	speaker.to_s.should == speaker.first_name + " " + speaker.last_name
+  end
 end

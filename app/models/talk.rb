@@ -28,4 +28,18 @@ class Talk < ActiveRecord::Base
 
   accepts_nested_attributes_for :tags
   
+  def self.to_csv(talks)
+    FasterCSV.generate({:force_quotes => true}) do |csv|
+      csv << ["conf_year", "title", "talk_type", "abstract", "comments", 
+        "prereqs", "av_requirement", "video_approval", "speakers", 
+        "created_at", "updated_at"]
+      talks.each do |t|
+      	speakers = t.speakers.to_a
+        csv << [t.conf_year, t.title, t.talk_type, t.abstract, t.comments, 
+          t.prereqs, t.av_requirement, t.video_approval, speakers.join(","), 
+          t.created_at, t.updated_at]
+      end
+    end
+  end
+  
 end
