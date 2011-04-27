@@ -6,7 +6,6 @@ class TalksController < ApplicationController
   end
   
   def create
-    puts "dfadf"
     if talk.save
       Proposal.create :status => 'submitted', :talk => talk
       SpeakerMailer.talk_submission_email talk
@@ -15,9 +14,7 @@ class TalksController < ApplicationController
     end
   end
   
-  def index
-    puts "1:"
-  
+  def index  
     respond_to do |format|
       talks = Talk.all
       format.csv { render :xml => Talk.to_csv(talks) }
