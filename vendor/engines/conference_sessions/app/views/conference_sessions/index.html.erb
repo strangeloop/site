@@ -9,6 +9,11 @@
 </div>
 <div id="main" class="shape">
   <div class="container_12 pad3">
+    <% if sessions_by_format.include? 'keynote' -%>
+    <div class="overflow p3">
+      <h3>Keynotes</h3>
+      <hr>
+    </div>
     <div class="overflow p1">
       <% sessions_by_format['keynote'].each do |session| %>
 
@@ -17,6 +22,7 @@
           :session => session } %>
       <% end %>
     </div>
+    <% end -%>
 
     <%= render :partial => 'session_groups', :locals => { :sessions_by_format => sessions_by_format,
       :format => 'workshop',
