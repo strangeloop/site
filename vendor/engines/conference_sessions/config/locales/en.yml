@@ -28,6 +28,9 @@ en:
         bio: Bio
         name: Name
         image: Speaker Image
+      grid_view:
+        view_live_html: View this image <br/><em>Opens in a new window</em>
+        create_new_image: Add Image to this Speaker
 
         
         

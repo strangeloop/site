@@ -1,17 +1,6 @@
 <div id='records'>
   <h2><%= t('.conference_session') %></h2>
-  <table id="inquiry">
-    <tbody>
-      <tr>
-        <td>
-          <strong><%= t(".image") -%></strong>
-        </td>
-        <td>
-          <%= image_fu @conference_session.talk.speakers[0].image, :medium %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <%= render :partial => 'grid_view', :locals => { :images => [@conference_session.talk.speakers[0].image].compact } %>
 <p></p>
 <p></p>
 <%= render :partial => "form" %>
