@@ -11,4 +11,15 @@ describe TalksController do
       post :create, :talk => @talk
     end
   end
+  
+  describe "#index" do
+    before do
+	  @talk = Factory(:talk)
+	  @talk.save
+    end
+    it "returns CSV" do
+      pending "This call isn't calling the CSV code in the controller"
+      get :index, :format => 'csv'
+    end
+  end
 end

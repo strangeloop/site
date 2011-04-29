@@ -13,6 +13,13 @@ class TalksController < ApplicationController
       render :new
     end
   end
+  
+  def index  
+    respond_to do |format|
+      talks = Talk.all
+      format.csv { render :xml => Talk.to_csv(talks) }
+    end
+  end
 
   private
   def build_talk(params)

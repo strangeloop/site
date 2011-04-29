@@ -46,4 +46,17 @@ describe Talk do
   it{ should_not allow_value("x" * 56).for(:title)}
   it{ should_not allow_value("x" * 1201).for(:abstract)}
   
+  it "Should generate CSV" do
+  	talks = Talk.all
+  	csv = Talk.to_csv(talks)
+  	csv.length.should > 0
+  	csv.count(",").should > 0
+  end
+  
+  it "Should generate CSV with quotes" do
+  	talks = Talk.all
+  	csv = Talk.to_csv(talks)
+  	csv.count('"').should > 1
+  end
+  
 end
