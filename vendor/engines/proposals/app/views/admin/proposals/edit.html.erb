@@ -31,7 +31,7 @@
               <strong><%= t(".#{ field }") -%></strong>
             </td>
             <td>
-              <%= @proposal.talk.send(field) -%>
+              <%= field == :abstract ? raw(textilize(@proposal.talk.send(field))) : @proposal.talk.send(field)-%>
             </td>
           </tr>
 
@@ -58,7 +58,7 @@
               <strong><%= t('.bio') -%></strong>
             </td>
             <td>
-              <%= speaker.bio -%>
+              <%= raw textilize(speaker.bio) -%>
             </td>
           </tr>
         <% end %>
