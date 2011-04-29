@@ -18,25 +18,23 @@ module NavigationHelpers
     #     user_profile_path(User.find_by_login($1))
 
     when /the new talks page/
-      '/talks/new.html'
+      new_talk_path
 
     when /the review proposals page/
-      '/refinery/proposals' #TODO: Remove 'refinery' from admin path 
+      admin_proposals_path
 
     when /the default proposal review page/
-      prop = Proposal.first
-      "/refinery/proposals/#{prop.id}/edit"
+      edit_admin_proposal_path(Proposal.first)
 
     when /the default conference session page/
-      conf_session = ConferenceSession.first
-      "/refinery/conference_sessions/#{conf_session.friendly_id}/edit"
+      edit_admin_conference_session_path(ConferenceSession.first)
 
     when /the sessions page/
-      '/sessions'
+      conference_sessions_path
 
     when /the session details page for (.*)$/
       friendly_id = $1.downcase.gsub(' ', '-').gsub("\"", '')
-      "/sessions/#{friendly_id}"
+      conference_session_path(friendly_id)
 
     else
       begin
