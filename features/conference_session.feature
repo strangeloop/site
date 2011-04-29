@@ -55,6 +55,17 @@ Feature: As a user I can see talks I might want to attend
     And I should see "God Hates Us All"
     And I should see "A writer tries to juggle his career, his relationship with his daughter and his ex-girlfriend, as well as his appetite for beautiful women."
     And I should see "Single father, living a player lifestyle in California."
-    
 
-    
+
+  Scenario: Admin can edit conference session details
+    Given a talk session exists
+    And I am a logged in admin
+    And I am on the default conference session page
+    And I change the Title field to "New title"
+    And I change the Abstract field to "New abstract"
+    When I push the Save button
+    Then I should be on the default conference session page
+    And I should see the Title field with "New title"
+    And I should see the Abstract field with "New abstract"
+
+

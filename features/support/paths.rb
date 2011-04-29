@@ -29,7 +29,7 @@ module NavigationHelpers
 
     when /the default conference session page/
       conf_session = ConferenceSession.first
-      "/refinery/conference_sessions/#{conf_session.id}/edit"
+      "/refinery/conference_sessions/#{conf_session.friendly_id}/edit"
 
     when /the sessions page/
       '/sessions'
