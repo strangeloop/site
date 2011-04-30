@@ -71,4 +71,27 @@ Feature: As a user I can see talks I might want to attend
     And I should see the Title field with "New title"
     And I should see the Abstract field with "New abstract"
 
+  Scenario: Admin can create new conference session for previous year's talk
+    Given I am a logged in admin
+    And I am on the conference sessions admin index page
+    And I follow "Add New Conference Session"
+    And I change the Format select to "talk"
+    And I change the Title field to "Old talk title"
+    And I change the Abstract field to "Old talk abstract"
+    And I change the Conf year field to "2010"
+    And I change the First name field to "Stephen"
+    And I change the Last name field to "Hawking"
+    And I change the Email field to "steve@science.edu"
+    And I change the Bio field to "I write books about the universe and stuff"
+    When I push the Save button
+    Then I should be on the conference sessions admin index page
+    Then I follow "Edit this conference session"
+    And I should see the Title field with "Old talk title"
+    And I should see the Abstract field with "Old talk abstract"
+    And I should see the Conf year field with "2010"
+    And I should see the First name field with "Stephen"
+    And I should see the Last name field with "Hawking"
+    And I should see the Email field with "steve@science.edu"
+    And I should see the Bio field with "I write books about the universe and stuff"
+
 

@@ -18,14 +18,18 @@ When /^an email should be sent$/ do
   ActionMailer::Base.deliveries.size.should == 1
 end
 
-Given /^I change the (\w*) field to "([^"]*)"$/ do |field_name, content|
+Given /^I change the (\w+\s?\w*) field to "([^"]*)"$/ do |field_name, content|
   page.fill_in field_name, :with => content
+end
+
+Given /^I change the (\w+\s?\w*) select to "([^"]*)"$/ do |field_name, content|
+  page.select content, :from => field_name
 end
 
 When /^I push the (\w*) button$/ do |button_text|
   page.click_button button_text
 end
 
-Then /^I should see the (\w*) field with "([^"]*)"$/ do |field_name, content|
+Then /^I should see the (\w+\s?\w*) field with "([^"]*)"$/ do |field_name, content|
   page.has_field?(field_name, :with => content).should be_true
 end

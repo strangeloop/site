@@ -10,6 +10,10 @@ module Admin
       render :partial => 'conference_sessions' if request.xhr?
     end
 
+    def new
+      @conference_session = ConferenceSession.new(:talk => Talk.new(:speakers => [Speaker.new]))
+    end
+
     def update
       conf = ConferenceSession.find(params[:id])
       image_param = params[:conference_session][:talk_attributes][:speakers_attributes]["0"].delete(:image)

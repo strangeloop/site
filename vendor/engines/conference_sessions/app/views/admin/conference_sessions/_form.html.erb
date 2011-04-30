@@ -53,6 +53,9 @@
     <%= talk_form.label :tag_list %>
     <%= talk_form.text_field :tag_list, :class => 'field'  %>
 
+    <%= talk_form.label :conf_year %>
+    <%= talk_form.text_field :conf_year, :class => 'field'  %>
+
     <%= talk_form.fields_for :speakers do |speaker_form| %>
       <%= speaker_form.fields_for :image do |image_form| %>
         <%= image_form.label :image %>

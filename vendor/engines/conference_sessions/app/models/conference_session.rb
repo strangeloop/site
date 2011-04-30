@@ -21,4 +21,8 @@ class ConferenceSession < ActiveRecord::Base
   def title
     talk.title
   end
+
+  def self.all_years
+    (Talk.minimum('conf_year')..Time.now.year).to_a.reverse
+  end
 end

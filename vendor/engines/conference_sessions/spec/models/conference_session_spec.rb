@@ -45,5 +45,12 @@ describe ConferenceSession do
   it "gets its title from its talk" do
     conference_session.title.should == talk.title
   end
+
+  it "knows all conference years on record" do
+    Factory(:last_years_talk_session)
+    Factory(:talk_session)
+    current_year = Time.now.year
+    ConferenceSession.all_years.should == [current_year, current_year - 1]
+  end
 end
 

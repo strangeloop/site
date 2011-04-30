@@ -36,6 +36,9 @@ module NavigationHelpers
       friendly_id = $1.downcase.gsub(' ', '-').gsub("\"", '')
       conference_session_path(friendly_id)
 
+    when /the conference sessions admin index page/
+      admin_conference_sessions_path
+
     else
       begin
         page_name =~ /the (.*) page/
