@@ -49,9 +49,9 @@ Factory.define :organizer, :parent => :reviewer do |u|
   end
 end
 
-#Factory.define :image do |i|
-  #i.image File.new(File.expand_path('../uploads/image.jpeg', __FILE__))
-#end
+Factory.define :image do |i|
+  i.image File.new(File.expand_path('../uploads/image.jpeg', __FILE__))
+end
 
 Factory.define :speaker do |s|
   s.first_name  'Earl'

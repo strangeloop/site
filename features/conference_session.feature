@@ -19,6 +19,7 @@ Feature: As a user I can see talks I might want to attend
     Then I should not see "Workshops"
     And I should not see "Talks"
     And I should see "Hank Moody"
+    And I should see the medium default speaker image
     And I should see a link with "Unemployable" to "http://unemployable.com"
     And I should see a link with "@hankypanky" to "http://twitter.com/hankypanky"
     And I should see "God Hates Us All"
@@ -31,6 +32,7 @@ Feature: As a user I can see talks I might want to attend
     And I should not see "Keynotes"
     And I should not see "Talks"
     And I should see "Winning with Tiger Blood"
+    And I should see the small default speaker image
     And I should see a link with "Charlie Sheen" to "http://winning.com"
     And I should see a link with "@adonisdna" to "http://twitter.com/adonisdna"
 
@@ -41,6 +43,7 @@ Feature: As a user I can see talks I might want to attend
     Then I should not see "Workshops"
     And I should see "Talks"
     And I should see "Sample Talk"
+    And I should see the small default speaker image
     And I should see a link with "Earl Grey" to "http://teabaggery.com"
     And I should see a link with "@earlofgrey" to "http://twitter.com/earlofgrey"
 
@@ -50,12 +53,12 @@ Feature: As a user I can see talks I might want to attend
     When I follow "God Hates Us All"
     Then I should be on the session details page for God Hates Us All
     Then I should see "Hank Moody"
+    And I should see the medium default speaker image
     And I should see a link with "Unemployable" to "http://unemployable.com"
     And I should see a link with "@hankypanky" to "http://twitter.com/hankypanky"
     And I should see "God Hates Us All"
     And I should see "A writer tries to juggle his career, his relationship with his daughter and his ex-girlfriend, as well as his appetite for beautiful women."
     And I should see "Single father, living a player lifestyle in California."
-
 
   Scenario: Admin can edit conference session details
     Given a talk session exists
