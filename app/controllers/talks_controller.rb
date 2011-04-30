@@ -8,7 +8,7 @@ class TalksController < ApplicationController
   def create
     if talk.save
       Proposal.create :status => 'submitted', :talk => talk
-      SpeakerMailer.talk_submission_email talk
+      SpeakerMailer.talk_submission_email(talk).deliver
     else
       render :new
     end

@@ -15,7 +15,7 @@ When /^(?:|I )select "([^"]*)"(?: in "([^"]*)")?$/ do |item, box|
 end
 
 When /^an email should be sent$/ do
-  !ActionMailer::Base.deliveries.size.should == 1
+  ActionMailer::Base.deliveries.size.should == 1
 end
 
 Given /^I change the (\w*) field to "([^"]*)"$/ do |field_name, content|
