@@ -27,13 +27,13 @@ end
 Factory.define :submission_admin1, :parent => :user do |u|
   u.username "submissionadm1"
   u.email "subadmin1@strangloop.com"
-  u.roles {[Role[:submission_admin]]}
+  u.roles {[Role["Submission Admin"]]}
 end
 
 Factory.define :submission_admin2, :parent => :user do |u|
   u.username "submissionadm2"
   u.email "subadmin2@strangloop.com"
-  u.roles {[Role[:submission_admin]]}
+  u.roles {[Role["Submission Admin"]]}
 end
 
 

@@ -4,7 +4,7 @@ class SpeakerMailer < ActionMailer::Base
 
 
   def find_reviewer_admins()
-    Role[:submission_admin].users.collect{|u| u.email}
+    Role["Submission Admin"].users.collect{|u| u.email}
   end
 
   def send_email_with_cc(talk, subject)
