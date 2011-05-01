@@ -4,6 +4,10 @@ describe ConferenceSession do
   let(:talk) { Factory(:talk) }
   let(:conference_session) { ConferenceSession.new(:talk => talk) }
 
+  it "should auto add the current year as conf_year" do
+    conference_session.conf_year.should == Time.now.year
+  end
+
   context "validations" do
     
     it "rejects empty format" do
@@ -51,6 +55,24 @@ describe ConferenceSession do
     Factory(:talk_session)
     current_year = Time.now.year
     ConferenceSession.all_years.should == [current_year, current_year - 1]
+  end
+
+  context "#from_year" do
+    let(:current_year_session) { Factory(:talk_session) }
+    let(:last_years_session) { Factory(:last_years_talk_session) }
+
+    before do
+      current_year_session
+      last_years_session
+    end
+
+    it "defaults to current year" do
+      ConferenceSession.from_year.should == [current_year_session]
+    end
+
+    it "retrieves sessions based on year param" do
+      ConferenceSession.from_year((Time.now.year - 1).to_s).should == [last_years_session]
+    end
   end
 end
 

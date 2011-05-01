@@ -74,10 +74,6 @@ Factory.define :talk do |t|
   t.speakers       { [Factory(:speaker)] }
 end
 
-Factory.define :last_years_talk, :parent => :talk do |lyt|
-  lyt.conf_year Time.now.year - 1
-end
-
 Factory.define :keynote_speaker, :parent => :speaker do |ks|
   ks.first_name 'Hank'
   ks.last_name 'Moody'
@@ -124,7 +120,7 @@ Factory.define :talk_session, :parent => :conference_session do |ws|
 end
 
 Factory.define :last_years_talk_session, :parent => :talk_session do |lyts|
-  lyts.talk { Factory(:last_years_talk) }
+  lyts.conf_year Time.now.year - 1
 end
 
 

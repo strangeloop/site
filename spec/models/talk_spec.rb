@@ -5,11 +5,6 @@ describe Talk do
     it {should validate_presence_of field}
   end
 
-
-  it "should auto add the current year as conf_year" do
-    Factory(:talk).conf_year.should == Time.now.year
-  end
-
   context "Tests with tags" do
     before do
       @model = Factory(:talk)

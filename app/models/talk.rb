@@ -22,8 +22,6 @@ class Talk < ActiveRecord::Base
   validates_length_of :title, :maximum => 55
   validates_length_of :abstract, :maximum => 1200
 
-  before_create AddConfYear
-
   acts_as_taggable_on :tags
 
   accepts_nested_attributes_for :tags

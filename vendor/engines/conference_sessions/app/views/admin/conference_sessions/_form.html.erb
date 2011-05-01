@@ -18,6 +18,11 @@
     <%= f.label :format -%>
     <%= f.select(:format, ConferenceSession::format_options) -%>
   </div>
+
+  <div class="field">
+    <%= f.label :conf_year %>
+    <%= f.text_field :conf_year %>
+  </div>
   
   <div class='field'>
     <%= f.label :slides -%>
@@ -52,9 +57,6 @@
 
     <%= talk_form.label :tag_list %>
     <%= talk_form.text_field :tag_list, :class => 'field'  %>
-
-    <%= talk_form.label :conf_year %>
-    <%= talk_form.text_field :conf_year, :class => 'field'  %>
 
     <%= talk_form.fields_for :speakers do |speaker_form| %>
       <%= speaker_form.fields_for :image do |image_form| %>
