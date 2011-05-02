@@ -1,7 +1,7 @@
 <%= render :partial => 'shared/formtastic' %>
 <div class="row_top_tile_sub">
   <div class="container_12">
-    <div class="grid_8">
+    <div class="grid_12">
       <div class="page_title">
         Submit a talk
       </div>
@@ -10,47 +10,49 @@
 </div>
 
 <div class="container_12">
-<%= semantic_form_for [talk], :html => {:multipart => true} do |talk_form| %>
-  <%= talk_form.inputs do %>
-    <%= talk_form.input :title, :label => t('.title')%>
-    <%= talk_form.input :abstract, :label => t('.abstract'), 
-        :input_html => { :class => "freetext" }, :hint => t('.abstract_hint')%>
-    <%= talk_form.input :talk_type, :label => t('.talk_type'),
-        :as => :select, :collection => Talk.talk_types %>
-    <%= talk_form.input :video_approval, :label => t('.video_approval'),
-        :as => :select, :collection => Talk.video_approvals, :hint => t('.video_approval_hint')%>
-    <%= talk_form.input :comments, :label => t('.comments'),
-        :hint => t('.comments_hint') , :input_html => { :class => "freetext" }%>
-    <%= talk_form.input :prereqs, :label => t('.prereqs'),
-        :hint => t('.prereq_hint') , :input_html => { :class => "freetext" }%>
-    <%= talk_form.input :av_requirement, :label => t('.av_req'),
-        :hint => t('.av_req_hint'), :input_html => { :class => "freetext" }%>
-    <%= talk_form.input :tag_list, :label => t('.tags'),
-        :as => :string, :hint => t('.tags_hint') %>
-    <%= talk_form.inputs :name => t('.speaker'), :for  => :speakers do |speaker_form| %>
-      <%= speaker_form.input :first_name, :label => t('.fname') %>
-      <%= speaker_form.input :last_name, :label => t('.lname') %>
-      <%= speaker_form.input :email, :label => t('.email') %>
-      <%= speaker_form.input :twitter_id, :label => t('.twitter_id') %>
-      <%= speaker_form.input :company, :label => t('.company') %>
-      <%= speaker_form.input :company_url, :label => t('.company_url') %>
-      <%= speaker_form.input :bio, :label => t('.bio') , :input_html => { :class => "freetext" },
-          :hint => t('.bio_hint')%>
-      <%= speaker_form.input :phone, :label => t('.phone'),
-          :hint => t('.phone_hint')%>
-      <%= speaker_form.input :city, :label => t('.city'), 
-          :hint => t('.city_hint')%>
-      <%= speaker_form.input :state, :label => t('.state') %>
-      <%= speaker_form.input :country, :label => t('.country'),
-          :as => :select, :collection => Carmen::country_names %>
-      <%= speaker_form.inputs :name => t('.image'), :for => :image do |image_form| %>
-        <%= image_form.input :image, :label => t('.image'),
-          :as => :file, :hint => t('.image_hint')%>
-      <% end -%>
+  <div class="grid_12">
+  <%= semantic_form_for [talk], :html => {:multipart => true} do |talk_form| %>
+    <%= talk_form.inputs do %>
+      <%= talk_form.input :title, :label => t('.title')%>
+      <%= talk_form.input :abstract, :label => t('.abstract'),
+          :input_html => { :class => "freetext" }, :hint => t('.abstract_hint')%>
+      <%= talk_form.input :talk_type, :label => t('.talk_type'),
+          :as => :select, :collection => Talk.talk_types %>
+      <%= talk_form.input :video_approval, :label => t('.video_approval'),
+          :as => :select, :collection => Talk.video_approvals, :hint => t('.video_approval_hint')%>
+      <%= talk_form.input :comments, :label => t('.comments'),
+          :hint => t('.comments_hint') , :input_html => { :class => "freetext" }%>
+      <%= talk_form.input :prereqs, :label => t('.prereqs'),
+          :hint => t('.prereq_hint') , :input_html => { :class => "freetext" }%>
+      <%= talk_form.input :av_requirement, :label => t('.av_req'),
+          :hint => t('.av_req_hint'), :input_html => { :class => "freetext" }%>
+      <%= talk_form.input :tag_list, :label => t('.tags'),
+          :as => :string, :hint => t('.tags_hint') %>
+      <%= talk_form.inputs :name => t('.speaker'), :for  => :speakers do |speaker_form| %>
+        <%= speaker_form.input :first_name, :label => t('.fname') %>
+        <%= speaker_form.input :last_name, :label => t('.lname') %>
+        <%= speaker_form.input :email, :label => t('.email') %>
+        <%= speaker_form.input :twitter_id, :label => t('.twitter_id') %>
+        <%= speaker_form.input :company, :label => t('.company') %>
+        <%= speaker_form.input :company_url, :label => t('.company_url') %>
+        <%= speaker_form.input :bio, :label => t('.bio') , :input_html => { :class => "freetext" },
+            :hint => t('.bio_hint')%>
+        <%= speaker_form.input :phone, :label => t('.phone'),
+            :hint => t('.phone_hint')%>
+        <%= speaker_form.input :city, :label => t('.city'),
+            :hint => t('.city_hint')%>
+        <%= speaker_form.input :state, :label => t('.state') %>
+        <%= speaker_form.input :country, :label => t('.country'),
+            :as => :select, :collection => Carmen::country_names %>
+        <%= speaker_form.inputs :name => t('.image'), :for => :image do |image_form| %>
+          <%= image_form.input :image, :label => t('.image'),
+            :as => :file, :hint => t('.image_hint')%>
+        <% end -%>
+      <% end %>
     <% end %>
-  <% end %>   
-  <%= talk_form.buttons do %>
-    <%= talk_form.commit_button :label => t('.commit')%>
+    <%= talk_form.buttons do %>
+      <%= talk_form.commit_button :label => t('.commit')%>
+    <% end %>
   <% end %>
-<% end %>
+  </div>
 </div>

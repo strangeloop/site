@@ -1,19 +1,21 @@
 <div id="main" class="shape">
   <div class="container_12 pad3">
-    <div class="pic">
-      <%= image_tag_for(speaker.image) %>
-    </div>
+    <div class="grid_11">
+      <div class="pic">
+        <%= image_tag_for(speaker.image) %>
+      </div>
 
-    <h3><%= talk.title %></h3>
-    <%= raw textilize(talk.abstract) %>
-    <p></p>
-    <h4><%= speaker_for(talk) %></h4>
-    <h5><%= link_to speaker.company, speaker.company_url %></h5>
-    <%= twitter_link speaker.twitter_id %>
-    <p>
-      <strong>Bio:</strong>
-      <%= raw textilize(speaker.bio) %>
-    </p>
+      <h3><%= talk.title %></h3>
+      <%= raw textilize(talk.abstract) %>
+      <p></p>
+      <h4><%= speaker_for(talk) %></h4>
+      <h5><%= link_to speaker.company, speaker.company_url %></h5>
+      <%= twitter_link speaker.twitter_id %>
+      <p>
+        <strong>Bio:</strong>
+        <%= raw textilize(speaker.bio) %>
+      </p>
+    </div>
   </div>
 </div>
 
