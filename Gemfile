@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.6'
 gem 'formtastic', '~> 1.1.0'
 gem 'carmen', '0.2.4'
 gem 'ajaxful_rating', '~> 3.0.0.beta3'
@@ -40,7 +40,7 @@ end
 # REFINERY CMS ================================================================
 
 # Specify the Refinery CMS core:
-gem 'refinerycms',              '= 0.9.9.15'
+gem 'refinerycms',              '= 0.9.9.16'
 
 group :development, :test do
   # RSpec
