@@ -195,6 +195,7 @@ apps_page.parts.create({
 
 sessions_page = Page.create(:title => "Sessions",
             :deletable => true,
+            :link_url => "/sessions",
             :position => (page_position += 1),
             :menu_match => "^/sessions$")
 
