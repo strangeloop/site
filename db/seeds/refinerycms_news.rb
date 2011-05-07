@@ -4,8 +4,6 @@ User.find(:all).each do |user|
 end
 
 page = Page.create(:title => "News",
-            :custom_title => '',
-            :custom_title_type => 'text',
             :link_url => "/news",
             :deletable => false,
             :position => ((Page.maximum(:position, :conditions => {:parent_id => nil}) || -1)+1),
