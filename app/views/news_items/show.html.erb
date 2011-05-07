@@ -1,5 +1,5 @@
+<% content_for :body_content_title, @news_item.title %>
 <% content_for :body_content_left do %>
-  <h3><%= @news_item.title %></h3>
   <article class="news_item">
     <p>
       <small><%= t('.published') %> <%= l(@news_item.publish_date, :format => :long) %></small>
@@ -12,3 +12,4 @@
 <% end %>
 
 <%= render :partial => "/shared/content_page" %>
+
