@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20110505000330) do
   create_table "datastore_images", :force => true do |t|
     t.string   "uid"
     t.binary   "image"
+    t.binary   "mediumblob"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -65,8 +66,8 @@ ActiveRecord::Schema.define(:version => 20110505000330) do
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
-    t.string   "external_url"
     t.string   "title"
+    t.string   "external_url"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"

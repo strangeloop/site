@@ -2,7 +2,7 @@ class CreateDatastoreImagesTable < ActiveRecord::Migration
   def self.up
     create_table :datastore_images  do |t|
       t.string :uid
-      t.binary :image
+      t.binary :image, 'mediumblob'
       t.timestamps
     end
 
