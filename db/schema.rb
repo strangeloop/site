@@ -43,8 +43,7 @@ ActiveRecord::Schema.define(:version => 20110505000330) do
 
   create_table "datastore_images", :force => true do |t|
     t.string   "uid"
-    t.binary   "image"
-    t.binary   "mediumblob"
+    t.binary   "image",      :limit => 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -112,8 +111,8 @@ ActiveRecord::Schema.define(:version => 20110505000330) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "custom_title"
     t.string   "title"
+    t.string   "custom_title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
