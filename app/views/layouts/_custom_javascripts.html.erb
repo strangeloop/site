@@ -1,15 +1,6 @@
 <% content_for :javascripts do %>
   <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js' %>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="javascripts/libs/jquery-1.4.2.min.js"%3E%3C/script%3E'))</script>
-  <%= javascript_include_tag 'jquery.validate.pack.js' %>
-  <%= javascript_include_tag 'cycle/jquery.cycle.all.latest.js' %>
-  <%= javascript_include_tag 'superfish/js/superfish.js' %>
-  <%= javascript_include_tag 'superfish/js/hoverIntent.js' %>
-  <%= javascript_include_tag 'script.js' %>
-  <%= javascript_include_tag 'libs/cufon-yui.js' %>
-  <%= javascript_include_tag 'font/Myriad_Pro_400.font.js' %>
-  <%= javascript_include_tag 'font/Myriad_Pro_600.font.js' %>
-  <%= javascript_include_tag 'font/Myriad_Pro_700.font.js' %>
-  <%= javascript_include_tag 'font/UkrainianFuturis_400.font.js' %>
-  <%= javascript_include_tag 'cufon-replace.js' %>
+  <%= include_javascripts :workspace %>
 <% end %>
+

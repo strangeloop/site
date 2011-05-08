@@ -21,6 +21,9 @@ public/themes/*
 public/javascripts/cache
 public/stylesheets/cache
 
+# Jammit
+public/assets
+
 # Vendor Cache
 vendor/cache
 

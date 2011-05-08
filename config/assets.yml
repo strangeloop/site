@@ -1,0 +1,18 @@
+embed_assets: on
+
+javascripts:
+  workspace:
+    - public/javascripts/jquery.validate.pack.js
+    - public/javascripts/cycle/jquery.cycle.all.latest.js
+    - public/javascripts/superfish/js/*.js
+    - public/javascripts/script.js
+    - public/javascripts/libs/cufon-yui.js
+    - public/javascripts/font/*.js
+    - public/javascripts/cufon-replace.js
+
+stylesheets:
+  common:
+    - public/javascripts/superfish/css/superfish.css
+    - public/stylesheets/style.css
+
+
