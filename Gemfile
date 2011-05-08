@@ -69,7 +69,7 @@ end
 
 
 # Specify additional Refinery CMS Engines here (all optional):
-gem 'refinerycms-inquiries',    '~> 0.9.9.9'
+#gem 'refinerycms-inquiries',    '~> 0.9.9.9'
 gem 'refinerycms-news',         '1.0.1' #Use this version specifically
 # gem 'refinerycms-search',       '~> 0.9.8'
 
