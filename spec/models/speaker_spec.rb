@@ -26,4 +26,8 @@ describe Speaker do
   it {should allow_value("1234567891").for(:phone)}
 
   it{ should_not allow_value("x" * 801).for(:bio)}
+
+  it "strips @ symbols from twitter_id" do
+    Speaker.new(:twitter_id => '@foo').twitter_id.should == 'foo'
+  end
 end

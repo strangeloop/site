@@ -11,4 +11,7 @@ class Speaker < ActiveRecord::Base
 
   before_create AddConfYear
 
+  def twitter_id= id
+    self[:twitter_id] = id.try(:gsub, '@', '')
+  end
 end
