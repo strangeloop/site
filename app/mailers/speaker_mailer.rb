@@ -1,6 +1,6 @@
 class SpeakerMailer < ActionMailer::Base
 
-  default :from => "notifications@strangeloop.com"
+  default :from => "notifications@thestrangeloop.com"
 
 
   def find_reviewer_admins()

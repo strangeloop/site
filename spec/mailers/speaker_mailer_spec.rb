@@ -14,7 +14,7 @@ describe SpeakerMailer do
   it "should have one email queued for delivery" do
     !ActionMailer::Base.deliveries.size.should == 1
     email.to[0].should == talk.speakers[0].email
-    email.from[0].should == "notifications@strangeloop.com"
+    email.from[0].should == "notifications@thestrangeloop.com"
     email.cc[0].should == sub_admin1.email
     email.cc[1].should == sub_admin2.email
     [/#{talk.speakers[0].first_name}/,
