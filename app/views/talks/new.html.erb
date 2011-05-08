@@ -13,7 +13,7 @@
   <div class="grid_12">
   <%= semantic_form_for [talk], :html => {:multipart => true} do |talk_form| %>
     <%= talk_form.inputs do %>
-      <%= talk_form.input :title, :label => t('.title')%>
+      <%= talk_form.input :title, :label => t('.title'), :hint => t('.title_hint')%>
       <%= talk_form.input :abstract, :label => t('.abstract'),
           :input_html => { :class => "freetext" }, :hint => t('.abstract_hint')%>
       <%= talk_form.input :talk_type, :label => t('.talk_type'),
