@@ -4,14 +4,8 @@
     <div class="copy">
       <%= t('.copyright1') -%> &copy; <%= t('.copyright2', :year => Time.now.year,
                                             :site_name => RefinerySetting.find_or_set(:site_name, "Company Name")) %>
-      <span style="margin-left: 10px;">
-        <a href="http://www.twitter.com" target="_blank"><img src="/images/socialmedia/twitter.png" style="border: none; margin-left :5px;"/></a>
-        <a href="http://www.facebook.com" target="_blank"><img src="/images/socialmedia/facebook.png" style="border: none; margin-left :5px;" /></a>
-        <a href="http://www.linkedin.com" target="_blank"><img src="/images/socialmedia/linkedin.png" style="border: none; margin-left :5px;" /></a>		
-      </span>
       <p></p>
-      <p>Hosting provided by <a href="http://contegix.com">Contegix</a> <br/>
-         Site design by Jennifer Danker of <a href="http://breomedia.com">Breo Media</a></p>
+      <%= raw t('.attribution') %>
     </div>
 
     <% link_tree(@menu_pages).reverse.each do |page_group| -%>
