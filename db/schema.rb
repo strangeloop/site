@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20110505000330) do
 
   create_table "datastore_images", :force => true do |t|
     t.string   "uid"
-    t.binary   "image",      :limit => 10485760
+    t.binary   "image",      :limit => 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,32 +62,12 @@ ActiveRecord::Schema.define(:version => 20110505000330) do
     t.string   "image_ext"
   end
 
-  create_table "inquiries", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "phone"
-    t.text     "message"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "spam",       :default => false
-  end
-
-  add_index "inquiries", ["id"], :name => "index_inquiries_on_id"
-
-  create_table "inquiry_settings", :force => true do |t|
-    t.string   "name"
-    t.text     "value"
-    t.boolean  "destroyable"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
     t.string   "external_url"
-    t.string   "title"
     t.text     "body"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
