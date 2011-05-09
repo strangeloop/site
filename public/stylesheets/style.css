@@ -283,7 +283,7 @@ footer {
 .page_404 .copy {top:0 !important; color:#9abbcf !important}
 .page_login footer, .page_login .foot, .page_login .footer {background:none; border:none !important;}
 .page_login .copy {top:0 !important; color:#9abbcf !important; left:0; width:100%; text-align:center}
-.foot {background:url(../images/foot_bg.jpg) no-repeat 50% 100%; min-height:99px; position:relative; }
+.foot {background:url(../images/foot_bg.jpg) no-repeat 50% 100%; min-height:149px; position:relative; }
 .alternative_footer {background:url(../images/foot_line.png) repeat-x 0% 0%; }
 .footer {width:932px; margin:0 auto; background:url(../images/foot_line.png) repeat-x 0% 0%; min-height:198px; position:relative; z-index:10; padding-top: 15px;}
 .copy {position:absolute; top:44px; left:0px; color:#9abbcf; font-size:11px;}
@@ -340,9 +340,7 @@ nav {position:absolute; top:0px; right:0}
 .carousel {width:972px; margin:0 auto; position:relative; overflow:hidden; height:402px; padding:37px 0 0; padding-left:35px;}
 .wide .carousel, .wide_alternative .carousel {width:940px; margin:0 auto; position:relative; overflow:hidden; height:402px; padding:28px 40px 0; background:url(../images/carousel_bg.png) no-repeat 50% 0%; margin-top:-28px}
 .slider { height:344px; width:970px; position:relative; overflow:hidden}
-.slide {width:970px; height:344px;}
-.slide2, .slide3 {width:923px; height:344px; background:url(../images/carousel_black_bg.png) no-repeat 0% 0%; margin-left:-18px; padding:0 0 0 47px}
-.slide3 {background:url(../images/carousel_blackwhite_bg.png) no-repeat 0% 0%;}
+.slide, .slide2, .slide3 {width:923px; height:344px; background:url(../images/carousel_blackwhite_bg.png) no-repeat 0% 0%; margin-left:-18px; padding:0 0 0 47px}
 .wide .slider {display:none; height:344px;}
 #prev2 {position:absolute; left:32px; top:169px; width:38px; height:62px; background:url(../images/arrow.gif) repeat 0% 0%; z-index:150}
 #prev2:hover {background:url(../images/arrow.gif) repeat 100% 0%;}

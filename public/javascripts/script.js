@@ -11,8 +11,8 @@ $(document).ready(function() {
 						.after('<div id="nav">') 
 						.cycle({ 
 						fx:     'fade', 
-						speed:  1000, 
-						timeout: 3000, 
+						speed:  3000,
+						timeout: 6000,
 						pause: 1,
 						pager:  '#nav' 
 					});
