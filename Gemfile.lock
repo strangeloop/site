@@ -108,6 +108,7 @@ GEM
       railties (>= 3.0.0)
     ffi (1.0.7)
       rake (>= 0.8.7)
+    filters_spam (0.3)
     formtastic (1.1.0)
       actionpack (>= 2.3.0)
       activesupport (>= 2.3.0)
@@ -206,6 +207,8 @@ GEM
       dragonfly (~> 0.8.2)
       rack-cache (>= 0.5.3)
       refinerycms-core (= 0.9.9.15)
+    refinerycms-inquiries (0.9.9.9)
+      filters_spam (~> 0.2)
     refinerycms-news (1.0.1)
       refinerycms (~> 0.9.8)
     refinerycms-pages (0.9.9.15)
@@ -304,6 +307,7 @@ DEPENDENCIES
   rails3-generators (~> 0.17.2)
   refinerycms (= 0.9.9.15)
   refinerycms-conference_sessions (= 1.0)!
+  refinerycms-inquiries (~> 0.9.9.9)
   refinerycms-news (= 1.0.1)
   refinerycms-proposals (= 1.0)!
   regonline-ruby!
