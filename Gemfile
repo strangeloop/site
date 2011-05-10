@@ -29,6 +29,7 @@ end
 group :production do
   gem 'mysql2', '0.2.7'
   gem 'unicorn', '3.6.0'
+  gem 'rack-ssl', :require => 'rack/ssl'
 end
 
 group :test do
