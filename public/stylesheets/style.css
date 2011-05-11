@@ -35,11 +35,11 @@ textarea {outline: none;}
 .fleft_tite {width:100px; float:left}
 .fright {float:right !important;}
 
-body { font:12px/18px  Tahoma, Geneva, sans-serif; *font-size:small; } 
+body { font:13px/18px  Tahoma, Geneva, sans-serif; *font-size:small; } 
 select, input, textarea, button { font:99% sans-serif; }
 pre, code, kbd, samp { font-family: monospace, sans-serif; }
 
-body, select, input, textarea {   color: #6b6b6b; }
+body, select, input, textarea {   color: #afafaf; }
 h1,h2,h3,h4,h5,h6 { font-weight: bold; }
 html { overflow-y: scroll; }
 
