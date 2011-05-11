@@ -1,3 +1,4 @@
+<% if footer_menu.parent_id.nil? -%>
   <div class="footer_box_header">
      <h4><%= link_to footer_menu.title, footer_menu.url %></h4>
   </div>
@@ -17,4 +18,4 @@
       </li>
     </ul>
   </div>
-
+<% end -%>
