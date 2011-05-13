@@ -42,7 +42,10 @@ end
 # REFINERY CMS ================================================================
 
 # Specify the Refinery CMS core:
-gem 'refinerycms',              '= 0.9.9.15'
+#gem 'refinerycms',              '= 0.9.9.15'
+
+#Branch off of 0.9.9.15 with fix for _path instead of _url for SSL support
+gem 'refinerycms', :git => "git://github.com/strangeloop/refinerycms.git", :branch => 'path_not_url_ssl_fix', :ref => '9c258fec9c9da7231dd2bdb2e92415d9e9752337'
 
 group :development, :test do
   # RSpec
