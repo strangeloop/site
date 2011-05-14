@@ -93,5 +93,11 @@ Feature: As a user I can see talks I might want to attend
     And I should see the Last name field with "Hawking"
     And I should see the Email field with "steve@science.edu"
     And I should see the Bio field with "I write books about the universe and stuff"
+    Then I visit the session details page for Old talk title
+    And I should see "Stephen Hawking"
+    And I should see the medium default speaker image
+    And I should see "Old talk title"
+    And I should see "Old talk abstract"
+    And I should see "I write books about the universe and stuff"
 
 

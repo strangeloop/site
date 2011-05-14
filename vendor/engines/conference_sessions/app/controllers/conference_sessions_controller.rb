@@ -1,8 +1,8 @@
 class ConferenceSessionsController < ApplicationController
   expose(:year) { params[:year] || Time.now.year }
-  expose(:conference_sessions) { ConferenceSession.from_year(year) }
+  expose(:sessions_from_year) { ConferenceSession::from_year(year) }
   expose(:sessions_by_format) do
-    conference_sessions.inject(Hash.new{|h, k| h[k] = []}) {|sessions, conf_session| 
+    sessions_from_year.inject(Hash.new{|h, k| h[k] = []}) {|sessions, conf_session| 
       sessions[conf_session.format] << conf_session
       sessions
     }

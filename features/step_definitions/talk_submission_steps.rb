@@ -33,3 +33,8 @@ end
 Then /^I should see the (\w+\s?\w*) field with "([^"]*)"$/ do |field_name, content|
   page.has_field?(field_name, :with => content).should be_true
 end
+
+Then /^I visit (.*)$/ do |path|
+  visit path_to(path)
+end
+
