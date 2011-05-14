@@ -45,7 +45,8 @@ end
 #gem 'refinerycms',              '= 0.9.9.15'
 
 #Branch off of 0.9.9.15 with fix for _path instead of _url for SSL support
-gem 'refinerycms', :git => "git://github.com/strangeloop/refinerycms.git", :branch => 'path_not_url_ssl_fix', :ref => '9c258fec9c9da7231dd2bdb2e92415d9e9752337'
+#And with fix for erroneous call to '.url' method on object that doesn't respond to that
+gem 'refinerycms', :git => "git://github.com/strangeloop/refinerycms.git", :branch => 'path_not_url_ssl_fix', :ref => 'ca9a1da2bbf0ed1c5f54ad1412f5d7d860caca10'
 
 group :development, :test do
   # RSpec
