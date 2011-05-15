@@ -5,4 +5,6 @@ Conf::Application.routes.draw do
 
   match '/blog/:year/:month/:day/:id' => redirect('/news/%{year}/%{month}/%{day}/%{id}')
   match '/news/:year/:month/:day/:id' => 'news_items#show'
+  match '/blog/stloopadm' => redirect('/news')
+  match '/blog' => redirect('/news')
 end
