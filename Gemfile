@@ -46,7 +46,8 @@ end
 
 #Branch off of 0.9.9.15 with fix for _path instead of _url for SSL support
 #And with fix for erroneous call to '.url' method on object that doesn't respond to that
-gem 'refinerycms', :git => "git://github.com/strangeloop/refinerycms.git", :branch => 'path_not_url_ssl_fix', :ref => 'ca9a1da2bbf0ed1c5f54ad1412f5d7d860caca10'
+#And with fix that doesn't assume cache strategy is file/directory backed
+gem 'refinerycms', :git => "git://github.com/strangeloop/refinerycms.git", :branch => 'path_not_url_ssl_fix', :ref => '3d45524e224f3a33777f68a931736c15cb2a7d1c'
 
 group :development, :test do
   # RSpec

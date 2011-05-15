@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/strangeloop/refinerycms.git
-  revision: ca9a1da2bbf0ed1c5f54ad1412f5d7d860caca10
-  ref: ca9a1da2bbf0ed1c5f54ad1412f5d7d860caca10
+  revision: 3d45524e224f3a33777f68a931736c15cb2a7d1c
+  ref: 3d45524e224f3a33777f68a931736c15cb2a7d1c
   branch: path_not_url_ssl_fix
   specs:
     refinerycms (0.9.9.15)

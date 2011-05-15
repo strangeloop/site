@@ -11,12 +11,20 @@ class PageCustomizer
 
         def expire_page_caching
           orig_expire_page_caching
-          if File.writable?(Rails.cache.cache_path)
-            Pathname.glob(File.join(Rails.cache.cache_path, '**', '*header*')).each(&:delete)
-            Pathname.glob(File.join(Rails.cache.cache_path, '**', '*footer*')).each(&:delete)
+          [".*header.*", ".*footer.*"].each{|key| delete_cache(key)}
+        end
+
+        private
+        def delete_cache(key)
+          begin
+            Rails.cache.delete_matched(/#{key}/)
+          rescue NotImplementedError
+            Rails.cache.clear
+            warn "**** [REFINERY] The cache store you are using is not compatible with Rails.cache#delete_matched - clearing entire cache instead ***"
           end
         end
       end
     end
   end
 end
+
