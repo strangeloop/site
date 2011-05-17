@@ -27,6 +27,12 @@ module Admin
       end
       redirect_to edit_admin_conference_session_path(conf)
     end
+    
+    def export
+      respond_to do |format|      
+        format.csv { render :xml => ConferenceSession.to_csv(params[:year]) }
+      end
+    end
 
   end
 end

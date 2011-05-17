@@ -56,4 +56,11 @@ describe ConferenceSessionsController do
       end
     end
   end
+  
+  context "export action" do
+    it "exports conference sessions to CSV" do
+      pending
+      get "export", :year => "2011", :format => "csv"
+    end
+  end
 end

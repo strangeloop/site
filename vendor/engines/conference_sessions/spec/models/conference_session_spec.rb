@@ -74,5 +74,55 @@ describe ConferenceSession do
       ConferenceSession.from_year((Time.now.year - 1).to_s).should == [last_years_session]
     end
   end
+  
+  context "CSV export tests" do
+    before do    
+      # This talk will be for the current year.
+      talk = Factory(:talk)
+      conference_session = Factory(:conference_session, :talk => talk)
+      conference_session.save
+      
+      # This talk will be for the current year.
+      talk = Factory(:talk)
+      conference_session = Factory(:conference_session, :talk => talk)
+      conference_session.save
+      
+      talk = Factory(:talk)
+      conference_session = Factory(:conference_session, :talk => talk)
+      conference_session.conf_year = 2010
+      conference_session.save
+    end
+    
+    it "Should generate CSV with quotes around data values" do
+  	  csv = ConferenceSession.to_csv(2008)
+  	  csv.length.should > 0
+  	  csv.count(",").should == 11
+  	  csv.count('"').should == 24
+    end
+    
+    it "Should generate empty CSV with only a header" do
+  	  csv = ConferenceSession.to_csv(2008)  	
+  	  arr_of_conference_sessions = FasterCSV.parse(csv)
+  	  arr_of_conference_sessions.length.should == 1
+    end
+  
+    it "Should generate CSV with only conference sessions in current year" do  
+  	  csv = ConferenceSession.to_csv()  	  
+  	  arr_of_conference_sessions = FasterCSV.parse(csv)
+  	  arr_of_conference_sessions.length.should == 3
+    end
+    
+    it "Should generate CSV with only conference sessions in 2010" do  
+  	  csv = ConferenceSession.to_csv(2010)
+  	  
+  	  arr_of_conference_sessions = FasterCSV.parse(csv)
+  	  arr_of_conference_sessions.length.should == 2
+  	  
+  	  first_data_row = arr_of_conference_sessions[1]
+  	  conf_year = first_data_row[0]
+  	  conf_year.should == "2010"
+    end
+  end
+  
 end
 

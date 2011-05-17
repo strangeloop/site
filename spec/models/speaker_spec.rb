@@ -30,4 +30,11 @@ describe Speaker do
   it "strips @ symbols from twitter_id" do
     Speaker.new(:twitter_id => '@foo').twitter_id.should == 'foo'
   end
+
+  it "string value should equal first name and last name" do
+  	speaker = Speaker.new
+  	speaker.first_name = "Hillary"
+  	speaker.last_name = "Mason"
+  	speaker.to_s.should == speaker.first_name + " " + speaker.last_name
+  end
 end
