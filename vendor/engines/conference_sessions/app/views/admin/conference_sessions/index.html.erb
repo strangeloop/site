@@ -46,6 +46,9 @@
                    :class => "reorder_icon" %>
     </li>
   <% end %>
+    <% for year in ConferenceSession.all_years %>
+      <li><a href="conference_sessions/export/<%= year %>.csv">Export Conference Sessions From <%= year %></a></li>
+    <% end %>
   </ul>
 </div>
 <%= render :partial => "/shared/admin/make_sortable",

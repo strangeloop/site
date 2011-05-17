@@ -10,6 +10,10 @@ class Speaker < ActiveRecord::Base
   belongs_to :image
 
   before_create AddConfYear
+  
+  def to_s
+  	first_name + " " + last_name
+  end
 
   def twitter_id= id
     self[:twitter_id] = id.try(:gsub, '@', '')
