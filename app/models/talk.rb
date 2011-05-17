@@ -13,7 +13,7 @@ class Talk < ActiveRecord::Base
   end
 
   def self.talk_types
-    ["Deep Dive", "Intro", "Survey", "Other"]
+    ["Deep Dive", "Intro", "Survey", "Other", "Strange Passions", "Panel"]
   end
 
   validates_inclusion_of :video_approval, :in => video_approvals
