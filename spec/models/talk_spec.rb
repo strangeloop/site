@@ -39,6 +39,8 @@ describe Talk do
                       Talk.talk_types => :talk_type})
 
   it{ should_not allow_value("x" * 56).for(:title)}
-  it{ should_not allow_value("x" * 1201).for(:abstract)}
+  it{ should allow_value("x" * 1201).for(:abstract)}
+  it{ should allow_value("x" * 2000).for(:abstract)}
+  it{ should_not allow_value("x" * 2001).for(:abstract)}
   
 end

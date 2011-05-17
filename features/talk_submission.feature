@@ -25,7 +25,9 @@ Feature: As an anonymous user I can enter a talk along with
       And I select "Deep Dive" in "Talk Type"
       And I select "No" in "Video Approval"
       And I select "United States" in "Country"
-      And I fill in "Tags" with "theory, clojure"      
+      And I fill in "Tags" with "theory, clojure"
+
+      And I should see "Max length: 2000 characters."
       
       When I press "Send Talk Proposal"
       Then I should see "Squashing NP Hard Problems with Clojure"

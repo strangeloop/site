@@ -13,7 +13,7 @@ en:
       title: "Title"
       title_hint: "Max length: 55 characters."
       abstract: "Abstract"
-      abstract_hint: "Max length: 1200 characters. Supports Textile markup."
+      abstract_hint: "Max length: 2000 characters. Supports Textile markup."
       talk_type: "Talk Type"
       talk_length: "Talk Format"
       video_approval: "Video Approval"

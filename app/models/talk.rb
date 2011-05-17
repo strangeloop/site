@@ -20,7 +20,7 @@ class Talk < ActiveRecord::Base
   validates_inclusion_of :talk_type, :in => talk_types
 
   validates_length_of :title, :maximum => 55
-  validates_length_of :abstract, :maximum => 1200
+  validates_length_of :abstract, :maximum => 2000
 
   acts_as_taggable_on :tags
 
