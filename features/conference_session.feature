@@ -67,7 +67,8 @@ Feature: As a user I can see talks I might want to attend
     And I change the Title field to "New title"
     And I change the Abstract field to "New abstract"
     When I push the Save button
-    Then I should be on the default conference session page
+    Then I should be on the dashboard page
+    Then I visit the default conference session page
     And I should see the Title field with "New title"
     And I should see the Abstract field with "New abstract"
 
