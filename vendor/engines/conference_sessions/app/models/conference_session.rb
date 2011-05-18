@@ -26,7 +26,8 @@ class ConferenceSession < ActiveRecord::Base
 
   class <<self
     def all_years
-      (minimum('conf_year')..Time.now.year).to_a.reverse
+      this_year = Time.now.year
+      ((minimum('conf_year') || this_year)..this_year).to_a.reverse
     end
 
     def from_year(year = nil)
