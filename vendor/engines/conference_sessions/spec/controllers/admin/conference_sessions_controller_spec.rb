@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Admin::ConferenceSessionsController do
   login_organizer
 
+
   context "#update" do
     let(:conf_session) { mock_model(ConferenceSession).as_null_object }
     let(:params) { params = {:id => 1, :conference_session => {
@@ -38,6 +39,14 @@ describe Admin::ConferenceSessionsController do
       image.stub(:save)
       post :update, params_with_image
       flash[:notice].should eq("'#{conf_session}' was successfully updated.")
+    end
+  end
+
+  context "export action" do
+    it "exports conference sessions to CSV" do
+      ConferenceSession.stub(:to_csv).with("2011").and_return('a, b, c')
+      get "export", :year => "2011", :format => "csv"
+      response.body.should == 'a, b, c'
     end
   end
 end
