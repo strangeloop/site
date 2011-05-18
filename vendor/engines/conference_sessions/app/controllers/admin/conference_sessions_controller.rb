@@ -25,5 +25,11 @@ module Admin
         params[:conference_session][:talk_attributes][:speakers_attributes]["0"][:image] = image
       end
     end
+
+    def export
+      respond_to do |format|      
+        format.csv { render :xml => ConferenceSession.to_csv(params[:year]) }
+      end
+    end
   end
 end
