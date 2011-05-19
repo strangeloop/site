@@ -6,7 +6,7 @@ class ConferenceSession < ActiveRecord::Base
   accepts_nested_attributes_for :talk
 
   def self.format_options
-    %w(keynote workshop talk lightning undefined)
+    %w(keynote workshop talk lightning undefined  strange\ passions panel)
   end
 
   validates_inclusion_of :format, :in => format_options

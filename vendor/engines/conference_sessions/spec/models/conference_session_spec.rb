@@ -29,7 +29,7 @@ describe ConferenceSession do
       end
     end
 
-    %w(workshop keynote talk lightning undefined).each do |talk_format|
+    %w(workshop keynote talk lightning undefined strange\ passions panel).each do |talk_format|
       context "talk format validation" do
         let(:session) { ConferenceSession.new(:talk => Factory(:talk), :format => talk_format) }
         it "is valid with talk and #{talk_format}" do
