@@ -47,7 +47,7 @@
     </li>
   <% end %>
     <% for year in ConferenceSession.all_years %>
-      <li><a href="conference_sessions/export/<%= year %>.csv">Export Conference Sessions From <%= year %></a></li>
+      <li><%= link_to "Export Conference Sessions From #{year}", export_admin_conference_sessions_path(year, "csv") %></li>
     <% end %>
   </ul>
 </div>

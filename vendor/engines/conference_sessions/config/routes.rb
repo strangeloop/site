@@ -7,7 +7,7 @@ Refinery::Application.routes.draw do
     resources :conference_sessions, :except => :show do
       collection do
         post :update_positions
-        get 'export/:year', :action => :export
+        get 'export/:year', :action => :export, :as => 'export'
       end
     end
   end
