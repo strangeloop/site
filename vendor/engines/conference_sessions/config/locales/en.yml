@@ -36,7 +36,10 @@ en:
         
   conference_sessions:
     index:
-      workshops: Workshops
-      talks: Talks
+      workshop: Workshops
+      talk: Talks
+      lightning: Lightning Talks
+      strange_passions: Strange Passions
+      panel: Panels
     show:
       other: Other Conference Sessions

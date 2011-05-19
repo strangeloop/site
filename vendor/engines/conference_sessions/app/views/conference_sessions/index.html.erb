@@ -24,13 +24,13 @@
     </div>
     <% end -%>
 
-    <%= render :partial => 'session_groups', :locals => { :sessions_by_format => sessions_by_format,
-      :format => 'workshop',
-      :label => t('.workshops')} %>
+    <% ['workshop', 'talk', 'lightning', 'strange_passions', 'panel'].each do |format| -%>
 
     <%= render :partial => 'session_groups', :locals => { :sessions_by_format => sessions_by_format,
-      :format => 'talk',
-      :label => t('.talks') } %>
+      :format => format.gsub('_', ' '),
+      :label => t(".#{format}")} %>
+
+    <% end -%>
 
   </div>
 </div>
