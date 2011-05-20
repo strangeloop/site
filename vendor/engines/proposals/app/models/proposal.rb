@@ -34,4 +34,21 @@ class Proposal < ActiveRecord::Base
     rates(:appeal).each{|rating| collector[rating.rater][:rating] = rating }
     collector
   end
+  
+  def self.to_csv(status)
+    proposals = where(:status => status)
+    FasterCSV.generate({:force_quotes => true}) do |csv|
+      csv << [:status, :position, :created_at, 
+        :updated_at, :title, :talk_type, 
+        :abstract, :comments, :prereqs, 
+        :av_requirement, :video_approval, :speakers]
+      proposals.each do |p|
+        speakers = p.talk.speakers.to_a
+        csv << [p.status, p.position, p.created_at, 
+          p.updated_at, p.talk.title, p.talk.talk_type, 
+          p.talk.abstract, p.talk.comments, p.talk.prereqs, 
+          p.talk.av_requirement, p.talk.video_approval, speakers.join(",")]
+      end
+    end
+  end
 end

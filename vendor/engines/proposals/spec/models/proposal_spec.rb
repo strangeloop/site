@@ -125,4 +125,63 @@ describe Proposal do
       }
     end
   end
+  
+  context "CSV export" do
+    NUM_CSV_FIELDS = 12
+  
+    before do
+      # This talk will be in submitted status
+      talk = Factory(:talk)
+      proposal = Factory(:proposal, :talk => talk)
+      proposal.save
+      
+       # This talk will be in submitted status
+      talk = Factory(:talk)
+      proposal = Factory(:proposal, :talk => talk)
+      proposal.save
+      
+      talk = Factory(:talk)
+      proposal = Factory(:proposal, :talk => talk)
+      proposal.status = 'under review'
+      proposal.save
+    end
+    
+    it "Should generate CSV with quotes around data values" do
+      csv = Proposal.to_csv('non existent status')
+      csv.length.should > 0   
+      csv.count(",").should == NUM_CSV_FIELDS - 1
+      csv.count('"').should == NUM_CSV_FIELDS * 2
+    end
+    
+    it "Should generate empty CSV with only a header" do
+  	  csv = Proposal.to_csv('non existent status')  	
+  	  arr_of_conference_sessions = FasterCSV.parse(csv)
+  	  arr_of_conference_sessions.length.should == 1
+    end
+  
+    it "Should generate CSV with only submitted proposals" do
+      csv = Proposal.to_csv('submitted')
+      arr_of_proposals = FasterCSV.parse(csv)
+      arr_of_proposals.length.should == 3
+  
+      first_data_row = arr_of_proposals[1]
+      status = first_data_row[0]
+      status.should == 'submitted'
+      
+      first_data_row = arr_of_proposals[2]
+      status = first_data_row[0]
+      status.should == 'submitted'
+    end
+    
+    it "Should generate CSV with only proposals under review" do
+      csv = Proposal.to_csv('under review')
+      arr_of_proposals = FasterCSV.parse(csv)
+      arr_of_proposals.length.should == 2
+  
+      first_data_row = arr_of_proposals[1]
+      status = first_data_row[0]
+      status.should == 'under review'
+    end
+  end
+  
 end

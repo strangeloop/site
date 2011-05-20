@@ -10,4 +10,12 @@ describe Admin::ProposalsController do
       assigns[:proposal].should be_nil
     end
   end
+  
+  context "export action" do
+    it "exports proposals to CSV" do
+      Proposal.stub(:to_csv).with("submitted").and_return('a, b, c')
+      get "export", :status => "submitted", :format => "csv"
+      response.body.should == 'a, b, c'
+    end
+  end
 end
