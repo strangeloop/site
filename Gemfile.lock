@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/strangeloop/refinerycms.git
-  revision: 3d45524e224f3a33777f68a931736c15cb2a7d1c
-  ref: 3d45524e224f3a33777f68a931736c15cb2a7d1c
+  revision: 3e1faee77887094cf04cf71ed0ad5d36493ab71b
+  ref: 3e1faee77887094cf04cf71ed0ad5d36493ab71b
   branch: path_not_url_ssl_fix
   specs:
     refinerycms (0.9.9.15)
@@ -165,7 +165,7 @@ GEM
       babosa (~> 0.3.0)
     gherkin (2.3.7)
       json (>= 1.4.6)
-    globalize3 (0.1.0.beta)
+    globalize3 (0.1.0.beta2)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
     gyoku (0.4.3)
@@ -223,7 +223,7 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
-    rdoc (3.6)
+    rdoc (3.6.1)
     refinerycms-generators (1.0.1)
     refinerycms-news (1.0.1)
       refinerycms (~> 0.9.8)
