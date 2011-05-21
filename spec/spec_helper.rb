@@ -2,9 +2,8 @@ require 'rbconfig'
 require 'factory_girl'
 require 'warden'
 require 'devise/test_helpers'
+require File.join(File.dirname(__FILE__), 'controller_macros')
 require File.join(File.dirname(__FILE__), '../vendor/engines/proposals/spec/factories')
-require File.join(File.dirname(__FILE__), '../vendor/engines/proposals/spec/spec_helper')
-require File.join(File.dirname(__FILE__), '../vendor/engines/conference_sessions/spec/spec_helper')
 
 def setup_environment
   # This file is copied to ~/spec when you run 'rails generate rspec'
