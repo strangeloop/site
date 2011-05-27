@@ -46,6 +46,7 @@
                    :class => "reorder_icon" %>
     </li>
   <% end %>
+    <li><%= link_to "Export Pending Proposals", export_admin_proposals_path("csv") %></li>
   </ul>
 </div>
 <%= render :partial => "/shared/admin/make_sortable",
