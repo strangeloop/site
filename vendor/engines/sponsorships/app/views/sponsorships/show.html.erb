@@ -1,0 +1,57 @@
+<% content_for :body_content_title do %>
+  <%= @sponsorship.title %>
+<% end %>
+
+<% content_for :body_content_left do %>
+  <section>
+    <h1>Sponsor</h1>
+    <p>
+      <%=raw @sponsorship.sponsor %>
+    </p>
+  </section>
+  <section>
+    <h1>Contact</h1>
+    <p>
+      <%=raw @sponsorship.contact %>
+    </p>
+  </section>
+  <section>
+    <h1>Level</h1>
+    <p>
+      <%=raw @sponsorship.level %>
+    </p>
+  </section>
+  <section>
+    <h1>Visible</h1>
+    <p>
+      <%=raw @sponsorship.visible %>
+    </p>
+  </section>
+  <section>
+    <h1>Year</h1>
+    <p>
+      <%=raw @sponsorship.year %>
+    </p>
+  </section>
+  <section>
+    <h1>Position</h1>
+    <p>
+      <%=raw @sponsorship.position %>
+    </p>
+  </section>
+<% end %>
+
+<% content_for :body_content_right do %>
+  <aside>
+    <h2><%= t('.other') %></h2>
+    <ul id="sponsorships">
+      <% @sponsorships.each do |sponsorship| %>
+        <li>
+          <%= link_to sponsorship.title, sponsorship_url(sponsorship) %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>

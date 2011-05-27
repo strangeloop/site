@@ -1,4 +1,4 @@
-<%= form_for [:admin, @conference_session], :html => {:multipart => true} do |f| -%>
+<%= form_for [:admin, @conference_session], :html => {:multipart => true}, :validate => true do |f| -%>
   <%= render :partial => "/shared/admin/error_messages", :locals => {
           :object => @conference_session,
           :include_object_name => true
@@ -35,7 +35,7 @@
 
   <%= f.fields_for :talk do |talk_form| %>
     <%= talk_form.label :title  %>
-    <%= talk_form.text_field :title, :class => 'field'  %>
+    <%= talk_form.text_field :title, :class => 'field' %>
 
     <%= talk_form.label :abstract %>
     <%= talk_form.text_area :abstract, :class => 'field', :rows => 5 %>
@@ -47,34 +47,34 @@
     <%= talk_form.select :video_approval, Talk.video_approvals %>
 
     <%= talk_form.label :comments %>
-    <%= talk_form.text_area :comments, :class => 'field', :rows => 5  %>
+    <%= talk_form.text_area :comments, :class => 'field', :rows => 5 %>
 
     <%= talk_form.label :prereqs %>
-    <%= talk_form.text_area :prereqs, :class => 'field', :rows => 5  %>
+    <%= talk_form.text_area :prereqs, :class => 'field', :rows => 5 %>
 
     <%= talk_form.label :av_requirement %>
-    <%= talk_form.text_area :av_requirement, :class => 'field', :rows => 5  %>
+    <%= talk_form.text_area :av_requirement, :class => 'field', :rows => 5 %>
 
     <%= talk_form.label :tag_list %>
-    <%= talk_form.text_field :tag_list, :class => 'field'  %>
+    <%= talk_form.text_field :tag_list, :class => 'field' %>
 
     <%= talk_form.fields_for :speakers do |speaker_form| %>
       <%= speaker_form.fields_for :image do |image_form| %>
         <%= image_form.label :image %>
-        <%= image_form.file_field :image %>
+        <%= image_form.file_field :image, :validate => false %>
       <% end -%>
 
       <% [:first_name, :last_name, :email, :twitter_id, :company, :company_url].each do |field| %>
           <%= speaker_form.label field %>
-          <%= speaker_form.text_field field, :class => 'field'  %>
+          <%= speaker_form.text_field field, :class => 'field' %>
       <% end -%>
 
       <%= speaker_form.label :bio %>
-      <%= speaker_form.text_area :bio, :class => 'field', :rows => 5  %>
+      <%= speaker_form.text_area :bio, :class => 'field', :rows => 5 %>
 
       <% [:phone, :city, :state].each do |field| %>
           <%= speaker_form.label field %>
-          <%= speaker_form.text_field field, :class => 'field'  %>
+          <%= speaker_form.text_field field, :class => 'field' %>
       <% end -%>
 
       <%= speaker_form.label :country %>

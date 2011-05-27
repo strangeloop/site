@@ -1,0 +1,74 @@
+<%= form_for [:admin, @sponsorship], :html => {:multipart => true}, :validate => true do |f| -%>
+  <%= render :partial => "/shared/admin/error_messages", :locals => {
+          :object => @sponsorship,
+          :include_object_name => true
+        } %>
+  
+  <%= f.fields_for :sponsor do |sponsor_form| %>
+    <div class='field'>
+      <%= sponsor_form.label :name, t('.sponsor_name') -%>
+      <%= sponsor_form.text_field :name -%>
+    </div>
+
+    <div class="field">
+      <%= sponsor_form.label :image %>
+      <%= sponsor_form.file_field :image, :validate => false %>
+    </div>
+
+    <div class="field">
+      <%= sponsor_form.label :description %>
+      <%= sponsor_form.text_area :description %>
+    </div>
+
+    <div class="field">
+      <%= sponsor_form.label :url, t('.url') %>
+      <%= sponsor_form.text_field :url %>
+    </div>
+  <% end -%>
+  
+  <%= f.fields_for :contact do |contact_form| %>
+    <div class='field'>
+      <%= contact_form.label :name, t('.contact_name') -%>
+      <%= contact_form.text_field :name -%>
+    </div>
+
+    <div class="field">
+      <%= contact_form.label :phone, t('.contact_phone') %>
+      <%= contact_form.text_field :phone %>
+    </div>
+
+    <div class="field">
+      <%= contact_form.label :email, t('.contact_email') %>
+      <%= contact_form.text_field :email %>
+    </div>
+
+  <% end -%>
+  
+  <div class='field'>
+    <%= f.label :level, t('.sponsor_level') -%>
+    <%= f.select :level, options_from_collection_for_select(@levels, 'id', 'name') -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :visible -%>
+    <%= f.check_box :visible -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :year -%>
+    <%= f.text_field :year -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :position -%>
+    <%= f.text_field :position -%>
+  </div>
+  
+  <%= render :partial => "/shared/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('delete', :scope => 'admin.sponsorships.sponsorship'),
+                :delete_confirmation => t('message', :scope => 'shared.admin.delete')
+              } %>
+<% end -%>

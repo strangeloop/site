@@ -1,0 +1,25 @@
+lolcat:
+  shared:
+    admin:
+      image_picker:
+        image: IMAGE
+  plugins:
+    sponsorships:
+      title: Sponsorships
+  admin:
+    sponsorships:
+      actions:
+        create_new: CREATE NEW Sponsorship
+        reorder: REORDR Sponsorships
+        reorder_done: DUN REORDERIN Sponsorships
+      records:
+        title: Sponsorships
+        sorry_no_results: SRY! THAR R NO RESULTS FINDZ.
+        no_items_yet: THAR R NO Sponsorships YET. CLICK "CREATE NEW Sponsorship" 2 ADD UR FURST sponsorship.
+      sponsorship:
+        view_live_html: VIEW DIS sponsorship LIV <BR/><EM>(OPENS IN NEW WINDOW)</EM>
+        edit: EDIT DIS sponsorship
+        delete: REMOOV DIS sponsorship FOREVR
+  sponsorships:
+    show:
+      other: OTHR Sponsorships

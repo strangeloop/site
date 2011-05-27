@@ -59,6 +59,7 @@ PATH
   specs:
     refinerycms-conference_sessions (1.0)
     refinerycms-proposals (1.0)
+    refinerycms-sponsorships (1.0)
 
 GEM
   remote: http://rubygems.org/
@@ -321,6 +322,7 @@ DEPENDENCIES
   refinerycms-conference_sessions (= 1.0)!
   refinerycms-news (= 1.0.1)
   refinerycms-proposals (= 1.0)!
+  refinerycms-sponsorships (= 1.0)!
   regonline-ruby!
   rspec-rails (~> 2.5.0)
   ruby-debug (~> 0.10.4)

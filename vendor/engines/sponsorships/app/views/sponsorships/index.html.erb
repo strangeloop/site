@@ -1,0 +1,11 @@
+<% content_for :body_content_left do %>
+  <ul id="sponsorships">
+    <% @sponsorships.each do |sponsorship| %>
+      <li>
+        <%= link_to sponsorship, sponsorship_url(sponsorship) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>
