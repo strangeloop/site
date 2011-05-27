@@ -6,6 +6,7 @@ Refinery::Application.routes.draw do
     resources :proposals, :except => :show do
       collection do
         post :update_positions
+        get 'export/pending', :action => :export, :as => 'export'
       end
 
       post :rate, :on => :member

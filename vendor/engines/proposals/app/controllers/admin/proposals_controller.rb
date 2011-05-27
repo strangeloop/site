@@ -45,5 +45,11 @@ module Admin
       SpeakerMailer.talk_rejected_email(proposal.talk).deliver
       redirect_to :action => :index
     end
+    
+    def export
+      respond_to do |format|      
+        format.csv { render :xml => Proposal.pending_to_csv() }
+      end
+    end
   end
 end
