@@ -1,0 +1,21 @@
+nl:
+  plugins:
+    sponsorships:
+      title: Sponsorships
+  admin:
+    sponsorships:
+      actions:
+        create_new: Maak een nieuwe Sponsorship
+        reorder: Wijzig de volgorde van de Sponsorships
+        reorder_done: Klaar met het wijzingen van de volgorde van de Sponsorships
+      records:
+        title: Sponsorships
+        sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+        no_items_yet: Er zijn nog geen Sponsorships. Druk op 'Maak een nieuwe Sponsorship' om de eerste aan te maken.
+      sponsorship:
+        view_live_html: Bekijk deze sponsorship op de website <br/><em>(opent een nieuw venster)</em>
+        edit: Bewerk deze sponsorship
+        delete: Verwijder deze sponsorship voor eeuwig
+  sponsorships:
+    show:
+      other: Andere Sponsorships

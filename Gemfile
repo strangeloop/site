@@ -88,3 +88,4 @@ gem 'refinerycms-proposals', '1.0', :path => 'vendor/engines'
 
 gem 'refinerycms-conference_sessions', '1.0', :path => 'vendor/engines'
 
+gem 'refinerycms-sponsorships', '1.0', :path => 'vendor/engines'

@@ -2,6 +2,9 @@
 <%= render :partial => "/shared/html_tag" %>
   <% content_for :meta, "<meta refinerycms='#{Refinery.version}' />".html_safe %>
   <% content_for :stylesheets, ajaxful_rating_style %>
+  <% content_for :javascripts do -%>
+    <%= javascript_include_tag 'rails.validations' %>
+  <% end -%>
   <%= render :partial => "/admin/head" %>
   <body class='<%= action_name %> <%= I18n.locale %>'>
     <%= render :partial => '/shared/site_bar' %>

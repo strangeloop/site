@@ -1,0 +1,33 @@
+en:
+  shared:
+    admin:
+      image_picker:
+        image: image
+  plugins:
+    sponsorships:
+      title: Sponsorships
+  admin:
+    sponsorships:
+      actions:
+        create_new: Add New Sponsorship
+        create_new_sponsorship_level: Add New Sponsorship Level
+        reorder: Reorder Sponsorships
+        reorder_done: Done Reordering Sponsorships
+      form:
+        sponsor_name: Sponsor Name
+        sponsor_level: Sponsorship Level
+        contact_name: Contact Name
+        contact_phone: Contact Phone
+        contact_email: Contact Email
+        url: URL
+      records:
+        title: Sponsorships
+        sorry_no_results: Sorry! There are no results found.
+        no_items_yet: There are no Sponsorships yet. Click "Add New Sponsorship" to add your first sponsorship.
+      sponsorship:
+        view_live_html: View this sponsorship live <br/><em>(opens in a new window)</em>
+        edit: Edit this sponsorship
+        delete: Remove this sponsorship forever
+  sponsorships:
+    show:
+      other: Other Sponsorships

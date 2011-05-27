@@ -123,4 +123,7 @@ Factory.define :last_years_talk_session, :parent => :talk_session do |lyts|
   lyts.conf_year Time.now.year - 1
 end
 
-
+Factory.define :sponsorship_level do |sl|
+  sl.name 'Platinum'
+  sl.year '2011'
+end

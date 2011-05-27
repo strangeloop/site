@@ -39,6 +39,9 @@ module NavigationHelpers
     when /the conference sessions admin index page/
       admin_conference_sessions_path
 
+    when /the sponsorship admin page/
+      admin_sponsorships_path
+
     when /the dashboard page/
       '/refinery'
 

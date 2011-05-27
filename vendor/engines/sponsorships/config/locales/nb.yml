@@ -1,0 +1,21 @@
+nb:
+  plugins:
+    sponsorships:
+      title: Sponsorships
+  admin:
+    sponsorships:
+      actions:
+        create_new: Lag en ny Sponsorship
+        reorder: Endre rekkefølgen på Sponsorships
+        reorder_done: Ferdig å endre rekkefølgen Sponsorships
+      records:
+        title: Sponsorships
+        sorry_no_results: Beklager! Vi fant ikke noen resultater.
+        no_items_yet: Det er ingen Sponsorships enda. Klikk på "Lag en ny Sponsorship" for å legge til din første sponsorship.
+      sponsorship:
+        view_live_html: Vis hvordan denne sponsorship ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+        edit: Rediger denne sponsorship
+        delete: Fjern denne sponsorship permanent
+  sponsorships:
+    show:
+      other: Andre Sponsorships

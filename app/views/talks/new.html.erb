@@ -11,7 +11,7 @@
 
 <div class="container_12">
   <div class="grid_12">
-  <%= semantic_form_for [talk], :html => {:multipart => true} do |talk_form| %>
+    <%= semantic_form_for [talk], :html => {:multipart => true}, :validate => true do |talk_form| %>
     <%= talk_form.inputs do %>
       <%= talk_form.input :title, :label => t('.title'), :hint => t('.title_hint')%>
       <%= talk_form.input :abstract, :label => t('.abstract'),
@@ -46,7 +46,7 @@
             :as => :select, :collection => Carmen::country_names %>
         <%= speaker_form.inputs :name => t('.image'), :for => :image do |image_form| %>
           <%= image_form.input :image, :label => t('.image'),
-            :as => :file, :hint => t('.image_hint')%>
+            :as => :file, :hint => t('.image_hint'), :input_html => { :validate => false } %>
         <% end -%>
       <% end %>
     <% end %>
