@@ -5,6 +5,7 @@ javascripts:
     - public/javascripts/jquery.validate.pack.js
     - public/javascripts/cycle/jquery.cycle.all.latest.js
     - public/javascripts/superfish/js/*.js
+    - public/javascripts/rails.validations.js
     - public/javascripts/script.js
     - public/javascripts/libs/cufon-yui.js
     - public/javascripts/font/*.js
