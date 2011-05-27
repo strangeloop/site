@@ -41,6 +41,14 @@ Factory.define :alternate_reviewer, :parent => :reviewer do |u|
   u.username 'alternate_reviewer'
 end
 
+Factory.define :alternate_reviewer2, :parent => :reviewer do |u|
+  u.username 'alternate_reviewer2'
+end
+
+Factory.define :alternate_reviewer3, :parent => :reviewer do |u|
+  u.username 'alternate_reviewer3'
+end
+
 Factory.define :organizer, :parent => :reviewer do |u|
   u.username 'organizer'
   u.after_create do |user|
