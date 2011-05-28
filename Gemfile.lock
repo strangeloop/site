@@ -107,7 +107,7 @@ GEM
       autotest (~> 4.3)
     autotest-rails (4.1.0)
       ZenTest
-    awesome_print (0.3.2)
+    awesome_print (0.4.0)
     babosa (0.3.3)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
@@ -293,7 +293,7 @@ DEPENDENCIES
   autotest
   autotest-notification
   autotest-rails
-  awesome_print (~> 0.3.2)
+  awesome_print (~> 0.4.0)
   capybara (~> 0.4.1)
   carmen (= 0.2.4)
   cucumber-rails (~> 0.4.0.beta.1)
