@@ -1,4 +1,6 @@
 class Proposal < ActiveRecord::Base
+  extend ActiveSupport::Memoizable
+
   belongs_to :talk
   ajaxful_rateable :stars => 5, :dimensions => [:appeal]
 
@@ -17,9 +19,6 @@ class Proposal < ActiveRecord::Base
     comments_ordered_by_submitted.select{|item| item.user_id == user.id}
   end
 
-  def self.pending_count
-    self.pending.count
-  end
 
   # Returns hash of comments and ratings (appeal dimension) that uses user
   # as the key. Each value is a hash with :comments and :rating as its key.
@@ -34,62 +33,59 @@ class Proposal < ActiveRecord::Base
     rates(:appeal).each{|rating| collector[rating.rater][:rating] = rating }
     collector
   end
-  
-  def self.pending_to_csv()
-    proposals = pending
-    reviewers = sorted_reviewers(pending)
-    FasterCSV.generate({:force_quotes => true}) do |csv|
-      csv << pending_csv_header_values(reviewers)
-      proposals.each do |proposal|
-        csv << pending_csv_data_values(proposal, reviewers)
+
+  memoize :comments_and_appeal_ratings
+
+  class << self
+
+    def pending_count
+      pending.count
+    end
+
+    def pending_to_csv()
+      proposals = pending
+      reviewers = sorted_reviewers(proposals)
+      FasterCSV.generate({:force_quotes => true}) do |csv|
+        csv << pending_csv_header_values(reviewers)
+        proposals.each do |proposal|
+          csv << pending_csv_data_values(proposal, reviewers)
+        end
       end
     end
-  end
-  
-  # Returns a sorted array of unique reviewer usernames for the current 
-  # pending proposals.
-  def self.sorted_reviewers(proposals)
-    reviewers = Array.new
-  	proposals.each { |proposal|
-  	  hash = proposal.comments_and_appeal_ratings
-  	  hash.each { |user, value|
-  	    reviewer_name = user.username
-  	    if !reviewers.include?(reviewer_name)
-  	      reviewers << reviewer_name
-  	    end
-  	  }
-  	}
-  	reviewers.sort
-  end
-  
-  def self.user_rating(username, user_ratings)
-    rating = ""
-    user_ratings.each { |user, value|
-    	if user.username == username
-    	  rating = value[:rating].stars.to_s
-    	  break
-    	end
-    }
-    rating
-  end
-  
-  # Returns an array of header values to be used in a pending CSV 
-  # header row.
-  def self.pending_csv_header_values(reviewers)
-    header = ["title", "speaker"]
-    reviewers.each { |reviewer| header << reviewer }
-    header
-  end
-  
-  # Returns an array of values from a proposal to be used in a pending
-  # CSV data row.
-  def self.pending_csv_data_values(proposal, reviewers)
-  	data = [proposal.talk.title, proposal.talk.speakers.to_a.join(";")]
-  	user_ratings = proposal.comments_and_appeal_ratings
-  	reviewers.each { |reviewer|
-  	  rating = user_rating(reviewer, user_ratings)
-  	  data << rating
-  	}
-  	data
+
+    # Returns a sorted array of unique reviewer usernames for the current 
+    # pending proposals.
+    def sorted_reviewers(proposals)
+      reviewers = []
+      proposals.each do|proposal|
+        hash = proposal.comments_and_appeal_ratings
+        hash.each_key do |user|
+          reviewer_name = user.username
+          reviewers << reviewer_name unless reviewers.include?(reviewer_name)
+        end
+      end
+      reviewers.sort
+    end
+
+    def user_rating(username, user_ratings)
+      user_ratings.each do |user, value|
+        return value[:rating].stars.to_s if user.username == username
+      end
+      ""
+    end
+
+    # Returns an array of header values to be used in a pending CSV 
+    # header row.
+    def pending_csv_header_values(reviewers)
+      ["title", "speaker"] + reviewers
+    end
+
+    # Returns an array of values from a proposal to be used in a pending
+    # CSV data row.
+    def pending_csv_data_values(proposal, reviewers)
+      data = [proposal.talk.title, proposal.talk.speakers.to_a.join(";")]
+      user_ratings = proposal.comments_and_appeal_ratings
+      reviewers.inject(data){|d, reviewer| d << user_rating(reviewer, user_ratings)}
+    end
   end
 end
