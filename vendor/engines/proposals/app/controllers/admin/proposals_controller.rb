@@ -1,7 +1,11 @@
 module Admin
   class ProposalsController < Admin::BaseController
     before_filter(:only => [:rate, :add_comment]) do
-      redirect_to(root_path, :status => 401) unless current_user.has_role? :reviewer
+      redirect_to(root_path) unless current_user.has_role? :reviewer
+    end
+
+    before_filter(:only => [:export]) do
+      redirect_to(root_path) unless current_user.has_role? :organizer
     end
 
     crudify :proposal,
@@ -45,9 +49,9 @@ module Admin
       SpeakerMailer.talk_rejected_email(proposal.talk).deliver
       redirect_to :action => :index
     end
-    
+
     def export
-      respond_to do |format|      
+      respond_to do |format|
         format.csv { render :xml => Proposal.pending_to_csv() }
       end
     end
