@@ -1,7 +1,7 @@
 module Admin
   class SponsorshipsController < Admin::BaseController
-    prepend_before_filter :find_all_levels, :only => [:new]
-    prepend_before_filter :resolve_sponsorship_level, :only => [:create]
+    prepend_before_filter :find_all_levels, :only => [:new, :edit]
+    prepend_before_filter :resolve_sponsorship_level, :only => [:create, :update]
 
     crudify :sponsorship, :xhr_paging => true
 
