@@ -3,20 +3,27 @@ require 'spec_helper'
 describe Admin::ConferenceSessionsController do
   login_organizer
 
-
-  context "#update" do
-    let(:conf_session) { mock_model(ConferenceSession).as_null_object }
-    let(:params) { params = {:id => 1, :conference_session => {
+  let(:conf_session) { mock_model(ConferenceSession).as_null_object }
+  let(:params) do 
+    { :id => 1, 
+      :conference_session => {
         'talk_attributes' => {
           'title' => 'A new title',
           'speakers_attributes' => {
-            '0' => {}}}}}}
-    let(:params_with_image) { 
-      p = params
-      p[:conference_session]['talk_attributes']['speakers_attributes']['0'] = {:image => 'foo'}
-      p
+            '0' => {}
+          }
+        }
+      }
     }
-    let(:image) { mock_model(Image).as_null_object }
+  end
+  let(:params_with_image) do
+    p = params
+    p[:conference_session]['talk_attributes']['speakers_attributes']['0'] = {:image => 'foo'}
+    p
+  end
+  let(:image) { mock_model(Image).as_null_object }
+
+  context "#update" do
 
     before do
       ConferenceSession.stub(:find).with(1, {:include=>[]}).and_return(conf_session)
@@ -34,12 +41,21 @@ describe Admin::ConferenceSessionsController do
       response.should render_template('layouts/admin', 'admin/conference_sessions/edit')
     end
 
-    it "fixes image before update" do
-      Image.stub(:new).with('foo').and_return(image)
-      image.stub(:save)
-      post :update, params_with_image
-      flash[:notice].should eq("'#{conf_session}' was successfully updated.")
+    context "handles image form param" do
+      it "fixes image before update" do
+        conf_session.stub(:title).and_return('title')
+        post :update, params_with_image
+        flash[:notice].should eq("'title' was successfully updated.")
+      end
     end
+  end
+
+  it "fixes image before create" do
+    conf_session.stub(:valid?).and_return(true)
+    conf_session.stub(:title).and_return('foo')
+    ConferenceSession.stub(:create).and_return(conf_session)
+    post :create, params_with_image
+    flash[:notice].should eq("'foo' was successfully added.")
   end
 
   context "export action" do

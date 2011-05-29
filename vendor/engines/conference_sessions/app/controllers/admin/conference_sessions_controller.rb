@@ -2,7 +2,7 @@ module Admin
   class ConferenceSessionsController < Admin::BaseController
 
     prepend_before_filter :fix_image,
-                          :only => [:update]
+                          :only => [:create, :update]
 
     crudify :conference_session
 
@@ -27,7 +27,7 @@ module Admin
     end
 
     def export
-      respond_to do |format|      
+      respond_to do |format|
         format.csv { render :xml => ConferenceSession.to_csv(params[:year]) }
       end
     end
