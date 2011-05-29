@@ -99,8 +99,9 @@
       <% end %>
       <% if @proposal.status != 'accepted' %>
       <%= button_to "Approve Talk", { :action => "approve_proposal",
-      :proposal => @proposal}%>
-      <% else %>
+      :proposal => @proposal} %>
+      <% end %>
+      <% if @proposal.status != 'rejected' %>
       <%= button_to "Reject Talk", { :action => "reject_proposal",
       :proposal => @proposal} %>
       <% end %>

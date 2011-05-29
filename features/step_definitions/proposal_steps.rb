@@ -71,7 +71,6 @@ And /^a congrats email should be sent to the submitter$/ do
 end
 
 And /^a rejection email should be sent to the submitter$/ do
-  ActionMailer::Base.deliveries.delete_at 0
   check_email "isn't a good fit"
 end
 
