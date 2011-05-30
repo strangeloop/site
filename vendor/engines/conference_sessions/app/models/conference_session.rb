@@ -31,7 +31,7 @@ class ConferenceSession < ActiveRecord::Base
     end
 
     def from_year(year = nil)
-      where(:conf_year => year || Time.now.year)
+      where(:conf_year => year || maximum('conf_year'))
     end
     
     def to_csv(year = nil)
