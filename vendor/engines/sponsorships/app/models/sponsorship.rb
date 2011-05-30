@@ -18,8 +18,11 @@ class Sponsorship < ActiveRecord::Base
   end
 
   class << self
-    def visible_sponsorships(year = nil)
-      visible.for_year(year).includes(:sponsorship_level).order("sponsorship_levels.position, sponsorships.position")
+    def visible_sponsorships_by_level_name(year = nil)
+      sponsorships = visible.for_year(year).includes(:sponsorship_level).order("sponsorship_levels.position, sponsorships.position")
+      hash = ActiveSupport::OrderedHash.new {|h, k| h[k] = []}
+      sponsorships.each{|s| hash[s.sponsorship_level.name] << s }
+      hash
     end
   end
 end

@@ -26,21 +26,24 @@ describe Sponsorship do
     end
 
     it "only includes current year sponsorships ordered by position" do
-      Sponsorship.visible_sponsorships.should == [platinum_sponsorship,
-                                                  silver_sponsorship, 
-                                                  bronze_sponsorship]
+      Sponsorship.visible_sponsorships_by_level_name.should ==
+        {platinum_sponsorship.sponsorship_level.name => [platinum_sponsorship],
+          silver_sponsorship.sponsorship_level.name => [silver_sponsorship],
+          bronze_sponsorship.sponsorship_level.name => [bronze_sponsorship]}
     end
 
     it "hides non-visible sponsorships" do
       silver_sponsorship.visible = false
       silver_sponsorship.save
 
-      Sponsorship.visible_sponsorships.should == [platinum_sponsorship,
-                                                  bronze_sponsorship]
+      Sponsorship.visible_sponsorships_by_level_name.should ==
+        {platinum_sponsorship.sponsorship_level.name => [platinum_sponsorship],
+          bronze_sponsorship.sponsorship_level.name => [bronze_sponsorship]}
     end
 
     it "returns sponsorships according to year" do
-      Sponsorship.visible_sponsorships(Time.now.year - 1).should == [platinum_sponsorship_last_year]
+      Sponsorship.visible_sponsorships_by_level_name(Time.now.year - 1).should ==
+        {platinum_sponsorship_last_year.sponsorship_level.name => [platinum_sponsorship_last_year]}
     end
   end
 end
