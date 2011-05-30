@@ -133,5 +133,57 @@ end
 
 Factory.define :sponsorship_level do |sl|
   sl.name 'Platinum'
-  sl.year '2011'
+  sl.year Time.now.year
+  sl.position 1
+end
+
+Factory.define :platinum_last_year, :parent => :sponsorship_level do |sl|
+  sl.year Time.now.year - 1
+end
+
+Factory.define :silver, :parent => :sponsorship_level do |sl|
+  sl.name 'Silver'
+  sl.position 2
+end
+
+Factory.define :bronze, :parent => :sponsorship_level do |sl|
+  sl.name 'Bronze'
+  sl.position 3
+end
+
+Factory.define :sponsor do |s|
+  s.name 'foogle'
+  s.description 'A fake company'
+  s.url 'http://foogle.com'
+end
+
+Factory.define :contact do |c|
+  c.name 'Me You'
+  c.email 'me@you.com'
+  c.phone '314-555-1212'
+end
+
+Factory.define :sponsorship do |s|
+  s.sponsor { Factory(:sponsor) }
+  s.contact { Factory(:contact) }
+  s.sponsorship_level { Factory(:sponsorship_level) }
+  s.visible true
+  s.year 2011
+  s.position 1
+end
+
+Factory.define :platinum_sponsorship, :parent => :sponsorship do |ps|
+end
+
+Factory.define :platinum_sponsorship_last_year, :parent => :sponsorship do |ps|
+  ps.year Time.now.year - 1
+  ps.sponsorship_level { Factory(:platinum_last_year) }
+end
+
+Factory.define :silver_sponsorship, :parent => :sponsorship do |ss|
+  ss.sponsorship_level { Factory(:silver) }
+end
+
+Factory.define :bronze_sponsorship, :parent => :sponsorship do |bs|
+  bs.sponsorship_level { Factory(:bronze) }
 end

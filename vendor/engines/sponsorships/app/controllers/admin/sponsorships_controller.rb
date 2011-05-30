@@ -14,8 +14,8 @@ module Admin
     end
 
     def resolve_sponsorship_level
-      level = SponsorshipLevel.find(params['sponsorship']['level'])
-      params['sponsorship']['level'] = level
+      level = SponsorshipLevel.find(params['sponsorship']['sponsorship_level'].to_i)
+      params['sponsorship']['sponsorship_level'] = level
     end
   end
 end
