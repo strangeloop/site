@@ -10,10 +10,12 @@
       <%= sponsor_form.text_field :name -%>
     </div>
 
-    <div class="field">
-      <%= sponsor_form.label :image %>
-      <%= sponsor_form.file_field :image, :validate => false %>
-    </div>
+    <%= sponsor_form.fields_for :image do |image_form| %>
+      <div class="field">
+        <%= image_form.label :image %>
+        <%= image_form.file_field :image, :validate => false %>
+      </div>
+    <% end -%>
 
     <div class="field">
       <%= sponsor_form.label :description %>

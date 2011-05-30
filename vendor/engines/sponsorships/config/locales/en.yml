@@ -20,6 +20,8 @@ en:
         contact_phone: Contact Phone
         contact_email: Contact Email
         url: URL
+      grid_view:
+        create_new_image: ''
       records:
         title: Sponsorships
         sorry_no_results: Sorry! There are no results found.
@@ -29,5 +31,5 @@ en:
         edit: Edit this sponsorship
         delete: Remove this sponsorship forever
   sponsorships:
-    show:
-      other: Other Sponsorships
+    index:
+      sponsors: Sponsors

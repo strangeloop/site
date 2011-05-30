@@ -1,5 +1,5 @@
 Refinery::Application.routes.draw do
-  resources :sponsorships, :only => [:index, :show]
+  resources :sponsorships, :path => 'sponsors', :only => [:index]
 
   scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
     resources :sponsorships, :except => :show do
