@@ -11,10 +11,6 @@
     <%= link_to t('.create_new'), new_admin_sponsorship_url,
                  :class => "add_icon" %>
   </li>
-  <li>
-    <%= link_to t('.create_new_sponsorship_level'), new_admin_sponsorship_level_url,
-                 :class => "add_icon" %>
-  </li>
 <% if !searching? and Admin::SponsorshipsController.sortable? and Sponsorship.count > 1 %>
   <li>
     <%= link_to t('.reorder', :what => "Sponsorships"),
@@ -29,4 +25,7 @@
                  :class => "reorder_icon" %>
   </li>
 <% end %>
+<li>
+  <%= link_to t('.manage_sponsorship_levels'), admin_sponsorship_levels_url %>
+</li>
 </ul>

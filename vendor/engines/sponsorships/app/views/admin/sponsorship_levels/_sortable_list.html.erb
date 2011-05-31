@@ -1,0 +1,8 @@
+<ul id='sortable_list'>
+  <%= render :partial => 'sponsorship_level', :collection => @sponsorship_levels %>
+</ul>
+<%= render :partial => "/shared/admin/sortable_list",
+            :locals => {
+              :continue_reordering => (local_assigns.keys.include?(:continue_reordering)) ? continue_reordering : true
+            } %>
+

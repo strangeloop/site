@@ -7,6 +7,10 @@ Refinery::Application.routes.draw do
         post :update_positions
       end
     end
-    resources :sponsorship_levels
+    resources :sponsorship_levels, :except => :show do
+      collection do
+        post :update_positions
+      end
+    end
   end
 end

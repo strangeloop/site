@@ -4,7 +4,8 @@ Feature: As a site administrator, I can track conference sponsors and display th
   Scenario: Admin adds a new sponsorship level
     Given I am a logged in admin
     And I am on the sponsorship admin page
-    When I follow "Add New Sponsorship Level"
+    When I follow "Manage Sponsorship Levels"
+    And I follow "Add New Sponsorship Level"
     And I change the Name field to "Platinum"
     And I change the Year field to "2011"
     And I change the Position field to "1"
