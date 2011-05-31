@@ -43,12 +43,11 @@
       <%= contact_form.label :email, t('.contact_email') %>
       <%= contact_form.text_field :email %>
     </div>
-
   <% end -%>
   
   <div class='field'>
-    <%= f.label :sponsorship_level, t('.sponsor_level') -%>
-    <%= f.select :sponsorship_level, options_from_collection_for_select(@levels, 'id', 'name') -%>
+    <%= f.label :sponsorship_level_id, t('.sponsor_level') -%>
+    <%= collection_select 'sponsorship', 'sponsorship_level_id', @levels, 'id', 'name' -%>
   </div>
   
   <div class='field'>
