@@ -5,65 +5,43 @@
         } %>
   
   <%= f.fields_for :sponsor do |sponsor_form| %>
-    <div class='field'>
-      <%= sponsor_form.label :name, t('.sponsor_name') -%>
-      <%= sponsor_form.text_field :name -%>
-    </div>
+    <%= sponsor_form.label :name, t('.sponsor_name') -%>
+    <%= sponsor_form.text_field :name, :class => 'field' -%>
 
     <%= sponsor_form.fields_for :image do |image_form| %>
-      <div class="field">
         <%= image_form.label :image %>
-        <%= image_form.file_field :image, :validate => false %>
-      </div>
+        <%= image_form.file_field :image, :class => 'field', :validate => false %>
     <% end -%>
 
-    <div class="field">
       <%= sponsor_form.label :description %>
-      <%= sponsor_form.text_area :description %>
-    </div>
+      <%= sponsor_form.text_area :description, :class => 'field', :rows => 5 %>
 
-    <div class="field">
       <%= sponsor_form.label :url, t('.url') %>
-      <%= sponsor_form.text_field :url %>
-    </div>
+      <%= sponsor_form.text_field :url, :class => 'field' %>
   <% end -%>
   
   <%= f.fields_for :contact do |contact_form| %>
-    <div class='field'>
       <%= contact_form.label :name, t('.contact_name') -%>
-      <%= contact_form.text_field :name -%>
-    </div>
+      <%= contact_form.text_field :name, :class => 'field' -%>
 
-    <div class="field">
       <%= contact_form.label :phone, t('.contact_phone') %>
       <%= contact_form.text_field :phone %>
-    </div>
 
-    <div class="field">
       <%= contact_form.label :email, t('.contact_email') %>
-      <%= contact_form.text_field :email %>
-    </div>
+      <%= contact_form.text_field :email, :class => 'field' %>
   <% end -%>
   
-  <div class='field'>
     <%= f.label :sponsorship_level_id, t('.sponsor_level') -%>
     <%= collection_select 'sponsorship', 'sponsorship_level_id', @levels, 'id', 'name' -%>
-  </div>
   
-  <div class='field'>
     <%= f.label :visible -%>
     <%= f.check_box :visible -%>
-  </div>
   
-  <div class='field'>
     <%= f.label :year -%>
     <%= f.text_field :year -%>
-  </div>
   
-  <div class='field'>
     <%= f.label :position -%>
     <%= f.text_field :position -%>
-  </div>
   
   <%= render :partial => "/shared/admin/form_actions",
               :locals => {
