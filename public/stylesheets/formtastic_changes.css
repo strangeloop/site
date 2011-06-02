@@ -24,7 +24,15 @@ form.formtastic fieldset > ol > li label {
 }
 
 form.formtastic fieldset > ol > li.text textarea {
-  width: 65%
+  width: 65%;
+}
+
+form.formtastic fieldset > ol > li.required input {
+  width: 37%;
+}
+
+form.formtastic fieldset > ol > li.optional input {
+  width: 37%;
 }
 
 form.formtastic fieldset > ol > li p.inline-hints {
