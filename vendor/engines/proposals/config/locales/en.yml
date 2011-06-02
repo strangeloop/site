@@ -16,23 +16,31 @@ en:
         sorry_no_results: Sorry! There are no results found.
         no_items_yet: There are no talks ready for review
       edit:
-        proposal: Proposal
-        title: Title
         abstract: Abstract
-        av_requirement: A/V Requirement
-        video_approval: Video Approval
-        talk_type: Talk Type
-        image: Speaker Image
-        by: Speaker
-        bio: Bio
-        status: Review Status
-        back_to_all_proposals: Back to all proposals
-        details: Details
-        age: Age
         actions: Actions
-        your_rating: Your feedback
-        comments: Your Comments
+        age: Age
+        av_requirement: A/V Requirement
+        back_to_all_proposals: Back to all proposals
+        bio: Bio
+        by: Speaker
+        city: City
+        comments: Comments from Speaker
+        company: Company/URL
+        country: Country
+        details: Details
+        email: Email
         from_reviewer: Feedback from
+        image: Speaker Image
+        prereqs: Prerequisites
+        proposal: Proposal
+        reviewer_comments: Reviewer Comments
+        state: State
+        status: Review Status
+        talk_type: Talk Type
+        title: Title
+        twitter_id: Twitter Username
+        video_approval: Video Approval
+        your_rating: Your feedback
       add_comment:
         comment_button: Add Comment
 
