@@ -193,6 +193,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mmcopyrights (1.1.0)
     moretea-awesome_nested_set (1.4.3.1)
       activerecord (~> 3.0.0)
     mysql2 (0.2.7)
@@ -312,6 +313,7 @@ DEPENDENCIES
   jammit (~> 0.6)
   json_pure (~> 1.5.1)
   launchy (~> 0.3.7)
+  mmcopyrights
   mysql2 (= 0.2.7)
   rack-cache
   rack-ssl
