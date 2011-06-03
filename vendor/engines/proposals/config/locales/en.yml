@@ -33,6 +33,9 @@ en:
         your_rating: Your feedback
         comments: Your Comments
         from_reviewer: Feedback from
+        send_mail: Send Email?
+        approve_talk: Approve Talk
+        reject_talk: Reject Talk
       add_comment:
         comment_button: Add Comment
 
