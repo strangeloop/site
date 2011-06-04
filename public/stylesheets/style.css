@@ -152,8 +152,8 @@ p {margin-bottom:22px;}
 .list3 li:hover {background:#0366a3 url(../images/marker_list.png) no-repeat 20px -31px;}
 .list3 li a {color:#fff; line-height:30px; text-decoration:none}
 .list3 li:hover a {text-decoration:none; color:#fff}
-.list4 li { list-style:none; float: left; width: 40%; }
-.list4 li:nth-child(odd) { clear: left; font-size: 15px; text-align: right; padding-right: 1.8em}
+.list4 div { list-style:none; float: left; width: 40%; }
+.list4 div:nth-child(odd) { clear: left; font-size: 15px; text-align: right; padding-right: 1.8em}
 
 
 
