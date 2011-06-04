@@ -23,8 +23,8 @@
   <table id="inquiry">
     <tbody>
 
-      <% [:title, :abstract, :av_requirement, :video_approval, 
-        :talk_type].each do |field| %>
+      <% [:title, :abstract, :comments, :prereqs, :av_requirement, 
+        :video_approval, :talk_type].each do |field| %>
 
           <tr>
             <td>
@@ -50,8 +50,20 @@
               <strong><%= t('.by') -%></strong>
             </td>
             <td>
-              <%= "#{speaker.first_name} #{speaker.last_name}" -%>
+              <%= speaker_for @proposal.talk -%>
             </td>
+          </tr>
+          <tr>
+            <td>
+            	<strong><%= t('.twitter_id') %></strong>
+            </td>
+            <td><%= twitter_link speaker.twitter_id %></td>
+          </tr>
+          <tr>
+            <td>
+            	<strong><%= t('.company') %></strong>
+            </td>
+            <td><%= link_to speaker.company, speaker.company_url %></td>            
           </tr>
           <tr>
             <td>
@@ -61,6 +73,14 @@
               <%= raw textilize(speaker.bio) -%>
             </td>
           </tr>
+          <% [:email, :city, :state, :country].each do |field| -%>
+          <tr>
+            <td>
+            	<strong><%= t(".#{field.to_s}") %></strong>
+            </td>
+            <td><%= speaker.send(field) %></td>
+          </tr>
+          <% end -%>
         <% end %>
 
         <tr>
@@ -73,7 +93,7 @@
 
       <tr>
         <td>
-          <strong><%= t('.comments') -%></strong>
+          <strong><%= t('.reviewer_comments') -%></strong>
         </td>
 
         <td id="comments">

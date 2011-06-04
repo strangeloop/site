@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110505000330) do
+ActiveRecord::Schema.define(:version => 20110521222338) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(:version => 20110505000330) do
   add_index "conference_sessions", ["cached_slug"], :name => "index_conference_sessions_on_cached_slug", :unique => true
   add_index "conference_sessions", ["id"], :name => "index_conference_sessions_on_id"
 
+  create_table "contacts", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "datastore_images", :force => true do |t|
     t.string   "uid"
     t.binary   "image",      :limit => 16777215
@@ -65,9 +73,9 @@ ActiveRecord::Schema.define(:version => 20110505000330) do
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
+    t.string   "title"
     t.string   "external_url"
     t.text     "body"
-    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -251,6 +259,36 @@ ActiveRecord::Schema.define(:version => 20110505000330) do
     t.integer "speaker_id"
     t.integer "talk_id"
   end
+
+  create_table "sponsors", :force => true do |t|
+    t.string   "name"
+    t.integer  "image_id"
+    t.text     "description"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sponsorship_levels", :force => true do |t|
+    t.string   "name"
+    t.integer  "year"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sponsorships", :force => true do |t|
+    t.integer  "sponsor_id"
+    t.integer  "contact_id"
+    t.integer  "sponsorship_level_id"
+    t.boolean  "visible"
+    t.integer  "year"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sponsorships", ["id"], :name => "index_sponsorships_on_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

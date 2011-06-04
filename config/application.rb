@@ -1,3 +1,20 @@
+#- Copyright 2011 Strange Loop LLC
+#- 
+#- Licensed under the Apache License, Version 2.0 (the "License");
+#- you may not use this file except in compliance with the License.
+#- You may obtain a copy of the License at
+#- 
+#-    http://www.apache.org/licenses/LICENSE-2.0
+#- 
+#- Unless required by applicable law or agreed to in writing, software
+#- distributed under the License is distributed on an "AS IS" BASIS,
+#- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#- See the License for the specific language governing permissions and 
+#- limitations under the License.
+#- 
+
+
+
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
@@ -13,7 +30,7 @@ module Conf
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{config.root}/lib/extensions)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.

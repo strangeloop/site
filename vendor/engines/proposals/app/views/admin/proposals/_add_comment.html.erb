@@ -1,5 +1,5 @@
 <%= form_tag url_for(:action => :add_comment), :remote => true do %>
 <%= text_area_tag(:comment, '', :id => 'comment-field', :class => 'field') %>
-<%= submit_tag t('.comment_button') -%>
+<%= submit_tag t('.comment_button'), :style => "margin-top: 10px;" -%>
 <% end %>
 

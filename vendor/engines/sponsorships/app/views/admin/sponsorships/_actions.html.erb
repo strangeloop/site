@@ -1,0 +1,31 @@
+<ul>
+  <% if Admin::SponsorshipsController.searchable? %>
+    <li>
+      <%= render :partial => "/shared/admin/search",
+                  :locals => {
+                    :url => admin_sponsorships_url
+                  } %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to t('.create_new'), new_admin_sponsorship_url,
+                 :class => "add_icon" %>
+  </li>
+<% if !searching? and Admin::SponsorshipsController.sortable? and Sponsorship.count > 1 %>
+  <li>
+    <%= link_to t('.reorder', :what => "Sponsorships"),
+                 admin_sponsorships_url,
+                 :id => "reorder_action",
+                 :class => "reorder_icon" %>
+
+    <%= link_to t('.reorder_done', :what => "Sponsorships"),
+                 admin_sponsorships_url,
+                 :id => "reorder_action_done",
+                 :style => "display: none;",
+                 :class => "reorder_icon" %>
+  </li>
+<% end %>
+<li>
+  <%= link_to t('.manage_sponsorship_levels'), admin_sponsorship_levels_url %>
+</li>
+</ul>

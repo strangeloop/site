@@ -1,7 +1,23 @@
+#- Copyright 2011 Strange Loop LLC
+#- 
+#- Licensed under the Apache License, Version 2.0 (the "License");
+#- you may not use this file except in compliance with the License.
+#- You may obtain a copy of the License at
+#- 
+#-    http://www.apache.org/licenses/LICENSE-2.0
+#- 
+#- Unless required by applicable law or agreed to in writing, software
+#- distributed under the License is distributed on an "AS IS" BASIS,
+#- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#- See the License for the specific language governing permissions and 
+#- limitations under the License.
+#- 
+
+
+
 require 'spec_helper'
 
 describe ApplicationHelper do
-
   context '#link_tree' do
     it "is empty when no pages are supplied" do
       link_tree.should be_empty
@@ -53,4 +69,29 @@ describe ApplicationHelper do
     end
   end
 
+  context "#image_tag_for" do
+    #class MockView < ActionView::Base
+      #include ApplicationHelper
+    #end
+
+    #let(:view) { MockView.new }
+
+    let(:medium_default_image) { /<img alt="Attendees" src="\/images\/attendees\.jpeg\?[\d]+" \/>/ }
+
+    it "returns default image tags on nil" do
+      image_tag_for.should match(medium_default_image)
+    end
+
+    it "returns the default image for nil image and medium size" do
+      image_tag_for(nil, :medium).should match(medium_default_image)
+    end
+
+    it "supports small default images" do
+      image_tag_for(nil, :small).should match(/<img alt="Attendees-small" src="\/images\/attendees-small\.jpeg\?[\d]+" \/>/)
+    end
+
+    #it "returns datastore-backed image tags" do
+      #view.image_tag_for(Factory(:image)).should match(medium_default_image)
+    #end    
+  end
 end

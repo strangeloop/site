@@ -1,0 +1,30 @@
+<%= form_for [:admin, @sponsorship_level], :validate => true do |f| -%>
+  <%= render :partial => "/shared/admin/error_messages", :locals => {
+          :object => @sponsorship_level,
+          :include_object_name => true
+        } %>
+  
+  <div class='field'>
+    <%= f.label :name -%>
+    <%= f.text_field :name, :class => 'larger widest' -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :year -%>
+    <%= f.text_field :year -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :position -%>
+    <%= f.text_field :position -%>
+  </div>
+  
+  <%= render :partial => "/shared/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('delete', :scope => 'admin.sponsorship_levels.sponsorship_level'),
+                :delete_confirmation => t('message', :scope => 'shared.admin.delete')
+              } %>
+<% end -%>
+

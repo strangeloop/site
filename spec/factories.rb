@@ -1,3 +1,20 @@
+#- Copyright 2011 Strange Loop LLC
+#- 
+#- Licensed under the Apache License, Version 2.0 (the "License");
+#- you may not use this file except in compliance with the License.
+#- You may obtain a copy of the License at
+#- 
+#-    http://www.apache.org/licenses/LICENSE-2.0
+#- 
+#- Unless required by applicable law or agreed to in writing, software
+#- distributed under the License is distributed on an "AS IS" BASIS,
+#- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#- See the License for the specific language governing permissions and 
+#- limitations under the License.
+#- 
+
+
+
 Factory.define :user do |u|
   u.sequence(:username) { |n| "person#{n}" }
   u.sequence(:email) { |n| "person#{n}@cucumber.com" }
@@ -131,4 +148,59 @@ Factory.define :last_years_talk_session, :parent => :talk_session do |lyts|
   lyts.conf_year Time.now.year - 1
 end
 
+Factory.define :sponsorship_level do |sl|
+  sl.name 'Platinum'
+  sl.year Time.now.year
+  sl.position 1
+end
 
+Factory.define :platinum_last_year, :parent => :sponsorship_level do |sl|
+  sl.year Time.now.year - 1
+end
+
+Factory.define :silver, :parent => :sponsorship_level do |sl|
+  sl.name 'Silver'
+  sl.position 2
+end
+
+Factory.define :bronze, :parent => :sponsorship_level do |sl|
+  sl.name 'Bronze'
+  sl.position 3
+end
+
+Factory.define :sponsor do |s|
+  s.name 'foogle'
+  s.description 'A fake company'
+  s.url 'http://foogle.com'
+end
+
+Factory.define :contact do |c|
+  c.name 'Me You'
+  c.email 'me@you.com'
+  c.phone '314-555-1212'
+end
+
+Factory.define :sponsorship do |s|
+  s.sponsor { Factory(:sponsor) }
+  s.contact { Factory(:contact) }
+  s.sponsorship_level { Factory(:sponsorship_level) }
+  s.visible true
+  s.year 2011
+  s.position 1
+end
+
+Factory.define :platinum_sponsorship, :parent => :sponsorship do |ps|
+end
+
+Factory.define :platinum_sponsorship_last_year, :parent => :sponsorship do |ps|
+  ps.year Time.now.year - 1
+  ps.sponsorship_level { Factory(:platinum_last_year) }
+end
+
+Factory.define :silver_sponsorship, :parent => :sponsorship do |ss|
+  ss.sponsorship_level { Factory(:silver) }
+end
+
+Factory.define :bronze_sponsorship, :parent => :sponsorship do |bs|
+  bs.sponsorship_level { Factory(:bronze) }
+end

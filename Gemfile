@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.5'
-gem 'formtastic', '~> 1.1.0'
+gem 'formtastic', '~> 1.2.3'
 gem 'carmen', '0.2.4'
 gem 'ajaxful_rating', '~> 3.0.0.beta3'
 
@@ -14,11 +14,13 @@ gem 'uuidtools', '~> 2.1.2'
 gem 'acts_as_commentable', '3.0.1'
 gem 'fastercsv', '1.5.4'
 
+gem 'mmcopyrights'
 gem 'regonline-ruby', :git => 'git://github.com/strangeloop/regonline-ruby'
 gem 'friendly_id_globalize3', '~> 3.2.1'
 gem 'decent_exposure', '~> 1.0'
 gem 'RedCloth', '~> 4.2'
 gem 'jammit', '~> 0.6'
+gem 'client_side_validations', '~> 3.0.4'
 
 group :development, :test do
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
@@ -86,3 +88,5 @@ gem 'refinerycms-news',         '1.0.1' #Use this version specifically
 gem 'refinerycms-proposals', '1.0', :path => 'vendor/engines'
 
 gem 'refinerycms-conference_sessions', '1.0', :path => 'vendor/engines'
+
+gem 'refinerycms-sponsorships', '1.0', :path => 'vendor/engines'

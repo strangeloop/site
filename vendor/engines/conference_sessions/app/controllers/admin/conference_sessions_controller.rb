@@ -1,8 +1,23 @@
+#- Copyright 2011 Strange Loop LLC
+#- 
+#- Licensed under the Apache License, Version 2.0 (the "License");
+#- you may not use this file except in compliance with the License.
+#- You may obtain a copy of the License at
+#- 
+#-    http://www.apache.org/licenses/LICENSE-2.0
+#- 
+#- Unless required by applicable law or agreed to in writing, software
+#- distributed under the License is distributed on an "AS IS" BASIS,
+#- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#- See the License for the specific language governing permissions and 
+#- limitations under the License.
+#- 
+
+
+
 module Admin
   class ConferenceSessionsController < Admin::BaseController
-
-    prepend_before_filter :fix_image,
-                          :only => [:update]
+    include ImageUploadFix
 
     crudify :conference_session
 
@@ -17,17 +32,13 @@ module Admin
       @conference_session = ConferenceSession.new(:talk => Talk.new(:speakers => [Speaker.new]))
     end
 
-    def fix_image
-      image_param = params[:conference_session][:talk_attributes][:speakers_attributes]["0"].delete(:image)
-      if image_param
-        image = Image.new(image_param)
-        image.save
-        params[:conference_session][:talk_attributes][:speakers_attributes]["0"][:image] = image
-      end
+    #callback invoked by ImageUploadFix
+    def image_in_params(params)
+      params[:conference_session][:talk_attributes][:speakers_attributes]["0"]
     end
 
     def export
-      respond_to do |format|      
+      respond_to do |format|
         format.csv { render :xml => ConferenceSession.to_csv(params[:year]) }
       end
     end

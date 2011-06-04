@@ -1,0 +1,21 @@
+<div class="row_top_tile_sub">
+  <div class="container_12">
+    <div class="grid_8">
+      <div class="page_title">
+        <%= t('.sponsors') %>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="main" class="shape">
+  <div class="container_12 pad3">
+    <% sponsorships.each_pair do |level_name, sponsors| -%>
+      <div class="overflow p3">
+        <h3><%= level_name %></h3>
+        <hr>
+      </div>
+      <%= render :partial => 'sponsorship', :collection => sponsors %>
+    <% end -%>
+  </div>
+</div>
+
