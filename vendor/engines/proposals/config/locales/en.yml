@@ -41,6 +41,9 @@ en:
         twitter_id: Twitter Username
         video_approval: Video Approval
         your_rating: Your feedback
+        send_mail: Send Email?
+        approve_talk: Approve Talk
+        reject_talk: Reject Talk
       add_comment:
         comment_button: Add Comment
 

@@ -54,16 +54,29 @@ module Admin
       proposal
     end
 
-    def approve_proposal
+    def proposal_update
+      send_mail = params[:sendmail] == "1"
+      if params[:approve]
+        approve_proposal(send_mail)
+      elsif params[:reject]
+        reject_proposal(send_mail)
+      end
+    end
+
+    def approve_proposal(send_email)
       proposal = update_proposal_status(params[:id], "accepted")
       ConferenceSession.create(:talk => proposal.talk)
-      SpeakerMailer.talk_accepted_email(proposal.talk).deliver
+      if(send_email)
+        SpeakerMailer.talk_accepted_email(proposal.talk).deliver
+      end
       redirect_to :action => :index
     end
 
-    def reject_proposal
+    def reject_proposal(send_email)
       proposal = update_proposal_status(params[:id], "rejected")
-      SpeakerMailer.talk_rejected_email(proposal.talk).deliver
+      if(send_email)
+        SpeakerMailer.talk_rejected_email(proposal.talk).deliver
+      end
       redirect_to :action => :index
     end
 

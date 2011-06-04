@@ -78,11 +78,12 @@ Feature: As a conference talks reviewer
     Then the default proposal should have a 3 out of 5 star rating
     And I should see "under review"
 
-  Scenario: Conference organizer approves proposals
+  Scenario: Conference organizer approves proposal
     Given a proposal exists
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
+    Then I check "sendmail"
     Then I press "Approve"
     Then I should see "accepted"
     And a congrats email should be sent to the submitter
@@ -91,19 +92,39 @@ Feature: As a conference talks reviewer
     When I am on the default conference session page
     Then I should see "Title"
 
-  Scenario: Conference organizer rejects an approved proposals
+  Scenario: Conference organizer approves proposal, does not want email sent
     Given a proposal exists
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
     Then I press "Approve"
     Then I should see "accepted"
+    And no email should be sent
     Then I follow "Proposals"
     Then I should see "accepted"
+    When I am on the default conference session page
+    Then I should see "Title"
+
+  Scenario: Conference organizer rejects an approved proposal
+    Given a proposal exists
+    And there are no conference sessions
+    And I am a logged in organizer
     And I am on the default proposal review page
+    Then I check "sendmail"    
     Then I press "Reject Talk"
     Then I should see "rejected"
     And a rejection email should be sent to the submitter  
+    Then I follow "Proposals"
+    Then I should see "rejected"
+
+    Scenario: Conference organizer rejects an approved proposal
+    Given a proposal exists
+    And there are no conference sessions
+    And I am a logged in organizer
+    And I am on the default proposal review page
+    Then I press "Reject Talk"
+    Then I should see "rejected"
+    And no email should be sent    
     Then I follow "Proposals"
     Then I should see "rejected"
 

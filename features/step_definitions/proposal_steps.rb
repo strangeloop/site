@@ -88,10 +88,12 @@ And /^a congrats email should be sent to the submitter$/ do
 end
 
 And /^a rejection email should be sent to the submitter$/ do
-  ActionMailer::Base.deliveries.delete_at 0
   check_email "isn't a good fit"
 end
 
+And /^no email should be sent$/ do
+  ActionMailer::Base.deliveries.size.should == 0
+end
 
 Given /^a comment "([^"]*)" was added to the proposal by (.*)$/ do |comment, reviewer|
   Proposal.first.tap{|p| p.comments.create(:comment => comment, :user => User.find_by_username(reviewer))}.save

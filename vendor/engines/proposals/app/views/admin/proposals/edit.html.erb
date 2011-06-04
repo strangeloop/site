@@ -117,19 +117,23 @@
         </div>
 
       <% end %>
-      <% if @proposal.status != 'accepted' %>
-      <%= button_to "Approve Talk", { :action => "approve_proposal", :proposal => @proposal}%>
-      <% else %>
-      <%= button_to "Reject Talk", { :action => "reject_proposal", :proposal => @proposal} %>
+     <%= form_tag(:controller => "proposals",
+     :action =>  "proposal_update", :method => "post") do %>
+        <% if @proposal.status != 'accepted' %>
+          <%= submit_tag(t('.approve_talk'), :name => "approve") %>
+        <% end %>
+        <% if @proposal.status != 'rejected' %>
+          <%= submit_tag(t('.reject_talk'), :name => "reject") %>
+        <% end %>          
+        <%= check_box_tag(:sendmail) -%>
+        <strong><%=t('.send_mail')%></strong>
       <% end %>
     <% end %>
 
     <% if current_user.has_role? :reviewer -%>
-      <div style="margin-top: 20px;">
-        <strong><%= t('.your_rating') -%>:</strong>
-        <%= render :partial => 'rating', :locals => { :proposal => @proposal } %>
-        <%= render :partial => 'add_comment', :locals => { :proposal => @proposal } %>
-      </div>
+      <strong><%= t('.your_rating') -%>:</strong>
+      <%= render :partial => 'rating', :locals => { :proposal => @proposal } %>
+      <%= render :partial => 'add_comment', :locals => { :proposal => @proposal } %> 
     <% end -%>
 </div>  
 
