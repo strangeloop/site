@@ -169,6 +169,14 @@ describe Proposal do
       }
     }
 
+    let(:proposal5){ 
+      Factory(:proposal).tap{ |p|
+        p.comments.create(:title => "foo", :comment => "comment1", :user => alternate_reviewer2)
+#        p.rate(4, alternate_reviewer3, :appeal)
+      }
+    }
+
+
     before do
       proposal1
       proposal2
@@ -192,9 +200,14 @@ describe Proposal do
       user_rating = Proposal.user_rating("alternate_reviewer", proposal2.comments_and_appeal_ratings)
       user_rating.should == "2"
     end
-    
+
     it "Should return an empty string for a user that did not review a proposal" do
       user_rating = Proposal.user_rating("alternate_reviewer2", proposal2.comments_and_appeal_ratings)
+      user_rating.should == ""
+    end
+    
+    it "Should return an empty string for a user that commented but did not review a proposal" do
+      user_rating = Proposal.user_rating("alternate_reviewer2", proposal5.comments_and_appeal_ratings)
       user_rating.should == ""
     end
     

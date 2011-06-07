@@ -86,7 +86,7 @@ class Proposal < ActiveRecord::Base
 
     def user_rating(username, user_ratings)
       user_ratings.each do |user, value|
-        return value[:rating].stars.to_s if user.username == username
+        return value[:rating].stars.to_s if user.username == username && value[:rating]
       end
       ""
     end
