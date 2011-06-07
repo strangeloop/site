@@ -131,9 +131,11 @@
     <% end %>
 
     <% if current_user.has_role? :reviewer -%>
-      <strong><%= t('.your_rating') -%>:</strong>
-      <%= render :partial => 'rating', :locals => { :proposal => @proposal } %>
-      <%= render :partial => 'add_comment', :locals => { :proposal => @proposal } %> 
+      <div style="margin-top: 20px;">
+        <strong><%= t('.your_rating') -%>:</strong>
+        <%= render :partial => 'rating', :locals => { :proposal => @proposal } %>
+        <%= render :partial => 'add_comment', :locals => { :proposal => @proposal } %> 
+      </div>
     <% end -%>
 </div>  
 
