@@ -26,7 +26,7 @@ module Admin
     end
 
     crudify :proposal,
-            :title_attribute => 'status'
+            :title_attribute => 'status', :order => 'created_at DESC'
 
     def rate
       @proposal = Proposal.find(params[:id])
@@ -82,7 +82,7 @@ module Admin
 
     def export
       respond_to do |format|
-        format.csv { render :xml => Proposal.pending_to_csv() }
+        format.csv { render :xml => Proposal.pending_to_csv }
       end
     end
   end

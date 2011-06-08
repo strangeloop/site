@@ -18,6 +18,12 @@
 require 'spec_helper'
 
 describe Admin::ProposalsController do
+
+  it "by creation date descending" do
+    Admin::ProposalsController.should_receive(:crudify).with(:proposal, {:title_attribute => 'status', :order => 'created_at DESC'})
+    load(File.join(File.dirname(__FILE__),'..','..','..','app', 'controllers','admin', 'proposals_controller.rb'))
+  end
+
   context 'role checking' do
     login_admin
 
