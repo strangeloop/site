@@ -39,8 +39,6 @@ class CreateSponsorships < ActiveRecord::Migration
 
     add_index :sponsorships, :id
 
-    load(Rails.root.join('db', 'seeds', 'sponsorships.rb'))
-
   end
 
   def self.down
