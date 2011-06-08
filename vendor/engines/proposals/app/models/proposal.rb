@@ -59,7 +59,7 @@ class Proposal < ActiveRecord::Base
       pending.count
     end
 
-    def pending_to_csv()
+    def pending_to_csv
       proposals = pending
       reviewers = sorted_reviewers(proposals)
       FasterCSV.generate({:force_quotes => true}) do |csv|
