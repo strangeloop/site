@@ -14,24 +14,18 @@
 #- 
 
 
+class CreateRooms < ActiveRecord::Migration
+  def self.up
+    create_table :rooms do |t|
+      t.string :name
+      t.integer :capacity
+      t.integer :conf_year
 
-require 'refinery'
-
-module Refinery
-  module ConferenceSessions
-    class Engine < Rails::Engine
-      initializer "static assets" do |app|
-        app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
-      end
-
-      config.after_initialize do
-        Refinery::Plugin.register do |plugin|
-          plugin.name = "conference_sessions"
-          plugin.menu_match = /(admin|refinery)\/(conference_sessions|rooms)$/
-          plugin.activity = {
-            :class => ConferenceSession}
-        end
-      end
+      t.timestamps
     end
+  end
+
+  def self.down
+    drop_table :rooms
   end
 end

@@ -14,24 +14,26 @@
 #- 
 
 
+require 'spec_helper'
 
-require 'refinery'
+describe Room do
+  let(:room) { Factory(:room) }
 
-module Refinery
-  module ConferenceSessions
-    class Engine < Rails::Engine
-      initializer "static assets" do |app|
-        app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
-      end
+  it "sets conf_year automatically" do
+    Room.create(:name => 'f', :capacity => 2).conf_year.should == Time.now.year
+  end
 
-      config.after_initialize do
-        Refinery::Plugin.register do |plugin|
-          plugin.name = "conference_sessions"
-          plugin.menu_match = /(admin|refinery)\/(conference_sessions|rooms)$/
-          plugin.activity = {
-            :class => ConferenceSession}
-        end
-      end
-    end
+  it "has unique names across conf_years" do
+    room.should be_valid
+    Factory(:room, :conf_year => Time.now.year - 1).should be_valid
+    Factory.build(:room).should_not be_valid
+  end
+
+  it "requires a capacity value" do
+    Room.new(:name => 'foo').should_not be_valid
+  end
+
+  it "requires a room name" do
+    Room.new(:capacity => 2).should_not be_valid
   end
 end

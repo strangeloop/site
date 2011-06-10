@@ -15,23 +15,12 @@
 
 
 
-require 'refinery'
 
-module Refinery
-  module ConferenceSessions
-    class Engine < Rails::Engine
-      initializer "static assets" do |app|
-        app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
-      end
+module Admin
+  class RoomsController < Admin::BaseController
 
-      config.after_initialize do
-        Refinery::Plugin.register do |plugin|
-          plugin.name = "conference_sessions"
-          plugin.menu_match = /(admin|refinery)\/(conference_sessions|rooms)$/
-          plugin.activity = {
-            :class => ConferenceSession}
-        end
-      end
-    end
+    crudify :room
+
   end
 end
+

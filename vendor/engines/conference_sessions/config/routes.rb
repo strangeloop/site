@@ -27,5 +27,7 @@ Refinery::Application.routes.draw do
         get 'export/:year', :action => :export, :as => 'export'
       end
     end
+
+    resources :rooms
   end
 end
