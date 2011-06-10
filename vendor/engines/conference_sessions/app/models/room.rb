@@ -14,24 +14,16 @@
 #- 
 
 
+class Room < ActiveRecord::Base
+  before_create AddConfYear
 
-require 'refinery'
+  validates_uniqueness_of :name, :scope => :conf_year, :message => 'Rooms must have unique names within a conference year'
 
-module Refinery
-  module ConferenceSessions
-    class Engine < Rails::Engine
-      initializer "static assets" do |app|
-        app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
-      end
+  [:name, :capacity].each do |field|
+    validates_presence_of field
+  end
 
-      config.after_initialize do
-        Refinery::Plugin.register do |plugin|
-          plugin.name = "conference_sessions"
-          plugin.menu_match = /(admin|refinery)\/(conference_sessions|rooms)$/
-          plugin.activity = {
-            :class => ConferenceSession}
-        end
-      end
-    end
+  def title
+    "#{name} (cap. #{capacity})"
   end
 end

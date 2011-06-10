@@ -15,6 +15,7 @@ en:
         reorder_done: Done Reordering Conference Sessions
         sorry_no_results: Sorry! There are no results found.
         no_items_yet: There are no Conference Sessions yet. Click "Add New Conference Session" to add your first conference session.
+        manage_rooms: Manage Conference Rooms
       conference_session:
         view_live_html: View this conference session live <br/><em>(opens in a new window)</em>
         edit: Edit this conference session
@@ -31,9 +32,17 @@ en:
       grid_view:
         view_live_html: View this image <br/><em>Opens in a new window</em>
         create_new_image: Add Image to this Speaker
+    rooms:
+      edit:
+        room: Room
+      index:
+        create_new: Add a Room
+        no_items_yet: No rooms exist for the current conference year
+        back_to_conf_sessions: Back to All Conference Sessions
+      room:
+        edit: Edit this Room
+        delete: Delete this Room
 
-        
-        
   conference_sessions:
     index:
       workshop: Workshops

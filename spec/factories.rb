@@ -204,3 +204,9 @@ end
 Factory.define :bronze_sponsorship, :parent => :sponsorship do |bs|
   bs.sponsorship_level { Factory(:bronze) }
 end
+
+Factory.define :room do |rm|
+  rm.name 'Room 1'
+  rm.capacity 200
+  rm.conf_year Time.now.year
+end

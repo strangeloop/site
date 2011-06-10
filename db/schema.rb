@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110521222338) do
+ActiveRecord::Schema.define(:version => 20110607030950) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -209,6 +209,14 @@ ActiveRecord::Schema.define(:version => 20110521222338) do
 
   add_index "roles_users", ["role_id", "user_id"], :name => "index_roles_users_on_role_id_and_user_id"
   add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id"
+
+  create_table "rooms", :force => true do |t|
+    t.string   "name"
+    t.integer  "capacity"
+    t.integer  "conf_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "seo_meta", :force => true do |t|
     t.integer  "seo_meta_id"
