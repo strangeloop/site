@@ -47,6 +47,7 @@
     </li>
   <% end %>
     <li><%= link_to t('.manage_rooms'), admin_rooms_url %></li>
+    <li><%= link_to t('.manage_session_times'), admin_session_times_url %></li>
     <% for year in ConferenceSession.all_years %>
       <li><%= link_to "Export Conference Sessions From #{year}", export_admin_conference_sessions_path(year, "csv") %></li>
     <% end %>

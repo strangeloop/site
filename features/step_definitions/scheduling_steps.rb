@@ -18,3 +18,7 @@ Given /^there are no rooms$/ do
   Room.destroy_all
 end
 
+Given /^there are no session times$/ do
+  SessionTime.destroy_all
+end
+

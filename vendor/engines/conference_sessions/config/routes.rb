@@ -29,5 +29,6 @@ Refinery::Application.routes.draw do
     end
 
     resources :rooms
+    resources :session_times
   end
 end

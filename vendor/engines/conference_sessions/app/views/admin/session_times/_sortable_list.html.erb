@@ -1,0 +1,8 @@
+<ul id='sortable_list'>
+  <%= render :partial => 'session_time', :collection => @session_times %>
+</ul>
+<%= render :partial => "/shared/admin/sortable_list",
+            :locals => {
+              :continue_reordering => false
+            } %>
+
