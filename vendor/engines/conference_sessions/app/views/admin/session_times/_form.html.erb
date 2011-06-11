@@ -1,0 +1,17 @@
+<%= form_for [:admin, @session_time], :validate => true do |f| -%>
+  <%= render :partial => "/shared/admin/error_messages", :locals => {
+          :object => @session_time,
+          :include_object_name => true
+        } %>
+
+  <%= render :partial => "/shared/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('delete', :scope => 'admin.session_times.session_time'),
+                :delete_confirmation => t('message', :scope => 'shared.admin.delete', :title => @session_time.title)
+              } %>
+
+<% end %>
+
+

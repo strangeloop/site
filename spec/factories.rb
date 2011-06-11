@@ -210,3 +210,8 @@ Factory.define :room do |rm|
   rm.capacity 200
   rm.conf_year Time.now.year
 end
+
+Factory.define :session_time do |st|
+  st.start_time DateTime.parse('July 6, 1971, 12:30')
+  st.end_time DateTime.parse('July 6, 1971, 13:30')
+end

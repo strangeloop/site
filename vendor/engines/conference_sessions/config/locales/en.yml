@@ -16,6 +16,7 @@ en:
         sorry_no_results: Sorry! There are no results found.
         no_items_yet: There are no Conference Sessions yet. Click "Add New Conference Session" to add your first conference session.
         manage_rooms: Manage Conference Rooms
+        manage_session_times: Manage Conference Session Times
       conference_session:
         view_live_html: View this conference session live <br/><em>(opens in a new window)</em>
         edit: Edit this conference session
@@ -42,6 +43,11 @@ en:
       room:
         edit: Edit this Room
         delete: Delete this Room
+    session_times:
+      index:
+        no_items_yet: No session times exist for the current conference year
+        create_new: Add a Session Time
+        back_to_conf_sessions: Back to All Conference Sessions
 
   conference_sessions:
     index:
