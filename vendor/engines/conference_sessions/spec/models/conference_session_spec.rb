@@ -62,6 +62,8 @@ describe ConferenceSession do
 
   it {should belong_to :talk}
   it {should belong_to :slides}
+  it {should belong_to :session_time}
+  it {should belong_to :room}
 
   it "gets its title from its talk" do
     conference_session.title.should == talk.title

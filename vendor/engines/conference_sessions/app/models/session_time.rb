@@ -7,6 +7,11 @@ class SessionTime < ActiveRecord::Base
   validates_numericality_of :duration_minutes, :greater_than => 0,
     :unless => Proc.new {|st| st.is_greater_than_zero? :duration_hours }
 
+  scope :current_year, lambda {
+    date_range = DateTime.parse('January 1')..DateTime.parse('December 31')
+    where(:start_time => date_range)
+  }
+
   def is_greater_than_zero?(field)
     (self[field] || 0) > 0
   end

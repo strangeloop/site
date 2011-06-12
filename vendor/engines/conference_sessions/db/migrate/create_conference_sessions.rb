@@ -19,7 +19,8 @@ class CreateConferenceSessions < ActiveRecord::Migration
 
   def self.up
     create_table :conference_sessions do |t|
-      t.datetime :start_time
+      t.session_time_id :integer
+      t.room_id :integer
       t.references :talk
       t.string :title
       t.integer :slides_id

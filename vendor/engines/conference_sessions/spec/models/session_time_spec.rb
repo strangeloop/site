@@ -28,4 +28,12 @@ describe SessionTime do
   it "is valid if start_time, duration_hours, and duration_minutes are non-zero" do
     SessionTime.new(:start_time => DateTime.now, :duration_hours => 1, :duration_minutes => 1).should be_valid
   end
+
+  context "#current_year" do
+    it "only includes session times from this year" do
+      current_year_time = Factory(:session_time)
+      Factory(:session_time, :start_time => DateTime.parse('July 6, 1971, 12:00 PM'))
+      SessionTime.current_year.should == [current_year_time]
+    end
+  end
 end

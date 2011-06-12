@@ -40,3 +40,17 @@ Feature: As a conference organizer, I can manage where and when
     And I push the Save button
     Then I should be on the session times index page
     And I should see "Tuesday from 02:00 to 03:00 PM"
+
+  Scenario: Conference organizer selects session time and room for conference session
+    Given a talk session exists
+    And a session time exists
+    And a room exists
+    And I am a logged in organizer
+    And I am on the conference sessions admin index page
+    And I follow "Edit this conference session"
+    When I select "Tuesday from 12:30 to 01:30 PM" from "Session Time"
+    And I select "Room 1 (cap. 200)" from "Room"
+    And I push the Save button
+    Then I should be on the conference sessions admin index page
+    And I should see "'Sample Talk' was successfully updated."
+

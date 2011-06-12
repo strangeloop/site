@@ -36,4 +36,12 @@ describe Room do
   it "requires a room name" do
     Room.new(:capacity => 2).should_not be_valid
   end
+
+  context "#current_year" do
+    it "only includes rooms from this year" do
+      current_year_room = Factory(:room)
+      Factory(:room, :conf_year => 2010)
+      Room.current_year.should == [current_year_room]
+    end
+  end  
 end

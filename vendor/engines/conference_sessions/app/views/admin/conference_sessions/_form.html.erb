@@ -5,8 +5,13 @@
         } %>
 
   <div class='field'>
-    <%= f.label :start_time -%>
-    <%= f.datetime_select :start_time -%>
+    <%= f.label :session_time_id, t('.session_time') -%>
+    <%= collection_select(:conference_session, :session_time_id, @session_times, :id, :title) -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :room_id, t('.room') -%>
+    <%= collection_select(:conference_session, :room_id, @rooms, :id, :title) -%>
   </div>
 
   <div class="field">
@@ -16,7 +21,7 @@
   
   <div class='field'>
     <%= f.label :format -%>
-    <%= f.select(:format, ConferenceSession::format_options) -%>
+    <%= f.select :format, @format_options -%>
   </div>
 
   <div class="field">
