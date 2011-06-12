@@ -4,18 +4,14 @@
           :include_object_name => true
         } %>
 
-  <div class='field'>
+  <div class="field">
     <%= f.label :start_time, t('.start_time') -%>
     <%= f.datetime_select :start_time -%>
   </div>
 
+  <%= f.label :duration_hours, t('.duration') %>
   <div class="field">
-    <%= f.label :duration_hours, t('.duration_hours')%>
-    <%= f.select :duration_hours, 0..8 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :duration_minutes, t('.duration_minutes') %>
+    <%= f.select :duration_hours, 0..8 %> : 
     <%= f.select :duration_minutes, 0..59 %>
   </div>  
 
