@@ -2,17 +2,13 @@ class SessionTime < ActiveRecord::Base
   validates_presence_of :start_time
 
   validates_numericality_of :duration_hours, :greater_than => 0,
-    :unless => Proc.new {|st| st.duration_minutes > 0 }
+    :unless => Proc.new {|st| st.is_greater_than_zero? :duration_minutes }
 
   validates_numericality_of :duration_minutes, :greater_than => 0,
-    :unless => Proc.new {|st| st.duration_hours > 0 }
+    :unless => Proc.new {|st| st.is_greater_than_zero? :duration_hours }
 
-  def duration_hours
-    self[:duration_hours] || 0
-  end
-
-  def duration_minutes
-    self[:duration_minutes] || 0
+  def is_greater_than_zero?(field)
+    (self[field] || 0) > 0
   end
 
   def title
