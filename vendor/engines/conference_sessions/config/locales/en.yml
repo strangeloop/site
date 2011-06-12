@@ -44,14 +44,18 @@ en:
         edit: Edit this Room
         delete: Delete this Room
     session_times:
+      edit:
+        session_time: Session Time
+      form:
+        start_time: Start Time
+        duration: Duration (Hours:Minutes)
       index:
         no_items_yet: No session times exist for the current conference year
         create_new: Add a Session Time
         back_to_conf_sessions: Back to All Conference Sessions
-      form:
-        start_time: Start Time
-        duration_hours: Duration Hours
-        duration_minutes: Duration Minutes
+      session_time:
+        edit: Edit this Session Time
+        delete: Delete this Session Time
 
   conference_sessions:
     index:
