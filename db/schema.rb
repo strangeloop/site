@@ -233,7 +233,8 @@ ActiveRecord::Schema.define(:version => 20110611004736) do
 
   create_table "session_times", :force => true do |t|
     t.datetime "start_time"
-    t.datetime "end_time"
+    t.integer  "duration_hours"
+    t.integer  "duration_minutes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

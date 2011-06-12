@@ -2,9 +2,10 @@ class CreateSessionTimes < ActiveRecord::Migration
   def self.up
     create_table :session_times do |ts|
       ts.datetime :start_time
-      ts.datetime :end_time
+      ts.integer :duration_hours
+      ts.integer :duration_minutes
 
-      t.timestamps
+      ts.timestamps
     end
   end
 
@@ -12,4 +13,5 @@ class CreateSessionTimes < ActiveRecord::Migration
     drop_table :session_times
   end
 end
+
 

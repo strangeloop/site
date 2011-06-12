@@ -35,9 +35,9 @@ Feature: As a conference organizer, I can manage where and when
     And I am on the conference sessions admin index page
     And I follow "Manage Conference Session Times"
     And I follow "Add a Session Time"
-    When I change the Start Time date selector to "2011 June 7 02 00"
-    And I change the Duration Hours field to "0"
-    And I change the Duration Minutes field to "15"
+    When I select "June 7, 2011, 14:00" as the "Start Time" date and time 
+    And I select "0" from "Duration Hours"
+    And I select "15" from "Duration Minutes"
     And I push the Save button
     Then I should be on the session times index page
-    And I should see "June 7, 2011 from 02:00 - 02:15"
+    And I should see "Tuesday from 02:00 to 02:15 PM"
