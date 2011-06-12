@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110611004736) do
+ActiveRecord::Schema.define(:version => 20110612170509) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20110611004736) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "conference_sessions", :force => true do |t|
-    t.datetime "start_time"
     t.integer  "talk_id"
     t.string   "format"
     t.integer  "slides_id"
@@ -35,7 +34,9 @@ ActiveRecord::Schema.define(:version => 20110611004736) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cached_slug"
-    t.integer  "conf_year",   :default => 2011
+    t.integer  "conf_year",       :default => 2011
+    t.integer  "session_time_id"
+    t.integer  "room_id"
   end
 
   add_index "conference_sessions", ["cached_slug"], :name => "index_conference_sessions_on_cached_slug", :unique => true

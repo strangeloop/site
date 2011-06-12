@@ -212,7 +212,7 @@ Factory.define :room do |rm|
 end
 
 Factory.define :session_time do |st|
-  st.start_time DateTime.parse('July 6, 1971, 12:30')
+  st.start_time DateTime.parse('Tuesday, 12:30 PM')
   st.duration_hours 1
   st.duration_minutes 0
 end
