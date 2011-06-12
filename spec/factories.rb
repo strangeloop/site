@@ -213,5 +213,6 @@ end
 
 Factory.define :session_time do |st|
   st.start_time DateTime.parse('July 6, 1971, 12:30')
-  st.end_time DateTime.parse('July 6, 1971, 13:30')
+  st.duration_hours 1
+  st.duration_minutes 0
 end
