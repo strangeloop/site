@@ -48,9 +48,9 @@ class RegOnlineController < ApplicationController
   end
 
   def create_user_meta(regonline, params, um)
-        # Fields TODO - dob, middle_name?, twitter_id, blog_url,
+    # Fields TODO - dob, middle_name?, twitter_id, blog_url,
     # company_name
-    
+ client = Savon::Client.new  "https://www.regonline.com/activereports/RegOnline.asmx?wsdl"
     update_metadata(um, @@form_mapping, params)
     user_verified = regonline.get_custom_user_info(params["RegisterId"]) do |reg_hash|
       update_metadata(um, @@custom_field_mapping, params)
@@ -68,7 +68,7 @@ class RegOnlineController < ApplicationController
   end
   
   def create
-    created = create_user_meta UserMetadata.new, @@regonline_client, params
+    created = create_user_meta @@regonline_client, params, UserMetadata.new
     render :nothing => true
   end
 end
