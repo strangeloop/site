@@ -93,15 +93,12 @@ button {  width: auto; overflow: visible; }
 .cufon-loading .s_button, .cufon-loading .slider_title, .cufon-loading .page_title, .cufon-loading .price_table, .cufon-loading .price_button, .cufon-loading .slider_txt, .cufon-loading .cont_design_title, .cufon-loading .button2, .cufon-loading .sf-menu > li > a, .cufon-loading .number, .cufon-loading .price, .cufon-loading .price_list, .cufon-loading h4, .cufon-loading h3,  .cufon-loading .page_description, .cufon-loading .carousel_button span  { visibility: hidden !important; }
 
 
-
-
 table td, table thead th {padding:16px 30px; text-align:left; font-family:Tahoma, Geneva, sans-serif}
 table thead th {background:#0f0f0f; color:#e2e2e2; padding:25px 0 25px 30px; border-top:1px solid #1f1f1f; border-bottom:1px solid #1f1f1f; font-size:16px;}
 table td { color:#b2b2b2; background:#111; text-align:center}
 .style1 td {background:#151515}
 tfoot td {background:#0a0a0a; border-top:1px solid #1f1f1f; border-bottom:1px solid #1f1f1f; color:#0366a3; font-weight:bold}
 table td:first-child {text-align:left }
-
 
 
 /* Heading styles */
@@ -253,8 +250,6 @@ p {margin-bottom:22px;}
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3{ page-break-after: avoid; }
 }
-
-
 
 
 body {
@@ -482,7 +477,6 @@ nav {position:absolute; top:0px; right:0}
 .right_links a:hover, .left_links a:hover {color:#fff; text-decoration:none}
 	
 	
-	
 .footer_box {
 	float: right;
 }
@@ -523,7 +517,7 @@ nav {position:absolute; top:0px; right:0}
 }
 
 .bottom_box a {
-	color: #fff;;	
+	color: #fff;
 }
 
 .bottom_box ul {
@@ -545,5 +539,28 @@ nav {position:absolute; top:0px; right:0}
 .freetext {
     height: 100px;
     width: 400px;
+}
+
+.free {
+  list-style-type: none;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.column1 {
+  margin-left: 0;
+  margin-right: 10px;
+  padding: 5px;
+  float: left;
+  background-color: #3a3a3a;
+}
+.column2 {
+  margin-left: 120px;
+  padding: 5px;
+}
+
+.column2 .title a {
+  font-size:1.4em;
+  color:#fff;
+  text-decoration:none;
 }
 

@@ -25,7 +25,7 @@ class ConferenceSession < ActiveRecord::Base
   accepts_nested_attributes_for :talk
 
   def self.format_options
-    %w(keynote workshop talk lightning undefined strange\ passions panel)
+    %w(keynote workshop talk lightning undefined strange\ passions panel miscellaneous)
   end
 
   validates_inclusion_of :format, :in => format_options
@@ -35,6 +35,9 @@ class ConferenceSession < ActiveRecord::Base
 
   has_friendly_id :title, :use_slug => true
 
+  scope :defined_format, where('format <> ?', 'undefined')
+  scope :by_start_time_and_room, includes(:session_time, :room).order('session_times.start_time', 'rooms.capacity DESC')
+
   def format
     self[:format] || 'undefined'
   end
@@ -43,9 +46,12 @@ class ConferenceSession < ActiveRecord::Base
     talk.title
   end
 
+  def day
+    session_time.nil? ? 'Unscheduled' : session_time.start_time.strftime('%A')
+  end
+
   def start_time
-    return nil unless session_time
-    session_time.start
+    session_time.try(:start_time)
   end
 
   class <<self
@@ -57,15 +63,23 @@ class ConferenceSession < ActiveRecord::Base
     def from_year(year = nil)
       where(:conf_year => year || maximum('conf_year'))
     end
-    
+
+    #returns ordered map of "defined" conference sessions, for
+    #the current year, keyed by session_time (ascending)
+    def by_session_time
+      sessions = defined_format.from_year.by_start_time_and_room
+      hash = ActiveSupport::OrderedHash.new{|h, k| h[k] = ConferenceSession::new_ordered_hash_of_arrays }
+      sessions.each{|session| hash[session.day][session.session_time] << session }
+      hash
+    end
+
     def to_csv(year = nil)
-      conferenceSessions = ConferenceSession.from_year(year)
       FasterCSV.generate({:force_quotes => true}) do |csv|
         csv << ["conf_year", "start_time", "position", 
           "title", "format", "talk_type", 
           "abstract", "comments", "prereqs", 
           "av_requirement", "video_approval", "speaker"]
-        conferenceSessions.each do |c|
+        from_year(year).each do |c|
           speakers = c.talk.speakers.to_a
           csv << [c.conf_year, c.start_time, c.position, 
             c.title, c.format, c.talk.talk_type, 
@@ -73,6 +87,13 @@ class ConferenceSession < ActiveRecord::Base
             c.talk.av_requirement, c.talk.video_approval, speakers.join(";")]
         end
       end
+    end
+  end
+
+  private
+  class <<self
+    def new_ordered_hash_of_arrays
+      ActiveSupport::OrderedHash.new{|h, k| h[k] = []}
     end
   end
 end

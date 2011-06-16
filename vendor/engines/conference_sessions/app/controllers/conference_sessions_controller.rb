@@ -24,6 +24,7 @@ class ConferenceSessionsController < ApplicationController
       sessions
     }
   end
+  expose(:sessions_for_schedule) { ConferenceSession::by_session_time }
   expose(:conference_session)
   expose(:talk) { conference_session.talk }
   expose(:speaker) { talk.speakers.first }
@@ -33,5 +34,8 @@ class ConferenceSessionsController < ApplicationController
   end
 
   def show
+  end
+
+  def schedule
   end
 end

@@ -19,7 +19,7 @@
 module Admin
   class RoomsController < Admin::BaseController
 
-    crudify :room
+    crudify :room, :order => 'capacity ASC'
 
   end
 end
