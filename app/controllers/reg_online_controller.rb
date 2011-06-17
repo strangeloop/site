@@ -35,7 +35,9 @@ class RegOnlineController < ApplicationController
 
   @@custom_field_mapping = {"Twitter_x0020_Username" => :twitter_id}
 
-  @@regonline_client = RegOnline.new( :username => 'Foo', :password => "Bar")
+  @@regonline_config = YAML::load_file('config/regonline.yml')
+  @@regonline_client = RegOnline.new(:username => @@regonline_config["username"],
+                                     :password => @@regonline_config["password"])
 
   def has_data? (data_str)
      data_str && !data_str.empty? && data_str != "NotSet"
