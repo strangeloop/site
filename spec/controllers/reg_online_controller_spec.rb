@@ -92,6 +92,8 @@ describe RegOnlineController do
     db_um.work_phone.should be_nil
     db_um.home_phone.should be_nil
     db_um.cell_phone.should be_nil
+    db_um.company.should == "Strange Loop"
+    db_um.state.should == "MO"
     
   end
 end

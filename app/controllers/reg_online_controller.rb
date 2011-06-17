@@ -31,7 +31,9 @@ class RegOnlineController < ApplicationController
     "Postcode" => :postal_code=,
     "Phone" => :work_phone=,
     "HomePhone" => :home_phone=,
-    "Mobile" => :cell_phone=}
+    "Mobile" => :cell_phone=,
+    "Company"=> :company=,
+    "State" => :state=}
 
   @@custom_field_mapping = {"Twitter_x0020_Username" => :twitter_id}
 

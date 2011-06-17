@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110521222338) do
+ActiveRecord::Schema.define(:version => 20110617032018) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -119,8 +119,8 @@ ActiveRecord::Schema.define(:version => 20110521222338) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "custom_title"
     t.string   "title"
+    t.string   "custom_title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -329,7 +329,6 @@ ActiveRecord::Schema.define(:version => 20110521222338) do
     t.string   "address_2"
     t.string   "gender"
     t.string   "city"
-    t.string   "region"
     t.string   "country"
     t.string   "postal_code"
     t.string   "home_phone"
@@ -343,6 +342,8 @@ ActiveRecord::Schema.define(:version => 20110521222338) do
     t.string   "reg_status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "company"
+    t.string   "state"
   end
 
   create_table "user_plugins", :force => true do |t|
