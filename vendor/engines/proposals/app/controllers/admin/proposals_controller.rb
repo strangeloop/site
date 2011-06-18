@@ -25,33 +25,32 @@ module Admin
       redirect_to(root_path) unless current_user.has_role? :organizer
     end
 
+    before_filter(:only => [:edit]) do
+      @session_times = SessionTime.current_year
+    end
+
     crudify :proposal,
             :title_attribute => 'status', :order => 'created_at DESC'
 
     def rate
-      @proposal = Proposal.find(params[:id])
-      @proposal.rate(params[:stars], current_user, params[:dimension])
+      @proposal = Proposal.find(params[:id]).tap do |proposal|
+        proposal.rate(params[:stars], current_user, params[:dimension])
+        #the reload is needed in case the status changed, 
+        #I wish this could be more elegant
+        proposal.reload
+      end
       @params = params
-      #the reload is needed in case the status changed, 
-      #I wish this could be more elegant
-      @proposal.reload
     end
 
     def add_comment
-      proposal = Proposal.find(params[:id])
-      proposal.comments.create(:comment => params[:comment], :user => current_user)
+      proposal = Proposal.find(params[:id]).tap do |proposal|
+        proposal.comments.create(:comment => params[:comment], :user => current_user)
+        #the reload is needed in case the status changed,
+        #I wish this could be more elegant
+        proposal.reload
+      end
       @comment = params[:comment]
-      #the reload is needed in case the status changed, 
-      #I wish this could be more elegant      
-      proposal.reload
       @status = proposal.status
-    end
-
-    def update_proposal_status(id, status)
-      proposal = Proposal.find(id)
-      proposal[:status] = status
-      proposal.save
-      proposal
     end
 
     def proposal_update
@@ -63,26 +62,36 @@ module Admin
       end
     end
 
-    def approve_proposal(send_email)
-      proposal = update_proposal_status(params[:id], "accepted")
-      ConferenceSession.create(:talk => proposal.talk)
-      if(send_email)
-        SpeakerMailer.talk_accepted_email(proposal.talk).deliver
+    def export
+      respond_to do |format|
+        format.csv { render :xml => Proposal.pending_to_csv }
       end
+    end
+
+    private
+    def approve_proposal(send_email)
+      proposal = update_proposal_status("accepted")
+      session_time = SessionTime.find(params[:conference_session][:session_time_id])
+      talk = proposal.talk
+      conf_session = ConferenceSession.create(:talk => talk, :session_time => session_time)
+
+      SpeakerMailer.talk_accepted_email(talk, session_time).deliver if send_email
+
       redirect_to :action => :index
     end
 
     def reject_proposal(send_email)
-      proposal = update_proposal_status(params[:id], "rejected")
-      if(send_email)
-        SpeakerMailer.talk_rejected_email(proposal.talk).deliver
-      end
+      proposal = update_proposal_status("rejected")
+
+      SpeakerMailer.talk_rejected_email(proposal.talk).deliver if send_email
+
       redirect_to :action => :index
     end
 
-    def export
-      respond_to do |format|
-        format.csv { render :xml => Proposal.pending_to_csv }
+    def update_proposal_status(status)
+      Proposal.find(params[:id]).tap do |proposal|
+        proposal.status = status
+        proposal.save
       end
     end
   end

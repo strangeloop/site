@@ -117,9 +117,12 @@
         </div>
 
       <% end %>
-     <%= form_tag(:controller => "proposals",
-     :action =>  "proposal_update", :method => "post") do %>
+      <%= form_tag(:controller => "proposals", :action =>  "proposal_update", :method => "post") do %>
         <% if @proposal.status != 'accepted' %>
+          <div class='field' style="padding-bottom: 10px;">
+            <%= label_tag :session_time_id, t('.session_time') -%>
+            <%= collection_select(:conference_session, :session_time_id, @session_times, :id, :title) -%>
+          </div>
           <%= submit_tag(t('.approve_talk'), :name => "approve") %>
         <% end %>
         <% if @proposal.status != 'rejected' %>

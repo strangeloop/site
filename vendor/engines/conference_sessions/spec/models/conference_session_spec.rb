@@ -46,6 +46,10 @@ describe ConferenceSession do
       end
     end
 
+    it "is valid with talk and session time" do
+      ConferenceSession.new(:talk => talk, :session_time => Factory(:session_time)).should be_valid
+    end
+
     %w(workshop keynote talk lightning undefined strange\ passions panel).each do |talk_format|
       context "talk format validation" do
         let(:session) { ConferenceSession.new(:talk => Factory(:talk), :format => talk_format) }
