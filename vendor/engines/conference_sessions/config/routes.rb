@@ -18,7 +18,7 @@
 Refinery::Application.routes.draw do
   resources :conference_sessions, :path => '/sessions', :only => [:index, :show]
 
-  match '/schedule', :controller => 'conference_sessions', :action => :schedule
+  #match '/schedule', :controller => 'conference_sessions', :action => :schedule
 
   match 'archive/*year', :controller => 'conference_sessions', :action => :index
 
