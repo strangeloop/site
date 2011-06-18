@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110612170509) do
+ActiveRecord::Schema.define(:version => 20110617032018) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -120,8 +120,8 @@ ActiveRecord::Schema.define(:version => 20110612170509) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "title"
     t.string   "custom_title"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
