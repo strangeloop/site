@@ -29,11 +29,21 @@ describe SessionTime do
     SessionTime.new(:start_time => DateTime.now, :duration_hours => 1, :duration_minutes => 1).should be_valid
   end
 
+  let(:marios_birthday_session_time) { Factory(:session_time, :start_time => DateTime.parse('July 6, 1971, 12:00 PM')) }
+
   context "#current_year" do
     it "only includes session times from this year" do
       current_year_time = Factory(:session_time)
-      Factory(:session_time, :start_time => DateTime.parse('July 6, 1971, 12:00 PM'))
+      marios_birthday_session_time
       SessionTime.current_year.should == [current_year_time]
     end
+  end
+
+  it "formats #time_period as hour AMPM - hour AMPM" do
+    Factory(:morning_session_time).time_period.should eq('09:00 AM - 10:00 AM')
+  end
+
+  it "formats #day as day of the week, month day" do
+    marios_birthday_session_time.day.should eq('Tuesday, July 06')
   end
 end
