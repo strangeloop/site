@@ -105,7 +105,7 @@ describe Admin::ProposalsController do
       Proposal.stub(:find).with(1).and_return(proposal)
     end
 
-    it "updates the proposal status to 'accepted'" do
+    it "updates the proposal status to 'rejected'" do
       proposal.should_receive(:status=).with('rejected')
       proposal.should_receive(:save)
 
@@ -114,7 +114,7 @@ describe Admin::ProposalsController do
       response.should redirect_to(admin_proposals_path)
     end
 
-    it "sends approval email optionally" do
+    it "sends rejection email optionally" do
       proposal.should_receive(:talk).and_return(talk)
       mailer_mock = mock('mailer')
       mailer_mock.should_receive :deliver
