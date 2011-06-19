@@ -211,8 +211,34 @@ Factory.define :room do |rm|
   rm.conf_year Time.now.year
 end
 
+Factory.define :big_room, :parent => :room do |br|
+  br.capacity 1000
+  br.name 'Big Room'
+end
+
+Factory.define :small_room, :parent => :room do |sr|
+  sr.capacity 100
+  sr.name 'Small Room'
+end
+
+Factory.define :last_years_room, :parent => :room do |lyr|
+  lyr.conf_year Time.now.year - 1
+end
+
 Factory.define :session_time do |st|
   st.start_time DateTime.parse('Tuesday, 12:30 PM')
   st.duration_hours 1
   st.duration_minutes 0
+end
+
+Factory.define :morning_session_time, :parent => :session_time do |ms|
+  ms.start_time DateTime.parse('Tuesday, 09:00 AM')
+end
+
+Factory.define :evening_session_time, :parent => :session_time do |es|
+  es.start_time DateTime.parse('Tuesday, 05:00 PM')
+end
+
+Factory.define :last_years_session_time, :parent => :session_time do |lyst|
+  lyst.start_time DateTime.parse("July 6, #{Time.now.year - 1}, 12:30 PM")
 end

@@ -158,6 +158,45 @@ describe ConferenceSession do
   	  conf_year.should == 2010.to_s
     end
   end
-  
+
+  context "#by_session_time" do
+    let(:small_room) { Factory(:small_room) }
+    let(:big_room) { Factory(:big_room) }
+    let(:evening_session_time) { Factory(:evening_session_time) }
+    let(:morning_session_time) { Factory(:morning_session_time) }
+    let(:session_time) { Factory(:session_time) }
+    let(:fifth) {  Factory(:talk_session, :session_time => evening_session_time, :room => small_room) }
+    let(:fourth) { Factory(:talk_session, :session_time => evening_session_time, :room => big_room) }
+    let(:third) {  Factory(:talk_session, :session_time => session_time,         :room => small_room) }
+    let(:first) {  Factory(:talk_session, :session_time => morning_session_time, :room => big_room) }
+    let(:second) { Factory(:talk_session, :session_time => morning_session_time, :room => Factory(:room)) }
+
+    it "sorts by session time then room size" do
+      fourth
+      fifth
+      second
+      first
+      third
+
+      sessions = ConferenceSession::by_session_time
+
+      sessions.should == {'Tuesday' => { morning_session_time => [first, second],
+                                         session_time         => [third],
+                                         evening_session_time => [fourth, fifth] }}
+    end
+
+    it "ignores last years conference sessions" do
+      first
+      Factory(:last_years_talk_session, :session_time => Factory(:last_years_session_time), :room => Factory(:last_years_room))
+
+      ConferenceSession::by_session_time.should == {'Tuesday' => { morning_session_time => [first] } }
+    end
+
+    it "ignores undefined conference sessions" do
+      Factory(:conference_session, :talk => Factory(:talk), :session_time => session_time, :room => big_room)
+
+      ConferenceSession::by_session_time.should be_empty
+    end
+  end
 end
 

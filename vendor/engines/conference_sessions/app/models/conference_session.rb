@@ -65,7 +65,7 @@ class ConferenceSession < ActiveRecord::Base
     end
 
     #returns ordered map of "defined" conference sessions, for
-    #the current year, keyed by session_time (ascending)
+    #the current year, keyed by session day, then session_time (ascending)
     def by_session_time
       sessions = defined_format.from_year.by_start_time_and_room
       hash = ActiveSupport::OrderedHash.new{|h, k| h[k] = ConferenceSession::new_ordered_hash_of_arrays }
