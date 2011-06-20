@@ -211,17 +211,20 @@ end
 Factory.define :room do |rm|
   rm.name 'Room 1'
   rm.capacity 200
+  rm.position 1
   rm.conf_year Time.now.year
 end
 
 Factory.define :big_room, :parent => :room do |br|
   br.capacity 1000
   br.name 'Big Room'
+  br.position 0
 end
 
 Factory.define :small_room, :parent => :room do |sr|
   sr.capacity 100
   sr.name 'Small Room'
+  sr.position 2
 end
 
 Factory.define :room_from_2009, :parent => :room do |lyr|

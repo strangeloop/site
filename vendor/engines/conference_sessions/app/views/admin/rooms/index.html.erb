@@ -31,8 +31,27 @@
     <li>
       <%= link_to t('.create_new'), new_admin_room_url, :class => "add_icon" %>
     </li>
+    <% if !searching? and Admin::RoomsController.sortable? and Room.count > 1 %>
+      <li>
+        <%= link_to t('.reorder', :what => "Rooms"),
+          admin_rooms_url,
+          :id => "reorder_action",
+          :class => "reorder_icon" %>
+
+          <%= link_to t('.reorder_done', :what => "Rooms"),
+            admin_rooms_url,
+            :id => "reorder_action_done",
+            :style => "display: none;",
+            :class => "reorder_icon" %>
+      </li>
+    <% end %>    
     <li>
       <%= link_to t('.back_to_conf_sessions'), admin_conference_sessions_url, :class => "back_icon" %>
     </li>
   </ul>
 </div>
+<%= render :partial => "/shared/admin/make_sortable",
+            :locals => {
+              :tree => false
+            } if !searching? and Admin::RoomsController.sortable? and Room.count > 1 %>
+

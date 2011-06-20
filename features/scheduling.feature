@@ -19,6 +19,7 @@ Feature: As a conference organizer, I can manage where and when
     And I follow "Add a Room"
     When I change the Name field to "West Room 1"
     And I change the Capacity field to "200"
+    And I change the Position field to "1"
     And I push the Save button
     Then I should be on the room index page
     And I should see "West Room 1 (cap. 200)"

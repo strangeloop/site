@@ -30,7 +30,11 @@ Refinery::Application.routes.draw do
       end
     end
 
-    resources :rooms
+    resources :rooms, :except => :show do
+      collection do
+        post :update_positions
+      end
+    end
     resources :session_times
   end
 end

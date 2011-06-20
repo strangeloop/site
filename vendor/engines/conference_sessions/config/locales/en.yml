@@ -43,6 +43,8 @@ en:
         create_new: Add a Room
         no_items_yet: No rooms exist for the current conference year
         back_to_conf_sessions: Back to All Conference Sessions
+        reorder: Reorder Rooms
+        reorder_done: Done Reordering Rooms
       room:
         edit: Edit this Room
         delete: Delete this Room

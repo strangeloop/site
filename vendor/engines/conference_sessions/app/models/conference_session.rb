@@ -36,7 +36,7 @@ class ConferenceSession < ActiveRecord::Base
   has_friendly_id :title, :use_slug => true
 
   scope :defined_format, where('format <> ?', 'undefined')
-  scope :by_start_time_and_room, includes(:session_time, :room).order('session_times.start_time', 'rooms.capacity DESC')
+  scope :by_start_time_and_room, includes(:session_time, :room).order('session_times.start_time', 'rooms.position ASC')
 
   def format
     self[:format] || 'undefined'

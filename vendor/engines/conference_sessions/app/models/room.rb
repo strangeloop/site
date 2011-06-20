@@ -23,7 +23,7 @@ class Room < ActiveRecord::Base
     validates_presence_of field
   end
 
-  scope :current_year, lambda { where(:conf_year => Time.now.year).order('capacity ASC') }
+  scope :current_year, lambda { where(:conf_year => Time.now.year).order('position ASC') }
 
   def title
     "#{name} (cap. #{capacity})"
