@@ -180,16 +180,16 @@ describe ConferenceSession do
 
       sessions = ConferenceSession::by_session_time
 
-      sessions.should == {'Tuesday' => { morning_session_time => [first, second],
-                                         session_time         => [third],
-                                         evening_session_time => [fourth, fifth] }}
+      sessions.should == {'Thursday, July 01, 2010' => { morning_session_time => [first, second],
+                                                        session_time         => [third],
+                                                        evening_session_time => [fourth, fifth] }}
     end
 
-    it "ignores last years conference sessions" do
+    it "ignores all but the most recent years conference sessions" do
       first
-      Factory(:last_years_talk_session, :session_time => Factory(:last_years_session_time), :room => Factory(:last_years_room))
+      Factory(:talk_session_2009, :session_time => Factory(:session_time_2009), :room => Factory(:room_from_2009))
 
-      ConferenceSession::by_session_time.should == {'Tuesday' => { morning_session_time => [first] } }
+      ConferenceSession::by_session_time.should == {'Thursday, July 01, 2010' => { morning_session_time => [first] } }
     end
 
     it "ignores undefined conference sessions" do

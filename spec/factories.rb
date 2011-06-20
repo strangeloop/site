@@ -53,7 +53,6 @@ Factory.define :submission_admin2, :parent => :user do |u|
   u.roles {[Role["Submission Admin"]]}
 end
 
-
 Factory.define :alternate_reviewer, :parent => :reviewer do |u|
   u.username 'alternate_reviewer'
 end
@@ -148,6 +147,10 @@ Factory.define :last_years_talk_session, :parent => :talk_session do |lyts|
   lyts.conf_year Time.now.year - 1
 end
 
+Factory.define :talk_session_2009, :parent => :talk_session do |lyts|
+  lyts.conf_year 2009
+end
+
 Factory.define :sponsorship_level do |sl|
   sl.name 'Platinum'
   sl.year Time.now.year
@@ -221,24 +224,28 @@ Factory.define :small_room, :parent => :room do |sr|
   sr.name 'Small Room'
 end
 
-Factory.define :last_years_room, :parent => :room do |lyr|
-  lyr.conf_year Time.now.year - 1
+Factory.define :room_from_2009, :parent => :room do |lyr|
+  lyr.conf_year 2009
 end
 
 Factory.define :session_time do |st|
-  st.start_time DateTime.parse('Tuesday, 12:30 PM')
+  st.start_time DateTime.parse('Thursday, July 1, 2010 12:30 PM')
   st.duration_hours 1
   st.duration_minutes 0
 end
 
+Factory.define :session_time_from_this_year, :parent => :session_time do |st|
+  st.start_time DateTime.parse 'Tuesday, 12:30 PM'
+end
+
 Factory.define :morning_session_time, :parent => :session_time do |ms|
-  ms.start_time DateTime.parse('Tuesday, 09:00 AM')
+  ms.start_time DateTime.parse('Thursday, July 1, 2010 09:00 AM')
 end
 
 Factory.define :evening_session_time, :parent => :session_time do |es|
-  es.start_time DateTime.parse('Tuesday, 05:00 PM')
+  es.start_time DateTime.parse('Thursday, July 1, 2010 05:00 PM')
 end
 
-Factory.define :last_years_session_time, :parent => :session_time do |lyst|
-  lyst.start_time DateTime.parse("July 6, #{Time.now.year - 1}, 12:30 PM")
+Factory.define :session_time_2009, :parent => :session_time do |lyst|
+  lyst.start_time DateTime.parse("July 6, 2009, 12:30 PM")
 end

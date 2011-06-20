@@ -6,7 +6,7 @@ describe SessionTime do
   end
 
   its "title contains start and end time" do
-    Factory(:session_time).title.should eq('Tuesday from 12:30 to 01:30 PM')
+    Factory(:session_time).title.should eq('Thursday from 12:30 to 01:30 PM')
   end
 
   it "is invalid without start_time" do
@@ -33,7 +33,7 @@ describe SessionTime do
 
   context "#current_year" do
     it "only includes session times from this year" do
-      current_year_time = Factory(:session_time)
+      current_year_time = Factory(:session_time, :start_time => DateTime.parse('Tuesday, 09:00 AM'))
       marios_birthday_session_time
       SessionTime.current_year.should == [current_year_time]
     end

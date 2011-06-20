@@ -80,7 +80,7 @@ Feature: As a conference talks reviewer
 
   Scenario: Conference organizer approves proposal
     Given a proposal exists
-    And a session time exists
+    And a session time from this year exists
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
@@ -95,7 +95,7 @@ Feature: As a conference talks reviewer
 
   Scenario: Conference organizer approves proposal, does not want email sent
     Given a proposal exists
-    And a session time exists
+    And a session time from this year exists
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page

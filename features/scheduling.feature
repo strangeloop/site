@@ -43,7 +43,7 @@ Feature: As a conference organizer, I can manage where and when
 
   Scenario: Conference organizer selects session time and room for conference session
     Given a talk session exists
-    And a session time exists
+    And a session time from this year exists
     And a room exists
     And I am a logged in organizer
     And I am on the conference sessions admin index page
@@ -53,4 +53,7 @@ Feature: As a conference organizer, I can manage where and when
     And I push the Save button
     Then I should be on the conference sessions admin index page
     And I should see "'Sample Talk' was successfully updated."
+
+  Scenario: Site visitor views populated schedule page
+    
 

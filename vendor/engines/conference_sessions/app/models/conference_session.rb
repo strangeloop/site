@@ -47,7 +47,7 @@ class ConferenceSession < ActiveRecord::Base
   end
 
   def day
-    session_time.nil? ? 'Unscheduled' : session_time.start_time.strftime('%A')
+    session_time.nil? ? 'Unscheduled' : session_time.start_time.strftime('%A, %B %d, %Y')
   end
 
   def start_time
