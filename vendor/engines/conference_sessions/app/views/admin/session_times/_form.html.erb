@@ -1,0 +1,28 @@
+<%= form_for [:admin, @session_time], :validate => true do |f| -%>
+  <%= render :partial => "/shared/admin/error_messages", :locals => {
+          :object => @session_time,
+          :include_object_name => true
+        } %>
+
+  <div class="field">
+    <%= f.label :start_time, t('.start_time') -%>
+    <%= f.datetime_select :start_time -%>
+  </div>
+
+  <%= f.label :duration_hours, t('.duration') %>
+  <div class="field">
+    <%= f.select :duration_hours, 0..8 %> : 
+    <%= f.select :duration_minutes, 0..59 %>
+  </div>  
+
+  <%= render :partial => "/shared/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('delete', :scope => 'admin.session_times.session_time'),
+                :delete_confirmation => t('message', :scope => 'shared.admin.delete', :title => @session_time.title)
+              } %>
+
+<% end %>
+
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110521222338) do
+ActiveRecord::Schema.define(:version => 20110620003616) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20110521222338) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "conference_sessions", :force => true do |t|
-    t.datetime "start_time"
     t.integer  "talk_id"
     t.string   "format"
     t.integer  "slides_id"
@@ -35,7 +34,9 @@ ActiveRecord::Schema.define(:version => 20110521222338) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cached_slug"
-    t.integer  "conf_year",   :default => 2011
+    t.integer  "conf_year",       :default => 2011
+    t.integer  "session_time_id"
+    t.integer  "room_id"
   end
 
   add_index "conference_sessions", ["cached_slug"], :name => "index_conference_sessions_on_cached_slug", :unique => true
@@ -210,6 +211,15 @@ ActiveRecord::Schema.define(:version => 20110521222338) do
   add_index "roles_users", ["role_id", "user_id"], :name => "index_roles_users_on_role_id_and_user_id"
   add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id"
 
+  create_table "rooms", :force => true do |t|
+    t.string   "name"
+    t.integer  "capacity"
+    t.integer  "conf_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "position"
+  end
+
   create_table "seo_meta", :force => true do |t|
     t.integer  "seo_meta_id"
     t.string   "seo_meta_type"
@@ -222,6 +232,14 @@ ActiveRecord::Schema.define(:version => 20110521222338) do
 
   add_index "seo_meta", ["id"], :name => "index_seo_meta_on_id"
   add_index "seo_meta", ["seo_meta_id", "seo_meta_type"], :name => "index_seo_meta_on_seo_meta_id_and_seo_meta_type"
+
+  create_table "session_times", :force => true do |t|
+    t.datetime "start_time"
+    t.integer  "duration_hours"
+    t.integer  "duration_minutes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "slugs", :force => true do |t|
     t.string   "name"
@@ -329,7 +347,6 @@ ActiveRecord::Schema.define(:version => 20110521222338) do
     t.string   "address_2"
     t.string   "gender"
     t.string   "city"
-    t.string   "region"
     t.string   "country"
     t.string   "postal_code"
     t.string   "home_phone"
@@ -343,6 +360,8 @@ ActiveRecord::Schema.define(:version => 20110521222338) do
     t.string   "reg_status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "company"
+    t.string   "state"
   end
 
   create_table "user_plugins", :force => true do |t|

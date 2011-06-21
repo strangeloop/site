@@ -46,6 +46,10 @@ describe ConferenceSession do
       end
     end
 
+    it "is valid with talk and session time" do
+      ConferenceSession.new(:talk => talk, :session_time => Factory(:session_time)).should be_valid
+    end
+
     %w(workshop keynote talk lightning undefined strange\ passions panel).each do |talk_format|
       context "talk format validation" do
         let(:session) { ConferenceSession.new(:talk => Factory(:talk), :format => talk_format) }
@@ -62,6 +66,8 @@ describe ConferenceSession do
 
   it {should belong_to :talk}
   it {should belong_to :slides}
+  it {should belong_to :session_time}
+  it {should belong_to :room}
 
   it "gets its title from its talk" do
     conference_session.title.should == talk.title
@@ -152,6 +158,45 @@ describe ConferenceSession do
   	  conf_year.should == 2010.to_s
     end
   end
-  
+
+  context "#by_session_time" do
+    let(:small_room) { Factory(:small_room) }
+    let(:big_room) { Factory(:big_room) }
+    let(:evening_session_time) { Factory(:evening_session_time) }
+    let(:morning_session_time) { Factory(:morning_session_time) }
+    let(:session_time) { Factory(:session_time) }
+    let(:fifth) {  Factory(:talk_session, :session_time => evening_session_time, :room => small_room) }
+    let(:fourth) { Factory(:talk_session, :session_time => evening_session_time, :room => big_room) }
+    let(:third) {  Factory(:talk_session, :session_time => session_time,         :room => small_room) }
+    let(:first) {  Factory(:talk_session, :session_time => morning_session_time, :room => big_room) }
+    let(:second) { Factory(:talk_session, :session_time => morning_session_time, :room => Factory(:room)) }
+
+    it "sorts by session time then room size" do
+      fourth
+      fifth
+      second
+      first
+      third
+
+      sessions = ConferenceSession::by_session_time
+
+      sessions.should == {'Thursday, July 01, 2010' => { morning_session_time => [first, second],
+                                                        session_time         => [third],
+                                                        evening_session_time => [fourth, fifth] }}
+    end
+
+    it "ignores all but the most recent years conference sessions" do
+      first
+      Factory(:talk_session_2009, :session_time => Factory(:session_time_2009), :room => Factory(:room_from_2009))
+
+      ConferenceSession::by_session_time.should == {'Thursday, July 01, 2010' => { morning_session_time => [first] } }
+    end
+
+    it "ignores undefined conference sessions" do
+      Factory(:conference_session, :talk => Factory(:talk), :session_time => session_time, :room => big_room)
+
+      ConferenceSession::by_session_time.should be_empty
+    end
+  end
 end
 

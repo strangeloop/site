@@ -68,5 +68,9 @@ module Conf
       :metastore   => "file:#{Rails.root}/tmp/dragonfly/cache/meta",
       :entitystore => "file:#{Rails.root}/tmp/dragonfly/cache/body"
     }
+
+    #config.to_prepare do
+      #Refinery.searchable_models = [Page, Talk, Speaker]
+    #end
   end
 end

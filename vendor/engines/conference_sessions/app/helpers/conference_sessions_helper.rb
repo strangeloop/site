@@ -16,5 +16,11 @@
 
 
 module ConferenceSessionsHelper
+  def time_period_for(session_time)
+    session_time.nil? ? "00:00 AM - 00:00 PM" : session_time.time_period
+  end
 
+  def room_for(session)
+    session.room.nil? ? "Room ???" : session.room
+  end
 end

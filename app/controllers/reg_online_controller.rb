@@ -27,20 +27,27 @@ class RegOnlineController < ApplicationController
     "Address2" => :address_2=,
     "Gender" => :gender=,
     "City" => :city=,
-    "Region" => :region=,
     "Country" => :country=,
     "Postcode" => :postal_code=,
     "Phone" => :work_phone=,
     "HomePhone" => :home_phone=,
-    "Mobile" => :cell_phone=}
+    "Mobile" => :cell_phone=,
+    "Company"=> :company=,
+    "State" => :state=}
 
   @@custom_field_mapping = {"Twitter_x0020_Username" => :twitter_id}
 
-  @@regonline_client = RegOnline.new( :username => 'Foo', :password => "Bar")
+  @@regonline_config = YAML::load_file('config/regonline.yml')
+  @@regonline_client = RegOnline.new(:username => @@regonline_config["username"],
+                                     :password => @@regonline_config["password"])
+
+  def has_data? (data_str)
+     data_str && !data_str.empty? && data_str != "NotSet"
+  end
 
   def update_metadata (user_meta, field_set, data)
     field_set.each do |form_name, model_name|
-      if data.has_key? form_name
+      if data.has_key?(form_name) && has_data?(data[form_name])
         user_meta.send model_name, data[form_name]
       end
     end
@@ -48,9 +55,8 @@ class RegOnlineController < ApplicationController
   end
 
   def create_user_meta(regonline, params, um)
-        # Fields TODO - dob, middle_name?, twitter_id, blog_url,
+    # Fields TODO - dob, middle_name?, twitter_id, blog_url,
     # company_name
-    
     update_metadata(um, @@form_mapping, params)
     user_verified = regonline.get_custom_user_info(params["RegisterId"]) do |reg_hash|
       update_metadata(um, @@custom_field_mapping, params)
@@ -68,7 +74,7 @@ class RegOnlineController < ApplicationController
   end
   
   def create
-    created = create_user_meta UserMetadata.new, @@regonline_client, params
+    created = create_user_meta @@regonline_client, params, UserMetadata.new
     render :nothing => true
   end
 end

@@ -20,16 +20,45 @@ require 'spec_helper'
 describe RegOnlineController do
 
   def post_params
-    {"FirstName" => "Jeffrey",
-      "LastName" => "Lebowski",
-      "Email" => "thedude@lebowski.org",
-      "RegisterId" => "1234",
-      "Address1" => "123 4th Street",
-      "Gender" => "M",
-      "City" => "Los Angelos",
-      "Region" => "California",
-      "Country" => "US",
-      "Twitter_x0020_Username" => "@thedude"}
+    #below are post params from a test callback (issued by regonline)
+    {"RegisterId"=>"34063176",
+      "DOB"=>"",
+      "Gender"=>"NotSet",
+      "EmergencyContactPhone"=>"",
+      "City"=>"Ballwin",
+      "ProxyPhone"=>"",
+      "Mobile"=>"",
+      "EventId"=>"959942",
+      "LastName"=>"Test",
+      "action"=>"create",
+      "TotalCharge"=>"0.0000",
+      "MiddleName"=>"",
+      "Country"=>"United States",
+      "FirstName"=>"Alex",
+      "Phone"=>"",
+      "ProxyEmail"=>"",
+      "ProxyName"=>"",
+      "WorkExtension"=>"",
+      "JobTitle"=>"",
+      "CCEmail"=>"",
+      "EmergencyContactName"=>"",
+      "Postcode"=>"63021",
+      "PhoneExtension"=>"",
+      "HomePhone"=>"",
+      "te"=>"R1dEUWtLcGs4NzBwcEc5NW9FZjB6TTNVSTdsVVpSQVcwWmpqSmlrMTdEND0=",
+      "TotalOtherFees"=>"0",
+      "BadgeName"=>"",
+      "Fax"=>"",
+      "Company"=>"Strange Loop",
+      "controller"=>"reg_online",
+      "Email"=>"alex test@thestrangeloop.com",
+      "State"=>"MO",
+      "Prefix"=>"",
+      "TotalAgendaFees"=>"0.00",
+      "Address1"=>"123 ABC",
+      "WorkPhone"=>"",
+      "Suffix"=>"",
+      "Address2"=>""}
   end
  
     
@@ -50,9 +79,21 @@ describe RegOnlineController do
     @controller.create_user_meta(@stub_regonline, @params_map, @um).should be_true
 
     db_um = UserMetadata.find(@um.id)
-    db_um.first_name.should == "Jeffrey"
-    db_um.last_name.should == "Lebowski"
-    db_um.reg_id.should == "1234"
-    db_um.reg_id.should == "1234"
+    db_um.reg_id.should == "34063176"
+    db_um.first_name.should == "Alex"
+    db_um.last_name.should == "Test"
+    db_um.gender.should be_nil
+    db_um.address_1.should == "123 ABC"
+    db_um.address_2.should be_nil
+    db_um.email.should == "alex test@thestrangeloop.com"
+    db_um.city.should == "Ballwin"
+    db_um.country.should == "United States"
+    db_um.postal_code.should == "63021"
+    db_um.work_phone.should be_nil
+    db_um.home_phone.should be_nil
+    db_um.cell_phone.should be_nil
+    db_um.company.should == "Strange Loop"
+    db_um.state.should == "MO"
+    
   end
 end

@@ -20,7 +20,7 @@ class SpeakerMailer < ActionMailer::Base
   default :from => "notifications@thestrangeloop.com"
 
 
-  def find_reviewer_admins()
+  def find_reviewer_admins
     Role["Submission Admin"].users.collect{|u| u.email}
   end
 
@@ -29,20 +29,20 @@ class SpeakerMailer < ActionMailer::Base
          :cc => find_reviewer_admins,
          :subject => subject)
   end
-    
-  
+
   def talk_submission_email(talk)
     @talk = talk
     send_email_with_cc(talk, "Your talk was successfully submitted")
   end
 
-  def talk_accepted_email(talk)
+  def talk_accepted_email(talk, session_time)
     @talk = talk
+    @session_time = session_time
     send_email_with_cc(talk, "Strange Loop Talk proposal accepted")
   end
 
   def talk_rejected_email(talk)
     @talk = talk
-    send_email_with_cc(talk, "Strange Loop Talk proposal rejected")
+    send_email_with_cc(talk, "Strange Loop Talk Proposal")
   end
 end

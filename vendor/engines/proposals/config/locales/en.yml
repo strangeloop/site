@@ -34,6 +34,7 @@ en:
         prereqs: Prerequisites
         proposal: Proposal
         reviewer_comments: Reviewer Comments
+        session_time: Schedule a Session Time for this Proposal
         state: State
         status: Review Status
         talk_type: Talk Type

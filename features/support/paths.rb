@@ -59,6 +59,12 @@ module NavigationHelpers
     when /the sponsorship admin page/
       admin_sponsorships_path
 
+    when /the room index page/
+      admin_rooms_path
+
+    when /the session times index page/
+      admin_session_times_path
+
     when /the dashboard page/
       '/refinery'
 

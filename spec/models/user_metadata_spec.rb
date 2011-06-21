@@ -26,8 +26,8 @@ describe UserMetadata do
   it {should belong_to :user}
 
   [:middle_name, :address_1, :address_2, :gender, :city,
-   :region, :country, :postal_code, :home_phone, :work_phone,
-   :cell_phone, :email, :company_name, :twitter_id, :blog_url].each do |field|
+   :state, :country, :postal_code, :home_phone, :work_phone,
+   :cell_phone, :email, :company_name, :twitter_id, :blog_url, :company].each do |field|
     it {should have_db_column(field).of_type(:string)}
   end
 

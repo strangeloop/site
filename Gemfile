@@ -22,6 +22,10 @@ gem 'RedCloth', '~> 4.2'
 gem 'jammit', '~> 0.6'
 gem 'client_side_validations', '~> 3.0.4'
 
+gem 'savon', '0.9.1'
+
+gem 'require_relative', '1.0.1'
+
 group :development, :test do
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
   gem 'awesome_print', '~> 0.4.0'

@@ -39,6 +39,91 @@ describe Admin::ProposalsController do
     end
   end
 
+  let(:proposal) { mock_model(Proposal).as_null_object }
+  let(:talk) { mock_model(Talk).as_null_object }
+
+  context 'approved proposal update' do
+    login_admin
+
+    let(:approval_params) do
+      { :approve => 'Approve Talk',
+        :conference_session => { :session_time_id => 1 },
+        :id => 2 }
+    end
+
+    let(:proposal_approval) do
+      post :proposal_update, approval_params
+    end
+
+    let(:proposal_approval_email) do
+      post :proposal_update, approval_params.merge(:sendmail => '1')
+    end
+
+    let(:session_time) { mock_model(SessionTime).as_null_object }
+
+    before do
+      Proposal.stub(:find).with(2).and_return(proposal)
+      SessionTime.stub(:find).with(1).and_return(session_time)
+      ConferenceSession.stub(:create).with(:talk => talk, :session_time => session_time)
+      proposal.should_receive(:talk).and_return(talk)
+    end
+
+    it "updates the proposal status to 'accepted'" do
+      proposal.should_receive(:status=).with('accepted')
+      proposal.should_receive(:save)
+
+      proposal_approval
+
+      response.should redirect_to(admin_proposals_path)
+    end
+
+    it "sends approval email optionally" do
+      mailer_mock = mock('mailer')
+      mailer_mock.should_receive :deliver
+      SpeakerMailer.stub(:talk_accepted_email).with(talk, session_time).and_return(mailer_mock)
+
+      proposal_approval_email
+    end
+  end
+
+  context "rejection proposal update" do
+    login_admin
+
+    let(:rejection_options) do
+      {:reject => 'Reject Talk', :id => 1}
+    end
+
+    let(:proposal_rejection) do
+      post :proposal_update, rejection_options
+    end
+
+    let(:proposal_rejection_email) do
+      post :proposal_update, rejection_options.merge(:sendmail => "1")
+    end
+
+    before do
+      Proposal.stub(:find).with(1).and_return(proposal)
+    end
+
+    it "updates the proposal status to 'rejected'" do
+      proposal.should_receive(:status=).with('rejected')
+      proposal.should_receive(:save)
+
+      proposal_rejection
+
+      response.should redirect_to(admin_proposals_path)
+    end
+
+    it "sends rejection email optionally" do
+      proposal.should_receive(:talk).and_return(talk)
+      mailer_mock = mock('mailer')
+      mailer_mock.should_receive :deliver
+      SpeakerMailer.stub(:talk_rejected_email).with(talk).and_return(mailer_mock)
+
+      proposal_rejection_email
+    end
+  end
+
   context "export action" do
     login_organizer
 

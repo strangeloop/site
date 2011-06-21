@@ -4,6 +4,7 @@ Feature: As a user I can see talks I might want to attend
 
   Scenario: Conference organizer approves proposals
     Given a proposal exists
+    And a session time from this year exists
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
@@ -101,7 +102,7 @@ Feature: As a user I can see talks I might want to attend
     And I should see "Old talk abstract"
     And I should see "I write books about the universe and stuff"
 
-    Scenario: Admin can create new conference session for previous year's panel talk
+  Scenario: Admin can create new conference session for previous year's panel talk
     Given I am a logged in admin
     And I am on the conference sessions admin index page
     And I follow "Add New Conference Session"
@@ -131,7 +132,7 @@ Feature: As a user I can see talks I might want to attend
     And I should see "Old talk abstract"
     And I should see "I write books about the universe and stuff"
 
-        Scenario: Admin can create new conference session for previous year's strange passions talk
+  Scenario: Admin can create new conference session for previous year's strange passions talk
     Given I am a logged in admin
     And I am on the conference sessions admin index page
     And I follow "Add New Conference Session"
