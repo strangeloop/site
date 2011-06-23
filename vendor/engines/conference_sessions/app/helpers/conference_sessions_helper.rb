@@ -23,4 +23,8 @@ module ConferenceSessionsHelper
   def room_for(session)
     session.room.nil? ? "Room ???" : session.room
   end
+
+  def track_color(session)
+    session.track.nil? ? '000' : session.track.color
+  end
 end

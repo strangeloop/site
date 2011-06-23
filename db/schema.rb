@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110620003616) do
+ActiveRecord::Schema.define(:version => 20110622111351) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20110620003616) do
     t.integer  "conf_year",       :default => 2011
     t.integer  "session_time_id"
     t.integer  "room_id"
+    t.integer  "track_id"
   end
 
   add_index "conference_sessions", ["cached_slug"], :name => "index_conference_sessions_on_cached_slug", :unique => true
@@ -335,6 +336,14 @@ ActiveRecord::Schema.define(:version => 20110620003616) do
     t.datetime "updated_at"
     t.string   "video_approval"
     t.string   "talk_type"
+  end
+
+  create_table "tracks", :force => true do |t|
+    t.string   "name"
+    t.string   "color"
+    t.integer  "conf_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_metadata", :force => true do |t|

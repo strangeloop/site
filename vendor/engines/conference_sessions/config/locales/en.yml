@@ -17,6 +17,7 @@ en:
         no_items_yet: There are no Conference Sessions yet. Click "Add New Conference Session" to add your first conference session.
         manage_rooms: Manage Conference Rooms
         manage_session_times: Manage Conference Session Times
+        manage_tracks: Manage Conference Tracks
       conference_session:
         view_live_html: View this conference session live <br/><em>(opens in a new window)</em>
         edit: Edit this conference session
@@ -33,6 +34,7 @@ en:
       form:
         session_time: Session Time
         room: Room
+        track: Track
       grid_view:
         view_live_html: View this image <br/><em>Opens in a new window</em>
         create_new_image: Add Image to this Speaker
@@ -61,6 +63,16 @@ en:
       session_time:
         edit: Edit this Session Time
         delete: Delete this Session Time
+    tracks:
+      edit:
+        track: Track
+      index:
+        no_items_yet: No tracks exist for the current conference year
+        create_new: Add a Track
+        back_to_conf_sessions: Back to All Conference Sessions
+      track:
+        edit: Edit this Track
+        delete: Delete this Track
 
   conference_sessions:
     index:

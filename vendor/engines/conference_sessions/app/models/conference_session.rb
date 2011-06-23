@@ -20,6 +20,7 @@ class ConferenceSession < ActiveRecord::Base
   belongs_to :talk
   belongs_to :session_time
   belongs_to :room
+  belongs_to :track
 
   acts_as_indexed :fields => [:conf_year]
   accepts_nested_attributes_for :talk

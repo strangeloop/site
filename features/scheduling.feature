@@ -55,6 +55,35 @@ Feature: As a conference organizer, I can manage where and when
     Then I should be on the conference sessions admin index page
     And I should see "'Sample Talk' was successfully updated."
 
+  Scenario: Conference organizer views all tracks for the current conference year
+    Given there are no tracks
+    And I am a logged in organizer
+    And I am on the conference sessions admin index page
+    When I follow "Manage Conference Tracks"
+    Then I should see "No tracks exist for the current conference year"
+
+  Scenario: Conference organizer adds a track
+    Given I am a logged in organizer
+    And I am on the conference sessions admin index page
+    And I follow "Manage Conference Tracks"
+    And I follow "Add a Track"
+    When I change the Name field to "Ruby"
+    And I change the Color field to "#ff0000"
+    And I push the Save button
+    Then I should be on the track index page
+    And I should see "Ruby"
+
+  Scenario: Conference organizer selects track for conference session
+    Given a talk session exists
+    And a track exists
+    And I am a logged in organizer
+    And I am on the conference sessions admin index page
+    And I follow "Edit this conference session"
+    When I select "Ruby" from "Track"
+    And I push the Save button
+    Then I should be on the conference sessions admin index page
+    And I should see "'Sample Talk' was successfully updated."
+
   Scenario: Site visitor views populated schedule page
     
 

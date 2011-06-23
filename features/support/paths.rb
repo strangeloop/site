@@ -65,6 +65,9 @@ module NavigationHelpers
     when /the session times index page/
       admin_session_times_path
 
+    when /the track index page/
+      admin_tracks_path
+
     when /the dashboard page/
       '/refinery'
 

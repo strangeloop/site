@@ -27,7 +27,7 @@ module Refinery
       config.after_initialize do
         Refinery::Plugin.register do |plugin|
           plugin.name = "conference_sessions"
-          plugin.menu_match = /(admin|refinery)\/(conference_sessions|rooms|session_times)$/
+          plugin.menu_match = /(admin|refinery)\/(conference_sessions|rooms|session_times|tracks)$/
           plugin.activity = {
             :class => ConferenceSession}
         end

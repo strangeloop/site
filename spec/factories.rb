@@ -252,3 +252,8 @@ end
 Factory.define :session_time_2009, :parent => :session_time do |lyst|
   lyst.start_time DateTime.parse("July 6, 2009, 12:30 PM")
 end
+
+Factory.define :track do |t|
+  t.name 'Ruby'
+  t.color 'ff0000'
+end

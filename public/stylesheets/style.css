@@ -376,7 +376,7 @@ nav {position:absolute; top:0px; right:0}
 
 
 .pic {float:left; background:#fff; padding:8px; line-height:0px; font-size:0px; margin-right:18px; margin-bottom:20px; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px;}
-.pic_speaker {float:left; background:#fff; padding:8px; line-height:0px; font-size:0px; margin-right:18px; margin-bottom:20px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;}	
+.pic_speaker {float:left; background:#fff; padding:8px; line-height:0px; font-size:0px; margin-right:18px; margin-bottom:20px; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px;}	
 .pic2 {float:left; background:#fff; padding:13px; line-height:0px; font-size:0px; margin-right:32px; margin-bottom:12px; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px;}
 .pic2:hover { background:#098cbc;}
 .pic3 {float:right; background:#fff; padding:8px; line-height:0px; font-size:0px; margin-left:18px; margin-bottom:12px; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px;}
@@ -533,9 +533,6 @@ nav {position:absolute; top:0px; right:0}
 	
 .row_top_tile_sub {background:#2591d2/* url(../images/row_top_tile_sub.gif) repeat-x 0% 0% */; height:100px; position:relative; z-index:9}
 
-.pic_speaker {float:left; background:#fff; padding:8px; line-height:0px; font-size:0px; margin-right:18px; margin-bottom:20px; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px;}	
-	
-
 .freetext {
     height: 100px;
     width: 400px;
@@ -559,8 +556,13 @@ nav {position:absolute; top:0px; right:0}
 }
 
 .column2 .title a {
-  font-size:1.4em;
-  color:#fff;
-  text-decoration:none;
+  font-size: 1.4em;
+  color: #fff;
+  text-decoration: none;
 }
+
+.speaker { padding-right: 7px; }
+.room,
+.track { padding: 2px 7px 2px 7px; }
+
 

@@ -4,9 +4,11 @@
   <% content_for :stylesheets, ajaxful_rating_style %>
   <% content_for :stylesheets do %>
     <%= stylesheet_link_tag 'admin' %>
+    <%= stylesheet_link_tag 'schedule' %>
   <% end -%>
   <% content_for :javascripts do -%>
     <%= javascript_include_tag 'rails.validations' %>
+    <%= javascript_include_tag 'jscolor/jscolor' %>
   <% end -%>
   <%= render :partial => "/admin/head" %>
   <body class='<%= action_name %> <%= I18n.locale %>'>

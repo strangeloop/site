@@ -19,7 +19,7 @@ module Admin
   class ConferenceSessionsController < Admin::BaseController
     include ImageUploadFix
 
-    [:find_format_options, :find_session_times, :find_rooms].each do |fltr|
+    [:find_format_options, :find_session_times, :find_rooms, :find_tracks].each do |fltr|
       prepend_before_filter fltr, :only => [:new, :edit]
     end
 
@@ -51,6 +51,10 @@ module Admin
 
     def find_rooms
       @rooms = Room.current_year
+    end
+
+    def find_tracks
+      @tracks = Track.current_year
     end
 
     def export

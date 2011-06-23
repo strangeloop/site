@@ -15,5 +15,6 @@ stylesheets:
   common:
     - public/javascripts/superfish/css/superfish.css
     - public/stylesheets/style.css
+    - public/stylesheets/schedule.css
 
 
