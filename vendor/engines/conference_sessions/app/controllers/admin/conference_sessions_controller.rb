@@ -19,6 +19,8 @@ module Admin
   class ConferenceSessionsController < Admin::BaseController
     include ImageUploadFix
 
+    cache_sweeper :clear_schedule_cache, :only => [:create, :update, :destroy]
+
     [:find_format_options, :find_session_times, :find_rooms, :find_tracks].each do |fltr|
       prepend_before_filter fltr, :only => [:new, :edit]
     end
