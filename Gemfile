@@ -43,6 +43,7 @@ group :test do
   gem 'shoulda', '~> 2.11.3'
   gem 'factory_girl_rails', '~> 1.0.1'
   gem 'rails3-generators', '~> 0.17.2'
+  gem 'jasmine'
   #gem 'capybara-envjs'
 end
 

@@ -2,6 +2,7 @@ embed_assets: on
 
 javascripts:
   workspace:
+    - public/javascripts/application.js
     - public/javascripts/jquery.validate.pack.js
     - public/javascripts/cycle/jquery.cycle.all.latest.js
     - public/javascripts/superfish/js/*.js

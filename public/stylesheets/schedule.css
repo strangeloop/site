@@ -7,3 +7,10 @@
   border-radius: 10px;
 }
 
+.shaded {
+  opacity: .4;
+}
+
+.unshaded {
+  opacity: 1;
+}
