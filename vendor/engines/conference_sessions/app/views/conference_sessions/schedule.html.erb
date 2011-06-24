@@ -1,8 +1,9 @@
+<% cache('schedule') do -%>
 <div class="row_top_tile_sub">
   <div class="container_12">
     <div class="grid_8">
       <div class="page_title">
-        <%= "Schedule" %>
+        <%= t('.schedule') %>
       </div>
     </div>
   </div>
@@ -22,9 +23,12 @@
               <li class="column2">
                 <div class="title"><%= link_to session.talk.title, session %></div>
                 <span class="speaker"><%= speaker_for session.talk %></span> &middot; 
-                <span class="room"><%= room_for session %></span> &middot;
-                <span class="track">Track Name</span> &middot;
+                <span class="room"><%= room_for session %></span> 
+                <% if is_technical_track? session %>
+                &middot;
+                <span class="track"><%= track_name session %></span> &middot;
                 <span class="trackball" style="background: #<%= track_color session %>"></span>
+                <% end -%>
               </li>
             <% end -%>
           </ul>
@@ -33,3 +37,4 @@
     <% end -%>
   </div>
 </div>
+<% end -%>

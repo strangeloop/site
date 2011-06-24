@@ -24,6 +24,14 @@ module ConferenceSessionsHelper
     session.room.nil? ? "Room ???" : session.room
   end
 
+  def is_technical_track?(session)
+    session.format != 'miscellaneous'
+  end
+
+  def track_name(session)
+    session.track.nil? ? '' : session.track.name
+  end
+
   def track_color(session)
     session.track.nil? ? '000' : session.track.color
   end

@@ -81,5 +81,7 @@ en:
       lightning: Lightning Talks
       strange_passions: Strange Passions
       panel: Panels
+    schedule:
+      schedule: Schedule
     show:
       other: Other Conference Sessions
