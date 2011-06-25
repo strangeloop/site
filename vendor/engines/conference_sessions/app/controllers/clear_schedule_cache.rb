@@ -15,6 +15,6 @@ class ClearScheduleCache < ActionController::Caching::Sweeper
 
   private
   def delete_schedule_cache
-    expire_page :controller => 'conference_sessions', :action => 'schedule'
+    Rails.cache.delete 'schedule'
   end
 end
