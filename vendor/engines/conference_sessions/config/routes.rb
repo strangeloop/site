@@ -36,6 +36,6 @@ Refinery::Application.routes.draw do
       end
     end
     resources :session_times
-    resources :tracks
+    resources :tracks, :except => :show
   end
 end
