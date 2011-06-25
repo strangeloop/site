@@ -25,7 +25,7 @@ module ConferenceSessionsHelper
   end
 
   def is_technical_track?(session)
-    session.format != 'miscellaneous'
+    session.track && session.format && session.format != 'miscellaneous'
   end
 
   def track_name(session)

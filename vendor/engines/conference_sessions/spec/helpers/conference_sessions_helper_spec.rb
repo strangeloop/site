@@ -18,4 +18,29 @@
 require 'spec_helper'
 
 describe ConferenceSessionsHelper do
+  let(:helper) { Object.new.extend ConferenceSessionsHelper }
+  let(:session) { mock('session') }
+
+  it "considers sessions without tracks non-technical" do
+    session.should_receive(:track)
+    helper.is_technical_track?(session).should be_false
+  end
+
+  it "considers sessions without a format non-technical" do
+    session.should_receive(:track).and_return(true)
+    session.should_receive(:format)
+    helper.is_technical_track?(session).should be_false
+  end
+
+  it "considers sessions with 'miscellaneous' format non-technical" do
+    session.should_receive(:track).and_return(true)
+    session.should_receive(:format).twice.and_return('miscellaneous')
+    helper.is_technical_track?(session).should be_false
+  end
+
+  it "considers sessions with track and non-miscellaneous format technical" do
+    session.should_receive(:track).and_return(true)
+    session.should_receive(:format).twice.and_return('foo')
+    helper.is_technical_track?(session).should be_true
+  end
 end
