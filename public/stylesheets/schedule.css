@@ -1,10 +1,10 @@
 .trackball {
   margin: 12px;
   padding: 2px 15px 2px 6px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -khtml-border-radius: 10px;
-  border-radius: 10px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -khtml-border-radius: 12px;
+  border-radius: 12px;
 }
 
 .shaded {

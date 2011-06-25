@@ -16,7 +16,7 @@
         <h3><%= session_day %></h3>
         <% session_times.each_pair do |session_time, sessions| %>
           <ul class="free">
-            <li class="column1" style="line-height: <%= sessions.size * 360 %>%">
+            <li class="column1" style="line-height: <%= time_column_height sessions.size %>%">
               <%= time_period_for session_time %>
             </li>
             <% sessions.each do |session| %>

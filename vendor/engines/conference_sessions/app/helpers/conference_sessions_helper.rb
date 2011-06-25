@@ -35,4 +35,8 @@ module ConferenceSessionsHelper
   def track_color(session)
     session.track.nil? ? '000' : session.track.color
   end
+
+  def time_column_height(session_count)
+    session_count * (session_count < 3 ? 300 : session_count < 5 ? 340 : 375)
+  end
 end
