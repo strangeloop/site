@@ -43,4 +43,17 @@ describe ConferenceSessionsHelper do
     session.should_receive(:format).twice.and_return('foo')
     helper.is_technical_track?(session).should be_true
   end
+
+  context "#time_column_height" do
+    it "calculates for various session sizes" do
+      helper.time_column_height(1).should == 300
+      helper.time_column_height(2).should == 640
+      helper.time_column_height(3).should == 1050
+      helper.time_column_height(4).should == 1500
+      helper.time_column_height(5).should == 1875
+      helper.time_column_height(6).should == 2280
+      helper.time_column_height(7).should == 2660
+      helper.time_column_height(8).should == 3040
+    end
+  end
 end

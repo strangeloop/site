@@ -37,6 +37,17 @@ module ConferenceSessionsHelper
   end
 
   def time_column_height(session_count)
-    session_count * (session_count < 3 ? 300 : session_count < 5 ? 340 : 375)
+    session_count * (case session_count
+                      when 1
+                        300
+                      when 2
+                        320
+                      when 3
+                        350
+                      when 4..5
+                        375
+                      else
+                        380
+                    end)
   end
 end
