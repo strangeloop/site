@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('.trackball').toggle(function() {
+  $('.track').toggle(function() {
     var track=$(this).parent().attr("data-track");
     if ($(this).parent().hasClass("shaded")) {
       removeShade(similarTracks(track));

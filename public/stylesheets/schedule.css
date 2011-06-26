@@ -7,6 +7,27 @@
   border-radius: 12px;
 }
 
+.track {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  border-bottom: 1px solid #fff;
+  border-right: 1px solid #fff;
+  color: #000;
+  font-size: 90%;
+  line-height: 2.4;
+  margin: 2px 7px 2px 7px;
+  padding: 3px 10px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.track:hover {
+  border: 1px solid #fff;
+  color: #fff;
+}
+
 .shaded {
   opacity: .4;
 }

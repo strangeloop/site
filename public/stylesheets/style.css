@@ -552,10 +552,9 @@ nav {position:absolute; top:0px; right:0}
 }
 .column2 {
   margin-left: 120px;
-  padding: 5px;
+  padding: 5px 5px 0 5px;
 }
 
-.column2 .title { margin-bottom: 2px;}
 .column2 .title a {
   font-size: 1.4em;
   color: #fff;
@@ -563,7 +562,6 @@ nav {position:absolute; top:0px; right:0}
 }
 
 .speaker { padding-right: 7px; }
-.room,
-.track { padding: 2px 7px 2px 7px; }
+.room { padding: 2px 7px 2px 7px; }
 
 

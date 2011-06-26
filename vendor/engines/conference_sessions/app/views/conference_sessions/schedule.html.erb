@@ -25,9 +25,8 @@
                 <span class="room"><%= room_for session %></span> 
                 <% if is_technical_track? session %>
                 &middot;
-                <span class="track"><%= track_name session %></span> &middot;
-                <span class="trackball" style="background: #<%= track_color session %>"></span>
-                <% end -%>
+                <span class="track" style="background: #<%= track_color session %>"><%= track_name session %></span>
+              <% end -%>
               </li>
             <% end -%>
           </ul>
