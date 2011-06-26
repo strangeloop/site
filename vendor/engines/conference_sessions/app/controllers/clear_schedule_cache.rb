@@ -15,6 +15,6 @@ class ClearScheduleCache < ActionController::Caching::Sweeper
 
   private
   def delete_schedule_cache
-    Rails.cache.delete 'schedule'
+    expire_fragment 'schedule'
   end
 end

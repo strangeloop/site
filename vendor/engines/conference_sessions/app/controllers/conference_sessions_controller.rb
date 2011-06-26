@@ -16,8 +16,6 @@
 
 
 class ConferenceSessionsController < ApplicationController
-  cache_sweeper :clear_schedule_cache
-
   expose(:year) { params[:year] || Time.now.year }
   expose(:sessions_from_year) { ConferenceSession::from_year(year) }
   expose(:sessions_by_format) do
