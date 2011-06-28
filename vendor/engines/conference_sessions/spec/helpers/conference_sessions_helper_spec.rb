@@ -51,9 +51,9 @@ describe ConferenceSessionsHelper do
       helper.time_column_height(3).should == 1050
       helper.time_column_height(4).should == 1500
       helper.time_column_height(5).should == 1875
-      helper.time_column_height(6).should == 2280
-      helper.time_column_height(7).should == 2660
-      helper.time_column_height(8).should == 3040
+      helper.time_column_height(6).should == 2310
+      helper.time_column_height(7).should == 2695
+      helper.time_column_height(8).should == 3080
     end
   end
 end

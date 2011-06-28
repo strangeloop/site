@@ -47,7 +47,7 @@ module ConferenceSessionsHelper
                       when 4..5
                         375
                       else
-                        380
+                        385
                     end)
   end
 end

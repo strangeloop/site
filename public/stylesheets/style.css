@@ -561,7 +561,7 @@ nav {position:absolute; top:0px; right:0}
   text-decoration: none;
 }
 
-.speaker { padding-right: 7px; }
-.room { padding: 2px 7px 2px 7px; }
+.column2 .speaker { padding-right: 7px; }
+.column2 .room { padding: 2px 7px 2px 7px; }
 
 
