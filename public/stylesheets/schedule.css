@@ -23,5 +23,10 @@
   opacity: .4;
   -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";/*IE8*/
   filter: alpha(opacity=40);/*IE7*/
+  -webkit-transition: opacity .3s ease;
+  -moz-transition: opacity .3s ease;
+  -khtml-transition: opacity .3s ease;
+  -o-transition: opacity .3s ease;
+  transition: opacity .3s ease;
 }
 
