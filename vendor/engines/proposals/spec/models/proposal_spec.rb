@@ -146,7 +146,7 @@ describe Proposal do
   end
   
   context "CSV export" do
-    NUM_STATIC_PROPOSAL_CSV_FIELDS = 2
+    NUM_STATIC_PROPOSAL_CSV_FIELDS = 7
     
     let(:proposal1){ Factory(:proposal) }
     
@@ -215,8 +215,8 @@ describe Proposal do
       pending = Proposal.pending
       reviewers = Proposal.sorted_reviewers(pending)
       header = Proposal.pending_csv_header_values(reviewers)
-      header.should == ["title", "speaker", "alternate_reviewer", 
-                        "alternate_reviewer2", "reviewer"]
+      header.should == ["title", "speaker", "sp1 first name", "sp1 last name", "sp1 company", 
+        "sp1 email", "sp1 twitter id", "alternate_reviewer", "alternate_reviewer2", "reviewer"]
     end
     
     it "Should create a CSV data array for a pending proposal" do
@@ -224,13 +224,16 @@ describe Proposal do
       reviewers = Proposal.sorted_reviewers(pending)
       
       data = Proposal.pending_csv_data_values(proposal1, reviewers)
-      data.should == ["Sample Talk", "Earl Grey", "", "", ""]
+      data.should == ["Sample Talk", "Earl Grey", "Earl", "Grey", "Twinings", 
+        "earl@grey.com", "earlofgrey", "", "", ""]
       
       data = Proposal.pending_csv_data_values(proposal2, reviewers)
-      data.should == ["Sample Talk", "Earl Grey", "2", "", "1"]
+      data.should == ["Sample Talk", "Earl Grey",  "Earl", "Grey", "Twinings", 
+        "earl@grey.com", "earlofgrey", "2", "", "1"]
       
       data = Proposal.pending_csv_data_values(proposal3, reviewers)
-      data.should == ["Sample Talk", "Earl Grey;Charlie Sheen", "", "3", ""]
+      data.should == ["Sample Talk", "Earl Grey;Charlie Sheen",  "Earl", "Grey", "Twinings", 
+        "earl@grey.com", "earlofgrey", "", "3", ""]
     end
     
     it "Should generate CSV with quotes around data values" do

@@ -87,6 +87,7 @@ Factory.define :speaker do |s|
   s.phone       '314-444-1234'
   s.state       'MO'
   s.country     'US'
+  s.company     'Twinings'
   #s.image       { Factory(:image) }
 end
 
