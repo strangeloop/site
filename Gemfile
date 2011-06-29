@@ -56,7 +56,8 @@ end
 #And with fix for erroneous call to '.url' method on object that doesn't respond to that
 #And with fix that doesn't assume cache strategy is file/directory backed
 #And with Google Analytics _trackPageLoadTime
-gem 'refinerycms', :git => "git://github.com/strangeloop/refinerycms.git", :branch => 'path_not_url_ssl_fix', :ref => '3e1faee77887094cf04cf71ed0ad5d36493ab71b'
+#And switching defaults that would otherwise say 'Company Name' to 'Strange Loop'
+gem 'refinerycms', :git => "git://github.com/strangeloop/refinerycms.git", :branch => 'path_not_url_ssl_fix', :ref => '6ba952141436b69b7feab69498709090815a7271'
 
 group :development, :test do
   # RSpec
