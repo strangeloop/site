@@ -64,7 +64,7 @@ module Admin
 
     def export
       respond_to do |format|
-        format.csv { render :xml => Proposal.pending_to_csv }
+        format.csv { render :xml => Proposal.all_to_csv }
       end
     end
 

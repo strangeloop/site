@@ -146,7 +146,7 @@ describe Proposal do
   end
   
   context "CSV export" do
-    NUM_STATIC_PROPOSAL_CSV_FIELDS = 7
+    NUM_STATIC_PROPOSAL_CSV_FIELDS = 8
     
     let(:proposal1){ Factory(:proposal) }
     
@@ -215,8 +215,9 @@ describe Proposal do
       pending = Proposal.pending
       reviewers = Proposal.sorted_reviewers(pending)
       header = Proposal.pending_csv_header_values(reviewers)
-      header.should == ["title", "speaker", "sp1 first name", "sp1 last name", "sp1 company", 
-        "sp1 email", "sp1 twitter id", "alternate_reviewer", "alternate_reviewer2", "reviewer"]
+      header.should == ["title", "status", "speaker", "sp1 first name", "sp1 last name", 
+        "sp1 company", "sp1 email", "sp1 twitter id", "alternate_reviewer", 
+        "alternate_reviewer2", "reviewer"]
     end
     
     it "Should create a CSV data array for a pending proposal" do
@@ -224,15 +225,15 @@ describe Proposal do
       reviewers = Proposal.sorted_reviewers(pending)
       
       data = Proposal.pending_csv_data_values(proposal1, reviewers)
-      data.should == ["Sample Talk", "Earl Grey", "Earl", "Grey", "Twinings", 
+      data.should == ["Sample Talk", "submitted", "Earl Grey", "Earl", "Grey", "Twinings", 
         "earl@grey.com", "earlofgrey", "", "", ""]
       
       data = Proposal.pending_csv_data_values(proposal2, reviewers)
-      data.should == ["Sample Talk", "Earl Grey",  "Earl", "Grey", "Twinings", 
+      data.should == ["Sample Talk", "submitted", "Earl Grey",  "Earl", "Grey", "Twinings", 
         "earl@grey.com", "earlofgrey", "2", "", "1"]
       
       data = Proposal.pending_csv_data_values(proposal3, reviewers)
-      data.should == ["Sample Talk", "Earl Grey;Charlie Sheen",  "Earl", "Grey", "Twinings", 
+      data.should == ["Sample Talk", "submitted", "Earl Grey;Charlie Sheen",  "Earl", "Grey", "Twinings", 
         "earl@grey.com", "earlofgrey", "", "3", ""]
     end
     
@@ -258,9 +259,34 @@ describe Proposal do
       arr_of_proposals = FasterCSV.parse(csv)
       
       arr_of_proposals.length.should == expected_rows  
-      first_row = arr_of_proposals[0]
-      first_row.length.should == 
+      header_row = arr_of_proposals[0]
+      header_row.length.should == 
         (NUM_STATIC_PROPOSAL_CSV_FIELDS + reviewers.length)
     end
+    
+    it "Should generate CSV for all proposals" do
+      pending = Proposal.all
+      reviewers = Proposal.sorted_reviewers(Proposal.all)
+      expected_rows = Proposal.all.length + 1
+    
+      csv = Proposal.all_to_csv()
+      arr_of_proposals = FasterCSV.parse(csv)
+      
+      arr_of_proposals.length.should == expected_rows  
+      header_row = arr_of_proposals[0]
+      header_row.length.should == 
+        (NUM_STATIC_PROPOSAL_CSV_FIELDS + reviewers.length)
+        
+      # Test that proposals are ordered by status.
+      puts arr_of_proposals.length
+      data_row_1 = arr_of_proposals[1]
+      data_row_1[1].should == "accepted"
+      data_row_2 = arr_of_proposals[2]
+      data_row_2[1].should == "submitted"
+      data_row_3 = arr_of_proposals[2]
+      data_row_3[1].should == "submitted"
+      data_row_4 = arr_of_proposals[2]
+      data_row_4[1].should == "submitted"
+    end        
   end
 end
