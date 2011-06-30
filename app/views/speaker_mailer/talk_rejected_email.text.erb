@@ -1,15 +1,15 @@
 Dear <%= @talk.speakers[0].first_name %>,
 
-Unfortunately, your talk 
-"<%= @talk.title %>" 
-has not been accepted for Strange Loop 2011.  This year the 
-competition was fierce with over 100 talks submitted for a 
-small number of spots.  Many fine talks were rejected by 
-necessity. 
+Sorry your talk isn't a good fit for Strange Loop.
+...
+	 	
+Below is the information you submitted for this talk:
+	 	
+------------------------------------------------------------------------------------
+	 	
+Title:  <%= @talk.title %>
+	 	
+Abstract: <%= @talk.abstract %>
+	
+Comments: <%= @talk.comments %>
 
-I hope you will still be able to attend the conference and 
-submit talks in the future.
-
-If you have further questions, please let me know.
-
-Alex Miller
