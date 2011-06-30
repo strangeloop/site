@@ -1,5 +1,6 @@
 <% content_for :stylesheets do %>
   <%= include_stylesheets :common, :media => 'all' %>
+  <%= favicon_link_tag %>
   <%= auto_discovery_link_tag(:rss, news_items_url(:format => 'rss')) %>
 <% end %>
 <%= render :partial => "/shared/head" %>
