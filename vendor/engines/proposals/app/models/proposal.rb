@@ -69,6 +69,17 @@ class Proposal < ActiveRecord::Base
         end
       end
     end
+    
+    def all_to_csv
+      proposals = Proposal.find(:all, :order => "status ASC")
+      reviewers = sorted_reviewers(proposals)
+      FasterCSV.generate({:force_quotes => true}) do |csv|
+        csv << pending_csv_header_values(reviewers)
+        proposals.each do |proposal|
+          csv << pending_csv_data_values(proposal, reviewers)
+        end
+      end
+    end
 
     # Returns a sorted array of unique reviewer usernames for the current 
     # pending proposals.
@@ -94,14 +105,15 @@ class Proposal < ActiveRecord::Base
     # Returns an array of header values to be used in a pending CSV 
     # header row.
     def pending_csv_header_values(reviewers)
-      ["title", "speaker", "sp1 first name", "sp1 last name", "sp1 company", "sp1 email", "sp1 twitter id"] + reviewers
+      ["title", "status", "speaker", "sp1 first name", "sp1 last name", "sp1 company", "sp1 email", "sp1 twitter id"] + reviewers
     end
 
     # Returns an array of values from a proposal to be used in a pending
     # CSV data row.
     def pending_csv_data_values(proposal, reviewers)
       speaker1 = proposal.talk.speakers[0]
-      data = [proposal.talk.title, proposal.talk.speakers.to_a.join(";"), speaker1.first_name, speaker1.last_name, 
+      data = [proposal.talk.title, proposal.status, proposal.talk.speakers.to_a.join(";"), 
+        speaker1.first_name, speaker1.last_name, 
         speaker1.company, speaker1.email, speaker1.twitter_id]
       user_ratings = proposal.comments_and_appeal_ratings
       reviewers.inject(data){|d, reviewer| d << user_rating(reviewer, user_ratings)}

@@ -47,7 +47,7 @@
     </li>
   <% end %>
   <% if current_user.has_role? :organizer -%>
-    <li><%= link_to "Export Pending Proposals", export_admin_proposals_path("csv") %></li>
+    <li><%= link_to "Export Proposals", export_admin_proposals_path("csv") %></li>
   <% end -%>
   </ul>
 </div>
