@@ -278,7 +278,6 @@ describe Proposal do
         (NUM_STATIC_PROPOSAL_CSV_FIELDS + reviewers.length)
         
       # Test that proposals are ordered by status.
-      puts arr_of_proposals.length
       data_row_1 = arr_of_proposals[1]
       data_row_1[1].should == "accepted"
       data_row_2 = arr_of_proposals[2]
