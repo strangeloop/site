@@ -128,7 +128,7 @@ describe Admin::ProposalsController do
     login_organizer
 
     it "exports proposals to CSV" do
-      Proposal.stub(:pending_to_csv).and_return('a, b, c')
+      Proposal.stub(:all_to_csv).and_return('a, b, c')
       get :export, :format => 'csv'
       response.body.should == 'a, b, c'
     end
