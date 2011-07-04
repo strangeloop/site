@@ -31,7 +31,7 @@ describe Proposal do
   end
 
   context "validations" do
-    
+
     it "rejects empty status" do
       Proposal.new(valid_attributes(:status => "")).should_not be_valid
     end
@@ -39,9 +39,9 @@ describe Proposal do
     it "rejects invalid status" do
       Proposal.new(valid_attributes(:status => 'heynow')).should_not be_valid
     end
-    
+
     it "rejects when there is no Talk" do
-      Proposal.new(valid_attributes).should_not be_valid      
+      Proposal.new(valid_attributes).should_not be_valid
     end
 
     it "requires valid attributes and a related Talk" do
@@ -144,49 +144,54 @@ describe Proposal do
       }
     end
   end
-  
+
+  it "knows current proposals" do
+    p1 = Factory(:proposal)
+    Factory(:proposal, :created_at => DateTime.parse('July 6, 2010'))
+    Proposal.current.should == [p1]
+  end
+
   context "CSV export" do
     NUM_STATIC_PROPOSAL_CSV_FIELDS = 8
-    
+
     let(:proposal1){ Factory(:proposal) }
-    
-    let(:proposal2){ 
+
+    let(:proposal2){
       Factory(:proposal).tap{ |p|
         p.rate(1, reviewer, :appeal)
         p.rate(2, alternate_reviewer, :appeal)
       }
     }
-    
-    let(:proposal3){ 
+
+    let(:proposal3){
       Factory(:proposal).tap{ |p|
         p.rate(3, alternate_reviewer2, :appeal)
       }
     }
-    
-    let(:proposal4){ 
-      Factory(:proposal).tap{ |p|
+
+    let(:proposal4){
+      Factory(:proposal, :created_at => DateTime.parse('July 6, 2010')).tap{ |p|
         p.rate(3, alternate_reviewer3, :appeal)
       }
     }
 
-    let(:proposal5){ 
+    let(:proposal5){
       Factory(:proposal).tap{ |p|
         p.comments.create(:title => "foo", :comment => "comment1", :user => alternate_reviewer2)
 #        p.rate(4, alternate_reviewer3, :appeal)
       }
     }
 
-
     before do
       proposal1
       proposal2
       proposal3
       proposal3.talk.speakers << [Factory(:workshop_speaker)]
-      
+
       proposal4.status = "accepted"
       proposal4.save
     end
-    
+
     it "Should create a sorted list of unique reviewers for pending proposals" do
       pending = Proposal.pending
       reviewers = Proposal.sorted_reviewers(pending)
@@ -195,7 +200,7 @@ describe Proposal do
       reviewers[1].should == "alternate_reviewer2"
       reviewers[2].should == "reviewer"
     end
-    
+
     it "Should return a user rating for a user that reviewed a proposal" do
       user_rating = Proposal.user_rating("alternate_reviewer", proposal2.comments_and_appeal_ratings)
       user_rating.should == "2"
@@ -205,12 +210,12 @@ describe Proposal do
       user_rating = Proposal.user_rating("alternate_reviewer2", proposal2.comments_and_appeal_ratings)
       user_rating.should == ""
     end
-    
+
     it "Should return an empty string for a user that commented but did not review a proposal" do
       user_rating = Proposal.user_rating("alternate_reviewer2", proposal5.comments_and_appeal_ratings)
       user_rating.should == ""
     end
-    
+
     it "Should create a CSV header array for pending proposals" do
       pending = Proposal.pending
       reviewers = Proposal.sorted_reviewers(pending)
@@ -219,73 +224,53 @@ describe Proposal do
         "sp1 company", "sp1 email", "sp1 twitter id", "alternate_reviewer", 
         "alternate_reviewer2", "reviewer"]
     end
-    
+
     it "Should create a CSV data array for a pending proposal" do
       pending = Proposal.pending
       reviewers = Proposal.sorted_reviewers(pending)
-      
+
       data = Proposal.pending_csv_data_values(proposal1, reviewers)
       data.should == ["Sample Talk", "submitted", "Earl Grey", "Earl", "Grey", "Twinings", 
         "earl@grey.com", "earlofgrey", "", "", ""]
-      
+
       data = Proposal.pending_csv_data_values(proposal2, reviewers)
       data.should == ["Sample Talk", "submitted", "Earl Grey",  "Earl", "Grey", "Twinings", 
         "earl@grey.com", "earlofgrey", "2", "", "1"]
-      
+
       data = Proposal.pending_csv_data_values(proposal3, reviewers)
       data.should == ["Sample Talk", "submitted", "Earl Grey;Charlie Sheen",  "Earl", "Grey", "Twinings", 
         "earl@grey.com", "earlofgrey", "", "3", ""]
     end
-    
+
     it "Should generate CSV with quotes around data values" do
-      pending = Proposal.pending
-      reviewers = Proposal.sorted_reviewers(pending)
-      expected_rows = pending.length + 1
-      
-      csv = Proposal.pending_to_csv()
-      csv.length.should > 0   
+      expected_rows = 4
+      number_of_reviewers = 3
+
+      csv = Proposal.all_to_csv
+      csv.length.should > 0
       csv.count(",").should == 
-        expected_rows * ((NUM_STATIC_PROPOSAL_CSV_FIELDS + reviewers.length) - 1)
+        expected_rows * ((NUM_STATIC_PROPOSAL_CSV_FIELDS + number_of_reviewers) - 1)
       csv.count('"').should == 
-        expected_rows * ((NUM_STATIC_PROPOSAL_CSV_FIELDS + reviewers.length) * 2)
+        expected_rows * ((NUM_STATIC_PROPOSAL_CSV_FIELDS + number_of_reviewers) * 2)
     end
-  
-    it "Should generate CSV for submitted proposals" do
-      pending = Proposal.pending
-      reviewers = Proposal.sorted_reviewers(pending)
-      expected_rows = pending.length + 1
-    
-      csv = Proposal.pending_to_csv()
+
+    it "Should generate CSV for all proposals in the current year" do
+      csv = Proposal.all_to_csv
       arr_of_proposals = FasterCSV.parse(csv)
-      
-      arr_of_proposals.length.should == expected_rows  
+
+      arr_of_proposals.length.should == 4
       header_row = arr_of_proposals[0]
+      number_of_reviewers = 3
       header_row.length.should == 
-        (NUM_STATIC_PROPOSAL_CSV_FIELDS + reviewers.length)
-    end
-    
-    it "Should generate CSV for all proposals" do
-      pending = Proposal.all
-      reviewers = Proposal.sorted_reviewers(Proposal.all)
-      expected_rows = Proposal.all.length + 1
-    
-      csv = Proposal.all_to_csv()
-      arr_of_proposals = FasterCSV.parse(csv)
-      
-      arr_of_proposals.length.should == expected_rows  
-      header_row = arr_of_proposals[0]
-      header_row.length.should == 
-        (NUM_STATIC_PROPOSAL_CSV_FIELDS + reviewers.length)
-        
+        (NUM_STATIC_PROPOSAL_CSV_FIELDS + number_of_reviewers)
+
       # Test that proposals are ordered by status.
       data_row_1 = arr_of_proposals[1]
-      data_row_1[1].should == "accepted"
+      data_row_1[1].should == "submitted"
       data_row_2 = arr_of_proposals[2]
-      data_row_2[1].should == "submitted"
+      data_row_2[1].should == "under review"
       data_row_3 = arr_of_proposals[2]
-      data_row_3[1].should == "submitted"
-      data_row_4 = arr_of_proposals[2]
-      data_row_4[1].should == "submitted"
-    end        
+      data_row_3[1].should == "under review"
+    end
   end
 end

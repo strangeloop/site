@@ -24,12 +24,16 @@ class Proposal < ActiveRecord::Base
   acts_as_indexed :fields => [:status]
 
   acts_as_commentable
-  
+
   validates_inclusion_of :status, :in => %w(submitted under\ review accepted rejected)
   validates_presence_of :talk
 
   scope :pending, lambda {
     where(:status => ['submitted', 'under review'])
+  }
+
+  scope :current, lambda {
+    where('created_at > ?', DateTime.parse("Jan 1, #{Time.now.year}"))
   }
 
   def comments_by_user(user)
@@ -56,22 +60,11 @@ class Proposal < ActiveRecord::Base
   class << self
 
     def pending_count
-      pending.count
+      current.pending.count
     end
 
-    def pending_to_csv
-      proposals = pending
-      reviewers = sorted_reviewers(proposals)
-      FasterCSV.generate({:force_quotes => true}) do |csv|
-        csv << pending_csv_header_values(reviewers)
-        proposals.each do |proposal|
-          csv << pending_csv_data_values(proposal, reviewers)
-        end
-      end
-    end
-    
     def all_to_csv
-      proposals = Proposal.find(:all, :order => "status ASC")
+      proposals = Proposal.current.order("status ASC")
       reviewers = sorted_reviewers(proposals)
       FasterCSV.generate({:force_quotes => true}) do |csv|
         csv << pending_csv_header_values(reviewers)
