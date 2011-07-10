@@ -25,10 +25,8 @@ describe UserMetadata do
 
   it {should belong_to :user}
 
-  [:middle_name, :address_1, :address_2, :gender, :city,
-   :state, :country, :postal_code, :home_phone, :work_phone,
-   :cell_phone, :email, :company_name, :twitter_id, :blog_url,
-   :company].each do |field|
+  [:middle_name, :city, :state, :country, :email,
+   :twitter_id, :blog_url, :company].each do |field|
     it {should have_db_column(field).of_type(:string)}
   end
 
@@ -36,10 +34,6 @@ describe UserMetadata do
 
   let(:july4){DateTime.parse('Thursday, July 4, 2011 11:19 AM')}
   let(:um){UserMetadata.new :email => "foo@bar.com", :reg_uid => "big uid here", :reg_date => july4}
-
-  # it "generates a string suitable for encryption" do
-  #   um.reg_s.should == "foo@bar.com,big uid here,2011-07-04 11:19:00 UTC"
-  # end
 
   it "should decrypt encrypted strings" do
     encrypted_txt = um.activation_token

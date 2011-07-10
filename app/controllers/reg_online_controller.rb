@@ -23,15 +23,8 @@ class RegOnlineController < ApplicationController
     "LastName" => :last_name=,
     "Email" => :email=,
     "RegisterId" => :reg_id=,
-    "Address1" => :address_1=,
-    "Address2" => :address_2=,
-    "Gender" => :gender=,
     "City" => :city=,
     "Country" => :country=,
-    "Postcode" => :postal_code=,
-    "Phone" => :work_phone=,
-    "HomePhone" => :home_phone=,
-    "Mobile" => :cell_phone=,
     "Company"=> :company=,
     "State" => :state=}
 
@@ -55,8 +48,6 @@ class RegOnlineController < ApplicationController
   end
 
   def create_user_meta(regonline, params, um)
-    # Fields TODO - dob, middle_name?, twitter_id, blog_url,
-    # company_name
     update_metadata(um, @@form_mapping, params)
     user_verified = regonline.get_custom_user_info(params["RegisterId"]) do |reg_hash|
       update_metadata(um, @@custom_field_mapping, params)

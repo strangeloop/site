@@ -82,16 +82,9 @@ describe RegOnlineController do
     db_um.reg_id.should == "34063176"
     db_um.first_name.should == "Alex"
     db_um.last_name.should == "Test"
-    db_um.gender.should be_nil
-    db_um.address_1.should == "123 ABC"
-    db_um.address_2.should be_nil
     db_um.email.should == "alex test@thestrangeloop.com"
     db_um.city.should == "Ballwin"
     db_um.country.should == "United States"
-    db_um.postal_code.should == "63021"
-    db_um.work_phone.should be_nil
-    db_um.home_phone.should be_nil
-    db_um.cell_phone.should be_nil
     db_um.company.should == "Strange Loop"
     db_um.state.should == "MO"
     
