@@ -55,7 +55,7 @@ describe Admin::ConferenceSessionsController do
     it "renders edit page when update fails" do
       conf_session.stub(:update_attributes).with(params[:conference_session]).and_return(false)
       post :update, params
-      response.should render_template('layouts/admin', 'admin/conference_sessions/edit')
+      response.should render_template('admin/conference_sessions/edit')
     end
 
     context "handles image form param" do
