@@ -13,13 +13,23 @@
 #- limitations under the License.
 #- 
 
-
-
 class UserMetadata < ActiveRecord::Base
+  
+  @@activation_key = YAML::load_file('config/activation.yml')["activation_key"]
   
   belongs_to :user
   [:first_name, :last_name, :email, :reg_id, :reg_status].each do |field|
     validates field, :presence => true
   end
-  
+
+  before_create {|um| um.reg_uid= UUIDTools::UUID.random_create.to_s}
+
+  def activation_token
+    Crypto.encrypt(@@activation_key, [email,reg_uid,reg_date].join(","))
+  end
+
+  def self.decrypt_token (cipher_text)
+    Crypto.decrypt(@@activation_key, cipher_text)
+  end
+
 end

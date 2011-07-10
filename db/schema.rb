@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110622111351) do
+ActiveRecord::Schema.define(:version => 20110704145048) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(:version => 20110622111351) do
     t.integer  "news_item_id"
     t.string   "locale"
     t.string   "title"
-    t.string   "external_url"
     t.text     "body"
+    t.string   "external_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -371,6 +371,8 @@ ActiveRecord::Schema.define(:version => 20110622111351) do
     t.datetime "updated_at"
     t.string   "company"
     t.string   "state"
+    t.string   "reg_uid"
+    t.datetime "reg_date"
   end
 
   create_table "user_plugins", :force => true do |t|

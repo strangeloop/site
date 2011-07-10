@@ -258,3 +258,19 @@ Factory.define :track do |t|
   t.name 'Ruby'
   t.color 'ff0000'
 end
+
+Factory.define :attendee, :parent => :user do |u|
+  u.username "someattendee"
+  u.email "attendington@attendsalot.com"
+  u.roles { [ Role[:refinery] ] }
+end
+
+Factory.define :user_metadata do |um|
+  um.first_name "Julian"
+  um.last_name "English"
+  um.email "julian_english@prodigy.net"
+  um.reg_id "1234"
+  um.reg_status "unimplemented"
+end
+
+
