@@ -11,7 +11,7 @@
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #- See the License for the specific language governing permissions and 
 #- limitations under the License.
-#- 
+#-
 
 class Attendee < ActiveRecord::Base
   
@@ -25,11 +25,17 @@ class Attendee < ActiveRecord::Base
   before_create {|um| um.reg_uid= UUIDTools::UUID.random_create.to_s}
 
   def activation_token
-    Crypto.encrypt(@@activation_key, [email,reg_uid,reg_date].join(","))
+    Base64.encode64(Crypto.encrypt(@@activation_key, [email,reg_uid,reg_date].join("|")))
   end
 
   def self.decrypt_token (cipher_text)
-    Crypto.decrypt(@@activation_key, cipher_text)
+    Crypto.decrypt(@@activation_key, Base64.decode64(cipher_text)).split("|")
   end
 
+  def self.check_token (cipher_text)
+    token = decrypt_token(cipher_text)
+    date = DateTime.parse(token[2])
+    attendee =  Attendee.where("reg_uid = ?", token[1]).first
+    attendee && attendee.reg_date == date && attendee.email == token[0]
+  end
 end

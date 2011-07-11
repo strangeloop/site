@@ -37,9 +37,34 @@ describe Attendee do
 
   it "should decrypt encrypted strings" do
     encrypted_txt = um.activation_token
-    encrypted_txt.should_not ==  "foo@bar.com,big uid here,2011-07-04 11:19:00 UTC"
+    encrypted_txt.should_not ==  "foo@bar.com|big uid here|2011-07-04 11:19:00 UTC"
     decrypted_txt = Attendee.decrypt_token encrypted_txt
-    decrypted_txt.should ==  "foo@bar.com,big uid here,2011-07-04 11:19:00 UTC"
+    decrypted_txt.should ==  ["foo@bar.com","big uid here","2011-07-04 11:19:00 UTC"]
+  end
+
+  let(:attendee){Factory(:attendee)}
+
+  it "should pass an auth check for a known users" do
+    token = attendee.activation_token
+    Attendee.check_token(token).should be_true
+  end
+
+  it "should fail on incorrect uids" do
+    attendee.reg_uid = "foo"
+    token = attendee.activation_token
+    Attendee.check_token(token).should be_false
+  end
+
+  it "should fail on incorrect date" do
+    attendee.reg_date = DateTime.now
+    token = attendee.activation_token
+    Attendee.check_token(token).should be_false
+  end
+
+  it "should fail on incorrect email" do
+    attendee.email = "something@different.net"
+    token = attendee.activation_token
+    Attendee.check_token(token).should be_false
   end
 end
 

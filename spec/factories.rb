@@ -259,8 +259,20 @@ Factory.define :track do |t|
   t.color 'ff0000'
 end
 
-Factory.define :attendee, :parent => :user do |u|
+Factory.define :attendee_user, :parent => :user do |u|
   u.username "someattendee"
   u.email "attendington@attendsalot.com"
   u.roles { [ Role[:refinery] ] }
 end
+
+Factory.define :attendee do |um|
+  um.first_name "Julian"
+  um.last_name "English"
+  um.email "julian_english@prodigy.net"
+  um.reg_id "1234"
+  um.reg_status "unimplemented"
+  um.reg_uid "random-text-here"
+  um.reg_date 'Thursday, July 4, 2011 11:19 AM'
+end
+
+
