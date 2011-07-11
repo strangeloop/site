@@ -65,7 +65,7 @@ class RegOnlineController < ApplicationController
   end
   
   def create
-    created = create_user_meta @@regonline_client, params, UserMetadata.new
+    created = create_user_meta @@regonline_client, params, Attendee.new
     render :nothing => true
   end
 end

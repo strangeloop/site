@@ -17,7 +17,7 @@
 
 require 'spec_helper'
 
-describe UserMetadata do
+describe Attendee do
 
   [:first_name, :last_name, :email, :reg_id, :reg_status].each do |field|
     it {should validate_presence_of field}
@@ -33,12 +33,12 @@ describe UserMetadata do
   it {should have_db_column(:reg_date).of_type(:datetime)}
 
   let(:july4){DateTime.parse('Thursday, July 4, 2011 11:19 AM')}
-  let(:um){UserMetadata.new :email => "foo@bar.com", :reg_uid => "big uid here", :reg_date => july4}
+  let(:um){Attendee.new :email => "foo@bar.com", :reg_uid => "big uid here", :reg_date => july4}
 
   it "should decrypt encrypted strings" do
     encrypted_txt = um.activation_token
     encrypted_txt.should_not ==  "foo@bar.com,big uid here,2011-07-04 11:19:00 UTC"
-    decrypted_txt = UserMetadata.decrypt_token encrypted_txt
+    decrypted_txt = Attendee.decrypt_token encrypted_txt
     decrypted_txt.should ==  "foo@bar.com,big uid here,2011-07-04 11:19:00 UTC"
   end
 end

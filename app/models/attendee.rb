@@ -13,7 +13,7 @@
 #- limitations under the License.
 #- 
 
-class UserMetadata < ActiveRecord::Base
+class Attendee < ActiveRecord::Base
   
   @@activation_key = YAML::load_file('config/activation.yml')["activation_key"]
   

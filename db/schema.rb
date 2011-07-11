@@ -10,7 +10,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110704145048) do
+ActiveRecord::Schema.define(:version => 20110711011305) do
+
+  create_table "attendees", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "city"
+    t.string   "country"
+    t.string   "email"
+    t.string   "twitter_id"
+    t.string   "blog_url"
+    t.string   "reg_id"
+    t.string   "reg_status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "company"
+    t.string   "state"
+    t.string   "reg_uid"
+    t.datetime "reg_date"
+  end
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -344,26 +364,6 @@ ActiveRecord::Schema.define(:version => 20110704145048) do
     t.integer  "conf_year"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "user_metadata", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
-    t.string   "city"
-    t.string   "country"
-    t.string   "email"
-    t.string   "twitter_id"
-    t.string   "blog_url"
-    t.string   "reg_id"
-    t.string   "reg_status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "company"
-    t.string   "state"
-    t.string   "reg_uid"
-    t.datetime "reg_date"
   end
 
   create_table "user_plugins", :force => true do |t|

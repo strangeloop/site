@@ -65,7 +65,7 @@ describe RegOnlineController do
   before(:each) do
     @controller = RegOnlineController.new
     @stub_regonline = RegOnline.new :username => "foo", :password => "bar"
-    @um = UserMetadata.new
+    @um = Attendee.new
     @params_map = post_params
   end
 
@@ -78,7 +78,7 @@ describe RegOnlineController do
     @stub_regonline.should_receive(:get_custom_user_info).and_return(true)
     @controller.create_user_meta(@stub_regonline, @params_map, @um).should be_true
 
-    db_um = UserMetadata.find(@um.id)
+    db_um = Attendee.find(@um.id)
     db_um.reg_id.should == "34063176"
     db_um.first_name.should == "Alex"
     db_um.last_name.should == "Test"
