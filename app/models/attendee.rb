@@ -18,14 +18,14 @@ class Attendee < ActiveRecord::Base
   @@activation_key = YAML::load_file('config/activation.yml')["activation_key"]
   
   belongs_to :user
-  [:first_name, :last_name, :email, :reg_id, :reg_status].each do |field|
+  [:first_name, :last_name, :email, :reg_id].each do |field|
     validates field, :presence => true
   end
 
-  before_create {|um| um.reg_uid= UUIDTools::UUID.random_create.to_s}
+  before_create {|um| um.acct_activation_token= UUIDTools::UUID.random_create.to_s}
 
   def activation_token
-    Base64.encode64(Crypto.encrypt(@@activation_key, [email,reg_uid,reg_date].join("|")))
+    Base64.encode64(Crypto.encrypt(@@activation_key, [email,acct_activation_token,token_created_at].join("|")))
   end
 
   def self.decrypt_token (cipher_text)
@@ -35,7 +35,7 @@ class Attendee < ActiveRecord::Base
   def self.check_token (cipher_text)
     token = decrypt_token(cipher_text)
     date = DateTime.parse(token[2])
-    attendee =  Attendee.where("reg_uid = ?", token[1]).first
-    attendee && attendee.reg_date == date && attendee.email == token[0]
+    attendee =  Attendee.where("acct_activation_token = ?", token[1]).first
+    attendee && attendee.token_created_at == date && attendee.email == token[0]
   end
 end

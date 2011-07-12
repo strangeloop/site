@@ -11,6 +11,9 @@ class AddCryptoHelpersToUserMetadata < ActiveRecord::Migration
     remove_column :user_metadata, :gender
     remove_column :user_metadata, :postal_code
     remove_column :user_metadata, :company_name
+    remove_column :user_metadata, :reg_status
+    rename_column :user_metadata, :reg_uid, :acct_activation_token
+    rename_column :user_metadata, :reg_date, :token_created_at
   end
 
   def self.down
@@ -25,5 +28,8 @@ class AddCryptoHelpersToUserMetadata < ActiveRecord::Migration
     add_column :user_metadata, :gender, :string
     add_column :user_metadata, :postal_code, :string
     add_column :user_metadata, :company_name, :string
+    add_column :user_metadata, :reg_status, :string
+    rename_column :user_metadata, :acct_activation_token, :reg_uid
+    rename_column :user_metadata, :token_created_at, :reg_date
   end
 end

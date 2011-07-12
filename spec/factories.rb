@@ -270,9 +270,8 @@ Factory.define :attendee do |um|
   um.last_name "English"
   um.email "julian_english@prodigy.net"
   um.reg_id "1234"
-  um.reg_status "unimplemented"
-  um.reg_uid "random-text-here"
-  um.reg_date 'Thursday, July 4, 2011 11:19 AM'
+  um.acct_activation_token "random-text-here"
+  um.token_created_at 'Thursday, July 4, 2011 11:19 AM'
 end
 
 

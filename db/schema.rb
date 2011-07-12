@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711011305) do
+ActiveRecord::Schema.define(:version => 20110711034436) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "user_id"
@@ -23,13 +23,12 @@ ActiveRecord::Schema.define(:version => 20110711011305) do
     t.string   "twitter_id"
     t.string   "blog_url"
     t.string   "reg_id"
-    t.string   "reg_status"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "company"
     t.string   "state"
-    t.string   "reg_uid"
-    t.datetime "reg_date"
+    t.string   "acct_activation_token"
+    t.datetime "token_created_at"
   end
 
   create_table "comments", :force => true do |t|
@@ -95,9 +94,9 @@ ActiveRecord::Schema.define(:version => 20110711011305) do
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
+    t.string   "external_url"
     t.string   "title"
     t.text     "body"
-    t.string   "external_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

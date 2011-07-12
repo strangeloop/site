@@ -19,7 +19,7 @@ require 'spec_helper'
 
 describe Attendee do
 
-  [:first_name, :last_name, :email, :reg_id, :reg_status].each do |field|
+  [:first_name, :last_name, :email, :reg_id].each do |field|
     it {should validate_presence_of field}
   end
 
@@ -30,10 +30,10 @@ describe Attendee do
     it {should have_db_column(field).of_type(:string)}
   end
 
-  it {should have_db_column(:reg_date).of_type(:datetime)}
+  it {should have_db_column(:token_created_at).of_type(:datetime)}
 
   let(:july4){DateTime.parse('Thursday, July 4, 2011 11:19 AM')}
-  let(:um){Attendee.new :email => "foo@bar.com", :reg_uid => "big uid here", :reg_date => july4}
+  let(:um){Attendee.new :email => "foo@bar.com", :acct_activation_token => "big uid here", :token_created_at => july4}
 
   it "should decrypt encrypted strings" do
     encrypted_txt = um.activation_token
@@ -50,13 +50,13 @@ describe Attendee do
   end
 
   it "should fail on incorrect uids" do
-    attendee.reg_uid = "foo"
+    attendee.acct_activation_token = "foo"
     token = attendee.activation_token
     Attendee.check_token(token).should be_false
   end
 
   it "should fail on incorrect date" do
-    attendee.reg_date = DateTime.now
+    attendee.token_created_at = DateTime.now
     token = attendee.activation_token
     Attendee.check_token(token).should be_false
   end
