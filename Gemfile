@@ -13,6 +13,7 @@ gem 'uuidtools', '~> 2.1.2'
 
 gem 'acts_as_commentable', '3.0.1'
 gem 'fastercsv', '1.5.4'
+gem 'gravtastic'
 
 gem 'mmcopyrights'
 gem 'regonline-ruby', :git => 'git://github.com/strangeloop/regonline-ruby'
@@ -76,10 +77,11 @@ group :development, :test do
   # Factory Girl
   #gem 'factory_girl'
   gem "#{'j' if RUBY_PLATFORM == 'java'}ruby-prof" unless defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
+  gem 'ZenTest', '4.6.0'
   # Autotest
-  gem 'autotest'
-  gem 'autotest-rails'
-  gem 'autotest-notification'
+  gem 'autotest', '4.4.6'
+  gem 'autotest-rails', '4.1.0'
+  gem 'autotest-notification', '2.3.3'
 end
 
 # END REFINERY CMS ============================================================

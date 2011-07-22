@@ -29,6 +29,10 @@ ActiveRecord::Schema.define(:version => 20110731160842) do
     t.string   "state"
     t.string   "acct_activation_token"
     t.datetime "token_created_at"
+    t.integer  "conf_year"
+    t.string   "github_id"
+    t.string   "cached_slug"
+    t.string   "company_url"
   end
 
   create_table "comments", :force => true do |t|

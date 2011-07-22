@@ -14,6 +14,10 @@
 #-
 
 class Attendee < ActiveRecord::Base
+  include Gravtastic
+
+  acts_as_indexed :fields => [:conf_year]
+  gravtastic
 
   @@activation_key = YAML::load_file('config/activation.yml')["activation_key"]
   @@activation_url_prefix = YAML::load_file('config/activation.yml')["activation_url_prefix"]
@@ -24,6 +28,15 @@ class Attendee < ActiveRecord::Base
   end
 
   before_create {|um| um.acct_activation_token= UUIDTools::UUID.random_create.to_s}
+  before_create AddConfYear
+
+  has_friendly_id :full_name, :use_slug => true
+
+  scope :current_year, lambda { where('conf_year' => maximum('conf_year')).order('last_name ASC', 'first_name ASC') }
+
+  def full_name
+    "#{first_name} #{middle_name} #{last_name}"
+  end
 
   def remove_newlines(s)
     s.gsub(/\n/,'')

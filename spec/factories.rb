@@ -260,23 +260,25 @@ Factory.define :track do |t|
 end
 
 Factory.define :attendee_user, :parent => :user do |u|
-  u.username "someattendee"
   u.email "attendington@attendsalot.com"
+  #FIXME: Remove roles for attendees?
   u.roles { [ Role[:refinery] ] }
+  u.sequence(:username) { |n| "kaisersozhay#{n == 1 ? '' : n}" }
 end
 
 Factory.define :attendee do |a|
-  a.user { Factory(:user_for_attendee) }
+  a.user { Factory(:attendee_user) }
   a.first_name 'Kaiser'
   a.middle_name 'Von'
   a.last_name 'Sozhay'
   a.city 'St. Louis'
   a.state 'MO'
-  a.country 'United States of America'
+  a.country 'United States'
   a.email 'kaiser@meatspace.com'
   a.twitter_id 'kaiser'
   a.blog_url 'http://kaiser.blogspot.com'
   a.reg_id 'abc'
   a.reg_status 'paid'
-  um.token_created_at DateTime.parse('Thursday, July 4, 2011 11:19 AM')
+  a.acct_activation_token "random-text-here"
+  a.token_created_at DateTime.parse('Thursday, July 4, 2011 11:19 AM')
 end

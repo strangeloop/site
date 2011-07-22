@@ -2,13 +2,29 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  attendees:
+    edit:
+      blog_url: Blog URL
+      city: Home Town
+      commit: Update Profile
+      company: Company Name
+      company_url: Company URL
+      country: Home Country
+      email: Email
+      first_name: First Name
+      github_id: GitHub ID
+      last_name: Last Name
+      middle_name: Middle Name
+      profile: Your Conference Profile
+      twitter_id: Twitter ID
+
   shared:
     footer:
       copyright1: Copyright
       copyright2: "%{year} %{site_name}. All rights reserved."
       attribution: "<p>Hosting provided by <a href='http://contegix.com'>Contegix</a> <br/>Site design by Jennifer Danker of <a href='http://breomedia.com'>Breo Media</a></p>"
 
-  talks:      
+  talks:
     new:
       title: Title
       title_hint: "Max length: 55 characters."

@@ -1,17 +1,17 @@
 #- Copyright 2011 Strange Loop LLC
-#- 
+#-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
 #- You may obtain a copy of the License at
-#- 
+#-
 #-    http://www.apache.org/licenses/LICENSE-2.0
-#- 
+#-
 #- Unless required by applicable law or agreed to in writing, software
 #- distributed under the License is distributed on an "AS IS" BASIS,
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#- See the License for the specific language governing permissions and 
+#- See the License for the specific language governing permissions and
 #- limitations under the License.
-#- 
+#-
 
 
 
@@ -33,7 +33,7 @@ describe Attendee do
   it {should have_db_column(:token_created_at).of_type(:datetime)}
 
   let(:um){Factory(:attendee)}
-  
+
   it "should decrypt encrypted strings" do
     encrypted_txt = um.activation_token
     encrypted_txt.should_not ==  format("julian_english@prodigy.net|%s|2011-07-04 11:19:00 UTC",um.acct_activation_token)
@@ -66,7 +66,7 @@ describe Attendee do
     token = attendee.activation_token
     Attendee.check_token(token).should be_false
   end
-  
+
   let(:um){Factory(:attendee)}
 
   it "should generate an activation token upon save" do
@@ -79,5 +79,16 @@ describe Attendee do
     attendee.activation_url.should == format("https://localhost:3000/account_activation?token=%s", attendee.activation_token)
   end
 
+  it "retrieves attendees by the latest year" do
+    previous_conf_attendee = Factory(:attendee, :conf_year => 2010)
+    attendee
+    Attendee.current_year.should eq([attendee])
+  end
+
+  it "joins all names in #full_name" do
+    Attendee.new(:first_name => 'Mario',
+                 :middle_name => 'Enrique',
+                 :last_name => 'Aquino').full_name.should eq('Mario Enrique Aquino')
+  end
 end
 

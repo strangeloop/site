@@ -11,26 +11,27 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     Given an admin exists
 
   Scenario: Authenticated attendee creates a profile
-    Given I am a logged in attendee
+    Given I am logged in as an attendee
     And I am on the edit profile page
     And I change the First Name field to "Mario"
     And I change the Middle Name field to "Crimefighter"
     And I change the Last Name field to "Aquino"
     And I change the Home Town field to "St. Louis"
+    And I change the Home Country select to "United States"
     And I change the Email field to "mario@foo.com"
     And I change the Company Name field to "Foo, Inc."
     And I change the Company URL field to "http://mycompany.com"
     And I change the Twitter ID field to "marioaquino"
-    And I change the Github ID field to "marioaquino"
+    And I change the GitHub ID field to "marioaquino"
     And I change the Blog URL field to "http://marioaquino.blogspot.com"
-    When I press the Update Profile button
+    When I press "Update Profile"
     Then I should be on the profile page for Mario Crimefighter Aquino
     And I should see "Mario Crimefighter Aquino"
     And I should see "St. Louis"
-    And I should see "Foo, Inc." as a link to "http://mycompany.com"
-    And I should see "@marioaquino" as a link to "http://twitter.com/marioaquino"
-    And I should see "marioaquino" as a link to "http://github.com/marioaquino"
-    And I should see "http://marioaquino.blogspot.com" as a link to "http://marioaquino.blogspot.com"
+    And I should see a link with "Foo, Inc." to "http://mycompany.com"
+    And I should see a link with "@marioaquino" to "https://twitter.com/marioaquino"
+    And I should see a link with "marioaquino" to "https://github.com/marioaquino"
+    And I should see a link with "http://marioaquino.blogspot.com" to "http://marioaquino.blogspot.com"
 
   Scenario: Authenticated attendee updates profile
     Given I am a logged in attendee
@@ -40,7 +41,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I change the First Name field to "Mario"
     And I change the Middle Name field to "Crimefighter"
     And I change the Last Name field to "Aquino"
-    When I press the Update Profile button
+    When I press "Update Profile"
     Then I should be on the profile page for Mario Crimefighter Aquino
     And I should see "Mario Crimefighter Aquino"
 
@@ -51,3 +52,13 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I should see "Login with LinkedIn"
     And I should see "Login with Twitter"
     And I should see "Login with Yahoo!"
+
+  Scenario: Authenticated attendees can see paginated list of current year attendees
+    Given an attendee exists
+    And I am a logged in attendee
+    When I am on the attendees page
+    Then I should see a link with "Kaiser Von Sozhay" to "/attendee/kaiser-von-sozhay"
+    And I should see a link with "St. Louis" to "/attendees/st-louis"
+    And I should see a link with "Foo, Inc." to "http://mycompany.com"
+    And I should see a link with "@kaiser" to "https://twitter.com/kaiser"
+

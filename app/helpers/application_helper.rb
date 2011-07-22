@@ -43,7 +43,11 @@ module ApplicationHelper
   end
 
   def twitter_link(twitter_id = '', tag_type = :strong)
-    link_to(content_tag(tag_type, "@#{twitter_id}"), "http://twitter.com/#{twitter_id}") unless twitter_id.blank?
+    custom_link twitter_id, "@#{twitter_id}", 'twitter.com', tag_type
+  end
+
+  def github_link(github_id = '')
+    custom_link github_id, github_id, 'github.com'
   end
 
   # expects an Image object as the first param and a display size (:small or :medium)
@@ -59,5 +63,9 @@ module ApplicationHelper
   
   def tree_row_height
     7
+  end
+
+  def custom_link(id, display_content, url, tag_type = :strong)
+    link_to(content_tag(tag_type, display_content), "https://#{url}/#{id}") unless id.blank?
   end
 end

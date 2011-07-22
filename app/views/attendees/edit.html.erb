@@ -1,0 +1,27 @@
+<%= render :partial => 'shared/formtastic' %>
+<%= render :partial => 'shared/title', :locals => { :title => t('.profile')}%>
+
+<div class="container_12">
+  <div class="grid_12">
+    <%= semantic_form_for [attendee], :url => attendee_path, :validate => true do |attendee_form| %>
+    <%= attendee_form.inputs do %>
+      <%= attendee_form.input :first_name, :label => t('.first_name') %>
+      <%= attendee_form.input :middle_name, :label => t('.middle_name') %>
+      <%= attendee_form.input :last_name, :label => t('.last_name') %>
+      <%= attendee_form.input :city, :label => t('.city') %>
+      <%= attendee_form.input :country, :label => t('.country'),
+        :as => :select, :collection => Carmen::country_names %>
+      <%= attendee_form.input :email, :label => t('.email') %>
+      <%= attendee_form.input :company, :label => t('.company') %>
+      <%= attendee_form.input :company_url, :label => t('.company_url') %>
+      <%= attendee_form.input :twitter_id, :label => t('.twitter_id') %>
+      <%= attendee_form.input :github_id, :label => t('.github_id') %>
+      <%= attendee_form.input :blog_url, :label => t('.blog_url') %>
+    <% end %>
+    <%= attendee_form.buttons do %>
+      <%= attendee_form.commit_button :label => t('.commit')%>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+
