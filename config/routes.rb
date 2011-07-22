@@ -16,7 +16,10 @@
 
 
 Conf::Application.routes.draw do
+  resource :attendee, :only => [:show, :edit, :update]
+  resources :attendees, :only => [:index]
   resources :talks
+
   match '/media/*dragonfly', :to => Dragonfly[:strangeloop]
   post 'reg_online/callback', :to => "reg_online#create"
 

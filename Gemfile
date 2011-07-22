@@ -13,6 +13,7 @@ gem 'uuidtools', '~> 2.1.2'
 
 gem 'acts_as_commentable', '3.0.1'
 gem 'fastercsv', '1.5.4'
+gem 'gravtastic'
 
 gem 'mmcopyrights'
 gem 'regonline-ruby', :git => 'git://github.com/strangeloop/regonline-ruby'

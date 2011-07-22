@@ -13,7 +13,7 @@ Feature: As a user I can see talks I might want to attend
     And I should see "Title"
     And I should see "Abstract"
     And I should see "Talk type"
-    
+
   Scenario: Site visitors see published keynote
     Given a keynote session exists
     When I am on the sessions page
@@ -22,7 +22,7 @@ Feature: As a user I can see talks I might want to attend
     And I should see "Hank Moody"
     And I should see the medium default speaker image
     And I should see a link with "Unemployable" to "http://unemployable.com"
-    And I should see a link with "@hankypanky" to "http://twitter.com/hankypanky"
+    And I should see a link with "@hankypanky" to "https://twitter.com/hankypanky"
     And I should see "God Hates Us All"
     And I should see "Single father, living a player lifestyle in California."
 
@@ -35,7 +35,7 @@ Feature: As a user I can see talks I might want to attend
     And I should see "Winning with Tiger Blood"
     And I should see the small default speaker image
     And I should see a link with "Charlie Sheen" to "http://winning.com"
-    And I should see a link with "@adonisdna" to "http://twitter.com/adonisdna"
+    And I should see a link with "@adonisdna" to "https://twitter.com/adonisdna"
 
   Scenario: Site visitors see published talks
     Given a talk session exists
@@ -46,7 +46,7 @@ Feature: As a user I can see talks I might want to attend
     And I should see "Sample Talk"
     And I should see the small default speaker image
     And I should see a link with "Earl Grey" to "http://teabaggery.com"
-    And I should see a link with "@earlofgrey" to "http://twitter.com/earlofgrey"
+    And I should see a link with "@earlofgrey" to "https://twitter.com/earlofgrey"
 
   Scenario: Site visitor views a session detail
     Given a keynote session exists
@@ -56,7 +56,7 @@ Feature: As a user I can see talks I might want to attend
     Then I should see "Hank Moody"
     And I should see the medium default speaker image
     And I should see a link with "Unemployable" to "http://unemployable.com"
-    And I should see a link with "@hankypanky" to "http://twitter.com/hankypanky"
+    And I should see a link with "@hankypanky" to "https://twitter.com/hankypanky"
     And I should see "God Hates Us All"
     And I should see "A writer tries to juggle his career, his relationship with his daughter and his ex-girlfriend, as well as his appetite for beautiful women."
     And I should see "Single father, living a player lifestyle in California."

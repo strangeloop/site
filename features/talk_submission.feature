@@ -36,7 +36,7 @@ Feature: As an anonymous user I can enter a talk along with
       And I should see "projector"
       And I should see "Clem Esterbill"
       And I should see "clem_esterbill@fictionaldns.com"
-      And I should see a link with "@clemtweets" to "http://twitter.com/clemtweets"
+      And I should see a link with "@clemtweets" to "https://twitter.com/clemtweets"
       And I should see a link with "Clemalamadingdong" to "http://clem.com"
       And I should see "Background info here"
       And I should see "555-555-5555"

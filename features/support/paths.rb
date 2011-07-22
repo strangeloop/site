@@ -1,17 +1,17 @@
 #- Copyright 2011 Strange Loop LLC
-#- 
+#-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
 #- You may obtain a copy of the License at
-#- 
+#-
 #-    http://www.apache.org/licenses/LICENSE-2.0
-#- 
+#-
 #- Unless required by applicable law or agreed to in writing, software
 #- distributed under the License is distributed on an "AS IS" BASIS,
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#- See the License for the specific language governing permissions and 
+#- See the License for the specific language governing permissions and
 #- limitations under the License.
-#- 
+#-
 
 
 
@@ -41,17 +41,16 @@ module NavigationHelpers
       admin_proposals_path
 
     when /the default proposal review page/
-      edit_admin_proposal_path(Proposal.first)
+      edit_admin_proposal_path Proposal.first
 
     when /the default conference session page/
-      edit_admin_conference_session_path(ConferenceSession.first)
+      edit_admin_conference_session_path ConferenceSession.first
 
     when /the sessions page/
       conference_sessions_path
 
     when /the session details page for (.*)$/
-      friendly_id = $1.downcase.gsub(' ', '-').gsub("\"", '')
-      conference_session_path(friendly_id)
+      conference_session_path friendly_id($1)
 
     when /the conference sessions admin index page/
       admin_conference_sessions_path
@@ -68,6 +67,12 @@ module NavigationHelpers
     when /the track index page/
       admin_tracks_path
 
+    when /the edit profile page/
+      edit_attendee_path Attendee.first
+
+    when /the profile page for (.*)$/
+      attendee_path
+
     when /the dashboard page/
       '/refinery'
 
@@ -81,6 +86,10 @@ module NavigationHelpers
           "Now, go and add a mapping in #{__FILE__}"
       end
     end
+  end
+
+  def friendly_id(glob)
+    glob.downcase.gsub(' ', '-').gsub("\"", '')
   end
 end
 
