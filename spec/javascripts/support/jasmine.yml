@@ -11,6 +11,7 @@
 #   - dist/**/*.js
 #
 src_files:
+  - public/javascripts/libs/jquery-1.4.2.js
   - public/javascripts/application.js
   #- public/javascripts/**/*.js
 

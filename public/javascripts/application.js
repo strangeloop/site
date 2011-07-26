@@ -27,5 +27,31 @@ $(document).ready(function() {
   function addShade(tracks) {
     tracks.addClass("shaded");
   };
+
+  $.getJSON('/attendees/current.json', function(data) {
+    if(data.username === null) {
+      SL.appendNav('Login', data.login_path);
+    } else {
+      SL.prependNav(data.username, data.attendee_path);
+      SL.appendNav('Log Out', data.logout_path);
+    }
+  })
 });
+
+var SL = function() {
+  function listLink(text, path) {
+    return $('<li/>', {
+      html : $('<a/>', {
+        html : text }).attr('href', path)});
+  }
+
+  return {
+    prependNav : function(text, path) {
+      listLink(text, path).prependTo($('#menu > ul'));
+    },
+    appendNav : function(text, path) {
+      listLink(text, path).appendTo($('#menu > ul'));
+    }
+  };
+}();
 

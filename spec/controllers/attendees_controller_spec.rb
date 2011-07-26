@@ -8,6 +8,11 @@ describe AttendeesController do
     controller.attendee.should eq(attendee)
   end
 
+  it "does not find an attendee if no id supplied" do
+    get :show
+    controller.attendee.should be_nil
+  end
+
   it "loads all attendees from current year for index action" do
     attendee
     get :index
