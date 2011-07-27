@@ -3,6 +3,8 @@
 
 en:
   attendees:
+    attendee:
+      update_profile: Update My Profile
     edit:
       blog_url: Blog URL
       city: Home Town
