@@ -278,3 +278,19 @@ Factory.define :attendee do |a|
   a.acct_activation_token "random-text-here"
   a.token_created_at 'Thursday, July 4, 2011 11:19 AM'
 end
+
+Factory.define :page do
+end
+
+Factory.define :page_part do |pp|
+  pp.title 'Homepage'
+  pp.body 'This is the homepage'
+end
+
+Factory.define :homepage, :parent => :page do |u|
+  u.link_url '/'
+  u.menu_match '^/$'
+  u.path 'Home'
+  u.title 'Homepage title'
+  u.parts { [Factory(:page_part)]}
+end

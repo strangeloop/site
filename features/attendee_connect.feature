@@ -33,10 +33,12 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I should see a link with "marioaquino" to "https://github.com/marioaquino"
     And I should see a link with "http://marioaquino.blogspot.com" to "http://marioaquino.blogspot.com"
 
+  @javascript
   Scenario: Authenticated attendee updates profile
-    Given I am a logged in attendee
+    Given a homepage exists
+    And I am logged in as an attendee
     And I am on the homepage
-    And I follow "Attendee 1"
+    And I follow "Kaiser Von Sozhay"
     And I follow "Update My Profile"
     And I change the First Name field to "Mario"
     And I change the Middle Name field to "Crimefighter"
@@ -54,8 +56,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I should see "Login with Yahoo!"
 
   Scenario: Authenticated attendees can see paginated list of current year attendees
-    Given an attendee exists
-    And I am a logged in attendee
+    Given I am logged in as an attendee
     When I am on the attendees page
     Then I should see a link with "Kaiser Von Sozhay" to "/attendee/kaiser-von-sozhay"
     And I should see a link with "St. Louis" to "/attendees/st-louis"

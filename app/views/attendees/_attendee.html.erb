@@ -10,6 +10,7 @@
       <h5><%= link_to attendee.company, attendee.company_url %></h5>
       <%= twitter_link attendee.twitter_id %>
       <%= github_link attendee.github_id %>
+      <p><%= link_to t('.update_profile'), edit_attendee_path %></p>
     </div>
     <div class="list4">
       <div>Home Town</div> 
