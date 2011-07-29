@@ -279,6 +279,8 @@ Factory.define :attendee do |a|
   a.blog_url 'http://kaiser.blogspot.com'
   a.reg_id 'abc'
   a.reg_status 'paid'
+  a.company 'Happy Town'
+  a.company_url 'http://happytown.com'
   a.acct_activation_token "random-text-here"
   a.token_created_at DateTime.parse('Thursday, July 4, 2011 11:19 AM')
 end
