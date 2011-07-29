@@ -19,6 +19,8 @@ en:
       middle_name: Middle Name
       profile: Your Conference Profile
       twitter_id: Twitter ID
+    index:
+      attendees: Conference Attendees
 
   shared:
     footer:

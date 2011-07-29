@@ -10,14 +10,14 @@ class AttendeesController < ApplicationController
   expose(:current_year_attendees) { Attendee.current_year.paginate :page => params[:page] }
 
   def update
-    attendee.update_attributes(params[:attendee])
+    attendee.update_attributes params[:attendee]
+    redirect_to attendee
   end
 
   def current
     render :json => { :username      => attendee.try(:full_name),
-                      :attendee_path => attendee_path,
+                      :attendee_path => attendee_path(attendee),
                       :login_path    => new_user_session_path,
                       :logout_path   => destroy_user_session_path }
   end
-
 end

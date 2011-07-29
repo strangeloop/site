@@ -68,10 +68,10 @@ module NavigationHelpers
       admin_tracks_path
 
     when /the edit profile page/
-      edit_attendee_path Attendee.first
+      edit_attendee_path
 
     when /the profile page for (.*)$/
-      attendee_path
+      attendee_path friendly_id($1)
 
     when /the dashboard page/
       '/refinery'

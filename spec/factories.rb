@@ -274,6 +274,8 @@ Factory.define :attendee do |a|
   a.email 'kaiser@meatspace.com'
   a.twitter_id 'kaiser'
   a.blog_url 'http://kaiser.blogspot.com'
+  a.company 'Happy Town'
+  a.company_url 'http://happytown.com'
   a.reg_id '1234'
   a.acct_activation_token "random-text-here"
   a.token_created_at 'Thursday, July 4, 2011 11:19 AM'

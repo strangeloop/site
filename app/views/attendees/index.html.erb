@@ -1,2 +1,23 @@
-<h1>Attendees#index</h1>
-<p>Find me in app/views/attendees/index.html.erb</p>
+<%= render :partial => 'shared/title', :locals => { :title => t('.attendees') } %>
+
+<div id="main" class="shape">
+  <div class="container_12 pad3">
+
+  <% current_year_attendees.each_slice(4) do |attendees| -%>
+    <div class="overflow p3">
+      <% attendees.each do |attendee| -%>
+      <div class="grid_3 speaker">
+        <%= image_tag attendee.gravatar_url, :class => 'pic_speaker' %>
+        <div style="float: left;">
+          <h4><%= link_to attendee.full_name, attendee_path(attendee) %></h4>
+          <h5><%= link_to attendee.company, attendee.company_url %></h5>
+          <%= twitter_link attendee.twitter_id, :span %>
+        </div>
+      </div>
+      <% end -%>
+    </div>
+  <% end -%>
+
+ </div>
+</div>
+
