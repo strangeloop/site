@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110711034436) do
+ActiveRecord::Schema.define(:version => 20110731160842) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "user_id"
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(:version => 20110711034436) do
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
-    t.string   "external_url"
     t.string   "title"
+    t.string   "external_url"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -140,8 +140,8 @@ ActiveRecord::Schema.define(:version => 20110711034436) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "custom_title"
     t.string   "title"
+    t.string   "custom_title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -252,6 +252,16 @@ ActiveRecord::Schema.define(:version => 20110711034436) do
 
   add_index "seo_meta", ["id"], :name => "index_seo_meta_on_id"
   add_index "seo_meta", ["seo_meta_id", "seo_meta_type"], :name => "index_seo_meta_on_seo_meta_id_and_seo_meta_type"
+
+  create_table "services", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "uname"
+    t.string   "uemail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "session_times", :force => true do |t|
     t.datetime "start_time"

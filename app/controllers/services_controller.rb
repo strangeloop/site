@@ -71,7 +71,7 @@ class ServicesController < ApplicationController
               if existinguser
                 # map this new login method via a service provider to
                 # an existing account if the email address is the same
-                debugger
+
                 existinguser.services.create(:provider => provider, :uid => uid, :uname => name, :uemail => email)
                 flash[:notice] = 'Sign in via ' + provider.capitalize + ' has been added to your account ' + existinguser.email + '. Signed in successfully!'
                 sign_in_and_redirect(:user, existinguser)
@@ -83,7 +83,8 @@ class ServicesController < ApplicationController
                 user = User.new :email => email, :password => SecureRandom.hex(10), :username => name
 
                 # add this authentication service to our new user
-                #user.services.build(:provider => provider, :uid => uid, :uname => name, :uemail => email)
+                debugger
+                user.services.build(:provider => provider, :uid => uid, :uname => name, :uemail => email)
 
                 # do not send confirmation email, we directly save and confirm the new record
 #                user.skip_confirmation!
