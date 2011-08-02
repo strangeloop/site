@@ -62,3 +62,45 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I should see a link with "Happy Town" to "http://happytown.com"
     And I should see a link with "@kaiser" to "https://twitter.com/kaiser"
 
+  @javascript
+  Scenario: Authenticated attendees can select a talk they are interested in
+    Given I am logged in as an attendee
+    And a talk exists
+    And I am on the detail page for that talk
+    When I click "Interested"
+    Then I should see "Will attend"
+    And I should not see "Interested"
+    And I should see "Changed my mind"
+
+  @javascript
+  Scenario: Authenticated attendees can deselect a talk they don't plan to attend
+    Given I am logged in as an attendee
+    And a talk exists
+    And I am interested in that talk
+    And I am on the detail page for that talk
+    When I click "Changed my mind"
+    Then I should see "Interested"
+    And I should not see "Changed my mind"
+    And I should not see "Will attend"
+
+  Scenario: Authenticated attendees are urged to select which talks they want to attend on their profile page
+    Given I am logged in as an attendee
+    When I am my profile page
+    Then I should see "You have not indicated your interest in attending any talks"
+    And I should see "Please visit the sessions page" as a link to the Sessions page
+
+  Scenario: Authenticated attendee sees a list of talks they are interested in attending
+    Given I am logged in as an attendee
+    And a talk exists
+    And I am interested in that talk
+    When I am on my profile page
+    Then I should see "My Schedule"
+    And I should see "A cool talk"
+    And I should see "Monday"
+    And I should see "09:30 AM - 10:20 AM"
+
+  Scenario: Site admin sees the count of attendees interested in a conference session
+    Given a talk session with an interested attendee exists
+    And I am a logged in admin
+    When I am on the conference sessions admin index page
+    Then I should see "1 interested attendee"
