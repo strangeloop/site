@@ -16,6 +16,7 @@
 class Attendee < ActiveRecord::Base
   
   @@activation_key = YAML::load_file('config/activation.yml')["activation_key"]
+  @@activation_url_prefix = YAML::load_file('config/activation.yml')["activation_url_prefix"]
   
   belongs_to :user
   [:first_name, :last_name, :email, :reg_id].each do |field|
@@ -24,10 +25,26 @@ class Attendee < ActiveRecord::Base
 
   before_create {|um| um.acct_activation_token= UUIDTools::UUID.random_create.to_s}
 
-  def activation_token
-    Base64.encode64(Crypto.encrypt(@@activation_key, [email,acct_activation_token,token_created_at].join("|")))
+  def remove_newlines(s)
+    s.gsub(/\n/,'')
   end
 
+  def encrypt_str(s)
+    Crypto.encrypt(@@activation_key, s)
+  end
+
+  def encode(s)
+    remove_newlines(Base64.encode64(s))
+  end
+  
+  def activation_token
+    encode(encrypt_str([email,acct_activation_token,token_created_at].join("|")))
+  end
+
+  def activation_url
+    format("%s?token=%s", @@activation_url_prefix, activation_token)
+  end
+  
   def self.decrypt_token (cipher_text)
     Crypto.decrypt(@@activation_key, Base64.decode64(cipher_text)).split("|")
   end

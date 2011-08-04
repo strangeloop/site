@@ -66,5 +66,10 @@ describe Attendee do
     token = attendee.activation_token
     Attendee.check_token(token).should be_false
   end
+
+  it "should generate an activation url with a token" do
+    attendee.activation_url.should == format("https://localhost:3000/account_activation?token=%s", attendee.activation_token)
+  end
+
 end
 
