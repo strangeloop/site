@@ -1,32 +1,18 @@
 $(document).ready(function() {
   $('.track').toggle(function() {
-    var track=$(this).parent().attr("data-track");
-    if ($(this).parent().hasClass("shaded")) {
-      removeShade(similarTracks(track));
+    if (SL.isShaded(this)) {
+      SL.removeShade(SL.similarTracks(this));
     } else {
-      addShade(differentTracks(track));
+      SL.addShade(SL.differentTracks(this));
     }
   },
   function() {
-    var track=$(this).parent().attr("data-track");
-    if ($(this).parent().hasClass("shaded")) {
-      addShade(similarTracks(track));
+    if (SL.isShaded(this)) {
+      SL.addShade(SL.similarTracks(this));
     } else {
-      removeShade(differentTracks(track));
+      SL.removeShade(SL.differentTracks(this));
     }
   });
-  function similarTracks(track) {
-    return $('.column2:[data-track="' + track + '"]');
-  };
-  function differentTracks(track) {
-    return $('.column2:not([data-track="' + track + '"])');
-  };
-  function removeShade(tracks) {
-    tracks.removeClass("shaded");
-  };
-  function addShade(tracks) {
-    tracks.addClass("shaded");
-  };
 
   $.getJSON('/attendees/current.json', function(data) {
     if(data.username === null) {
@@ -43,7 +29,11 @@ var SL = function() {
     return $('<li/>', {
       html : $('<a/>', {
         html : text }).attr('href', path)});
-  }
+  };
+
+  function track(self) {
+    return $(self).parent().attr("data-track");
+  };
 
   return {
     prependNav : function(text, path) {
@@ -51,6 +41,21 @@ var SL = function() {
     },
     appendNav : function(text, path) {
       listLink(text, path).appendTo($('#menu > ul'));
+    },
+    isShaded : function(self) {
+      return $(self).parent().hasClass("shaded");
+    },
+    similarTracks : function(self) {
+      return $('.column3:[data-track="' + track(self) + '"]');
+    },
+    differentTracks : function(self) {
+      return $('.column3:not([data-track="' + track(self) + '"])');
+    },
+    removeShade : function(tracks) {
+      tracks.removeClass("shaded");
+    },
+    addShade : function(tracks) {
+      tracks.addClass("shaded");
     }
   };
 }();

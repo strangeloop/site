@@ -3,11 +3,11 @@ describe('Schedule', function() {
     loadFixtures('schedule.html');
   });
 
-  it("adds .shaded to all .column2 elements of a different track", function() {
+  it("adds .shaded to all .column3 elements of a different track", function() {
     $('span:last').click();
-    var fooey = $('#class-receiver').hasClass('column2');
-    expect($("#class-receiver")).toHaveClass("shaded");
+    expect($('span:last').text()).toEqual('Ruby');
     expect($("#no-class-added")).not.toHaveClass("shaded");
+    expect($("#class-receiver")).toHaveClass("shaded");
   });
 
 });
