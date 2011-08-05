@@ -27,4 +27,7 @@ Conf::Application.routes.draw do
 
   match '/auth/:service/callback' => 'services#create' 
   resources :services, :only => [:index, :create, :destroy]
+
+  resources :account_activation
+
 end

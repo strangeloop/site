@@ -53,6 +53,11 @@ class Attendee < ActiveRecord::Base
     token = decrypt_token(cipher_text)
     date = DateTime.parse(token[2])
     attendee =  Attendee.where("acct_activation_token = ?", token[1]).first
-    attendee && attendee.token_created_at == date && attendee.email == token[0]
+    if attendee && attendee.token_created_at == date && attendee.email == token[0]
+      attendee
+    else
+      false
+    end
+    
   end
 end
