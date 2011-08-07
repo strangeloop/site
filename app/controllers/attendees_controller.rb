@@ -21,8 +21,4 @@ class AttendeesController < ApplicationController
                       :logout_path   => destroy_user_session_path }
   end
 
-  def toggle_session
-    will_attend = attendee.toggle_session(params[:sessionid])
-    render :json => {:willAttend => will_attend}
-  end
 end

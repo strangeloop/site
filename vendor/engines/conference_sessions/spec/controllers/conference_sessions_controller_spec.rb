@@ -1,17 +1,17 @@
 #- Copyright 2011 Strange Loop LLC
-#- 
+#-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
 #- You may obtain a copy of the License at
-#- 
+#-
 #-    http://www.apache.org/licenses/LICENSE-2.0
-#- 
+#-
 #- Unless required by applicable law or agreed to in writing, software
 #- distributed under the License is distributed on an "AS IS" BASIS,
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#- See the License for the specific language governing permissions and 
+#- See the License for the specific language governing permissions and
 #- limitations under the License.
-#- 
+#-
 
 
 
@@ -22,6 +22,7 @@ describe ConferenceSessionsController do
   let(:talk) { session.talk }
   let(:speaker) { talk.speakers.first }
   let(:last_years_session) { Factory(:last_years_talk_session) }
+  let(:attendee) { Factory(:attendee) }
 
   context "show action" do
    before { get :show, :id => session.friendly_id }
@@ -72,5 +73,38 @@ describe ConferenceSessionsController do
         end
       end
     end
+  end
+
+  context "authenticated action" do
+    before(:each) do
+      #Must create an attendee record to prevent refinery
+      #from redirecting to welcome page
+      Factory.create(:admin)
+      @request.env['devise.mapping'] = :admin
+      sign_in attendee.user
+    end
+
+    it "#toggle_session passes session_id to an attendee for update" do
+      controller.attendee.should_receive(:toggle_session).with(1).and_return(true)
+      put :toggle_session, :sessionid => "1"
+      ActiveSupport::JSON.decode(response.body).should eq(ActiveSupport::JSON.decode({:willAttend => true}.to_json))
+    end
+
+    context "#attendee_session_ids" do
+      it "returns an empty array if the attendee is not interested in any sessions" do
+        controller.attendee_session_ids.should be_empty
+      end
+
+      it "returns the sessions ids this attendee is interested in" do
+        session1 = Factory(:scheduled_talk_session_for_this_year)
+        session2 = Factory(:scheduled_talk_session_for_this_year, :room => Factory(:small_room))
+        controller.attendee.conference_sessions = [session1, session2]
+        controller.attendee_session_ids.should eq([session1.id, session2.id])
+      end
+    end
+  end
+
+  it "#attendee_session_ids returns an empty array if not signed in" do
+    controller.attendee_session_ids.should be_empty
   end
 end
