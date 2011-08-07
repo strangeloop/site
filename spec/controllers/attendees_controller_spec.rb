@@ -3,14 +3,6 @@ require 'spec_helper'
 describe AttendeesController do
   let(:attendee) { Factory(:attendee) }
 
-  def sign_in_attendee
-    #Must create an attendee record to prevent refinery
-    #from redirecting to welcome page
-    Factory.create(:admin)
-    @request.env['devise.mapping'] = :admin
-    sign_in attendee.user
-  end
-
   it "exposes a specific attendee for #show" do
     get :show, :id => attendee.id
     controller.attendee.should eq(attendee)
@@ -34,23 +26,21 @@ describe AttendeesController do
     controller.current_year_attendees.should be_empty
   end
 
-  context "#edit" do
+  context "authenticated action" do
     before(:each) do
-      sign_in_attendee
+      #Must create an attendee record to prevent refinery
+      #from redirecting to welcome page
+      Factory.create(:admin)
+      @request.env['devise.mapping'] = :admin
+      sign_in attendee.user
     end
 
-    it "exposes a specific attendee for #edit" do
+    it "#edit exposes a specific attendee for #edit" do
       get :edit
       controller.attendee.should eq(attendee)
     end
-  end
 
-  context "#toggle" do
-    before(:each) do
-      sign_in_attendee
-    end
-
-    it "passes session_id to an attendee for update" do
+    it "#toggle passes session_id to an attendee for update" do
       controller.attendee.should_receive(:toggle_session).with(1).and_return(true)
       put :toggle_session, :sessionid => 1
       ActiveSupport::JSON.decode(response.body).should eq(ActiveSupport::JSON.decode({:willAttend => true}.to_json))
