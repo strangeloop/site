@@ -1,3 +1,9 @@
+<% content_for :page_specific_javascript do -%>
+  <%= javascript_include_tag 'schedule' %>
+<% end -%>
+
+<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect}, sessionIdList = [];" %>
+
 <div class="row_top_tile_sub">
   <div class="container_12">
     <div class="grid_8">
@@ -20,10 +26,12 @@
               <%= time_period_for session_time %>
             </li>
             <% sessions.each do |session| %>
-              <li class="column2" data-track="<%= track_name session %>">
+              <li class="column2 miss attend" data-sessionid="<%= session.id %>">
+              </li>
+              <li class="column3" data-track="<%= track_name session %>">
                 <div class="title"><%= link_to session.talk.title, session %></div>
-                <span class="speaker"><%= speaker_for session.talk %></span> &middot; 
-                <span class="room"><%= room_for session %></span> 
+                <span class="speaker"><%= speaker_for session.talk %></span> &middot;
+                <span class="room"><%= room_for session %></span>
                 <% if is_technical_track? session %>
                 &middot;
                 <span class="track" style="background: #<%= track_color session %>"><%= track_name session %></span>

@@ -4,7 +4,7 @@ describe('Schedule', function() {
   });
 
   it("adds .shaded to all .column3 elements of a different track", function() {
-    $('span:last').click();
+    $('span:last').trigger('click');
     expect($('span:last').text()).toEqual('Ruby');
     expect($("#no-class-added")).not.toHaveClass("shaded");
     expect($("#class-receiver")).toHaveClass("shaded");

@@ -259,6 +259,12 @@ Factory.define :track do |t|
   t.color 'ff0000'
 end
 
+Factory.define :scheduled_talk_session_for_this_year, :parent => :talk_session do |ses|
+  ses.session_time { Factory(:session_time_from_this_year) }
+  ses.room { Factory(:big_room) }
+  ses.track { Factory(:track) }
+end
+
 Factory.define :attendee_user, :parent => :user do |u|
   u.email "attendington@attendsalot.com"
   #FIXME: Remove roles for attendees?
