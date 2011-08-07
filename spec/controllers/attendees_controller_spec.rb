@@ -39,11 +39,5 @@ describe AttendeesController do
       get :edit
       controller.attendee.should eq(attendee)
     end
-
-    it "#toggle passes session_id to an attendee for update" do
-      controller.attendee.should_receive(:toggle_session).with(1).and_return(true)
-      put :toggle_session, :sessionid => 1
-      ActiveSupport::JSON.decode(response.body).should eq(ActiveSupport::JSON.decode({:willAttend => true}.to_json))
-    end
   end
 end

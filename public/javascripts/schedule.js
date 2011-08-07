@@ -1,20 +1,23 @@
 $(document).ready(function() {
   function sessionId(self) {
-    return $(self).attr('data-sessionid')
+    return parseInt($(self).attr('id'));
   }
 
   function attending(self) {
     $(self).toggleClass('miss', $.inArray(sessionId(self), sessionIdList) === -1);
   }
 
-  attending(this);
+  for (var index = 0, len = sessionIdList.length; index < len; ++index) {
+    attending($('#' + sessionIdList[index]));
+  }
 
   $('li.column2').click(function() {
     var self = this,
     sessionid = sessionId(this);
 
-    $.post('attendees/toggle_session',
-           {sessionid: sessionid},
+    $.post('/toggle_session',
+           {sessionid: sessionid,
+            _method:'PUT'},
            function(data) {
              if (data.willAttend === true) {
                sessionIdList.push(sessionid);

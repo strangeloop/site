@@ -21,7 +21,6 @@ Conf::Application.routes.draw do
   resources :talks
 
   get 'attendees/current'
-  put 'attendees/toggle_session'
   put 'attendees/update'
   get '/attendees/:id', :to => 'attendees#show', :as => :attendee
 
