@@ -21,6 +21,7 @@ class Attendee < ActiveRecord::Base
 
   @@activation_key = YAML::load_file('config/activation.yml')["activation_key"]
 
+  has_and_belongs_to_many :conference_sessions
   belongs_to :user
   [:first_name, :last_name, :email, :reg_id].each do |field|
     validates field, :presence => true
@@ -35,6 +36,21 @@ class Attendee < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{middle_name} #{last_name}"
+  end
+
+  def toggle_session(session_id)
+    begin
+      #FIXME: Is there a smarter way to do this?
+      session = ConferenceSession.find(session_id)
+      if (conference_sessions.include? session)
+        conference_sessions.delete(session)
+        return false
+      end
+      conference_sessions << session
+      true
+    rescue ActiveRecord::RecordNotFound
+      nil
+    end
   end
 
   def activation_token

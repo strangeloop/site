@@ -78,5 +78,21 @@ describe Attendee do
                  :middle_name => 'Enrique',
                  :last_name => 'Aquino').full_name.should eq('Mario Enrique Aquino')
   end
+
+  let(:session) { Factory(:scheduled_talk_session_for_this_year) }
+  it "toggles session attendence on if it is off" do
+    attendee.toggle_session(session.id).should be_true
+    attendee.conference_sessions.should eq([session])
+  end
+
+  it "toggles session attendence off if it is on" do
+    attendee.conference_sessions = [session]
+    attendee.toggle_session(session.id).should be_false
+    attendee.conference_sessions.should be_empty
+  end
+
+  it "returns nil if an invalid session id is given to toggle_session" do
+    attendee.toggle_session(-1).should be_nil
+  end
 end
 
