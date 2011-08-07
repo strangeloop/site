@@ -22,8 +22,8 @@ Conf::Application.routes.draw do
 
   get 'attendees/current'
   put 'attendees/toggle_session'
-  get '/attendees/:id', :to => 'attendees#show', :as => :attendee
   put 'attendees/update'
+  get '/attendees/:id', :to => 'attendees#show', :as => :attendee
 
   match '/media/*dragonfly', :to => Dragonfly[:strangeloop]
   post 'reg_online/callback', :to => "reg_online#create"
