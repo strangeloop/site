@@ -13,12 +13,12 @@ $(document).ready(function() {
     var self = this,
     sessionid = sessionId(this);
 
-    $.post('attendees/toggle_session', 
-           {sessionid: sessionid}, 
+    $.post('attendees/toggle_session',
+           {sessionid: sessionid},
            function(data) {
-             if (data.willAttend == true) {
+             if (data.willAttend === true) {
                sessionIdList.push(sessionid);
-             } else {
+             } else if (data.willAttend === false) {
                sessionIdList.splice($.inArray(sessionid, sessionIdList), 1);
              }
              attending(self);
