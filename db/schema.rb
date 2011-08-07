@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110731160842) do
+ActiveRecord::Schema.define(:version => 20110807153031) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "user_id"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(:version => 20110731160842) do
     t.string   "cached_slug"
     t.string   "company_url"
   end
+
+  create_table "attendees_conference_sessions", :id => false, :force => true do |t|
+    t.integer "attendee_id",           :null => false
+    t.integer "conference_session_id", :null => false
+  end
+
+  add_index "attendees_conference_sessions", ["attendee_id", "conference_session_id"], :name => "attendees_to_conference_sessions", :unique => true
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
