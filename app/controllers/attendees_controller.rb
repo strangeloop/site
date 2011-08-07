@@ -2,7 +2,7 @@ class AttendeesController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index, :current]
 
   expose(:attendee) do
-    atndee =  Attendee.find_by_user_id(current_user.id) if current_user
+    atndee = Attendee.find_by_user_id(current_user.id) if current_user
     atndee ||= Attendee.find(params[:id]) if params[:id]
     atndee
   end
@@ -19,5 +19,10 @@ class AttendeesController < ApplicationController
                       :attendee_path => attendee_path(attendee),
                       :login_path    => new_user_session_path,
                       :logout_path   => destroy_user_session_path }
+  end
+
+  def toggle_session
+    will_attend = attendee.toggle_session(params[:sessionid])
+    render :json => {:willAttend => will_attend}
   end
 end
