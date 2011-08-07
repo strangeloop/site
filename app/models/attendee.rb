@@ -57,9 +57,8 @@ class Attendee < ActiveRecord::Base
 
   def toggle_session(session_id)
     begin
-      #FIXME: Is there a smarter way to do this?
       session = ConferenceSession.find(session_id)
-      if (conference_sessions.include? session)
+      if (conference_sessions.exists? session)
         conference_sessions.delete(session)
         return false
       end
