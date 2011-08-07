@@ -55,14 +55,16 @@ class Attendee < ActiveRecord::Base
     CGI.escape acct_activation_token
   end
 
+  #returns false if the supplied id was removed from this attendees sessions list
+  #returns true if the supplied id was added to this attendees sessions list
+  #returns nil if an invalid session_id was supplied
   def toggle_session(session_id)
+    if conference_session_ids.include? session_id
+      conference_sessions.delete ConferenceSession.find(session_id)
+      return false
+    end
     begin
-      session = ConferenceSession.find(session_id)
-      if (conference_sessions.exists? session)
-        conference_sessions.delete(session)
-        return false
-      end
-      conference_sessions << session
+      conference_sessions << ConferenceSession.find(session_id)
       true
     rescue ActiveRecord::RecordNotFound
       nil
