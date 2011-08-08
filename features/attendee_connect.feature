@@ -67,29 +67,29 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     Given I am logged in as an attendee
     And a scheduled talk session for this year exists
     And I am on the schedule page
-    When I click "+"
-    Then I should see "-"
-    And I should not see "+"
+    When I click the add icon
+    Then I should see the remove icon
+    And I should not see the add icon
 
   @javascript
   Scenario: Authenticated attendees can deselect a talk they don't plan to attend
     Given I am logged in as an attendee
-    And a talk exists
+    And a scheduled talk session for this year exists
     And I am interested in that talk
     And I am on the schedule page
-    When I click "-"
-    Then I should see "+"
-    And I should not see "-"
+    When I click the remove icon
+    Then I should see the add icon
+    And I should not see the remove icon
 
   Scenario: Authenticated attendees are urged to select which talks they want to attend on their profile page
     Given I am logged in as an attendee
     When I am my profile page
     Then I should see "You have not indicated your interest in attending any talks"
-    And I should see "Please visit the sessions page" as a link to the Sessions page
+    And I should see "Please visit the schedule page" as a link to the schedule page
 
   Scenario: Authenticated attendee sees a list of talks they are interested in attending
     Given I am logged in as an attendee
-    And a talk exists
+    And a scheduled talk session for this year exists
     And I am interested in that talk
     When I am on my profile page
     Then I should see "My Schedule"
