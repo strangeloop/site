@@ -73,6 +73,9 @@ module NavigationHelpers
     when /the profile page for (.*)$/
       attendee_path friendly_id($1)
 
+    when /my profile page/
+      attendee_path friendly_id(Attendee.first.full_name)
+
     when /the dashboard page/
       '/refinery'
 
