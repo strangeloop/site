@@ -81,6 +81,11 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     Then I should see the add icon
     And I should not see the remove icon
 
+  Scenario: Non-authenticated visitors don't see talk selection buttons
+    Given a scheduled talk session for this year exists
+    When I am on the schedule page
+    Then I should not see the add or remove icons
+
   Scenario: Authenticated attendees are urged to select which talks they want to attend on their profile page
     Given I am logged in as an attendee
     When I am on my profile page

@@ -33,7 +33,9 @@ describe Admin::ConferenceSessionsController do
   end
 
   def delete_schedule_cache_expectations
-    ClearScheduleCache.instance.should_receive(:expire_fragment).with('schedule')
+    %w(schedule auth-schedule).each do |key|
+      ClearScheduleCache.instance.should_receive(:expire_fragment).with(key)
+    end
     yield
   end
 

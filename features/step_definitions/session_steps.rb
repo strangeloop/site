@@ -45,6 +45,10 @@ Then /^I should not see the (\w+) icon$/ do |icon|
   page.has_css?('li.miss').should eq(icon == 'remove')
 end
 
+Then /^I should not see the add or remove icons$/ do
+  page.has_no_css?('li.column2').should be_true
+end
+
 Given /^I am interested in that talk$/ do
   Attendee.first.conference_sessions << ConferenceSession.first
 end
