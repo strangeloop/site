@@ -16,5 +16,6 @@ class ClearScheduleCache < ActionController::Caching::Sweeper
   private
   def delete_schedule_cache
     expire_fragment 'schedule'
+    expire_fragment 'auth-schedule'
   end
 end

@@ -1,17 +1,17 @@
 #- Copyright 2011 Strange Loop LLC
-#- 
+#-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
 #- You may obtain a copy of the License at
-#- 
+#-
 #-    http://www.apache.org/licenses/LICENSE-2.0
-#- 
+#-
 #- Unless required by applicable law or agreed to in writing, software
 #- distributed under the License is distributed on an "AS IS" BASIS,
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#- See the License for the specific language governing permissions and 
+#- See the License for the specific language governing permissions and
 #- limitations under the License.
-#- 
+#-
 
 
 
@@ -44,16 +44,34 @@ describe ConferenceSessionsHelper do
     helper.is_technical_track?(session).should be_true
   end
 
-  context "#time_column_height" do
-    it "calculates for various session sizes" do
-      helper.time_column_height(1).should == 300
-      helper.time_column_height(2).should == 640
-      helper.time_column_height(3).should == 1050
-      helper.time_column_height(4).should == 1500
-      helper.time_column_height(5).should == 1875
-      helper.time_column_height(6).should == 2310
-      helper.time_column_height(7).should == 2695
-      helper.time_column_height(8).should == 3080
-    end
+  it "#time_column_height calculates for various session sizes" do
+    helper.time_column_height(1).should == 300
+    helper.time_column_height(2).should == 640
+    helper.time_column_height(3).should == 1050
+    helper.time_column_height(4).should == 1500
+    helper.time_column_height(5).should == 1875
+    helper.time_column_height(6).should == 2310
+    helper.time_column_height(7).should == 2695
+    helper.time_column_height(8).should == 3080
   end
+
+  it "exposes a key for authenticated user sessions" do
+    helper.stub(:current_user).and_return('foo')
+    helper.schedule_key.should eq('auth-schedule')
+  end
+
+  it "exposes a key for unauthenticated user sessions" do
+    helper.stub(:current_user).and_return(nil)
+    helper.schedule_key.should eq('schedule')
+  end
+
+  it "only shows schedule selection for the right key" do
+    helper.show_schedule_selection?('auth-schedule').should be_true
+  end
+
+  it "denies schedule selection for a non-auth key" do
+    helper.show_schedule_selection?.should be_false
+    helper.show_schedule_selection?('schedule').should be_false
+  end
+
 end

@@ -14,34 +14,4 @@
   </div>
 </div>
 
-<%= cache 'schedule' do %>
-<div id="main" class="shape">
-  <div class="container_12 pad3">
-    <% sessions_for_schedule.each_pair do |session_day, session_times| %>
-      <div class="p3">
-        <h3><%= session_day %></h3>
-        <% session_times.each_pair do |session_time, sessions| %>
-          <ul class="free">
-            <li class="column1" style="line-height: <%= time_column_height sessions.size %>%">
-              <%= time_period_for session_time %>
-            </li>
-            <% sessions.each do |session| %>
-              <li class="column2 miss attend" id="<%= session.id %>">
-              </li>
-              <li class="column3" data-track="<%= track_name session %>">
-                <div class="title"><%= link_to session.talk.title, session %></div>
-                <span class="speaker"><%= speaker_for session.talk %></span> &middot;
-                <span class="room"><%= room_for session %></span>
-                <% if is_technical_track? session %>
-                &middot;
-                <span class="track" style="background: #<%= track_color session %>"><%= track_name session %></span>
-              <% end -%>
-              </li>
-            <% end -%>
-          </ul>
-        <% end -%>
-      </div>
-    <% end -%>
-  </div>
-</div>
-<% end -%>
+<%= render :partial => 'schedule', :locals => { :cache_key => schedule_key } %>
