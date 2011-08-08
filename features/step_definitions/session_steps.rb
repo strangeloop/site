@@ -27,8 +27,28 @@ Then /^I should see the (\w+) default speaker image$/ do |image_size|
   page.has_xpath?(".//img[@alt='Attendees#{image_size == 'small' ? '-small' : ''}']").should be_true
 end
 
-When /^I click "([^"]*)"$/ do |text|
-  page.find('span', :text => text).click
+When /^I click the (.*)$/ do |text|
+  session_id = ConferenceSession.first.id
+  page.find_by_id(session_id).click
 end
+
+Then /^I should see the (\w+) icon$/ do |icon|
+  case icon
+  when 'remove'
+    page.has_no_css?('li.miss').should be_true
+  when 'add'
+    page.has_css?('li.miss').should be_true
+  end
+end
+
+Then /^I should not see the (\w+) icon$/ do |icon|
+  page.has_css?('li.miss').should eq(icon == 'remove')
+end
+
+Given /^I am interested in that talk$/ do
+  Attendee.first.conference_sessions << ConferenceSession.first
+end
+
+
 
 
