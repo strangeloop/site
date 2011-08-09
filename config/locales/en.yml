@@ -5,6 +5,8 @@ en:
   attendees:
     attendee:
       update_profile: Update My Profile
+      conference_schedule: Conference Schedule
+      no_schedule_yet: "<p>You have not indicated your interest in attending any talks.  Please <a href='/schedule'>visit the schedule page</a> to fill out your session preferences.</p>"
     edit:
       blog_url: Blog URL
       city: Home Town
