@@ -25,11 +25,7 @@ class UserCustomizer
 
   def self.load
     User.class_eval do
-      def foo
-        "foo"
-      end
       has_many :services, :dependent => :destroy
-      debugger
       ajaxful_rater
     end
   end
