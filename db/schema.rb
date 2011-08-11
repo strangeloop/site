@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(:version => 20110731160842) do
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
-    t.string   "title"
     t.string   "external_url"
+    t.string   "title"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -140,8 +140,8 @@ ActiveRecord::Schema.define(:version => 20110731160842) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "title"
     t.string   "custom_title"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
