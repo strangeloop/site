@@ -32,14 +32,13 @@ describe Attendee do
 
   it {should have_db_column(:token_created_at).of_type(:datetime)}
 
-  let(:july4){DateTime.parse('Thursday, July 4, 2011 11:19 AM')}
-  let(:um){Attendee.new :email => "foo@bar.com", :acct_activation_token => "big uid here", :token_created_at => july4}
-
+  let(:um){Factory(:attendee)}
+  
   it "should decrypt encrypted strings" do
     encrypted_txt = um.activation_token
-    encrypted_txt.should_not ==  "foo@bar.com|big uid here|2011-07-04 11:19:00 UTC"
+    encrypted_txt.should_not ==  format("julian_english@prodigy.net|%s|2011-07-04 11:19:00 UTC",um.acct_activation_token)
     decrypted_txt = Attendee.decrypt_token encrypted_txt
-    decrypted_txt.should ==  ["foo@bar.com","big uid here","2011-07-04 11:19:00 UTC"]
+    decrypted_txt.should ==  ["julian_english@prodigy.net",um.acct_activation_token,"2011-07-04 11:19:00 UTC"]
   end
 
   let(:attendee){Factory(:attendee)}
@@ -65,6 +64,14 @@ describe Attendee do
     attendee.email = "something@different.net"
     token = attendee.activation_token
     Attendee.check_token(token).should be_false
+  end
+  
+  let(:um){Factory(:attendee)}
+
+  it "should generate an activation token upon save" do
+    activation_token = um.acct_activation_token
+    um.save!
+    activation_token.should != um.acct_activation_token
   end
 
   it "should generate an activation url with a token" do
