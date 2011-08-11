@@ -1,7 +1,9 @@
 module AttendeesHelper
   def full_name(user)
-    attendee = Attendee.find_by_user_id(user.id)
-    return '' unless attendee
-    attendee.full_name
+    Attendee.find_by_user_id(user.id).try(:full_name) || ''
+  end
+
+  def schedule_partial(attendee)
+    attendee.conference_sessions.empty? ? 'no_schedule' : 'populated_schedule'
   end
 end

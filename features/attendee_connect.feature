@@ -97,8 +97,9 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And a scheduled talk session for this year exists
     And I am interested in that talk
     When I am on my profile page
-    Then I should see "My Schedule"
+    Then I should see "My Conference Schedule"
     And I should see "A cool talk"
     And I should see "Monday"
     And I should see "09:30 AM - 10:20 AM"
+    And I should see "Download my Schedule" as a link to the iCal download
 
