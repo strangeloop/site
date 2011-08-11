@@ -14,13 +14,16 @@ class ServicesController < ApplicationController
     redirect_to services_path
   end
 
-  def authenticate_new_user (token, service)
+  def create_user (token, service)
     attendee = Attendee.check_token token
-    attendee.user.build_association(:email => attendee.email, :password => SecureRandom.hex(10),
-                                    :username => attendee.email)
+    attendee.build_user(:email => attendee.email, :password => SecureRandom.hex(10),
+                        :username => attendee.email)
     attendee.user.services << service
     attendee.save!
+  end
 
+  def authenticate_new_user (token, service)
+    create_user(token, service)
     flash[:myinfo] = 'Your account on thestrangeloop.com has been created via ' + provider.capitalize
     sign_in_and_redirect(:user, user)
   end

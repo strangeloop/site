@@ -273,4 +273,3 @@ Factory.define :attendee do |um|
   um.token_created_at DateTime.parse('Thursday, July 4, 2011 11:19 AM')
 end
 
-

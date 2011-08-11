@@ -55,4 +55,30 @@ describe ServicesController do
     service.provider.should == 'Twitter'
     service.uemail.should == ''
   end
+
+  let(:attendee){Factory(:attendee)}
+  let(:service) do
+    s = Service.new
+    s.uemail = "julian_english@prodigy.net"
+    s.uid = '1234'
+    s.provider = 'google'
+    s.uname = 'Julian English'
+    s
+  end
+  
+  it "should create user record for attendees with a token" do
+    controller.create_user(attendee.activation_token, service)
+    
+    at = Attendee.find(attendee.id)
+    user = at.user
+    svc = user.services.first
+    
+    user.id.should_not be_nil
+    user.username.should == attendee.email
+    
+    service.uemail.should == svc.uemail
+    service.uname.should == svc.uname
+    service.provider.should == svc.provider
+    service.uid.should == svc.uid
+  end
 end
