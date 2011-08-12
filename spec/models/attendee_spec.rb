@@ -55,8 +55,9 @@ describe Attendee do
   end
 
   it "should fail on incorrect date" do
-    attendee.token_created_at = DateTime.now
     token = attendee.activation_token
+    attendee.token_created_at = DateTime.parse('1985-10-25')
+    attendee.save!
     Attendee.check_token(token).should be_false
   end
 
@@ -75,7 +76,7 @@ describe Attendee do
   end
 
   it "should generate an activation url with a token" do
-    attendee.activation_url.should == format("https://localhost:3000/account_activation?token=%s", attendee.activation_token)
+    attendee.activation_url.should == format("https://localhost:3000/account_activation?token=%s", CGI.escape(attendee.activation_token))
   end
 
 end

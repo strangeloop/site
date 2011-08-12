@@ -42,7 +42,7 @@ class Attendee < ActiveRecord::Base
   end
 
   def activation_url
-    format("%s?token=%s", @@activation_url_prefix, activation_token)
+    format("%s?token=%s", @@activation_url_prefix, CGI.escape(activation_token))
   end
   
   def self.decrypt_token (cipher_text)
@@ -53,11 +53,27 @@ class Attendee < ActiveRecord::Base
     token = decrypt_token(cipher_text)
     date = DateTime.parse(token[2])
     attendee =  Attendee.where("acct_activation_token = ?", token[1]).first
-    if attendee && attendee.token_created_at == date && attendee.email == token[0]
+    if attendee && attendee.token_created_at === date && attendee.email == token[0]
       attendee
     else
       false
     end
-    
+  end
+
+  def self.batch_load(file)
+    require 'csv'
+    CSV.open(file, 'r') do |row|
+      a = Attendee.new
+      a.first_name = row[1]
+      a.middle_name = row[2]
+      a.last_name = row[3]
+      a.city = row[4]
+      a.country = row[6]
+      a.email = row[7]
+      a.twitter_id = row[8]
+      a.reg_id = row[9]
+      a.token_created_at = Time.now
+      a.save!
+    end
   end
 end

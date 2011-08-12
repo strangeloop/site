@@ -11,9 +11,6 @@ describe AttendeeMailer do
     email.to[0].should == attendee.email
     email.from[0].should == "notifications@thestrangeloop.com"
     assert email.body.include?(attendee.first_name)
-    assert email.body.include?(attendee.activation_token)
-    puts attendee.activation_url
-    puts email.body
     assert email.body.include?(attendee.activation_url)
   end
 end
