@@ -98,8 +98,13 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I am interested in that talk
     When I am on my profile page
     Then I should see "My Conference Schedule"
-    And I should see "A cool talk"
-    And I should see "Monday"
-    And I should see "09:30 AM - 10:20 AM"
-    And I should see "Download my Schedule" as a link to the iCal download
+    And I should see "Sample Talk"
+    And I should see "Tuesday"
+    And I should see "12:30 PM - 01:30 PM"
 
+  Scenario: Authenticated attendee can download an iCal schedule for the talks they are interested in attending
+    Given I am logged in as an attendee
+    And a scheduled talk session for this year exists
+    And I am interested in that talk
+    When I am on my profile page
+    Then I should see "Download my Schedule" as a link to the iCal download
