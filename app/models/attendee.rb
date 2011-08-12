@@ -21,7 +21,9 @@ class Attendee < ActiveRecord::Base
 
   @@activation_key = YAML::load_file('config/activation.yml')["activation_key"]
 
-  has_and_belongs_to_many :conference_sessions
+  has_and_belongs_to_many :conference_sessions,
+                          :uniq => true
+
   belongs_to :user
   [:first_name, :last_name, :email, :reg_id].each do |field|
     validates field, :presence => true
@@ -36,6 +38,10 @@ class Attendee < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{middle_name} #{last_name}"
+  end
+
+  def sorted_interested_sessions
+    conference_sessions.by_session_time
   end
 
   #returns false if the supplied id was removed from this attendees sessions list
