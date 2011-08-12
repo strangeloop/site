@@ -56,7 +56,6 @@ class Attendee < ActiveRecord::Base
       conference_sessions << ConferenceSession.find(session_id)
       true
     rescue ActiveRecord::RecordNotFound
-      nil
     end
   end
 
