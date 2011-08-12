@@ -91,7 +91,11 @@ describe Attendee do
                  :last_name => 'Aquino').full_name.should eq('Mario Enrique Aquino')
   end
 
-  let(:session) { Factory(:scheduled_talk_session_for_this_year) }
+  let(:session)   { Factory(:scheduled_talk_session_for_this_year) }
+  let(:session_2) { Factory(:scheduled_one_thirty_talk_session) }
+  let(:session_3) { Factory(:scheduled_two_thirty_talk_session) }
+  let(:this_tuesday) { DateTime.parse('Tuesday').strftime('%A, %B %d, %Y') }
+
   it "toggles session attendence on if it is off" do
     attendee.toggle_session(session.id).should be_true
     attendee.conference_sessions.should eq([session])
@@ -105,6 +109,16 @@ describe Attendee do
 
   it "returns nil if an invalid session id is given to toggle_session" do
     attendee.toggle_session(-1).should be_nil
+  end
+
+  context ".sorted_interested_sessions" do
+    it "sorts conference sessions according to session start time" do
+      [session_2, session_3, session].each {|s| attendee.conference_sessions << s }
+      attendee.sorted_interested_sessions.should eq(
+          { this_tuesday => { session.session_time   => [session],
+                              session_2.session_time => [session_2],
+                              session_3.session_time => [session_3]} } )
+    end
   end
 end
 

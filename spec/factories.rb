@@ -242,6 +242,14 @@ Factory.define :session_time_from_this_year, :parent => :session_time do |st|
   st.start_time DateTime.parse 'Tuesday, 12:30 PM'
 end
 
+Factory.define :one_thirty_session_time, :parent => :session_time do |st|
+  st.start_time DateTime.parse 'Tuesday, 01:30 PM'
+end
+
+Factory.define :two_thirty_session_time, :parent => :session_time do |st|
+  st.start_time DateTime.parse 'Tuesday, 02:30 PM'
+end
+
 Factory.define :morning_session_time, :parent => :session_time do |ms|
   ms.start_time DateTime.parse('Thursday, July 1, 2010 09:00 AM')
 end
@@ -262,6 +270,18 @@ end
 Factory.define :scheduled_talk_session_for_this_year, :parent => :talk_session do |ses|
   ses.session_time { Factory(:session_time_from_this_year) }
   ses.room { Factory(:big_room) }
+  ses.track { Factory(:track) }
+end
+
+Factory.define :scheduled_one_thirty_talk_session, :parent => :talk_session do |ses|
+  ses.session_time { Factory(:one_thirty_session_time) }
+  ses.room { Factory(:small_room) }
+  ses.track { Factory(:track) }
+end
+
+Factory.define :scheduled_two_thirty_talk_session, :parent => :talk_session do |ses|
+  ses.session_time { Factory(:two_thirty_session_time) }
+  ses.room { Factory(:room) }
   ses.track { Factory(:track) }
 end
 
