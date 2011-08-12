@@ -25,7 +25,6 @@ class ConferenceSessionsController < ApplicationController
   expose(:attendee_session_ids) do
     ids = [] unless attendee
     ids ||= attendee.conference_session_ids
-    ids
   end
 
   expose(:year) { params[:year] || Time.now.year }
