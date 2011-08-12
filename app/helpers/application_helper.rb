@@ -1,23 +1,20 @@
 #- Copyright 2011 Strange Loop LLC
-#- 
+#-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
 #- You may obtain a copy of the License at
-#- 
+#-
 #-    http://www.apache.org/licenses/LICENSE-2.0
-#- 
+#-
 #- Unless required by applicable law or agreed to in writing, software
 #- distributed under the License is distributed on an "AS IS" BASIS,
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#- See the License for the specific language governing permissions and 
+#- See the License for the specific language governing permissions and
 #- limitations under the License.
-#- 
+#-
 
 
 
-# Methods added to this helper will be available to all templates in the application.
-
-# You can extend refinery with your own functions here and they will likely not get overriden in an update.
 module ApplicationHelper
 
   def link_tree(pages = [])
@@ -50,6 +47,49 @@ module ApplicationHelper
     custom_link github_id, github_id, 'github.com'
   end
 
+  def schedule_key
+    current_user.nil? ? 'schedule' : 'auth-schedule'
+  end
+
+  def time_column_height(session_count)
+    session_count * (case session_count
+                      when 1
+                        300
+                      when 2
+                        320
+                      when 3
+                        350
+                      when 4..5
+                        375
+                      else
+                        385
+                    end)
+  end
+
+  def time_period_for(session_time)
+    session_time.nil? ? "00:00 AM - 00:00 PM" : session_time.time_period
+  end
+
+  def show_schedule_selection?(key = 'schedule')
+    key == 'auth-schedule'
+  end
+
+  def track_name(session)
+    session.track.nil? ? '' : session.track.name
+  end
+
+  def room_for(session)
+    session.room.nil? ? "Room ???" : session.room
+  end
+
+  def is_technical_track?(session)
+    session.track && session.format && session.format != 'miscellaneous'
+  end
+
+  def track_color(session)
+    session.track.nil? ? '000' : session.track.color
+  end
+
   # expects an Image object as the first param and a display size (:small or :medium)
   # returns a "default" image tag if no/nil Image is supplied
   def image_tag_for(image = nil, size = :medium)
@@ -60,7 +100,7 @@ module ApplicationHelper
   def default_image
     {:medium => 'attendees.jpeg', :small => 'attendees-small.jpeg'}
   end
-  
+
   def tree_row_height
     7
   end

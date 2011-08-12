@@ -9,6 +9,8 @@ class AttendeesController < ApplicationController
 
   expose(:current_year_attendees) { Attendee.current_year.paginate :page => params[:page] }
 
+  expose(:sessions_for_schedule) { attendee.sorted_interested_sessions }
+
   def update
     attendee.update_attributes params[:attendee]
     redirect_to attendee

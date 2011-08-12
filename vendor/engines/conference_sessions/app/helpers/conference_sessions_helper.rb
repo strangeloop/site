@@ -16,46 +16,4 @@
 
 
 module ConferenceSessionsHelper
-  def time_period_for(session_time)
-    session_time.nil? ? "00:00 AM - 00:00 PM" : session_time.time_period
-  end
-
-  def room_for(session)
-    session.room.nil? ? "Room ???" : session.room
-  end
-
-  def is_technical_track?(session)
-    session.track && session.format && session.format != 'miscellaneous'
-  end
-
-  def track_name(session)
-    session.track.nil? ? '' : session.track.name
-  end
-
-  def track_color(session)
-    session.track.nil? ? '000' : session.track.color
-  end
-
-  def time_column_height(session_count)
-    session_count * (case session_count
-                      when 1
-                        300
-                      when 2
-                        320
-                      when 3
-                        350
-                      when 4..5
-                        375
-                      else
-                        385
-                    end)
-  end
-
-  def schedule_key
-    current_user.nil? ? 'schedule' : 'auth-schedule'
-  end
-
-  def show_schedule_selection?(key = 'schedule')
-    key == 'auth-schedule'
-  end
 end
