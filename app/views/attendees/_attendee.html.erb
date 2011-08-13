@@ -8,18 +8,36 @@
       <h3><%= attendee.full_name %></h3>
       <p></p>
       <h5><%= link_to attendee.company, attendee.company_url %></h5>
-      <p><%= link_to t('.update_profile'), edit_attendee_path %></p>
+
+      <% if is_current_user?(attendee) -%>
+        <p><%= link_to t('.update_profile'), edit_attendee_path %></p>
+      <% end -%>
+
       <div class="list4 clearfix">
-        <div>Home Town</div>
-        <div><%= attendee.city %></div>
-        <div>Blog</div>
-        <div><%= link_to attendee.blog_url, attendee.blog_url %></div>
-        <div>Twitter</div>
-        <div><%= twitter_link attendee.twitter_id %></div>
-        <div>GitHub</div>
-        <div><%= github_link attendee.github_id %></div>
-        <div>WorkForPie</div>
-        <div><%= work_for_pie_link attendee.work_for_pie_id %></div>
+        <% unless attendee.city.blank? -%>
+          <div>Home Town</div>
+          <div><%= content_tag(:strong, attendee.city) %></div>
+        <% end -%>
+
+        <% unless attendee.blog_url.blank? -%>
+          <div>Blog</div>
+          <div><%= link_to attendee.blog_url, attendee.blog_url %></div>
+        <% end -%>
+
+        <% unless attendee.twitter_id.blank? -%>
+          <div>Twitter</div>
+          <div><%= twitter_link attendee.twitter_id %></div>
+        <% end -%>
+
+        <% unless attendee.github_id.blank? -%>
+          <div>GitHub</div>
+          <div><%= github_link attendee.github_id %></div>
+        <% end -%>
+
+        <% unless attendee.work_for_pie_id.blank? -%>
+          <div>WorkForPie</div>
+          <div><%= work_for_pie_link attendee.work_for_pie_id %></div>
+        <% end -%>
       </div>
       <h4 class="pad3"><%= t('.conference_schedule') %></h4>
       <%= render :partial => schedule_partial(attendee), :locals => { :sessions => attendee.conference_sessions } %>
