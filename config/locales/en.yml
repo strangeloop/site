@@ -22,6 +22,8 @@ en:
       middle_name: Middle Name
       profile: Your Conference Profile
       twitter_id: Twitter ID
+      work_for_pie_hint: "http://workforpie.com/<Your_ID>"
+      work_for_pie_id: WorkForPie ID
     index:
       attendees: Conference Attendees
 

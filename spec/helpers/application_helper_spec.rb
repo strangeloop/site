@@ -83,6 +83,20 @@ describe ApplicationHelper do
     end
   end
 
+  context "#workforpie_link" do
+    it "returns a link when a string is passed" do
+      work_for_pie_link('foo').should == "<a href=\"http://workforpie.com/foo\"><strong>foo</strong></a>"
+    end
+
+    it "retuns nil if no workforpie id is supplied" do
+      work_for_pie_link.should be_nil
+    end
+
+    it "returns nil if an empty string is supplied for workforpie id" do
+      work_for_pie_link(nil).should be_nil
+    end
+  end
+
   context "#image_tag_for" do
     #class MockView < ActionView::Base
       #include ApplicationHelper
