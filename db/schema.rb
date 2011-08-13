@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20110807153031) do
     t.datetime "token_created_at"
     t.integer  "conf_year"
     t.string   "github_id"
+    t.string   "work_for_pie_id"
     t.string   "cached_slug"
     t.string   "company_url"
   end

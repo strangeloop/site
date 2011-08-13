@@ -23,6 +23,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I change the Company URL field to "http://mycompany.com"
     And I change the Twitter ID field to "marioaquino"
     And I change the GitHub ID field to "marioaquino"
+    And I change the WorkForPie ID field to "MarioAquino"
     And I change the Blog URL field to "http://marioaquino.blogspot.com"
     When I press "Update Profile"
     Then I should be on the profile page for Mario Crimefighter Aquino
@@ -31,6 +32,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I should see a link with "Foo, Inc." to "http://mycompany.com"
     And I should see a link with "@marioaquino" to "https://twitter.com/marioaquino"
     And I should see a link with "marioaquino" to "https://github.com/marioaquino"
+    And I should see a link with "MarioAquino" to "http://workforpie.com/MarioAquino"
     And I should see a link with "http://marioaquino.blogspot.com" to "http://marioaquino.blogspot.com"
 
   @javascript

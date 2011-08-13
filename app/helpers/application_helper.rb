@@ -40,11 +40,15 @@ module ApplicationHelper
   end
 
   def twitter_link(twitter_id = '', tag_type = :strong)
-    custom_link twitter_id, "@#{twitter_id}", 'twitter.com', tag_type
+    custom_link twitter_id, "@#{twitter_id}", 'twitter.com', :tag_type => tag_type
   end
 
   def github_link(github_id = '')
     custom_link github_id, github_id, 'github.com'
+  end
+
+  def work_for_pie_link(work_for_pie_id = '')
+    custom_link work_for_pie_id, work_for_pie_id, 'workforpie.com', :protocol => 'http'
   end
 
   def schedule_key
@@ -105,7 +109,8 @@ module ApplicationHelper
     7
   end
 
-  def custom_link(id, display_content, url, tag_type = :strong)
-    link_to(content_tag(tag_type, display_content), "https://#{url}/#{id}") unless id.blank?
+  def custom_link(id, display_content, url, options = {})
+    opts = {:tag_type => :strong, :protocol => 'https'}.merge(options)
+    link_to(content_tag(opts[:tag_type], display_content), "#{opts[:protocol]}://#{url}/#{id}") unless id.blank?
   end
 end

@@ -18,6 +18,8 @@
         <div><%= twitter_link attendee.twitter_id %></div>
         <div>GitHub</div>
         <div><%= github_link attendee.github_id %></div>
+        <div>WorkForPie</div>
+        <div><%= work_for_pie_link attendee.work_for_pie_id %></div>
       </div>
       <h4 class="pad3"><%= t('.conference_schedule') %></h4>
       <%= render :partial => schedule_partial(attendee), :locals => { :sessions => attendee.conference_sessions } %>
