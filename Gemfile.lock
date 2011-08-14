@@ -46,14 +46,6 @@ GIT
     refinerycms-settings (0.9.9.15)
       refinerycms-base (= 0.9.9.15)
 
-GIT
-  remote: git://github.com/strangeloop/regonline-ruby
-  revision: 406be459c9175967916e9896a700c4f1b79744dd
-  specs:
-    regonline-ruby (0.0.1)
-      nokogiri
-      savon (= 0.9.1)
-
 PATH
   remote: vendor/engines
   specs:
@@ -384,7 +376,6 @@ DEPENDENCIES
   refinerycms-news (= 1.0.1)
   refinerycms-proposals (= 1.0)!
   refinerycms-sponsorships (= 1.0)!
-  regonline-ruby!
   require_relative (= 1.0.1)
   rspec-rails (~> 2.5.0)
   ruby-debug (~> 0.10.4)

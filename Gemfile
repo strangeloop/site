@@ -16,7 +16,6 @@ gem 'fastercsv', '1.5.4'
 gem 'gravtastic'
 
 gem 'mmcopyrights'
-gem 'regonline-ruby', :git => 'git://github.com/strangeloop/regonline-ruby'
 gem 'friendly_id_globalize3', '~> 3.2.1'
 gem 'decent_exposure', '~> 1.0'
 gem 'RedCloth', '~> 4.2'
