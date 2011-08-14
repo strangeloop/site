@@ -34,7 +34,11 @@ class Attendee < ActiveRecord::Base
   end
 
   def encode(s)
-    remove_newlines(Base64.encode64(s))
+    CGI.escape(remove_newlines(Base64.encode64(s)))
+  end
+
+  def escaped_acct_token
+    CGI.escape acct_activation_token
   end
   
   def activation_token
@@ -42,18 +46,18 @@ class Attendee < ActiveRecord::Base
   end
 
   def activation_url
-    format("%s?token=%s", @@activation_url_prefix, CGI.escape(activation_token))
+    format("%s?token=%s", @@activation_url_prefix, activation_token)
   end
   
   def self.decrypt_token (cipher_text)
-    Crypto.decrypt(@@activation_key, Base64.decode64(cipher_text)).split("|")
+    Crypto.decrypt(@@activation_key, Base64.decode64(CGI.unescape(cipher_text))).split("|")
   end
 
   def self.check_token (cipher_text)
     token = decrypt_token(cipher_text)
-    date = DateTime.parse(token[2])
+    token_time = Time.parse(token[2]).to_i
     attendee =  Attendee.where("acct_activation_token = ?", token[1]).first
-    if attendee && attendee.token_created_at === date && attendee.email == token[0]
+    if attendee && attendee.token_created_at.to_i == token_time && attendee.email == token[0]
       attendee
     else
       false

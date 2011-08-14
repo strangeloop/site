@@ -67,7 +67,7 @@ describe ServicesController do
   end
   
   it "should create user record for attendees with a token" do
-    controller.create_user(attendee.activation_token, service)
+    controller.create_user(attendee.acct_activation_token, service)
     
     at = Attendee.find(attendee.id)
     user = at.user

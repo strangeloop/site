@@ -76,7 +76,7 @@ describe Attendee do
   end
 
   it "should generate an activation url with a token" do
-    attendee.activation_url.should == format("https://localhost:3000/account_activation?token=%s", CGI.escape(attendee.activation_token))
+    attendee.activation_url.should == format("https://localhost:3000/account_activation?token=%s", attendee.activation_token)
   end
 
 end

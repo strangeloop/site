@@ -15,17 +15,26 @@ class ServicesController < ApplicationController
   end
 
   def create_user (token, service)
-    attendee = Attendee.check_token token
-    attendee.build_user(:email => attendee.email, :password => SecureRandom.hex(10),
-                        :username => attendee.email)
-    attendee.user.services << service
-    attendee.save!
+
+    attendee = Attendee.where("acct_activation_token = ?", CGI.unescape(token)).first
+
+    if attendee
+    
+      attendee.build_user(:email => attendee.email,
+                          :password => SecureRandom.hex(10),
+                          :username => attendee.email)
+      attendee.user.services << service
+      attendee.save!
+      attendee
+    else
+      raise format("Can't find attendee with token %s", token)
+    end
   end
 
   def authenticate_new_user (token, service)
-    create_user(token, service)
-    flash[:myinfo] = 'Your account on thestrangeloop.com has been created via ' + provider.capitalize
-    sign_in_and_redirect(:user, user)
+    attendee = create_user(token, service)
+    flash[:myinfo] = 'Your account on thestrangeloop.com has been created via ' + service.provider.capitalize
+    sign_in_and_redirect(:user, attendee.user)
   end
 
   def service_info(service_route, omniauth)
@@ -60,12 +69,12 @@ class ServicesController < ApplicationController
   end
     
   def create
-    omniauth = request.env['omniauth.auth']
 
+    omniauth = request.env['omniauth.auth']
     if omniauth and params[:service]
       
       service_route = params[:service]
-      token = omniauth['token'] || ''
+      token = params[:token] || ''
       si = service_info(service_route, omniauth)
 
       if token != ''
