@@ -1,23 +1,23 @@
 #- Copyright 2011 Strange Loop LLC
-#- 
+#-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
 #- You may obtain a copy of the License at
-#- 
+#-
 #-    http://www.apache.org/licenses/LICENSE-2.0
-#- 
+#-
 #- Unless required by applicable law or agreed to in writing, software
 #- distributed under the License is distributed on an "AS IS" BASIS,
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#- See the License for the specific language governing permissions and 
+#- See the License for the specific language governing permissions and
 #- limitations under the License.
 #-
 
 class Attendee < ActiveRecord::Base
-  
+
   @@activation_key = YAML::load_file('config/activation.yml')["activation_key"]
   @@activation_url_prefix = YAML::load_file('config/activation.yml')["activation_url_prefix"]
-  
+
   belongs_to :user
   [:first_name, :last_name, :email, :reg_id].each do |field|
     validates field, :presence => true
@@ -40,7 +40,7 @@ class Attendee < ActiveRecord::Base
   def escaped_acct_token
     CGI.escape acct_activation_token
   end
-  
+
   def activation_token
     encode(encrypt_str([email,acct_activation_token,token_created_at].join("|")))
   end
@@ -48,9 +48,9 @@ class Attendee < ActiveRecord::Base
   def activation_url
     format("%s?token=%s", @@activation_url_prefix, activation_token)
   end
-  
+
   def self.decrypt_token (cipher_text)
-    Crypto.decrypt(@@activation_key, Base64.decode64(CGI.unescape(cipher_text))).split("|")
+    Crypto.decrypt(@@activation_key, Base64.decode64(cipher_text)).split("|")
   end
 
   def self.check_token (cipher_text)
