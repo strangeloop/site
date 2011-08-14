@@ -37,7 +37,7 @@ describe AttendeesController do
 
     it "#edit exposes a specific attendee for #edit" do
       get :edit
-      controller.attendee.should eq(attendee)
+      controller.current_attendee.should eq(attendee)
     end
   end
 end
