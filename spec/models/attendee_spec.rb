@@ -32,30 +32,28 @@ describe Attendee do
 
   it {should have_db_column(:token_created_at).of_type(:datetime)}
 
-  let(:um){Factory(:attendee)}
+  let(:attendee) { Factory(:attendee) }
 
   it "should decrypt encrypted strings" do
-    encrypted_txt = um.activation_token
-    encrypted_txt.should_not ==  format("julian_english@prodigy.net|%s|2011-07-04 11:19:00 UTC",um.acct_activation_token)
-    decrypted_txt = Attendee.decrypt_token encrypted_txt
-    decrypted_txt.should ==  ["julian_english@prodigy.net",um.acct_activation_token,"2011-07-04 11:19:00 UTC"]
+    encrypted_txt = attendee.activation_token
+    encrypted_txt.should_not ==  "#{attendee.email}|#{attendee.acct_activation_token}|2011-07-04 11:19:00 UTC"
+    decrypted_txt = Attendee.decrypt_token CGI.unescape(encrypted_txt)
+    decrypted_txt.should ==  [attendee.email,attendee.acct_activation_token,"2011-07-04 11:19:00 UTC"]
   end
 
-  let(:attendee){Factory(:attendee)}
-
   it "should pass an auth check for a known users" do
-    token = attendee.activation_token
+    token = CGI.unescape attendee.activation_token
     Attendee.check_token(token).should be_true
   end
 
   it "should fail on incorrect uids" do
     attendee.acct_activation_token = "foo"
-    token = attendee.activation_token
+    token = CGI.unescape attendee.activation_token
     Attendee.check_token(token).should be_false
   end
 
   it "should fail on incorrect date" do
-    token = attendee.activation_token
+    token = CGI.unescape attendee.activation_token
     attendee.token_created_at = DateTime.parse('1985-10-25')
     attendee.save!
     Attendee.check_token(token).should be_false
@@ -63,16 +61,14 @@ describe Attendee do
 
   it "should fail on incorrect email" do
     attendee.email = "something@different.net"
-    token = attendee.activation_token
+    token = CGI.unescape attendee.activation_token
     Attendee.check_token(token).should be_false
   end
 
-  let(:um){Factory(:attendee)}
-
   it "should generate an activation token upon save" do
-    activation_token = um.acct_activation_token
-    um.save!
-    activation_token.should != um.acct_activation_token
+    activation_token = attendee.acct_activation_token
+    attendee.save!
+    activation_token.should != attendee.acct_activation_token
   end
 
   it "should generate an activation url with a token" do

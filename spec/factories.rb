@@ -286,7 +286,7 @@ Factory.define :scheduled_two_thirty_talk_session, :parent => :talk_session do |
 end
 
 Factory.define :attendee_user, :parent => :user do |u|
-  u.email "attendington@attendsalot.com"
+  u.sequence(:email) {|n| "attendington#{n == 1 ? '' : n}@attendsalot.com" }
   #FIXME: Remove roles for attendees?
   u.roles { [ Role[:refinery] ] }
   u.sequence(:username) { |n| "kaisersozhay#{n == 1 ? '' : n}" }
@@ -300,11 +300,10 @@ Factory.define :attendee do |a|
   a.city 'St. Louis'
   a.state 'MO'
   a.country 'United States'
-  a.email 'kaiser@meatspace.com'
+  a.sequence(:email) { |n| "kaiser#{n == 1 ? '' : n}@meatspace.com" }
   a.twitter_id 'kaiser'
   a.blog_url 'http://kaiser.blogspot.com'
   a.reg_id 'abc'
-  a.reg_status 'paid'
   a.company 'Happy Town'
   a.company_url 'http://happytown.com'
   a.acct_activation_token "random-text-here"
