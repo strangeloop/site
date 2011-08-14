@@ -26,6 +26,8 @@ gem 'savon', '0.9.1'
 
 gem 'require_relative', '1.0.1'
 
+gem 'omniauth', '0.1.6'
+
 group :development, :test do
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
   gem 'awesome_print', '~> 0.4.0'
@@ -63,9 +65,9 @@ group :development, :test do
   # RSpec
   gem 'rspec-rails', '~> 2.5.0'
   # Cucumber
-  gem 'capybara', '~> 0.4.1'
+  gem 'capybara', '~> 1.0.0'
   gem 'database_cleaner', '~> 0.6.0'
-  gem 'cucumber-rails', '~> 0.4.0.beta.1'
+  gem 'cucumber-rails', '~> 1.0.2'
   gem 'launchy', '~> 0.3.7'
   gem 'gherkin'
   gem 'spork', '>= 0.9.0.rc4' unless Bundler::WINDOWS

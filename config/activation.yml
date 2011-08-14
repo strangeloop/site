@@ -1,0 +1,2 @@
+activation_key: Some really long text that is hard to guess
+activation_url_prefix: https://localhost:3000/account_activation

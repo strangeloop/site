@@ -1,0 +1,25 @@
+<section id="deviseauth">
+    <h2>Sign in</h2>
+
+    <% if @attendee %>
+
+    <div id="remote">
+        <div id="services" class="box">
+            <!--<a href="/auth/facebook"
+            class="services"><%= image_tag "facebook_64.png", :size =>
+            "64x64",  :alt => "Facebook" %>Facebook</a>-->
+            <%= link_to format("/auth/google?token=%s", @attendee.escaped_acct_token) do %>
+            <%= image_tag "google_64.png", :size => "64x64",  :alt => "Google" %>
+            Google
+            <% end %>
+            <!--<a href="/auth/google?" class="services"><%= image_tag "google_64.png", :size => "64x64",  :alt => "Google" %>Google</a>-->
+            <!--<a href="/auth/github" class="services"><%= image_tag "github_64.png", :size => "64x64",  :alt => "Github" %>Github</a>
+            <a href="/auth/twitter" class="services"><%= image_tag "twitter_64.png", :size => "64x64",  :alt => "Twitter" %>Twitter</a>-->
+        </div>
+    </div>
+    <% else %>
+    Invalid Token
+    <% end %>
+
+</section>
+

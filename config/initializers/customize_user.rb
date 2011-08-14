@@ -15,8 +15,9 @@
 
 
 
-Rails.configuration.after_initialize do
+Rails.configuration.to_prepare do
   require 'customized_user'
-
+  
   UserCustomizer.load
+
 end

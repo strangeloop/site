@@ -24,4 +24,10 @@ Conf::Application.routes.draw do
   match '/news/:year/:month/:day/:id' => 'news_items#show'
   match '/blog/stloopadm' => redirect('/news')
   match '/blog' => redirect('/news')
+
+  match '/auth/:service/callback' => 'services#create' 
+  resources :services, :only => [:index, :create, :destroy]
+
+  resources :account_activation
+
 end

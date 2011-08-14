@@ -10,7 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110622111351) do
+ActiveRecord::Schema.define(:version => 20110731160842) do
+
+  create_table "attendees", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "city"
+    t.string   "country"
+    t.string   "email"
+    t.string   "twitter_id"
+    t.string   "blog_url"
+    t.string   "reg_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "company"
+    t.string   "state"
+    t.string   "acct_activation_token"
+    t.datetime "token_created_at"
+  end
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -121,8 +140,8 @@ ActiveRecord::Schema.define(:version => 20110622111351) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "custom_title"
     t.string   "title"
+    t.string   "custom_title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -234,6 +253,16 @@ ActiveRecord::Schema.define(:version => 20110622111351) do
   add_index "seo_meta", ["id"], :name => "index_seo_meta_on_id"
   add_index "seo_meta", ["seo_meta_id", "seo_meta_type"], :name => "index_seo_meta_on_seo_meta_id_and_seo_meta_type"
 
+  create_table "services", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "uname"
+    t.string   "uemail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "session_times", :force => true do |t|
     t.datetime "start_time"
     t.integer  "duration_hours"
@@ -344,33 +373,6 @@ ActiveRecord::Schema.define(:version => 20110622111351) do
     t.integer  "conf_year"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "user_metadata", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
-    t.date     "dob"
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "gender"
-    t.string   "city"
-    t.string   "country"
-    t.string   "postal_code"
-    t.string   "home_phone"
-    t.string   "work_phone"
-    t.string   "cell_phone"
-    t.string   "email"
-    t.string   "company_name"
-    t.string   "twitter_id"
-    t.string   "blog_url"
-    t.string   "reg_id"
-    t.string   "reg_status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "company"
-    t.string   "state"
   end
 
   create_table "user_plugins", :force => true do |t|
