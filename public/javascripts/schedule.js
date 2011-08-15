@@ -5,6 +5,7 @@ $(document).ready(function() {
 
   function attending(self) {
     $(self).toggleClass('miss', $.inArray(sessionId(self), sessionIdList) === -1);
+    $(self).attr('title', ($(self).hasClass('miss') ? "Click to" : "Will") + ' Attend');
   }
 
   for (var index = 0, len = sessionIdList.length; index < len; ++index) {
