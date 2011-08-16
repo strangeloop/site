@@ -110,6 +110,7 @@ module ApplicationHelper
   end
 
   def custom_link(id, display_content, url, options = {})
+    return nil if (id.blank? || url.blank?)
     opts = {:tag_type => :strong, :protocol => 'https'}.merge(options)
     link_to(content_tag(opts[:tag_type], display_content), "#{opts[:protocol]}://#{url}/#{id}") unless id.blank?
   end

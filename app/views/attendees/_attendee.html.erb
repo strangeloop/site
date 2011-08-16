@@ -7,7 +7,7 @@
 
       <h3><%= attendee.full_name %></h3>
       <p></p>
-      <h5><%= link_to attendee.company, attendee.company_url %></h5>
+      <h5><%= company_link(attendee) %></h5>
 
       <% if is_current_user?(attendee) -%>
         <p><%= link_to t('.update_profile'), edit_attendee_path %></p>

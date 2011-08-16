@@ -9,8 +9,8 @@
       <div class="grid_3 speaker">
         <%= image_tag attendee.gravatar_url, :class => 'pic_speaker' %>
         <div style="float: left;">
-          <h4><%= link_to attendee.full_name, attendee_path(attendee) %></h4>
-          <h5><%= link_to attendee.company, attendee.company_url %></h5>
+          <h4><%= link_to attendee.full_name, attendee_url(attendee) %></h4>
+          <h5><%= company_link(attendee) %></h5>
           <%= twitter_link attendee.twitter_id, :span %>
         </div>
       </div>

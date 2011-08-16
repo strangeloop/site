@@ -60,7 +60,7 @@ describe ApplicationHelper do
       twitter_link('foo', :fart).should == "<a href=\"https://twitter.com/foo\"><fart>@foo</fart></a>"
     end
 
-    it "retuns nil if no twitter id is supplied" do
+    it "returns nil if no twitter id is supplied" do
       twitter_link.should be_nil
     end
 
@@ -74,7 +74,7 @@ describe ApplicationHelper do
       github_link('foo').should == "<a href=\"https://github.com/foo\"><strong>foo</strong></a>"
     end
 
-    it "retuns nil if no github id is supplied" do
+    it "returns nil if no github id is supplied" do
       github_link.should be_nil
     end
 
@@ -88,7 +88,7 @@ describe ApplicationHelper do
       work_for_pie_link('foo').should == "<a href=\"http://workforpie.com/foo\"><strong>foo</strong></a>"
     end
 
-    it "retuns nil if no workforpie id is supplied" do
+    it "returns nil if no workforpie id is supplied" do
       work_for_pie_link.should be_nil
     end
 

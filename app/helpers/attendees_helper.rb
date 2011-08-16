@@ -10,4 +10,11 @@ module AttendeesHelper
   def is_current_user?(attendee)
     current_user == attendee.user
   end
+
+  def company_link(attendee)
+    return '' unless attendee.company
+    return attendee.company unless attendee.company_url
+    link_to attendee.company, attendee.company_url
+  end
+
 end
