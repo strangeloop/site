@@ -71,10 +71,6 @@ describe Attendee do
     activation_token.should != attendee.acct_activation_token
   end
 
-  it "should generate an activation url with a token" do
-    attendee.activation_url.should == format("https://localhost:3000/account_activation?token=%s", attendee.activation_token)
-  end
-
   it "retrieves attendees by the latest year" do
     previous_conf_attendee = Factory(:attendee, :conf_year => 2010)
     attendee

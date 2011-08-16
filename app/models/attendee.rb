@@ -20,7 +20,6 @@ class Attendee < ActiveRecord::Base
   gravtastic
 
   @@activation_key = YAML::load_file('config/activation.yml')["activation_key"]
-  @@activation_url_prefix = YAML::load_file('config/activation.yml')["activation_url_prefix"]
 
   has_and_belongs_to_many :conference_sessions,
                           :uniq => true
@@ -80,14 +79,6 @@ class Attendee < ActiveRecord::Base
     encode(encrypt_str([email,acct_activation_token,token_created_at].join("|")))
   end
 
-  def activation_url
-    format("%s?token=%s", @@activation_url_prefix, activation_token)
-  end
-
-  def self.decrypt_token (cipher_text)
-    Crypto.decrypt(@@activation_key, Base64.decode64(cipher_text)).split("|")
-  end
-
   def self.check_token (cipher_text)
     token = decrypt_token(cipher_text)
     token_time = Time.parse(token[2]).to_i
@@ -114,5 +105,11 @@ class Attendee < ActiveRecord::Base
       a.token_created_at = Time.now
       a.save!
     end
+  end
+
+  private
+
+  def self.decrypt_token (cipher_text)
+    Crypto.decrypt(@@activation_key, Base64.decode64(cipher_text)).split("|")
   end
 end

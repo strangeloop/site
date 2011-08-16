@@ -1,17 +1,17 @@
 #- Copyright 2011 Strange Loop LLC
-#- 
+#-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
 #- You may obtain a copy of the License at
-#- 
+#-
 #-    http://www.apache.org/licenses/LICENSE-2.0
-#- 
+#-
 #- Unless required by applicable law or agreed to in writing, software
 #- distributed under the License is distributed on an "AS IS" BASIS,
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#- See the License for the specific language governing permissions and 
+#- See the License for the specific language governing permissions and
 #- limitations under the License.
-#- 
+#-
 
 
 
@@ -41,6 +41,7 @@ Conf::Application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = { :host => "example.com" }
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
