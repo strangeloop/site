@@ -1,5 +1,5 @@
 class AttendeesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :index, :current]
+  before_filter :authenticate_user!
 
   expose(:attendee)
 
