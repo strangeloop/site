@@ -73,6 +73,9 @@ describe ServicesController do
     at = Attendee.find(attendee.id)
     user = at.user
     svc = user.services.first
+
+    at.acct_activation_token.should be_nil
+    at.token_created_at.should be_nil
     
     user.id.should_not be_nil
     user.username.should == attendee.email
@@ -89,6 +92,9 @@ describe ServicesController do
     at = Attendee.find(attendee.id)
     user = at.user
     svc = user.services.first
+
+    at.acct_activation_token.should be_nil
+    at.token_created_at.should be_nil
     
     user.id.should_not be_nil
     user.username.should_not == attendee.email

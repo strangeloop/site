@@ -22,6 +22,9 @@ class ServicesController < ApplicationController
       attendee.build_user(:email => attendee.email,
                           :password => SecureRandom.hex(10),
                           :username => attendee.email) unless attendee.user
+
+      attendee.acct_activation_token = nil
+      attendee.token_created_at = nil
       attendee.user.services << service
       attendee.save!
       attendee
