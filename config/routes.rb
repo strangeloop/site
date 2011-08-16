@@ -32,9 +32,9 @@ Conf::Application.routes.draw do
   match '/blog/stloopadm' => redirect('/news')
   match '/blog' => redirect('/news')
 
-  match '/auth/:service/callback' => 'services#create' 
+  match '/auth/:service/callback' => 'services#create'
   resources :services, :only => [:index, :create, :destroy]
 
-  resources :account_activation
+  get '/activation/:token', :to => 'account_activation#new', :as => :activation
 
 end
