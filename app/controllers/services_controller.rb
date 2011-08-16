@@ -29,13 +29,14 @@ class ServicesController < ApplicationController
       attendee.save!
       attendee
     else
-      raise format("Can't find attendee with token %s", token)
+      logger.warn "Can't find attendee with token #{token}"
+      flash[:error] = "No registered attendee found for token"
     end
   end
 
   def authenticate_new_user (token, service)
     attendee = create_user(token, service)
-    flash[:myinfo] = 'Your account on thestrangeloop.com has been created via ' + service.provider.capitalize
+    flash[:attendee] = 'Your account on thestrangeloop.com has been created via ' + service.provider.capitalize
     sign_in_and_redirect(:user, attendee.user)
   end
 
@@ -64,7 +65,8 @@ class ServicesController < ApplicationController
       service.uid = omniauth['uid'] || ''
       service.provider = omniauth['provider'] || ''
     else
-      raise "unrecognized provider"
+      logger.warn "No provider found for route #{service_route}.  Hash returned: omniauth"
+      flash[:error] = "Error authenticating user"
     end
 
     service
@@ -92,18 +94,21 @@ class ServicesController < ApplicationController
               flash[:notice] = 'Signed in successfully via ' + si.provider.capitalize + '.'
               sign_in_and_redirect(:user, auth.user)
             else
-              raise format("Authentication provider %s not configured for user", si.provider.capitalize)
+              logger.warn "Authentication provider #{si.provider.capitalize} not configured for user"
+              flash[:error] = "Authentication provider #{si.provider.capitalize} not configured for user"
             end
           else
-            raise "User already signed in"
+            logger.warn  "User already signed in"
+            flash[:error] = "User already signed in"
           end  
         else
-          flash[:error] =  service_route.capitalize + ' returned invalid data for the user id.'
-          raise format("%s returned invalid data for the user id", service_route.capitalize)
+          logger.warn "#{service_route.capitalize} returned invalid data for the user id"
+          flash[:error] = "Error authenticating user"
         end
       end
     else
-      flash[:error] = 'Error while authenticating via ' + service_route.capitalize + '.'
+      logger.warn "No omniauth hash or service found.  Omniauth is #{omniauth} and service is #{params[:service]}"
+      flash[:error] = 'Error authenticating user'
       redirect_to new_user_session_path
     end
   end
