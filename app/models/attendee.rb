@@ -34,6 +34,7 @@ class Attendee < ActiveRecord::Base
 
   has_friendly_id :full_name, :use_slug => true
 
+  scope :registered, lambda { where('acct_activation_token IS NULL') }
   scope :current_year, lambda { where('conf_year' => maximum('conf_year')).order('last_name ASC', 'first_name ASC') }
 
   def full_name

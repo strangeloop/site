@@ -3,7 +3,7 @@ class AttendeesController < ApplicationController
 
   expose(:attendee)
 
-  expose(:current_year_attendees) { Attendee.current_year.paginate :page => params[:page] }
+  expose(:current_year_attendees) { Attendee.registered.current_year.paginate :page => params[:page] }
 
   expose(:sessions_for_schedule) { attendee.sorted_interested_sessions }
 

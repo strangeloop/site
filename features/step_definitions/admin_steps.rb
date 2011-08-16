@@ -27,8 +27,8 @@ Given /^I am a logged in (\w+\s?\w*)$/ do |role|
   login
 end
 
-Given /^I am logged in as an attendee$/ do
-  @user ||= Factory(:attendee).user
+Given /^I am logged in as a registered attendee$/ do
+  @user ||= Factory(:registered_attendee).user
   login
 end
 

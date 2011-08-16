@@ -310,6 +310,13 @@ Factory.define :attendee do |a|
   a.token_created_at DateTime.parse('Thursday, July 4, 2011 11:19 AM')
 end
 
+Factory.define :registered_attendee, :parent => :attendee do |ra|
+  ra.after_create do |a|
+    a.acct_activation_token = nil
+    a.save!
+  end
+end
+
 Factory.define :page do
 end
 

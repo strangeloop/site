@@ -33,6 +33,7 @@ describe Attendee do
   it {should have_db_column(:token_created_at).of_type(:datetime)}
 
   let(:attendee) { Factory(:attendee) }
+  let(:registered_attendee) { Factory(:registered_attendee) }
 
   it "should decrypt encrypted strings" do
     encrypted_txt = attendee.activation_token
@@ -71,9 +72,19 @@ describe Attendee do
     activation_token.should != attendee.acct_activation_token
   end
 
+  it "retrieves registered attendees who have a null activation token" do
+    attendee
+
+    registered_attendee
+
+    Attendee.registered.should eq([registered_attendee])
+  end
+
   it "retrieves attendees by the latest year" do
     previous_conf_attendee = Factory(:attendee, :conf_year => 2010)
+
     attendee
+
     Attendee.current_year.should eq([attendee])
   end
 
