@@ -35,20 +35,6 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I should see a link with "MarioAquino" to "http://workforpie.com/MarioAquino"
     And I should see a link with "http://marioaquino.blogspot.com" to "http://marioaquino.blogspot.com"
 
-  @javascript
-  Scenario: Authenticated attendee updates profile
-    Given a homepage exists
-    And I am logged in as an attendee
-    And I am on the homepage
-    And I follow "Kaiser Von Sozhay"
-    And I follow "Update My Profile"
-    And I change the First Name field to "Mario"
-    And I change the Middle Name field to "Crimefighter"
-    And I change the Last Name field to "Aquino"
-    When I press "Update Profile"
-    Then I should be on the profile page for Mario Crimefighter Aquino
-    And I should see "Mario Crimefighter Aquino"
-
   Scenario: Login page for unauthenticated site visitor
     Given I am on the homepage
     When I follow "Login"
@@ -63,25 +49,6 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     Then I should see a link with "Kaiser Von Sozhay" to "/attendees/kaiser-von-sozhay"
     And I should see a link with "Happy Town" to "http://happytown.com"
     And I should see a link with "@kaiser" to "https://twitter.com/kaiser"
-
-  @javascript
-  Scenario: Authenticated attendees can select a talk they are interested in
-    Given I am logged in as an attendee
-    And a scheduled talk session for this year exists
-    And I am on the schedule page
-    When I click the add icon
-    Then I should see the remove icon
-    And I should not see the add icon
-
-  @javascript
-  Scenario: Authenticated attendees can deselect a talk they don't plan to attend
-    Given I am logged in as an attendee
-    And a scheduled talk session for this year exists
-    And I am interested in that talk
-    And I am on the schedule page
-    When I click the remove icon
-    Then I should see the add icon
-    And I should not see the remove icon
 
   Scenario: Non-authenticated visitors don't see talk selection buttons
     Given a scheduled talk session for this year exists
@@ -110,3 +77,52 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I am interested in that talk
     When I am on my profile page
     Then I should see "Download my Schedule" as a link to the iCal download
+
+  @javascript
+  Scenario: Login link only shown to unauthenticated visitors
+    Given a homepage exists
+    When I am on the homepage
+    Then I should see "Login" as a link to the login page
+    And I should not see "Log Out"
+
+  @javascript
+  Scenario: Logout link only shown to authenticated visitors
+    Given a homepage exists
+    And I am logged in as an attendee
+    When I am on the homepage
+    Then I should see "Log Out" as a link to the logout page
+    And I should not see "Login"
+
+  @javascript
+  Scenario: Authenticated attendee updates profile
+    Given a homepage exists
+    And I am logged in as an attendee
+    And I am on the homepage
+    And I follow "Kaiser Von Sozhay"
+    And I follow "Update My Profile"
+    And I change the First Name field to "Mario"
+    And I change the Middle Name field to "Crimefighter"
+    And I change the Last Name field to "Aquino"
+    When I press "Update Profile"
+    Then I should be on the profile page for Mario Crimefighter Aquino
+    And I should see "Mario Crimefighter Aquino"
+
+  @javascript
+  Scenario: Authenticated attendees can select a talk they are interested in
+    Given I am logged in as an attendee
+    And a scheduled talk session for this year exists
+    And I am on the schedule page
+    When I click the add icon
+    Then I should see the remove icon
+    And I should not see the add icon
+
+  @javascript
+  Scenario: Authenticated attendees can deselect a talk they don't plan to attend
+    Given I am logged in as an attendee
+    And a scheduled talk session for this year exists
+    And I am interested in that talk
+    And I am on the schedule page
+    When I click the remove icon
+    Then I should see the add icon
+    And I should not see the remove icon
+

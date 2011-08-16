@@ -1,5 +1,5 @@
 <% cache('header') do -%>
-<div class="logo"> 
+<div class="logo">
   <%= link_to image_tag('logo2.gif', :alt => RefinerySetting.find_or_set(:site_name, "Strange Loop")) , root_path %>
 </div>
 <%= render :partial => "/shared/menu",
@@ -9,3 +9,8 @@
            } -%>
 
 <% end -%>
+<%= render :partial => '/shared/current_attendee', :locals => {
+  :username => current_attendee.try(:full_name),
+  :attendee_path => (current_attendee ? attendee_path(current_attendee) : ''),
+  :login_path => new_user_session_path,
+  :logout_path => destroy_user_session_path } %>

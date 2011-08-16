@@ -14,14 +14,12 @@ $(document).ready(function() {
     }
   });
 
-  $.getJSON('/attendees/current.json', function(data) {
-    if(data.username === null) {
-      SL.appendNav('Login', data.login_path);
-    } else {
-      SL.prependNav(data.username, data.attendee_path);
-      SL.appendNav('Log Out', data.logout_path);
-    }
-  })
+  if(username === '') {
+    SL.appendNav('Login', login_path);
+  } else {
+    SL.prependNav(username, attendee_path);
+    SL.appendNav('Log Out', logout_path);
+  }
 });
 
 var SL = function() {

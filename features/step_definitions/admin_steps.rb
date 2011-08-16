@@ -31,3 +31,12 @@ Given /^I am logged in as an attendee$/ do
   @user ||= Factory(:attendee).user
   login
 end
+
+Then /^I should see "([^"]*)" as a link to the login page$/ do |link_text|
+  page.has_link?(link_text, :href => new_user_session_path).should be_true
+end
+
+Then /^I should see "([^"]*)" as a link to the logout page$/ do |link_text|
+  page.has_link?(link_text, :href => destroy_user_session_path).should be_true
+end
+

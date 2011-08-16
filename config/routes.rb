@@ -20,7 +20,6 @@ Conf::Application.routes.draw do
   resources :attendees, :only => [:index]
   resources :talks
 
-  get 'attendees/current'
   put 'attendees/update'
   get '/attendees/:id', :to => 'attendees#show', :as => :attendee
 
