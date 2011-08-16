@@ -75,7 +75,13 @@ module NavigationHelpers
 
     when /my profile page/
       attendee_path friendly_id(Attendee.first.full_name)
+      
+    when /my activation page/
+      activation_path(:token => Attendee.first.activation_token)
 
+    when /my bad activation token page/
+      activation_path(:token => "foo")
+      
     when /the dashboard page/
       '/refinery'
 
