@@ -19,10 +19,9 @@ class ServicesController < ApplicationController
     attendee = Attendee.where("acct_activation_token = ?", CGI.unescape(token)).first
 
     if attendee
-    
       attendee.build_user(:email => attendee.email,
                           :password => SecureRandom.hex(10),
-                          :username => attendee.email)
+                          :username => attendee.email) unless attendee.user
       attendee.user.services << service
       attendee.save!
       attendee
