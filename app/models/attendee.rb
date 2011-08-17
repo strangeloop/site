@@ -37,6 +37,10 @@ class Attendee < ActiveRecord::Base
   scope :registered, lambda { where('acct_activation_token IS NULL') }
   scope :current_year, lambda { where('conf_year' => maximum('conf_year')).order('last_name ASC', 'first_name ASC') }
 
+  def twitter_id=(name)
+    self[:twitter_id] = name.gsub('@', '')
+  end
+
   def full_name
     "#{first_name} #{middle_name} #{last_name}"
   end

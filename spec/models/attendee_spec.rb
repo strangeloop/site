@@ -30,6 +30,10 @@ describe Attendee do
     it {should have_db_column(field).of_type(:string)}
   end
 
+  it "strips @ symbol from twitter id" do
+    Attendee.new(:twitter_id => '@mario').twitter_id.should eq('mario')
+  end
+
   it {should have_db_column(:token_created_at).of_type(:datetime)}
 
   let(:attendee) { Factory(:attendee) }
