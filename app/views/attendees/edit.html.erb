@@ -11,7 +11,7 @@
       <%= attendee_form.input :city, :label => t('.city') %>
       <%= attendee_form.input :country, :label => t('.country'),
         :as => :select, :collection => Carmen::country_names %>
-      <%= attendee_form.input :email, :label => t('.email') %>
+      <%= attendee_form.input :email, :label => t('.email'), :hint => t('.email_hint') %>
       <%= attendee_form.input :company, :label => t('.company') %>
       <%= attendee_form.input :company_url, :label => t('.company_url') %>
       <%= attendee_form.input :twitter_id, :label => t('.twitter_id'), :hint => t('.twitter_hint') %>

@@ -10,12 +10,13 @@ en:
       no_schedule_yet: "<p>You have not indicated your interest in attending any talks.  Please <a href='/schedule'>visit the schedule page</a> to fill out your session preferences.</p>"
     edit:
       blog_url: Blog URL
-      city: Home Town
+      city: City
       commit: Update Profile
       company: Company Name
       company_url: Company URL
-      country: Home Country
+      country: Country
       email: Email
+      email_hint: Used to display Gravatar image
       first_name: First Name
       github_id: GitHub ID
       github_hint: "https://github.com/<Your_ID>"
