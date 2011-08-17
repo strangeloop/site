@@ -424,10 +424,13 @@ nav {position:absolute; top:0px; right:0}
 .pagination {border-top:1px solid #3e3e3e; padding:36px 0 0 0;}
 .pagination a {display:block; float:left; margin-right:8px; line-height:12px; padding:12px 15px; background:#171717; color:#fff; text-decoration:none; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px; border:1px solid #1b1b1b}
 .pagination a:hover, .pagination a.active {background:#1b1b1b; color:#fff; text-decoration:none; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px; border:1px solid #282828}
-.pagination_arrow_left {background:url(../images/buttons/button_arrow.png) no-repeat !important; display:block; float:left; background-color:none !important; border:none !important; width:40px; height:38px; padding:0 !important}
-.pagination_arrow_left:hover {background:url(../images/buttons/button_arrow.png) no-repeat 0 -38px !important; }
-.pagination_arrow_right {background:url(../images/buttons/button_arrow.png) no-repeat -43px 0 !important; display:block; float:left; background-color:none !important; border:none !important; width:40px; height:38px; padding:0 !important}
-.pagination_arrow_right:hover {background:url(../images/buttons/button_arrow.png) no-repeat -43px -38px !important; }
+.pagination .current {display:block; float:left; margin-right:8px; line-height:12px; padding:12px 15px; background:#171717; color:#fff; text-decoration:none; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px; border:1px solid #f0f0f0}
+.previous_page {background:url(../images/buttons/button_arrow.png) no-repeat !important; display:block; float:left; background-color:none !important; border:none !important; width:40px; height:38px; padding:0 !important}
+.previous_page:hover {background:url(../images/buttons/button_arrow.png) no-repeat 0 -38px !important; }
+.previous_page.disabled {background:url(../images/buttons/button_arrow.png) no-repeat 0 -38px !important; }
+.next_page {background:url(../images/buttons/button_arrow.png) no-repeat -43px 0 !important; display:block; float:left; background-color:none !important; border:none !important; width:40px; height:38px; padding:0 !important}
+.next_page:hover {background:url(../images/buttons/button_arrow.png) no-repeat -43px -38px !important; }
+.next_page.disabled {background:url(../images/buttons/button_arrow.png) no-repeat -43px -38px !important; }
 
 
 .sidebar {background:#0c0c0c; border:1px solid #262626; border-top:none; padding:23px 25px 20px 25px}
