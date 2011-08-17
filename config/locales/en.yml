@@ -18,10 +18,12 @@ en:
       email: Email
       first_name: First Name
       github_id: GitHub ID
+      github_hint: "https://github.com/<Your_ID>"
       last_name: Last Name
       middle_name: Middle Name
       profile: Your Conference Profile
       twitter_id: Twitter ID
+      twitter_hint: "https://twitter.com/<Your_ID> - no '@' symbol"
       work_for_pie_hint: "http://workforpie.com/<Your_ID>"
       work_for_pie_id: WorkForPie ID
     index:
