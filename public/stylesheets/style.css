@@ -590,3 +590,8 @@ nav {position:absolute; top:0px; right:0}
   padding: 30px;
   width: 80%;
 }
+
+.loading {
+  margin-top: -2px;
+  margin-left: -4px;
+}

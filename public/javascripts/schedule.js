@@ -16,6 +16,9 @@ $(document).ready(function() {
     var self = this,
     sessionid = sessionId(this);
 
+    $(this).addClass('shaded');
+    $(this).find('img').removeClass('hidden');
+
     $.post('/toggle_session',
            {sessionid: sessionid,
             _method:'PUT'},
@@ -25,6 +28,8 @@ $(document).ready(function() {
              } else if (data.willAttend === false) {
                sessionIdList.splice($.inArray(sessionid, sessionIdList), 1);
              }
+             $(self).find('img').addClass('hidden');
+             $(self).removeClass('shaded');
              attending(self);
            }, 'json');
   });
