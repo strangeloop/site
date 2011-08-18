@@ -36,4 +36,6 @@ Conf::Application.routes.draw do
 
   get '/activation/:token', :to => 'account_activation#new', :as => :activation
 
+  get '/login', :to => 'attendee_login#new', :as => :attendee_login
+
 end
