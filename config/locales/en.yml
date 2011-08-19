@@ -4,7 +4,7 @@
 en:
   attendee_login:
     new:
-      login_message: Please login to the site using one of the services below
+      login_message: Or authenticate using one of the services below (based on your registration)
   attendees:
     attendee:
       update_profile: Update My Profile
