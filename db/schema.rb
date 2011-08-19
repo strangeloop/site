@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110807153031) do
+ActiveRecord::Schema.define(:version => 20110819023119) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "user_id"
@@ -35,6 +35,11 @@ ActiveRecord::Schema.define(:version => 20110807153031) do
     t.string   "cached_slug"
     t.string   "company_url"
   end
+
+  add_index "attendees", ["cached_slug"], :name => "index_attendees_on_cached_slug", :unique => true
+  add_index "attendees", ["first_name"], :name => "index_attendees_on_first_name"
+  add_index "attendees", ["last_name"], :name => "index_attendees_on_last_name"
+  add_index "attendees", ["user_id"], :name => "index_attendees_on_user_id"
 
   create_table "attendees_conference_sessions", :id => false, :force => true do |t|
     t.integer "attendee_id",           :null => false
@@ -73,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20110807153031) do
 
   add_index "conference_sessions", ["cached_slug"], :name => "index_conference_sessions_on_cached_slug", :unique => true
   add_index "conference_sessions", ["id"], :name => "index_conference_sessions_on_id"
+  add_index "conference_sessions", ["session_time_id"], :name => "index_conference_sessions_on_session_time_id"
 
   create_table "contacts", :force => true do |t|
     t.string   "name"
@@ -152,8 +158,8 @@ ActiveRecord::Schema.define(:version => 20110807153031) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "title"
     t.string   "custom_title"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -252,6 +258,8 @@ ActiveRecord::Schema.define(:version => 20110807153031) do
     t.integer  "position"
   end
 
+  add_index "rooms", ["name"], :name => "index_rooms_on_name"
+
   create_table "seo_meta", :force => true do |t|
     t.integer  "seo_meta_id"
     t.string   "seo_meta_type"
@@ -282,6 +290,8 @@ ActiveRecord::Schema.define(:version => 20110807153031) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "session_times", ["start_time"], :name => "index_session_times_on_start_time"
 
   create_table "slugs", :force => true do |t|
     t.string   "name"
@@ -319,6 +329,8 @@ ActiveRecord::Schema.define(:version => 20110807153031) do
     t.integer "speaker_id"
     t.integer "talk_id"
   end
+
+  add_index "speakers_talks", ["speaker_id", "talk_id"], :name => "index_speakers_talks_on_speaker_id_and_talk_id", :unique => true
 
   create_table "sponsors", :force => true do |t|
     t.string   "name"
