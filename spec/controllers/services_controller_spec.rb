@@ -68,7 +68,7 @@ describe ServicesController do
   
   it "should create user record for attendees with a token" do
     attendee.user.delete
-    controller.create_user(attendee.acct_activation_token, service)
+    controller.create_user(Attendee.find(attendee.id), service)
     
     at = Attendee.find(attendee.id)
     user = at.user
@@ -86,23 +86,4 @@ describe ServicesController do
     service.uid.should == svc.uid
   end
 
-  it "should not create a user when one already exists" do
-    controller.create_user(attendee.acct_activation_token, service)
-    
-    at = Attendee.find(attendee.id)
-    user = at.user
-    svc = user.services.first
-
-    at.acct_activation_token.should be_nil
-    at.token_created_at.should be_nil
-    
-    user.id.should_not be_nil
-    user.username.should_not == attendee.email
-    user.email.should_not == attendee.email
-    
-    service.uemail.should == svc.uemail
-    service.uname.should == svc.uname
-    service.provider.should == svc.provider
-    service.uid.should == svc.uid
-  end
 end

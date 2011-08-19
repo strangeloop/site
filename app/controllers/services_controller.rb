@@ -14,11 +14,7 @@ class ServicesController < ApplicationController
     redirect_to services_path
   end
 
-  def create_user (token, service)
-
-    attendee = Attendee.where("acct_activation_token = ?", CGI.unescape(token)).first
-
-    if attendee
+  def create_user (attendee, service)
       attendee.build_user(:email => attendee.email,
                           :password => SecureRandom.hex(10),
                           :username => attendee.email) unless attendee.user
@@ -28,14 +24,10 @@ class ServicesController < ApplicationController
       attendee.user.services << service
       attendee.save!
       attendee
-    else
-      logger.warn "Can't find attendee with token #{token}"
-      flash[:error] = "No registered attendee found for token"
-    end
   end
 
-  def authenticate_new_user (token, service)
-    attendee = create_user(token, service)
+  def authenticate_new_user (attendee, service)
+    attendee = create_user(attendee, service)
     flash[:attendee] = 'Your account on thestrangeloop.com has been created via ' + service.provider.capitalize
     sign_in_and_redirect(:user, attendee.user)
   end
@@ -71,40 +63,57 @@ class ServicesController < ApplicationController
 
     service
   end
-    
-  def create
 
+  def attendee_from_auth(service, token, twitter_id)
+    provider = service.provider.capitalize
+    if provider == 'Google'
+     Attendee.where("acct_activation_token = ?", CGI.unescape(token)).first      
+    elsif provider == 'Twitter'
+      Attendee.where("twitter_id = ? or twitter_id = ?", twitter_id, "@#{twitter_id}").first      
+    elsif provider == 'Github'
+      Attendee.where("email = ?", service.uemail).first
+    else
+      nil
+    end
+  end
+
+  def sign_in_user(service, token, omniauth)
+     # check if user has already signed in using this service provider and continue with sign in process if yes
+    existing_service = Service.find_by_provider_and_uid(service.provider, service.uid)          
+    if existing_service
+      flash[:notice] = 'Signed in successfully via ' + service.provider.capitalize + '.'
+      sign_in_and_redirect(:user, existing_service.user)
+    else
+      twitter_id = omniauth["extra"] && omniauth["extra"]["user_hash"] && omniauth["extra"]["user_hash"]["screen_name"]
+      attendee = attendee_from_auth service, token, twitter_id
+      
+      if attendee
+        authenticate_new_user(attendee, service)
+      else
+        logger.warn "Can't find attendee with token #{token}, email #{service.uemail} and twitter_id: #{twitter_id} for provider #{service.provider}"
+        flash[:error] = "No registered attendee found for token"
+      end
+    end
+  end
+  
+  def create
     omniauth = request.env['omniauth.auth']
     if omniauth and params[:service]
-      
       service_route = params[:service]
       token = params[:token] || ''
       si = service_info(service_route, omniauth)
 
-      if token != ''
-        authenticate_new_user(token, si)
-      else
-        # continue only if provider and uid exist
-        if si.uid != '' and si.provider != ''
-          # nobody can sign in twice, nobody can sign up while being signed in (this saves a lot of trouble)
-          if !user_signed_in?
-            # check if user has already signed in using this service provider and continue with sign in process if yes
-            auth = Service.find_by_provider_and_uid(si.provider, si.uid)
-            if auth
-              flash[:notice] = 'Signed in successfully via ' + si.provider.capitalize + '.'
-              sign_in_and_redirect(:user, auth.user)
-            else
-              logger.warn "Authentication provider #{si.provider.capitalize} not configured for user"
-              flash[:error] = "Authentication provider #{si.provider.capitalize} not configured for user"
-            end
-          else
-            logger.warn  "User already signed in"
-            flash[:error] = "User already signed in"
-          end  
+      if si.uid != '' && si.provider != ''
+        # nobody can sign in twice, nobody can sign up while being signed in (this saves a lot of trouble)
+        if !user_signed_in?
+          sign_in_user si, token, omniauth
         else
-          logger.warn "#{service_route.capitalize} returned invalid data for the user id"
-          flash[:error] = "Error authenticating user"
-        end
+          logger.warn  "User already signed in"
+          flash[:error] = "User already signed in"
+        end  
+      else
+        logger.warn "#{service_route.capitalize} returned invalid data for the user id (no uid or provider)"
+        flash[:error] = "Error authenticating user"
       end
     else
       logger.warn "No omniauth hash or service found.  Omniauth is #{omniauth} and service is #{params[:service]}"
