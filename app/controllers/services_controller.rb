@@ -28,7 +28,7 @@ class ServicesController < ApplicationController
 
   def authenticate_new_user (attendee, service)
     attendee = create_user(attendee, service)
-    flash[:attendee] = 'Your account on thestrangeloop.com has been created via ' + service.provider.capitalize
+    flash[:notice] = 'Your account on thestrangeloop.com has been created via ' + service.provider.capitalize
     sign_in_and_redirect(:user, attendee.user)
   end
 
@@ -69,7 +69,7 @@ class ServicesController < ApplicationController
     if provider == 'Google'
      Attendee.where("acct_activation_token = ?", CGI.unescape(token)).first      
     elsif provider == 'Twitter'
-      Attendee.where("twitter_id = ? or twitter_id = ?", twitter_id, "@#{twitter_id}").first      
+      Attendee.where("twitter_id = ?", twitter_id).first      
     elsif provider == 'Github'
       Attendee.where("email = ?", service.uemail).first
     else

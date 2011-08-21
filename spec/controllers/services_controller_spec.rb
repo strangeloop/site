@@ -61,7 +61,7 @@ describe ServicesController do
     s = Service.new
     s.uemail = "julian_english@prodigy.net"
     s.uid = '1234'
-    s.provider = 'google'
+    s.provider = 'Google'
     s.uname = 'Julian English'
     s
   end
@@ -84,6 +84,39 @@ describe ServicesController do
     service.uname.should == svc.uname
     service.provider.should == svc.provider
     service.uid.should == svc.uid
+  end
+
+  it "should find existing google user" do
+    s = Service.new
+    s.provider = 'Google'
+
+    attendee.acct_activation_token = 'unique-id'
+    attendee.save!
+    authed_attendee = controller.attendee_from_auth(s, 'unique-id', nil)
+    authed_attendee.should == attendee
+  end
+
+  it "should find existing twitter user" do
+    attendee.twitter_id = 'foo'
+    attendee.save!
+    
+    s = Service.new
+    s.provider = 'Twitter'
+    authed_attendee = controller.attendee_from_auth(s, nil, 'foo')
+    
+    attendee.should == authed_attendee
+  end
+
+  it "should find existing github user" do
+
+    attendee.email = 'foo@bar.com'
+    attendee.save!
+
+    s = Service.new
+    s.provider = 'Github'
+    s.uemail = 'foo@bar.com'
+    authed_attendee = controller.attendee_from_auth(s, nil, nil)
+    attendee.should == authed_attendee
   end
 
 end
