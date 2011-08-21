@@ -1,17 +1,17 @@
 #- Copyright 2011 Strange Loop LLC
-#- 
+#-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
 #- You may obtain a copy of the License at
-#- 
+#-
 #-    http://www.apache.org/licenses/LICENSE-2.0
-#- 
+#-
 #- Unless required by applicable law or agreed to in writing, software
 #- distributed under the License is distributed on an "AS IS" BASIS,
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#- See the License for the specific language governing permissions and 
+#- See the License for the specific language governing permissions and
 #- limitations under the License.
-#- 
+#-
 
 
 
@@ -20,7 +20,7 @@ When /^I approve the proposal$/ do
 end
 
 Given /^there are no submitted talks$/ do
-  Proposal.destroy_all  
+  Proposal.destroy_all
 end
 
 Transform /^table:title,by,status$/ do |table|
@@ -35,15 +35,15 @@ end
 
 Transform /^table:title,by,abstract,bio,av req,approve video,talk type,status$/ do |table|
   table.hashes.map do |hash|
-    talk = Factory.create(:talk, 
+    talk = Factory.create(:talk,
                           :title          => hash[:title],
                           :abstract       => hash[:abstract],
                           :av_requirement => hash[:"av req"],
                           :video_approval => hash[:"approve video"],
                           :talk_type      => hash[:"talk type"])
     name = hash[:by].split(' ')
-    speaker = Factory.create(:speaker, 
-                             :first_name => name.first, 
+    speaker = Factory.create(:speaker,
+                             :first_name => name.first,
                              :last_name => name.last,
                              :bio => hash[:bio])
     proposal = Proposal.new :status => hash[:status]

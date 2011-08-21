@@ -3,7 +3,7 @@
           :object => @sponsorship,
           :include_object_name => true
         } %>
-  
+
   <%= f.fields_for :sponsor do |sponsor_form| %>
     <%= sponsor_form.label :name, t('.sponsor_name') -%>
     <%= sponsor_form.text_field :name, :class => 'field' -%>
@@ -19,7 +19,7 @@
       <%= sponsor_form.label :url, t('.url') %>
       <%= sponsor_form.text_field :url, :class => 'field' %>
   <% end -%>
-  
+
   <%= f.fields_for :contact do |contact_form| %>
       <%= contact_form.label :name, t('.contact_name') -%>
       <%= contact_form.text_field :name, :class => 'field' -%>
@@ -30,19 +30,19 @@
       <%= contact_form.label :email, t('.contact_email') %>
       <%= contact_form.text_field :email, :class => 'field' %>
   <% end -%>
-  
+
     <%= f.label :sponsorship_level_id, t('.sponsor_level') -%>
     <%= collection_select 'sponsorship', 'sponsorship_level_id', @levels, 'id', 'name' -%>
-  
+
     <%= f.label :visible -%>
     <%= f.check_box :visible -%>
-  
+
     <%= f.label :year -%>
     <%= f.text_field :year -%>
-  
+
     <%= f.label :position -%>
     <%= f.text_field :position -%>
-  
+
   <%= render :partial => "/shared/admin/form_actions",
               :locals => {
                 :f => f,

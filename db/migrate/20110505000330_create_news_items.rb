@@ -12,7 +12,7 @@ class CreateNewsItems < ActiveRecord::Migration
 
     add_index :news_items, :id
 
-    
+
     NewsItem.create_translation_table! :title => :string, :body => :text, :external_url => :string
   end
 

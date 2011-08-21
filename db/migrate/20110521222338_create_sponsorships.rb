@@ -9,7 +9,7 @@ class CreateSponsorships < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
     create_table :contacts do |t|
       t.string :name
       t.string :email
@@ -17,7 +17,7 @@ class CreateSponsorships < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
     create_table :sponsorship_levels do |t|
       t.string :name
       t.integer :year
@@ -25,7 +25,7 @@ class CreateSponsorships < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
     create_table :sponsorships do |t|
       t.integer :sponsor_id
       t.integer :contact_id
@@ -49,7 +49,7 @@ class CreateSponsorships < ActiveRecord::Migration
     drop_table :sponsorships
     drop_table :sponsorship_levels
     drop_table :contacts
-    drop_table :sponsors    
+    drop_table :sponsors
   end
 
 end

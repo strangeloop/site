@@ -1,17 +1,17 @@
 #- Copyright 2011 Strange Loop LLC
-#- 
+#-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
 #- You may obtain a copy of the License at
-#- 
+#-
 #-    http://www.apache.org/licenses/LICENSE-2.0
-#- 
+#-
 #- Unless required by applicable law or agreed to in writing, software
 #- distributed under the License is distributed on an "AS IS" BASIS,
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#- See the License for the specific language governing permissions and 
+#- See the License for the specific language governing permissions and
 #- limitations under the License.
-#- 
+#-
 
 
 
@@ -76,15 +76,15 @@ class ConferenceSession < ActiveRecord::Base
 
     def to_csv(year = nil)
       FasterCSV.generate({:force_quotes => true}) do |csv|
-        csv << ["conf_year", "start_time", "position", 
-          "title", "format", "talk_type", 
-          "abstract", "comments", "prereqs", 
+        csv << ["conf_year", "start_time", "position",
+          "title", "format", "talk_type",
+          "abstract", "comments", "prereqs",
           "av_requirement", "video_approval", "speaker"]
         from_year(year).each do |c|
           speakers = c.talk.speakers.to_a
-          csv << [c.conf_year, c.start_time, c.position, 
-            c.title, c.format, c.talk.talk_type, 
-            c.talk.abstract, c.talk.comments, c.talk.prereqs, 
+          csv << [c.conf_year, c.start_time, c.position,
+            c.title, c.format, c.talk.talk_type,
+            c.talk.abstract, c.talk.comments, c.talk.prereqs,
             c.talk.av_requirement, c.talk.video_approval, speakers.join(";")]
         end
       end
