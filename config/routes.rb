@@ -1,4 +1,4 @@
-#- Copyright 2011 Strange Loop LLC
+ #- Copyright 2011 Strange Loop LLC
 #-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
@@ -33,10 +33,12 @@ Conf::Application.routes.draw do
 
   match '/auth/:service/callback' => 'services#create'
   resources :services, :only => [:index, :create, :destroy]
-
+   
   get '/activation/:token', :to => 'account_activation#new', :as => :activation
 
   get '/login', :to => 'attendee_login#new', :as => :new_attendee_login
   post '/attendee_login', :to => 'attendee_login#create', :as => :attendee_login
+
+
 
 end

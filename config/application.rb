@@ -72,5 +72,9 @@ module Conf
     #config.to_prepare do
       #Refinery.searchable_models = [Page, Talk, Speaker]
     #end
+
+    initializer 'add named route overrides' do |app|
+      app.routes_reloader.paths << File.expand_path('../named_routes_overrides.rb',__FILE__)
+    end
   end
 end
