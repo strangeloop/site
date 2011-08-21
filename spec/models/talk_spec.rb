@@ -1,24 +1,24 @@
 #- Copyright 2011 Strange Loop LLC
-#- 
+#-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
 #- You may obtain a copy of the License at
-#- 
+#-
 #-    http://www.apache.org/licenses/LICENSE-2.0
-#- 
+#-
 #- Unless required by applicable law or agreed to in writing, software
 #- distributed under the License is distributed on an "AS IS" BASIS,
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#- See the License for the specific language governing permissions and 
+#- See the License for the specific language governing permissions and
 #- limitations under the License.
-#- 
+#-
 
 
 
 require 'spec_helper'
 
 describe Talk do
-  [:title, :abstract].each do |field| 
+  [:title, :abstract].each do |field|
     it {should validate_presence_of field}
   end
 
@@ -42,7 +42,7 @@ describe Talk do
     it {should have_db_column(field).of_type(:text)}
   end
 
-  
+
   def self.test_enum_fields(enum_field_hash)
     enum_field_hash.each_pair do |enum, field |
       enum.each do |enum_field|
@@ -51,7 +51,7 @@ describe Talk do
       end
     end
   end
-    
+
   test_enum_fields( {Talk.video_approvals => :video_approval,
                       Talk.talk_types => :talk_type})
 
@@ -59,5 +59,5 @@ describe Talk do
   it{ should allow_value("x" * 1201).for(:abstract)}
   it{ should allow_value("x" * 2000).for(:abstract)}
   it{ should_not allow_value("x" * 2001).for(:abstract)}
-  
+
 end

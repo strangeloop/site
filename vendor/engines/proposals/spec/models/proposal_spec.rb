@@ -1,17 +1,17 @@
 #- Copyright 2011 Strange Loop LLC
-#- 
+#-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
 #- You may obtain a copy of the License at
-#- 
+#-
 #-    http://www.apache.org/licenses/LICENSE-2.0
-#- 
+#-
 #- Unless required by applicable law or agreed to in writing, software
 #- distributed under the License is distributed on an "AS IS" BASIS,
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#- See the License for the specific language governing permissions and 
+#- See the License for the specific language governing permissions and
 #- limitations under the License.
-#- 
+#-
 
 
 
@@ -46,7 +46,7 @@ describe Proposal do
 
     it "requires valid attributes and a related Talk" do
       p = Proposal.new(valid_attributes)
-      p.talk = Talk.new(:title => 'Writing a conf site', 
+      p.talk = Talk.new(:title => 'Writing a conf site',
                         :abstract => 'Moar codez')
       p.should be_valid
     end
@@ -67,8 +67,8 @@ describe Proposal do
   end
 
   it "shows 0 pending count if one accepted and one reject proposal exist" do
-    ['accepted', 'rejected'].each {|status| 
-      Factory.create :proposal, :status => status 
+    ['accepted', 'rejected'].each {|status|
+      Factory.create :proposal, :status => status
     }
     Proposal.pending_count.should == 0
   end
@@ -87,7 +87,7 @@ describe Proposal do
 
   context "stores ratings" do
     let (:prop) {
-      Factory(:proposal).tap{ |p| 
+      Factory(:proposal).tap{ |p|
         p.rate(3, reviewer, :appeal)
         p.save
       }
@@ -117,7 +117,7 @@ describe Proposal do
   end
 
   context "groups comments and ratings" do
-    let(:proposal){ 
+    let(:proposal){
       Factory(:proposal).tap{ |p|
         p.comments.create!(:title => 'foo', :comment => 'bar', :user => user)
         p.rate(2, user, :appeal)
@@ -220,8 +220,8 @@ describe Proposal do
       pending = Proposal.pending
       reviewers = Proposal.sorted_reviewers(pending)
       header = Proposal.pending_csv_header_values(reviewers)
-      header.should == ["title", "status", "speaker", "sp1 first name", "sp1 last name", 
-        "sp1 company", "sp1 email", "sp1 twitter id", "alternate_reviewer", 
+      header.should == ["title", "status", "speaker", "sp1 first name", "sp1 last name",
+        "sp1 company", "sp1 email", "sp1 twitter id", "alternate_reviewer",
         "alternate_reviewer2", "reviewer"]
     end
 
@@ -230,15 +230,15 @@ describe Proposal do
       reviewers = Proposal.sorted_reviewers(pending)
 
       data = Proposal.pending_csv_data_values(proposal1, reviewers)
-      data.should == ["Sample Talk", "submitted", "Earl Grey", "Earl", "Grey", "Twinings", 
+      data.should == ["Sample Talk", "submitted", "Earl Grey", "Earl", "Grey", "Twinings",
         "earl@grey.com", "earlofgrey", "", "", ""]
 
       data = Proposal.pending_csv_data_values(proposal2, reviewers)
-      data.should == ["Sample Talk", "submitted", "Earl Grey",  "Earl", "Grey", "Twinings", 
+      data.should == ["Sample Talk", "submitted", "Earl Grey",  "Earl", "Grey", "Twinings",
         "earl@grey.com", "earlofgrey", "2", "", "1"]
 
       data = Proposal.pending_csv_data_values(proposal3, reviewers)
-      data.should == ["Sample Talk", "submitted", "Earl Grey;Charlie Sheen",  "Earl", "Grey", "Twinings", 
+      data.should == ["Sample Talk", "submitted", "Earl Grey;Charlie Sheen",  "Earl", "Grey", "Twinings",
         "earl@grey.com", "earlofgrey", "", "3", ""]
     end
 
@@ -248,9 +248,9 @@ describe Proposal do
 
       csv = Proposal.all_to_csv
       csv.length.should > 0
-      csv.count(",").should == 
+      csv.count(",").should ==
         expected_rows * ((NUM_STATIC_PROPOSAL_CSV_FIELDS + number_of_reviewers) - 1)
-      csv.count('"').should == 
+      csv.count('"').should ==
         expected_rows * ((NUM_STATIC_PROPOSAL_CSV_FIELDS + number_of_reviewers) * 2)
     end
 
@@ -261,7 +261,7 @@ describe Proposal do
       arr_of_proposals.length.should == 4
       header_row = arr_of_proposals[0]
       number_of_reviewers = 3
-      header_row.length.should == 
+      header_row.length.should ==
         (NUM_STATIC_PROPOSAL_CSV_FIELDS + number_of_reviewers)
 
       # Test that proposals are ordered by status.

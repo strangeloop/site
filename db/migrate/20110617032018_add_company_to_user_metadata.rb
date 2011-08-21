@@ -7,7 +7,7 @@ class AddCompanyToUserMetadata < ActiveRecord::Migration
 
   def self.down
     remove_column :user_metadata, :company
-    remove_column :user_metadata, :state    
+    remove_column :user_metadata, :state
     add_column :user_metadata, :region, :string
   end
 end

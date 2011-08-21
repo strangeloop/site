@@ -23,7 +23,7 @@
     <%= f.label :position %>
     <%= f.text_field :position %>
   </div>
-  
+
   <div class='field'>
     <%= f.label :format -%>
     <%= f.select :format, @format_options -%>
@@ -33,7 +33,7 @@
     <%= f.label :conf_year %>
     <%= f.text_field :conf_year %>
   </div>
-  
+
   <div class='field'>
     <%= f.label :slides -%>
     <%= render :partial => "/shared/admin/resource_picker", :locals => {
@@ -91,7 +91,7 @@
       <%= speaker_form.select :country, Carmen::country_names %>
     <% end -%>
   <% end %>
-  
+
 
   <%= render :partial => "/shared/admin/form_actions",
               :locals => {

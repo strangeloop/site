@@ -1,6 +1,6 @@
 class ClearPagesLinkUrl < ActiveRecord::Migration
   # This migration is necessary because of a change in RefineryCMS between
-  # v0.9.9 and 0.9.9.15.  One of the consequences of the upgrade was that 
+  # v0.9.9 and 0.9.9.15.  One of the consequences of the upgrade was that
   # link_url fields (which had been populated by a seed in this application)
   # contained a path that caused an infinite re-direct for each page other
   # than the root.  Clearing this field resolves this problem.

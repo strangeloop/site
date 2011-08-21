@@ -3,7 +3,7 @@
   <li>
   <%= link_to t('.create_new_image'), new_admin_image_url(:dialog => true, :width => 600, :height => 300) %>
   </li>
-<% else -%>  
+<% else -%>
   <% images.each_with_index do |image, index| -%>
     <li id="image_<%= image.id %>" class='image_<%= index % 5 %>'>
       <%= image_fu image, '135x135#c', :title => image.title %>

@@ -1,17 +1,17 @@
 #- Copyright 2011 Strange Loop LLC
-#- 
+#-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
 #- You may obtain a copy of the License at
-#- 
+#-
 #-    http://www.apache.org/licenses/LICENSE-2.0
-#- 
+#-
 #- Unless required by applicable law or agreed to in writing, software
 #- distributed under the License is distributed on an "AS IS" BASIS,
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#- See the License for the specific language governing permissions and 
+#- See the License for the specific language governing permissions and
 #- limitations under the License.
-#- 
+#-
 
 
 
@@ -26,7 +26,7 @@ describe ConferenceSession do
   end
 
   context "validations" do
-    
+
     it "rejects empty format" do
       ConferenceSession.new(:format => '').should_not be_valid
     end
@@ -98,65 +98,65 @@ describe ConferenceSession do
       ConferenceSession.from_year((Time.now.year - 1).to_s).should == [last_years_session]
     end
   end
-  
+
   context "CSV export tests" do
     NUM_CONF_SESSION_CSV_FIELDS = 12
-  
-    before do    
+
+    before do
       # This talk will be for the current year.
       talk = Factory(:talk)
       conference_session = Factory(:conference_session, :talk => talk)
       conference_session.save
-      
+
       # This talk will be for the current year.
       talk = Factory(:talk)
       conference_session = Factory(:conference_session, :talk => talk)
       conference_session.save
-      
+
       talk = Factory(:talk)
       conference_session = Factory(:conference_session, :talk => talk)
       conference_session.conf_year = 2010
       conference_session.save
     end
-    
+
     it "Should generate CSV with quotes around data values" do
       # Only the header row should be returned.
-  	  csv = ConferenceSession.to_csv(2008)
-  	  csv.length.should > 0
-  	  csv.count(",").should == 11
-  	  csv.count('"').should == 24
+      csv = ConferenceSession.to_csv(2008)
+      csv.length.should > 0
+      csv.count(",").should == 11
+      csv.count('"').should == 24
     end
-  
-    it "Should generate CSV with only conference sessions in current year" do  
-  	  csv = ConferenceSession.to_csv()  	  
-  	  
-  	  arr_of_conference_sessions = FasterCSV.parse(csv)
-  	  arr_of_conference_sessions.length.should == 3
-  	  
-  	  header_row = arr_of_conference_sessions[0]
-  	  header_row.length.should == NUM_CONF_SESSION_CSV_FIELDS
-  	  
-  	  first_data_row = arr_of_conference_sessions[1]
-  	  first_data_row.length.should == NUM_CONF_SESSION_CSV_FIELDS
-  	  
-  	  conf_year = first_data_row[0]
-  	  conf_year.should == Time.now.year.to_s
+
+    it "Should generate CSV with only conference sessions in current year" do
+      csv = ConferenceSession.to_csv()
+
+      arr_of_conference_sessions = FasterCSV.parse(csv)
+      arr_of_conference_sessions.length.should == 3
+
+      header_row = arr_of_conference_sessions[0]
+      header_row.length.should == NUM_CONF_SESSION_CSV_FIELDS
+
+      first_data_row = arr_of_conference_sessions[1]
+      first_data_row.length.should == NUM_CONF_SESSION_CSV_FIELDS
+
+      conf_year = first_data_row[0]
+      conf_year.should == Time.now.year.to_s
     end
-    
-    it "Should generate CSV with only conference sessions in 2010" do  
-  	  csv = ConferenceSession.to_csv(2010)
-  	  
-  	  arr_of_conference_sessions = FasterCSV.parse(csv)
-  	  arr_of_conference_sessions.length.should == 2
-  	  
-  	  header_row = arr_of_conference_sessions[0]
-  	  header_row.length.should == NUM_CONF_SESSION_CSV_FIELDS
-  	  
-  	  first_data_row = arr_of_conference_sessions[1]
-  	  first_data_row.length.should == NUM_CONF_SESSION_CSV_FIELDS
-  	  
-  	  conf_year = first_data_row[0]
-  	  conf_year.should == 2010.to_s
+
+    it "Should generate CSV with only conference sessions in 2010" do
+      csv = ConferenceSession.to_csv(2010)
+
+      arr_of_conference_sessions = FasterCSV.parse(csv)
+      arr_of_conference_sessions.length.should == 2
+
+      header_row = arr_of_conference_sessions[0]
+      header_row.length.should == NUM_CONF_SESSION_CSV_FIELDS
+
+      first_data_row = arr_of_conference_sessions[1]
+      first_data_row.length.should == NUM_CONF_SESSION_CSV_FIELDS
+
+      conf_year = first_data_row[0]
+      conf_year.should == 2010.to_s
     end
   end
 
@@ -182,8 +182,8 @@ describe ConferenceSession do
       sessions = ConferenceSession::by_session_time
 
       sessions.should == {'Thursday, July 01, 2010' => { morning_session_time => [first, second],
-                                                        session_time         => [third],
-                                                        evening_session_time => [fourth, fifth] }}
+        session_time         => [third],
+        evening_session_time => [fourth, fifth] }}
     end
 
     it "ignores all but the most recent years conference sessions" do

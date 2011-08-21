@@ -3,22 +3,22 @@
           :object => @sponsorship_level,
           :include_object_name => true
         } %>
-  
+
   <div class='field'>
     <%= f.label :name -%>
     <%= f.text_field :name, :class => 'larger widest' -%>
   </div>
-  
+
   <div class='field'>
     <%= f.label :year -%>
     <%= f.text_field :year -%>
   </div>
-  
+
   <div class='field'>
     <%= f.label :position -%>
     <%= f.text_field :position -%>
   </div>
-  
+
   <%= render :partial => "/shared/admin/form_actions",
               :locals => {
                 :f => f,

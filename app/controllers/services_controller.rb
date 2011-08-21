@@ -10,7 +10,7 @@ class ServicesController < ApplicationController
     # remove an authentication service linked to the current user
     @service = current_user.services.find(params[:id])
     @service.destroy
-    
+
     redirect_to services_path
   end
 
@@ -71,12 +71,12 @@ class ServicesController < ApplicationController
 
     service
   end
-    
+
   def create
 
     omniauth = request.env['omniauth.auth']
     if omniauth and params[:service]
-      
+
       service_route = params[:service]
       token = params[:token] || ''
       si = service_info(service_route, omniauth)
@@ -100,7 +100,7 @@ class ServicesController < ApplicationController
           else
             logger.warn  "User already signed in"
             flash[:error] = "User already signed in"
-          end  
+          end
         else
           logger.warn "#{service_route.capitalize} returned invalid data for the user id"
           flash[:error] = "Error authenticating user"

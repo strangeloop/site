@@ -23,7 +23,7 @@
   <table id="inquiry">
     <tbody>
 
-      <% [:title, :abstract, :comments, :prereqs, :av_requirement, 
+      <% [:title, :abstract, :comments, :prereqs, :av_requirement,
         :video_approval, :talk_type].each do |field| %>
 
           <tr>
@@ -40,7 +40,7 @@
         <% for speaker in @proposal.talk.speakers %>
 
           <tr>
-          	<td>
+            <td>
               <strong><%= t('.image') %></strong>
             </td>
             <td><%= image_fu speaker.image, :medium  %></td>
@@ -55,15 +55,15 @@
           </tr>
           <tr>
             <td>
-            	<strong><%= t('.twitter_id') %></strong>
+              <strong><%= t('.twitter_id') %></strong>
             </td>
             <td><%= twitter_link speaker.twitter_id %></td>
           </tr>
           <tr>
             <td>
-            	<strong><%= t('.company') %></strong>
+              <strong><%= t('.company') %></strong>
             </td>
-            <td><%= link_to speaker.company, speaker.company_url %></td>            
+            <td><%= link_to speaker.company, speaker.company_url %></td>
           </tr>
           <tr>
             <td>
@@ -74,12 +74,12 @@
             </td>
           </tr>
           <% [:email, :city, :state, :country].each do |field| -%>
-          <tr>
-            <td>
-            	<strong><%= t(".#{field.to_s}") %></strong>
-            </td>
-            <td><%= speaker.send(field) %></td>
-          </tr>
+            <tr>
+              <td>
+                <strong><%= t(".#{field.to_s}") %></strong>
+              </td>
+              <td><%= speaker.send(field) %></td>
+            </tr>
           <% end -%>
         <% end %>
 
@@ -88,19 +88,19 @@
             <strong><%= t('.status') -%></strong>
           </td>
 
-          <td id='proposal_status'><%= @proposal.status -%></td> 
+          <td id='proposal_status'><%= @proposal.status -%></td>
         </tr>
 
-      <tr>
-        <td>
-          <strong><%= t('.reviewer_comments') -%></strong>
-        </td>
+        <tr>
+          <td>
+            <strong><%= t('.reviewer_comments') -%></strong>
+          </td>
 
-        <td id="comments">
-          <% for comment in @proposal.comments_by_user(current_user) %>
-          <p><%= comment.comment %></p>
-          <% end %>
-        </td> 
+          <td id="comments">
+            <% for comment in @proposal.comments_by_user(current_user) %>
+              <p><%= comment.comment %></p>
+            <% end %>
+          </td>
         </tr>
 
       </tbody>
@@ -119,7 +119,7 @@
       <% end %>
       <%= form_tag(:controller => "proposals", :action =>  "proposal_update", :method => "post") do %>
         <% if @proposal.status != 'accepted' %>
-          <div id='session-time'> 
+          <div id='session-time'>
             <%= label_tag :session_time_id, t('.session_time') -%>
             <%= collection_select(:conference_session, :session_time_id, @session_times, :id, :title) -%>
           </div>
@@ -127,7 +127,7 @@
         <% end %>
         <% if @proposal.status != 'rejected' %>
           <%= submit_tag(t('.reject_talk'), :name => "reject") %>
-        <% end %>          
+        <% end %>
         <%= check_box_tag(:sendmail) -%>
         <strong><%=t('.send_mail')%></strong>
       <% end %>
@@ -137,8 +137,8 @@
       <div id="rating">
         <strong><%= t('.your_rating') -%>:</strong>
         <%= render :partial => 'rating', :locals => { :proposal => @proposal } %>
-        <%= render :partial => 'add_comment', :locals => { :proposal => @proposal } %> 
+        <%= render :partial => 'add_comment', :locals => { :proposal => @proposal } %>
       </div>
     <% end -%>
-</div>  
+  </div>
 

@@ -1,24 +1,24 @@
 #- Copyright 2011 Strange Loop LLC
-#- 
+#-
 #- Licensed under the Apache License, Version 2.0 (the "License");
 #- you may not use this file except in compliance with the License.
 #- You may obtain a copy of the License at
-#- 
+#-
 #-    http://www.apache.org/licenses/LICENSE-2.0
-#- 
+#-
 #- Unless required by applicable law or agreed to in writing, software
 #- distributed under the License is distributed on an "AS IS" BASIS,
 #- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#- See the License for the specific language governing permissions and 
+#- See the License for the specific language governing permissions and
 #- limitations under the License.
-#- 
+#-
 
 
 
 require 'spec_helper'
 
 describe Speaker do
-  [:first_name, :last_name, :email, :bio].each do |field| 
+  [:first_name, :last_name, :email, :bio].each do |field|
     it {should validate_presence_of field}
   end
 
@@ -49,9 +49,9 @@ describe Speaker do
   end
 
   it "string value should equal first name and last name" do
-  	speaker = Speaker.new
-  	speaker.first_name = "Hillary"
-  	speaker.last_name = "Mason"
-  	speaker.to_s.should == speaker.first_name + " " + speaker.last_name
+    speaker = Speaker.new
+    speaker.first_name = "Hillary"
+    speaker.last_name = "Mason"
+    speaker.to_s.should == speaker.first_name + " " + speaker.last_name
   end
 end

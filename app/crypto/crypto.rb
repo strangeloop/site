@@ -1,7 +1,7 @@
 require 'openssl'
 
 class Crypto
-  
+
   def self.encrypt (key, text)
     key_hash = Digest::SHA256.digest(key)
     aes = OpenSSL::Cipher::Cipher.new('aes-256-ecb')

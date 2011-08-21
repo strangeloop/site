@@ -5,5 +5,5 @@ describe Admin::SessionTimesController do
     Admin::SessionTimesController.should_receive(:crudify).with(:session_time, {:order => 'start_time ASC'})
     load(File.join(File.dirname(__FILE__),'..','..','..','app', 'controllers','admin', 'session_times_controller.rb'))
   end
-  
+
 end
