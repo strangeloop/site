@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe AttendeeCred do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  [:password, :email].each do |field|
+    it {should validate_presence_of field}
+  end
+
 end
