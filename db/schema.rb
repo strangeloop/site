@@ -95,7 +95,11 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
 
   add_index "conference_sessions", ["cached_slug"], :name => "index_conference_sessions_on_cached_slug", :unique => true
   add_index "conference_sessions", ["id"], :name => "index_conference_sessions_on_id"
+  add_index "conference_sessions", ["room_id"], :name => "index_conference_sessions_on_room_id"
   add_index "conference_sessions", ["session_time_id"], :name => "index_conference_sessions_on_session_time_id"
+  add_index "conference_sessions", ["slides_id"], :name => "index_conference_sessions_on_slides_id"
+  add_index "conference_sessions", ["talk_id"], :name => "index_conference_sessions_on_talk_id"
+  add_index "conference_sessions", ["track_id"], :name => "index_conference_sessions_on_track_id"
 
   create_table "contacts", :force => true do |t|
     t.string   "name"
@@ -149,6 +153,7 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
   end
 
   add_index "news_items", ["id"], :name => "index_news_items_on_id"
+  add_index "news_items", ["image_id"], :name => "index_news_items_on_image_id"
 
   create_table "page_part_translations", :force => true do |t|
     t.integer  "page_part_id"
@@ -216,6 +221,7 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
   end
 
   add_index "proposals", ["id"], :name => "index_proposals_on_id"
+  add_index "proposals", ["talk_id"], :name => "index_proposals_on_talk_id"
 
   create_table "rates", :force => true do |t|
     t.integer  "rater_id"
@@ -300,6 +306,8 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
     t.integer  "attendee_cred_id"
   end
 
+  add_index "services", ["user_id"], :name => "index_services_on_user_id"
+
   create_table "session_times", :force => true do |t|
     t.datetime "start_time"
     t.integer  "duration_hours"
@@ -342,6 +350,8 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
     t.string   "company_url"
   end
 
+  add_index "speakers", ["image_id"], :name => "index_speakers_on_image_id"
+
   create_table "speakers_talks", :id => false, :force => true do |t|
     t.integer "speaker_id"
     t.integer "talk_id"
@@ -357,6 +367,8 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "sponsors", ["image_id"], :name => "index_sponsors_on_image_id"
 
   create_table "sponsorship_levels", :force => true do |t|
     t.string   "name"
@@ -377,7 +389,10 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
     t.datetime "updated_at"
   end
 
+  add_index "sponsorships", ["contact_id"], :name => "index_sponsorships_on_contact_id"
   add_index "sponsorships", ["id"], :name => "index_sponsorships_on_id"
+  add_index "sponsorships", ["sponsor_id"], :name => "index_sponsorships_on_sponsor_id"
+  add_index "sponsorships", ["sponsorship_level_id"], :name => "index_sponsorships_on_sponsorship_level_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
