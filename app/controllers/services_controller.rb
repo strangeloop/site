@@ -15,13 +15,12 @@ class ServicesController < ApplicationController
   end
 
   def create_user (attendee, service)
-      attendee.build_user(:email => attendee.email,
-                          :password => SecureRandom.hex(10),
-                          :username => attendee.email) unless attendee.user
+      attendee.build_attendee_cred(:email => attendee.email,
+                                   :password => SecureRandom.hex(10)) unless attendee.attendee_cred
 
       attendee.acct_activation_token = nil
       attendee.token_created_at = nil
-      attendee.user.services << service
+      attendee.attendee_cred.services << service
       attendee.save!
       attendee
   end
@@ -29,7 +28,7 @@ class ServicesController < ApplicationController
   def authenticate_new_user (attendee, service)
     attendee = create_user(attendee, service)
     flash[:notice] = 'Your account on thestrangeloop.com has been created via ' + service.provider.capitalize
-    sign_in_and_redirect(:user, attendee.user)
+    sign_in_and_redirect(:user, attendee.attendee_cred)
   end
 
   def service_info(service_route, omniauth)
@@ -82,7 +81,7 @@ class ServicesController < ApplicationController
     existing_service = Service.find_by_provider_and_uid(service.provider, service.uid)          
     if existing_service
       flash[:notice] = 'Signed in successfully via ' + service.provider.capitalize + '.'
-      sign_in_and_redirect(:user, existing_service.user)
+      sign_in_and_redirect(:user, existing_service.attendee_cred)
     else
       twitter_id = omniauth["extra"] && omniauth["extra"]["user_hash"] && omniauth["extra"]["user_hash"]["screen_name"]
       attendee = attendee_from_auth service, token, twitter_id

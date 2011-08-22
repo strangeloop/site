@@ -285,15 +285,13 @@ Factory.define :scheduled_two_thirty_talk_session, :parent => :talk_session do |
   ses.track { Factory(:track) }
 end
 
-Factory.define :attendee_user, :parent => :user do |u|
+Factory.define :attendee_cred do |u|
   u.sequence(:email) {|n| "attendington#{n == 1 ? '' : n}@attendsalot.com" }
-  #FIXME: Remove roles for attendees?
-  u.roles { [ Role[:refinery] ] }
-  u.sequence(:username) { |n| "kaisersozhay#{n == 1 ? '' : n}" }
+  u.password 'foobarbaz'
 end
 
 Factory.define :attendee do |a|
-  a.user { Factory(:attendee_user) }
+  a.attendee_cred { Factory(:attendee_cred) }
   a.first_name 'Kaiser'
   a.middle_name 'Von'
   a.last_name 'Sozhay'

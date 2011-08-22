@@ -16,10 +16,10 @@
 
 
 class ConferenceSessionsController < ApplicationController
-  before_filter :authenticate_user!, :only => :toggle_session
+  before_filter :authenticate_attendee_cred!, :only => :toggle_session
 
   expose(:attendee) do
-    Attendee.find_by_user_id(current_user.id) if current_user
+    Attendee.find_by_attendee_cred_id(current_attendee_cred.id) if current_attendee_cred
   end
 
   expose(:attendee_session_ids) do

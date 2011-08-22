@@ -1,6 +1,6 @@
 module AttendeesHelper
   def full_name(user)
-    Attendee.find_by_user_id(user.id).try(:full_name) || ''
+    Attendee.find_by_attendee_cred_id(user.id).try(:full_name) || ''
   end
 
   def schedule_partial(attendee)
@@ -8,7 +8,7 @@ module AttendeesHelper
   end
 
   def is_current_user?(attendee)
-    current_user == attendee.user
+    current_user == attendee.attendee_cred
   end
 
   def company_link(attendee)

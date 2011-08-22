@@ -37,12 +37,12 @@ describe AttendeesController do
       #from redirecting to welcome page
       Factory.create(:admin)
       @request.env['devise.mapping'] = :admin
-      sign_in attendee.user
+      sign_in attendee.attendee_cred
     end
 
     it "#edit exposes a specific attendee for #edit" do
-      get :edit
-      controller.current_attendee.should eq(attendee)
+      get :edit, :id => attendee.id
+      controller.attendee.should eq(attendee)
     end
   end
 end

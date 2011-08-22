@@ -24,7 +24,7 @@ class Attendee < ActiveRecord::Base
   has_and_belongs_to_many :conference_sessions,
                           :uniq => true
 
-  belongs_to :user
+  belongs_to :attendee_cred
   [:first_name, :last_name, :email, :reg_id].each do |field|
     validates field, :presence => true
   end
