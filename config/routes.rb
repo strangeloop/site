@@ -16,6 +16,8 @@
 
 
 Conf::Application.routes.draw do
+  devise_for :attendee_creds
+
   resource :attendee, :only => [:edit]
   resources :attendees, :only => [:index]
   resources :talks
