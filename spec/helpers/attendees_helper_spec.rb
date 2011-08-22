@@ -5,7 +5,7 @@ describe AttendeesHelper do
 
    context ".full_name" do
      it "retrieves a full name from a user" do
-       full_name(attendee.user).should eq('Kaiser Von Sozhay')
+       full_name(attendee.attendee_cred).should eq('Kaiser Von Sozhay')
      end
 
      it "returns an empty string if no attendee is found for the user" do

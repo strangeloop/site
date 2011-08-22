@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822042135) do
+ActiveRecord::Schema.define(:version => 20110822045106) do
 
   create_table "attendee_creds", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(:version => 20110822042135) do
   add_index "attendee_creds", ["reset_password_token"], :name => "index_attendee_creds_on_reset_password_token", :unique => true
 
   create_table "attendees", :force => true do |t|
-    t.integer  "user_id"
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
@@ -52,12 +51,12 @@ ActiveRecord::Schema.define(:version => 20110822042135) do
     t.string   "work_for_pie_id"
     t.string   "cached_slug"
     t.string   "company_url"
+    t.integer  "attendee_cred_id"
   end
 
   add_index "attendees", ["cached_slug"], :name => "index_attendees_on_cached_slug", :unique => true
   add_index "attendees", ["first_name"], :name => "index_attendees_on_first_name"
   add_index "attendees", ["last_name"], :name => "index_attendees_on_last_name"
-  add_index "attendees", ["user_id"], :name => "index_attendees_on_user_id"
 
   create_table "attendees_conference_sessions", :id => false, :force => true do |t|
     t.integer "attendee_id",           :null => false

@@ -23,7 +23,7 @@ describe Attendee do
     it {should validate_presence_of field}
   end
 
-  it {should belong_to :user}
+  it {should belong_to :attendee_cred}
 
   [:middle_name, :city, :state, :country, :email,
    :twitter_id, :blog_url, :company].each do |field|
