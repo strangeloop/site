@@ -10,7 +10,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110819023119) do
+ActiveRecord::Schema.define(:version => 20110822042135) do
+
+  create_table "attendee_creds", :force => true do |t|
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "attendee_creds", ["email"], :name => "index_attendee_creds_on_email", :unique => true
+  add_index "attendee_creds", ["reset_password_token"], :name => "index_attendee_creds_on_reset_password_token", :unique => true
 
   create_table "attendees", :force => true do |t|
     t.integer  "user_id"
@@ -158,8 +176,8 @@ ActiveRecord::Schema.define(:version => 20110819023119) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "custom_title"
     t.string   "title"
+    t.string   "custom_title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -26,7 +26,7 @@ gem 'savon', '0.9.1'
 
 gem 'require_relative', '1.0.1'
 
-gem 'omniauth', '0.1.6'
+gem 'omniauth', '0.2.6'
 
 group :development, :test do
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
