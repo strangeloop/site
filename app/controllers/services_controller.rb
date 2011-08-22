@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:create]
+  before_filter :authenticate_attendee_cred!, :except => [:create]
 
   def index
     # get all authentication services assigned to the current user
