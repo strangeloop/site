@@ -4,7 +4,7 @@
   <% end %>
   <% if @conference_sessions.any? %>
     <div class='pagination_container'>
-      <%= render :partial => 'conference_sessions' %>
+      <%= render 'conference_sessions' %>
     </div>
   <% else %>
     <p>
@@ -22,10 +22,7 @@
   <ul>
     <% if Admin::ConferenceSessionsController.searchable? %>
       <li>
-        <%= render :partial => "/shared/admin/search",
-                    :locals => {
-                      :url => admin_conference_sessions_url
-                    } %>
+        <%= render "/shared/admin/search", :url => admin_conference_sessions_url %>
       </li>
     <% end %>
     <li>

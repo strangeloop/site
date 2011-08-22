@@ -17,18 +17,18 @@
     <div class="overflow p1">
       <% sessions_by_format['keynote'].each do |session| %>
 
-        <%= render :partial => 'keynote', :locals => { :talk => session.talk,
-          :speaker => session.talk.speakers.first,
-          :session => session } %>
+        <%= render 'keynote', :talk => session.talk,
+                              :speaker => session.talk.speakers.first,
+                              :session => session %>
       <% end %>
     </div>
     <% end -%>
 
     <% ['workshop', 'talk', 'lightning', 'strange_passions', 'panel'].each do |format| -%>
 
-    <%= render :partial => 'session_groups', :locals => { :sessions_by_format => sessions_by_format,
-      :format => format.gsub('_', ' '),
-      :label => t(".#{format}")} %>
+    <%= render 'session_groups',  :sessions_by_format => sessions_by_format,
+                                  :format => format.gsub('_', ' '),
+                                  :label => t(".#{format}") %>
 
     <% end -%>
 

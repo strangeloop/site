@@ -40,7 +40,7 @@
         <% end -%>
       </div>
       <h4 class="pad3"><%= t('.conference_schedule') %></h4>
-      <%= render :partial => schedule_partial(attendee), :locals => { :sessions => attendee.conference_sessions } %>
+      <%= render schedule_partial(attendee), :sessions => attendee.conference_sessions %>
     </div>
   </div>
 </div>

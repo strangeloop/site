@@ -1,2 +1,2 @@
 $("#proposal_status").text('<%= @proposal.status %>');
-$("#<%= @proposal.wrapper_dom_id(@params) %>").html('<%= escape_javascript(render(:partial => "rating", :locals => { :proposal => @proposal })) %>');
+$("#<%= @proposal.wrapper_dom_id(@params) %>").html('<%= escape_javascript(render("rating", :proposal => @proposal)) %>');

@@ -1,10 +1,7 @@
 <ul>
   <% if Admin::SponsorshipsController.searchable? %>
     <li>
-      <%= render :partial => "/shared/admin/search",
-                  :locals => {
-                    :url => admin_sponsorships_url
-                  } %>
+      <%= render "/shared/admin/search", :url => admin_sponsorships_url %>
     </li>
   <% end %>
   <li>

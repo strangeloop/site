@@ -68,4 +68,4 @@ eos
 <section id='body_content'<%= " class='#{css.join(' ')}'" if css.present? %>>
   <%= raw sections.map{|section| section[:html]}.join("\n") -%>
 </section>
-<%= render :partial => '/shared/draft_page_message' unless @page.nil? or @page.live? -%>
+<%= render '/shared/draft_page_message' unless @page.nil? or @page.live? -%>

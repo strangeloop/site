@@ -1,5 +1,5 @@
 <div id='records'>
-  <%= render :partial => 'grid_view', :locals => { :images => [@sponsorship.sponsor.image].compact } %>
+  <%= render 'grid_view', :images => [@sponsorship.sponsor.image].compact %>
 
-  <%= render :partial => "form" %>
+  <%= render "form" %>
 </div>

@@ -4,7 +4,7 @@
   <% end %>
   <% if @session_times.any? %>
     <div class='pagination_container'>
-      <%= render :partial => 'session_times' %>
+      <%= render 'session_times' %>
     </div>
   <% else %>
     <p>
@@ -22,10 +22,7 @@
   <ul>
     <% if Admin::SessionTimesController.searchable? %>
       <li>
-        <%= render :partial => "/shared/admin/search",
-                    :locals => {
-                      :url => admin_session_times_url
-                    } %>
+        <%= render "/shared/admin/search", :url => admin_session_times_url %>
       </li>
     <% end %>
     <li>

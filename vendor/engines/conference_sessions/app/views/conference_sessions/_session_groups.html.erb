@@ -6,9 +6,9 @@
   <% sessions_by_format[format].each_slice(4) do |session_group| -%>
     <div class="overflow p3">
       <% session_group.each do |session| -%>
-        <%= render :partial => 'session', :locals => { :talk => session.talk,
-                                                       :speaker => session.talk.speakers.first,
-                                                       :session => session } %>
+        <%= render 'session', :talk => session.talk,
+                              :speaker => session.talk.speakers.first,
+                              :session => session %>
       <% end -%>
     </div>
   <% end -%>
