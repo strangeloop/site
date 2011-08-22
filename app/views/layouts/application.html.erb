@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<%= render :partial => "/shared/html_tag" %>
-  <% site_bar = render(:partial => "/shared/site_bar", :locals => {:head => true}) -%>
-  <%= render :partial => "/layouts/custom_head" %>
+<%= render "/shared/html_tag" %>
+  <% site_bar = render("/shared/site_bar", :head => true) -%>
+  <%= render "/layouts/custom_head" %>
   <body>
     <%= site_bar -%>
-    <%= render :partial => "/shared/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
+    <%= render "/shared/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
     <div id="container">
       <header>
-        <%= render :partial => "/shared/header" -%>
+        <%= render "/shared/header" -%>
       </header>
       <%= yield %>
       <div class="push"></div>
     </div>
     <footer>
-    <%= render :partial => "/shared/footer" -%>
+    <%= render "/shared/footer" -%>
     </footer>
-    <%= render :partial => '/layouts/custom_javascripts' %>
-    <%= render :partial => '/shared/javascripts' %>
-    <%= render :partial => '/layouts/page_specific_javascripts' %>
+    <%= render '/layouts/custom_javascripts' %>
+    <%= render '/shared/javascripts' %>
+    <%= render '/layouts/page_specific_javascripts' %>
   </body>
 </html>

@@ -7,7 +7,7 @@
   <% if @proposals.any? %>
     <%= will_paginate @proposals %>
 
-    <%= render :partial => "sortable_list" %>
+    <%= render "sortable_list" %>
 
     <%= will_paginate @proposals %>
   <% else %>
@@ -26,10 +26,7 @@
   <ul>
     <% if Admin::ProposalsController.searchable? %>
       <li>
-        <%= render :partial => "/shared/admin/search",
-                    :locals => {
-                      :url => admin_proposals_url
-                    } %>
+        <%= render "/shared/admin/search", :url => admin_proposals_url %>
       </li>
     <% end %>
   <% if !searching? and Proposal.count > 1 and Admin::ProposalsController.sortable? %>

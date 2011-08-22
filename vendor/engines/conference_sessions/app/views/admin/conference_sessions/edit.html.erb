@@ -1,9 +1,9 @@
 <div id='records'>
   <h2><%= t('.conference_session') %></h2>
-  <%= render :partial => 'grid_view', :locals => { :images => [@conference_session.talk.speakers[0].image].compact } %>
+  <%= render 'grid_view', :images => [@conference_session.talk.speakers[0].image].compact %>
 <p></p>
 <p></p>
-<%= render :partial => "form" %>
+<%= render "form" %>
 
 </div>
 

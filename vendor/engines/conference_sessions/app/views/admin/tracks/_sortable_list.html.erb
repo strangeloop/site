@@ -1,9 +1,6 @@
 <ul id='sortable_list'>
-  <%= render :partial => 'track', :collection => @tracks %>
+  <%= render @tracks %>
 </ul>
-<%= render :partial => "/shared/admin/sortable_list",
-            :locals => {
-              :continue_reordering => false
-            } %>
+<%= render "/shared/admin/sortable_list", :continue_reordering => false %>
 
 

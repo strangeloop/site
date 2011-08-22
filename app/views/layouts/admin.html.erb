@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%= render :partial => "/shared/html_tag" %>
+<%= render "/shared/html_tag" %>
   <% content_for :meta, "<meta refinerycms='#{Refinery.version}' />".html_safe %>
   <% content_for :stylesheets, ajaxful_rating_style %>
   <% content_for :stylesheets do %>
@@ -10,24 +10,24 @@
     <%= javascript_include_tag 'rails.validations' %>
     <%= javascript_include_tag 'jscolor/jscolor' %>
   <% end -%>
-  <%= render :partial => "/admin/head" %>
+  <%= render "/admin/head" %>
   <body class='<%= action_name %> <%= I18n.locale %>'>
-    <%= render :partial => '/shared/site_bar' %>
+    <%= render '/shared/site_bar' %>
     <div id='tooltip_container'></div>
     <header>
-      <%= render :partial => "/admin/menu" %>
+      <%= render "/admin/menu" %>
     </header>
     <div id="page_container">
       <div id="page">
         <div id="content" class="clearfix">
           <div id="flash_container">
-            <%= render :partial => '/shared/no_script' %>
-            <%= render :partial => "/shared/message" %>
+            <%= render '/shared/no_script' %>
+            <%= render "/shared/message" %>
           </div>
           <%= yield %>
         </div>
       </div>
     </div>
-    <%= render :partial => "/admin/javascripts" %>
+    <%= render "/admin/javascripts" %>
   </body>
 </html>
