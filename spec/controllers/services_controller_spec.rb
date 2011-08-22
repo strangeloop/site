@@ -78,7 +78,7 @@ describe ServicesController do
     at.token_created_at.should be_nil
     
     user.id.should_not be_nil
-    user.username.should == attendee.email
+    user.email.should == attendee.email
     
     service.uemail.should == svc.uemail
     service.uname.should == svc.uname
