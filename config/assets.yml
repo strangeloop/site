@@ -9,11 +9,13 @@ javascripts:
     - public/javascripts/rails.validations.js
     - public/javascripts/script.js
     - public/javascripts/libs/cufon-yui.js
+    - public/javascripts/libs/modernizr-1.6.js
     - public/javascripts/font/*.js
     - public/javascripts/cufon-replace.js
 
 stylesheets:
   common:
+    - public/stylesheets/application.css
     - public/javascripts/superfish/css/superfish.css
     - public/stylesheets/style.css
     - public/stylesheets/schedule.css
