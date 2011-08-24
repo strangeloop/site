@@ -1,6 +1,6 @@
-<%= form_for [:admin, @session_time], :validate => true do |f| -%>
+<%= form_for [:admin, session_time], :validate => true do |f| -%>
   <%= render :partial => "/shared/admin/error_messages", :locals => {
-          :object => @session_time,
+          :object => session_time,
           :include_object_name => true
         } %>
 

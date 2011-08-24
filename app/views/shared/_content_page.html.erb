@@ -1,6 +1,7 @@
 <%
   # provide a default array for collecting CSS for sections
   css = []
+  page = @page
 
   # if 'sections' is passed in as a local_assigns, all of this is ignored.
   if local_assigns[:sections].blank?
@@ -8,7 +9,7 @@
     sections = [{:yield => :body_content_title, :fallback => page_title, :title => true}]
 
     # append sections from this page.
-    @page.parts.inject(sections) do |s, part|
+    page.parts.inject(sections) do |s, part|
       # we have some default yields, body_content_left and body_content_right
       # these map to 'body' and 'side_body' fields in default Refinery.
       section = {:fallback => part.body}
@@ -25,7 +26,7 @@
       else
         css << "no_#{section[:yield]}"
       end
-    end unless @page.nil? or @page.parts.blank?
+    end unless page.nil? or page.parts.blank?
 
     # Ensure that even without @page.parts we still have body_content_left and body_content_right
     all_yields = sections.collect{|s| s[:yield]}
@@ -68,4 +69,4 @@ eos
 <section id='body_content'<%= " class='#{css.join(' ')}'" if css.present? %>>
   <%= raw sections.map{|section| section[:html]}.join("\n") -%>
 </section>
-<%= render '/shared/draft_page_message' unless @page.nil? or @page.live? -%>
+<%= render '/shared/draft_page_message' unless page.nil? or page.live? -%>

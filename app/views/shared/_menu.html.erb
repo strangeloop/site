@@ -11,7 +11,7 @@
       # This can be supplied if the logic is different in your case.
       unless defined?(selected_item)
         selected_item = collection.detect{|page| selected_page?(page)}
-        selected_item = @page if selected_item.nil?
+        selected_item ||= @page
       end
   -%>
       <nav id='<%= dom_id %>' class='<%= %W(#{css} clearfix).join(' ') %>'>

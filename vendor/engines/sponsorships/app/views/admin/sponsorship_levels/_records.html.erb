@@ -1,9 +1,9 @@
 <% if searching? %>
   <h2><%= t('results_for', :scope => 'shared.admin.search', :query => params[:search]) %></h2>
 <% end %>
-<% if @sponsorship_levels.any? %>
+<% if sponsorship_levels.any? %>
   <div class='pagination_container'>
-    <%= render 'sponsorship_levels' %>
+    <%= render 'sponsorship_levels', :sponsorship_levels => sponsorship_levels %>
   </div>
 <% else %>
   <p>

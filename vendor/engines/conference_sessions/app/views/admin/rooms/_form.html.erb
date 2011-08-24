@@ -1,6 +1,6 @@
-<%= form_for [:admin, @room], :validate => true do |f| -%>
+<%= form_for [:admin, room], :validate => true do |f| -%>
   <%= render :partial => "/shared/admin/error_messages", :locals => {
-          :object => @room,
+          :object => room,
           :include_object_name => true
         } %>
 

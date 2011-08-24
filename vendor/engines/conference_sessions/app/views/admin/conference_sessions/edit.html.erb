@@ -3,7 +3,7 @@
   <%= render 'grid_view', :images => [@conference_session.talk.speakers[0].image].compact %>
 <p></p>
 <p></p>
-<%= render "form" %>
+<%= render "form", :conference_session => @conference_session %>
 
 </div>
 

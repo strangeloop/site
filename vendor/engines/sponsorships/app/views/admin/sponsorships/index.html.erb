@@ -1,10 +1,7 @@
 <section id='records'>
-  <%= render 'records' %>
+<%= render 'records', :sponsorships => @sponsorships %>
 </section>
 <aside id='actions'>
   <%= render 'actions' %>
 </aside>
-<%= render :partial => '/shared/admin/make_sortable',
-            :locals => {
-              :tree => false
-            } if !searching? and Admin::SponsorshipsController.sortable? and Sponsorship.count > 1 %>
+<%= render('/shared/admin/make_sortable', :tree => false) if !searching? and Admin::SponsorshipsController.sortable? and Sponsorship.count > 1 %>

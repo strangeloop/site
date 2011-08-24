@@ -4,7 +4,7 @@
   <% end %>
   <% if @conference_sessions.any? %>
     <div class='pagination_container'>
-      <%= render 'conference_sessions' %>
+      <%= render 'conference_sessions', :conference_sessions => @conference_sessions %>
     </div>
   <% else %>
     <p>
@@ -51,7 +51,4 @@
     <% end %>
   </ul>
 </div>
-<%= render :partial => "/shared/admin/make_sortable",
-            :locals => {
-              :tree => false
-            } if !searching? and Admin::ConferenceSessionsController.sortable? and ConferenceSession.count > 1 %>
+<%= render("/shared/admin/make_sortable", :tree => false) if !searching? and Admin::ConferenceSessionsController.sortable? and ConferenceSession.count > 1 %>

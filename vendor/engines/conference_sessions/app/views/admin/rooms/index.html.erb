@@ -4,7 +4,7 @@
   <% end %>
   <% if @rooms.any? %>
     <div class='pagination_container'>
-      <%= render 'rooms' %>
+      <%= render 'rooms', :rooms => @rooms %>
     </div>
   <% else %>
     <p>
@@ -47,8 +47,5 @@
     </li>
   </ul>
 </div>
-<%= render :partial => "/shared/admin/make_sortable",
-            :locals => {
-              :tree => false
-            } if !searching? and Admin::RoomsController.sortable? and Room.count > 1 %>
+<%= render("/shared/admin/make_sortable", :tree => false) if !searching? and Admin::RoomsController.sortable? and Room.count > 1 %>
 
