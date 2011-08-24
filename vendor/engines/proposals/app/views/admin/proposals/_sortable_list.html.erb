@@ -1,5 +1,5 @@
 <ul id='sortable_list'>
-  <%= render @proposals %>
+  <%= render proposals %>
 </ul>
 <%= render "/shared/admin/sortable_list",
   :continue_reordering => (defined?(continue_reordering) ? continue_reordering : true) %>

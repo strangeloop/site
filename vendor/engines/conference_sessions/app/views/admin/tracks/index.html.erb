@@ -4,7 +4,7 @@
   <% end %>
   <% if @tracks.any? %>
     <div class='pagination_container'>
-      <%= render 'tracks' %>
+      <%= render 'tracks', :tracks => @tracks %>
     </div>
   <% else %>
     <p>

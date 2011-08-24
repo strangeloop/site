@@ -1,5 +1,5 @@
 <ul id='sortable_list'>
-  <%= render @conference_sessions %>
+  <%= render conference_sessions %>
 </ul>
 <%= render "/shared/admin/sortable_list",
   :continue_reordering => (local_assigns.keys.include?(:continue_reordering)) ? continue_reordering : true %>

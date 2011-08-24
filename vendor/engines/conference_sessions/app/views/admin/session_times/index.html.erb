@@ -4,7 +4,7 @@
   <% end %>
   <% if @session_times.any? %>
     <div class='pagination_container'>
-      <%= render 'session_times' %>
+      <%= render 'session_times', :session_times => @session_times %>
     </div>
   <% else %>
     <p>

@@ -1,6 +1,6 @@
-<%= form_for [:admin, @sponsorship], :html => {:multipart => true}, :validate => true do |f| -%>
+<%= form_for [:admin, sponsorship], :html => {:multipart => true}, :validate => true do |f| -%>
   <%= render :partial => "/shared/admin/error_messages", :locals => {
-          :object => @sponsorship,
+          :object => sponsorship,
           :include_object_name => true
         } %>
 

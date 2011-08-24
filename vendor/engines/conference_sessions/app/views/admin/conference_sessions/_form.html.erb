@@ -1,6 +1,6 @@
-<%= form_for [:admin, @conference_session], :html => {:multipart => true}, :validate => true do |f| -%>
+<%= form_for [:admin, conference_session], :html => {:multipart => true}, :validate => true do |f| -%>
   <%= render :partial => "/shared/admin/error_messages", :locals => {
-          :object => @conference_session,
+          :object => conference_session,
           :include_object_name => true
         } %>
 

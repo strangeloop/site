@@ -7,7 +7,7 @@
   <% if @proposals.any? %>
     <%= will_paginate @proposals %>
 
-    <%= render "sortable_list" %>
+    <%= render "sortable_list", :proposals => @proposals %>
 
     <%= will_paginate @proposals %>
   <% else %>
@@ -48,7 +48,4 @@
   <% end -%>
   </ul>
 </div>
-<%= render :partial => "/shared/admin/make_sortable",
-            :locals => {
-              :tree => false
-            } if !searching? and Proposal.count > 1 %>
+<%= render("/shared/admin/make_sortable", :tree => false) if !searching? and Proposal.count > 1 %>
