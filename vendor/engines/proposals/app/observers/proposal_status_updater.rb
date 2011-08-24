@@ -17,7 +17,7 @@
 
 module ProposalStatusUpdater
   def update_proposal_status(proposal)
-    if (proposal.status == 'submitted')
+    if (proposal.is_a? Proposal and proposal.status == 'submitted')
       proposal.status = 'under review'
       proposal.save
     end
