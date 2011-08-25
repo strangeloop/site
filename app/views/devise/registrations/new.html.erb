@@ -1,18 +1,48 @@
-<h2>Sign up</h2>
+<%= render :partial => 'shared/title', :locals => { :title => 'Conference Attendee Sign-up' } %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<section id="deviseauth">
+    <h2>Sign up</h2>
+    
+    <% puts "fooooooooooooooooooooooooooo #{params[:token]}" %>
+    <% attendee = Attendee.check_token params[:token]
+       if attendee %>
+<div class="container_12 pad3">
+  <div class="grid_12">
+    <div class="registration whitebox">
 
-  <p><%= f.label :email %><br />
-  <%= f.email_field :email %></p>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= field_set_tag 'Registration' do %>
+          <ul>
+            <li><%= f.label :username, 'Username:' %><%= f.text_field :email, :value => "#{attendee.email}" %></li>
+            <li><%= f.label :password, 'Password:'%><%= f.password_field :password %></li>
+            <li><%= f.label :password, 'Password Confirmation:' %><%= f.password_field :password_confirmation %></li>
+            <li><%= submit_tag 'Register', :class => 'submit' %></li>
+          </ul>
+        <% end -%>
+      <% end -%>
+      <h2>OR</h2>
+    <div id="remote">
+        <div id="services" class="box">
+            <%= link_to "/auth/google?token=#{attendee.escaped_acct_token}" do %>
+            <%= image_tag "google_64.png", :size => "64x64",  :alt => "Google" %>
+            Google
+            <% end %>
+            <%= link_to "/auth/github?token=#{attendee.escaped_acct_token}" do %>
+            <%= image_tag "github_64.png", :size => "64x64",  :alt => "Github" %>
+            Github
+            <% end %>
+            <%= link_to "/auth/twitter?token=#{attendee.escaped_acct_token}" do %>
+            <%= image_tag "twitter_64.png", :size => "64x64",  :alt => "Twitter" %>
+            Twitter
+            <% end %>
+        </div>
+    </div>
+    <% @else %>
+    Invalid Token
+    <% end %>
+    <div class="clear"></div>
+  </div>
+</div>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+</section>
 
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
-
-  <p><%= f.submit "Sign up" %></p>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
