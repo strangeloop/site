@@ -253,7 +253,7 @@ p {margin-bottom:22px;}
 
 
 body {
-	background:#000 url(../images/top_bg.gif) repeat-x 0px 28px;
+	background:#000 url(../images/csg-4e56307fa551f.gif) repeat-x 0px 28px; background-position: 0 -1842px;
 }
 html, body {
 	height:100%;
@@ -280,7 +280,6 @@ footer {
 .page_login footer, .page_login .foot, .page_login .footer {background:none; border:none !important;}
 .page_login .copy {top:0 !important; color:#9abbcf !important; left:0; width:100%; text-align:center}
 .foot {background:url(../images/foot_bg.jpg) no-repeat 50% 100%; min-height:249px; position:relative; }
-.alternative_footer {background:url(../images/foot_line.png) repeat-x 0% 0%; }
 .footer {width:932px; margin:0 auto; background:url(../images/foot_line.png) repeat-x 0% 0%; min-height:198px; position:relative; z-index:10; padding-top: 15px;}
 .copy {position:absolute; top:44px; left:0px; color:#9abbcf; font-size:11px;}
 .bottom_menu {position:absolute; right:0; top:44px; width: 500px;}
@@ -291,15 +290,15 @@ footer {
 .bottom_menu li a:hover {text-decoration:underline; }
 
 /* bottom row */
-.bottom_row_tile {background:url(../images/foot_tile.gif) repeat-x 50% 0%; min-height:420px;}
+.bottom_row_tile {background:url(../images/csg-4e56307fa551f.gif) repeat-x 50% 0%; min-height:420px; background-position: 0 -529px;}
 .alternative {min-height:285px !important; margin-bottom:-85px !important; position:relative !important; z-index:10}
 .bottom_row {background:url(../images/foot_bg.jpg) no-repeat 50% 0%; min-height:369px; padding-top:86px; color:#9abbcf; }
 .alternative .bottom_row {min-height:200px !important}
 .bottom_row a {color:#9abbcf; text-decoration:none}
 .bottom_row a:hover {text-decoration:underline}
-.bottom_row .icon1 {background:url(../images/footerIcon.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-left:-16px !important; margin-bottom:1px}
+.bottom_row .icon1 {background:url(../images/csg-4e563222226c6.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-left:-16px !important; margin-bottom:1px; background-position: 0 -782px;}
 .bottom_row .icon2 {background:url(../images/footerIcon2.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-left:-16px !important; margin-bottom:1px}
-.bottom_row .icon3 {background:url(../images/footerIcon3.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-left:-16px !important; margin-bottom:1px}
+.bottom_row .icon3 {background:url(../images/csg-4e563222226c6.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-left:-16px !important; margin-bottom:1px; background-position: 0 -905px;}
 .bottom_row .icon4 {background:url(../images/footerIcon4.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-left:-16px !important; margin-bottom:1px}
 .bottom_row p {margin-bottom:18px !important}
 .bottom_row .pic {margin-bottom:14px !important; margin-top:-3px}
@@ -307,13 +306,13 @@ footer {
 .about .pic {margin-bottom:0 !important}
 .about p {margin-bottom:15px !important}
 .bottom_row ul {margin-top:-5px !important}
-.icon1 {background:url(../images/footerIcon.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative;  margin-bottom:5px}
+.icon1 {background:url(../images/csg-4e563222226c6.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative;  margin-bottom:5px; background-position: 0 -782px;}
 .icon2 {background:url(../images/footerIcon2.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-bottom:5px}
-.icon3 {background:url(../images/footerIcon3.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-bottom:5px}
+.icon3 {background:url(../images/csg-4e563222226c6.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-bottom:5px; background-position: 0 -905px;}
 .icon4 {background:url(../images/footerIcon4.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-bottom:5px}
-.icon5 {background:url(../images/title_icon2.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-bottom:5px}
+.icon5 {background:url(../images/csg-4e563222226c6.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-bottom:5px; background-position: 0 -1104px;}
 .icon6 {background:url(../images/title_icon6.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-bottom:5px}
-.icon7 {background:url(../images/title_icon7.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-bottom:5px}
+.icon7 {background:url(../images/csg-4e563222226c6.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-bottom:5px; background-position: 0 -1231px;}
 .icon8 {background:url(../images/title_icon8.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-bottom:5px}
 .icon9 {background:url(../images/title_icon9.png) no-repeat 0% 0%; position:relative; padding:6px 0 44px 79px; position:relative; margin-bottom:5px}
 
@@ -327,16 +326,16 @@ header {padding:13px 0 13px; height:63px; width:933px; margin:0 auto; position:r
 .logo span {font-size:11px; color:#666; margin-left:12px; display:block; margin-top:9px; float:left}
 .logo a strong{font-size:32px; color:#fff; text-decoration:none; float:left}
 nav {position:absolute; top:0px; right:0}
-.cont_bg {background:url(../images/cont_bg.gif) no-repeat 50% 0%; padding-top:40px !important}
+.cont_bg {background:url(../images/csg-4e56307fa551f.gif) no-repeat 50% 0%; padding-top:40px !important; background-position: 0 0}
 
 
 /* carousel */
-.row_top_tile {background:url(../images/row_top_tile.gif) repeat-x 0% 0%; height:401px; position:relative; z-index:9}
+.row_top_tile {background:url(../images/csg-4e56307fa551f.gif) repeat-x 0% 0%; position:relative; z-index:9; background-position: 0 -1391px; height: 401px;}
 .row_top {background:url(../images/top_row_bg.jpg) no-repeat 50% 0%; height:401px}
 .carousel {width:972px; margin:0 auto; position:relative; overflow:hidden; height:402px; padding:37px 0 0; padding-left:35px;}
 .wide .carousel, .wide_alternative .carousel {width:940px; margin:0 auto; position:relative; overflow:hidden; height:402px; padding:28px 40px 0; background:url(../images/carousel_bg.png) no-repeat 50% 0%; margin-top:-28px}
 .slider { height:344px; width:970px; position:relative; overflow:hidden}
-.slide, .slide2, .slide3 {width:923px; height:344px; background:url(../images/carousel_blackwhite_bg.png) no-repeat 0% 0%; margin-left:-18px; padding:0 0 0 47px}
+.slide, .slide2, .slide3 {width:923px; height:344px; background:url(../images/csg-4e563222226c6.png) no-repeat 0% 0%; margin-left:-18px; padding:0 0 0 47px; background-position: 0 0;}
 .wide .slider {display:none; height:344px;}
 #prev2 {position:absolute; left:32px; top:169px; width:38px; height:62px; background:url(../images/arrow.gif) repeat 0% 0%; z-index:150}
 #prev2:hover {background:url(../images/arrow.gif) repeat 100% 0%;}
@@ -346,7 +345,7 @@ nav {position:absolute; top:0px; right:0}
 #nav a {display:inline-block;  background:url(../images/slider_dot.png) repeat 0% 0%; width:12px; height:13px; text-indent:-9000px; margin-right:3px }
 #nav a:hover, .activeSlide {background:url(../images/slider_dot.png) repeat 0% 100% !important; width:12px; height:13px;}
 .info_text {overflow:hidden; padding:0 20px 0 0}
-.slider_pic {background:url(../images/carousel_pic_bg.png) no-repeat 0% 0%; width:560px; height:326px; float:right; margin-right:9px; padding:15px 0 0 44px}
+.slider_pic {background:url(../images/csg-4e563222226c6.png) no-repeat 0% 0%; width:560px; height:326px; float:right; margin-right:9px; padding:15px 0 0 44px; background-position: 0 -391px;}
 .slide2 .slider_pic, .slide3 .slider_pic {background:none; width:540px; height:289px; float:right; margin:15px 33px 0 0; overflow:hidden; padding:0}
 .slider_title {font-size:44px; color:#fff; letter-spacing:-2px; margin-bottom:10px; font-family:Arial, Helvetica, sans-serif; line-height:100%}
 .slide2 .slider_title, .slide3 .slider_title {padding-top:30px; font-size:36px}
@@ -360,8 +359,8 @@ nav {position:absolute; top:0px; right:0}
 .arrow_button {position:absolute; background:url(../images/buttons/arrow_button.png) no-repeat 0% 0%; width:83px; height:70px; right:0; bottom:0px;}
 /* main content */
 
-.cont_design_tile {background:url(../images/cont_design_tile.gif) repeat-x 0% 0%; min-height:121px; border-bottom:1px solid #1d1d1d}
-.cont_design {background:url(../images/cont_design_bg.gif) no-repeat 50% 0%; min-height:93px; padding:28px 0 0 0}
+.cont_design_tile {background:url(../images/csg-4e56307fa551f.gif) repeat-x 0% 0%; min-height:121px; border-bottom:1px solid #1d1d1d; background-position: 0 -261px;}
+.cont_design {background:url(../images/csg-4e56307fa551f.gif) no-repeat 50% 0%; min-height:93px; padding:28px 0 0 0; background-position: 0 -90px;}
 .cont_design_title {color:#fff; font-size:26px; line-height:1.2em; letter-spacing:-1px; overflow:hidden}
 #main {padding:40px 0 70px}
 
@@ -380,7 +379,7 @@ nav {position:absolute; top:0px; right:0}
 .pic2 {float:left; background:#fff; padding:13px; line-height:0px; font-size:0px; margin-right:32px; margin-bottom:12px; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px;}
 .pic2:hover { background:#098cbc;}
 .pic3 {float:right; background:#fff; padding:8px; line-height:0px; font-size:0px; margin-left:18px; margin-bottom:12px; -moz-border-radius: 7px; -webkit-border-radius: 7px; border-radius: 7px;}
-.main_pic {background:url(../images/picture_bg2.gif) no-repeat 0% 0%; width:188px; height:83px; display:block; position:relative; overflow:hidden; padding:12px 8px 36px 8px }
+.main_pic {background:url(../images/csg-4e56307fa551f.gif) no-repeat 0% 0%; width: 188; height: 83; display:block; position:relative; overflow:hidden; padding:12px 8px 36px 8px; background-position: 0 -1210px}
 .alternative_read {display:block; padding:20px 0 0 0; border-top:1px solid #272727; color:#b2b2b2; font-family:Tahoma, Geneva, sans-serif }
 
 .number {color:#f2f2f2; font-size:48px; background:url(../images/big_icon.png) no-repeat 0% 9px; padding:0 0 50px 140px; position:relative; margin-left:-21px; margin-top:-9px}
