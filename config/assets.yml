@@ -9,7 +9,7 @@ javascripts:
     - public/javascripts/rails.validations.js
     - public/javascripts/script.js
     - public/javascripts/libs/cufon-yui.js
-    - public/javascripts/libs/modernizr-1.6.js
+    - public/javascripts/libs/modernizr-1.6.min.js
     - public/javascripts/font/*.js
     - public/javascripts/cufon-replace.js
 
