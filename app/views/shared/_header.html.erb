@@ -12,5 +12,5 @@
 <%= render :partial => '/shared/current_attendee', :locals => {
   :username => current_attendee.try(:full_name),
   :attendee_path => (current_attendee ? attendee_path(current_attendee) : ''),
-  :login_path => new_user_session_path,
-  :logout_path => destroy_user_session_path } %>
+  :login_path => new_attendee_cred_session_path,
+  :logout_path => destroy_attendee_cred_session_path } %>

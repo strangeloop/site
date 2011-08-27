@@ -22,6 +22,6 @@
 
 class ApplicationController < ActionController::Base
 
-  expose(:current_attendee) { Attendee.find_by_user_id(current_user.id) if current_user }
+  expose(:current_attendee) { Attendee.find_by_attendee_cred_id(current_attendee_cred.id) if current_attendee_cred }
 
 end

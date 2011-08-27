@@ -105,7 +105,7 @@ class Attendee < ActiveRecord::Base
       a.city = row[4]
       a.country = row[6]
       a.email = row[7]
-      a.twitter_id = row[8].delete "@"
+      a.twitter_id = (row[8] && row[8].delete("@")) || ''
       a.reg_id = row[9]
       a.token_created_at = Time.now
       a.save!

@@ -2,9 +2,7 @@
 
 <section id="deviseauth">
     <h2>Sign up</h2>
-    
-    <% puts "fooooooooooooooooooooooooooo #{params[:token]}" %>
-    <% attendee = Attendee.check_token params[:token]
+      <% attendee = Attendee.check_token params[:token]
        if attendee %>
 <div class="container_12 pad3">
   <div class="grid_12">
@@ -27,11 +25,11 @@
             <%= image_tag "google_64.png", :size => "64x64",  :alt => "Google" %>
             Google
             <% end %>
-            <%= link_to "/auth/github?token=#{attendee.escaped_acct_token}" do %>
+            <%= link_to attendee_cred_omniauth_authorize_path(:github) do %>
             <%= image_tag "github_64.png", :size => "64x64",  :alt => "Github" %>
             Github
             <% end %>
-            <%= link_to "/auth/twitter?token=#{attendee.escaped_acct_token}" do %>
+            <%= link_to attendee_cred_omniauth_authorize_path(:twitter) do %>
             <%= image_tag "twitter_64.png", :size => "64x64",  :alt => "Twitter" %>
             Twitter
             <% end %>
