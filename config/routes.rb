@@ -16,8 +16,12 @@
 
 
 Conf::Application.routes.draw do
-  devise_for :attendee_creds
 
+
+  devise_for :attendee_creds, :controllers => { :omniauth_callbacks => "omniauth_callbacks" } do
+    get '/attendee_creds/auth/:provider' => 'omniauth_callbacks#passthru'
+  end
+  
   resource :attendee, :only => [:edit]
   resources :attendees, :only => [:index]
   resources :talks
@@ -33,12 +37,12 @@ Conf::Application.routes.draw do
   match '/blog/stloopadm' => redirect('/news')
   match '/blog' => redirect('/news')
 
-  match '/auth/:service/callback' => 'services#create'
+  get '/auth/github/callback' => 'omniauth_callbacks#github'
+  
   resources :services, :only => [:index, :create, :destroy]
 
-#  get '/activation/:token', :to => 'attendee_cred/sign_up#create', :as => :activation
+  get '/activation/:token', :to => 'attendee_cred/sign_up#create', :as => :activation
 
   get '/login', :to => 'attendee_login#new', :as => :new_attendee_login
   post '/attendee_login', :to => 'attendee_login#create', :as => :attendee_login
-
 end

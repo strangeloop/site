@@ -149,6 +149,8 @@ GEM
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
       rack (< 2, >= 1.1.0)
+    faraday_middleware (0.6.3)
+      faraday (~> 0.6.0)
     fastercsv (1.5.4)
     ffi (1.0.9)
     formtastic (1.2.4)
@@ -359,6 +361,7 @@ DEPENDENCIES
   decent_exposure (~> 1.0)
   dragonfly (= 0.8.2)
   factory_girl_rails (~> 1.0.1)
+  faraday_middleware (= 0.6.3)
   fastercsv (= 1.5.4)
   formtastic (~> 1.2.3)
   friendly_id_globalize3 (~> 3.2.1)
@@ -370,6 +373,7 @@ DEPENDENCIES
   launchy (~> 0.3.7)
   mmcopyrights
   mysql2 (= 0.2.7)
+  oa-openid
   omniauth (= 0.2.6)
   rack-cache
   rack-ssl

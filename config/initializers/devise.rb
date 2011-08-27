@@ -13,7 +13,7 @@
 #- limitations under the License.
 #-
 
-
+require 'openid/store/filesystem'
 
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
@@ -156,4 +156,7 @@
   #   end
   #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
   # end
+  config.omniauth :open_id, OpenID::Store::Filesystem.new('/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
+  config.omniauth :github, 'foo', 'bar'
+  config.omniauth :twitter, 'foo', 'bar'
 end
