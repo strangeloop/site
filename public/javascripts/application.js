@@ -26,7 +26,8 @@ var SL = function() {
   function listLink(text, path) {
     return $('<li/>', {
       html : $('<a/>', {
-        html : text }).attr('href', path)});
+        html : $('<span/>', { html: text })
+      }).attr('href', path)});
   };
 
   function track(self) {
