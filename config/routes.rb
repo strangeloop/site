@@ -19,6 +19,10 @@ Conf::Application.routes.draw do
 
 
   devise_for :attendee_creds, :controllers => { :omniauth_callbacks => "omniauth_callbacks" } do
+    # google callbacks are going to the wrong place.  They are going to the url below when they should be going
+    # through the auth/:provider path.  I think this is due to https://github.com/intridea/omniauth/issues/138.
+    # We can't upgrade Devise unless we upgrade Refinery, this hack gets around the issue.
+    match 'attendee_creds/auth/google/callback' => 'omniauth_callbacks#google'
     get '/attendee_creds/auth/:provider' => 'omniauth_callbacks#passthru'
   end
   
@@ -45,4 +49,6 @@ Conf::Application.routes.draw do
 
   get '/login', :to => 'attendee_login#new', :as => :new_attendee_login
   post '/attendee_login', :to => 'attendee_login#create', :as => :attendee_login
+
+
 end
