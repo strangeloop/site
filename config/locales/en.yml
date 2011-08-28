@@ -77,3 +77,6 @@ en:
       image_hint: "Ideally 450 x 450 image less than 1MB in size"
       commit: Send Talk Proposal
       submit_talk: Submit a Talk
+  devise:
+    omniauth_callbacks:
+      success: "Successfully authenticated with %{kind}"
