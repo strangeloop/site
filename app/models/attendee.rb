@@ -113,12 +113,12 @@ class Attendee < ActiveRecord::Base
   end
 
   def activate(service)
-    build_attendee_cred(:email => attendee.email,
-                        :password => SecureRandom.hex(10)) unless attendee.attendee_cred
-    acct_activation_token = nil
-    token_created_at = nil
-    attendee_cred.services << service
-    save!
+    self.build_attendee_cred(:email => self.email,
+                        :password => SecureRandom.hex(10)) unless attendee_cred
+    self.acct_activation_token= nil
+    self.token_created_at= nil
+    self.attendee_cred.services << service
+    self.save!
     self
   end
 

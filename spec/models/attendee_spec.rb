@@ -127,5 +127,66 @@ describe Attendee do
                               session_3.session_time => [session_3]} } )
     end
   end
+
+  let(:service){ Service.new(:uemail => 'henry@chinaski.com',
+                             :uid => 'Henry',
+                             :provider => 'Google',
+                             :uname => 'Henry Chinaski')}
+  let(:nrattendee){Factory(:not_registered_attendee)}
+
+  context "activating an attendee" do
+    before do
+      nrattendee.activate(service)
+    end
+    it "should save activated info, clear activation tokens" do
+      a = Attendee.find(nrattendee.id)
+      cred = a.attendee_cred
+      svc = a.attendee_cred.services.first
+      
+      cred.should_not be_nil
+      cred.email.should == a.email
+      cred.encrypted_password.should_not be_nil
+
+      a.acct_activation_token.should be_nil
+      a.token_created_at be_nil
+
+      cred.services.size == 1
+      svc.uemail.should == 'henry@chinaski.com'
+      svc.uid.should == 'Henry'
+      svc.provider.should == 'Google'
+      svc.uname.should == 'Henry Chinaski'
+    end
+      
+  end
+
+  let(:service2){ Service.new(:uemail => 'henry2@chinaski.com',
+                             :uid => 'Henry2',
+                             :provider => 'Google',
+                             :uname => 'Henry Chinaski')}
+
+  context "activating an attendee" do
+    before do
+      attendee.activate(service2)
+    end
+    it "should not create a new attendee_cred if one already exists" do
+      a = Attendee.find(attendee.id)
+      cred = a.attendee_cred
+      svc = a.attendee_cred.services.first
+      
+      cred.should_not be_nil
+      cred.email.should_not == a.email
+      cred.encrypted_password.should_not be_nil
+
+      a.acct_activation_token.should be_nil
+      a.token_created_at be_nil
+
+      cred.services.size == 1
+      svc.uemail.should == 'henry2@chinaski.com'
+      svc.uid.should == 'Henry2'
+      svc.provider.should == 'Google'
+      svc.uname.should == 'Henry Chinaski'
+    end
+  end
+  
 end
 
