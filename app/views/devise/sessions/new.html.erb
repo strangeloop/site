@@ -1,9 +1,12 @@
 <%= render :partial => 'shared/title', :locals => { :title => 'Conference Attendee Sign-in' } %>
 
-<div class="container_12 pad3">
-  <div class="grid_12">
-    <div class="login whitebox">
+<div class="container_12">
+  <%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <%- end -%>
 
+  <div class="grid_12 pad3">
+    <div class="login whitebox">
 
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
         <%= field_set_tag 'Login' do %>

@@ -2,5 +2,21 @@
 
 #body_content_left div {margin-left: auto;margin-right: auto; width: 972px; overflow:hidden}
 
-#body_content_left .container_12 .grid_6{width:446px;}  
+#body_content_left .container_12 .grid_6{width:446px;}
 
+#flash_notice, #flash_error, #flash_alert {
+  padding: 1.2em 0 1.2em 1em;
+  margin-left: 2em;
+  width: 81%;
+  color: #000;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+#flash_error, #flash_alert {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}
