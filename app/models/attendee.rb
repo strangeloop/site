@@ -112,6 +112,16 @@ class Attendee < ActiveRecord::Base
     end
   end
 
+  def activate(service)
+    build_attendee_cred(:email => attendee.email,
+                        :password => SecureRandom.hex(10)) unless attendee.attendee_cred
+    acct_activation_token = nil
+    token_created_at = nil
+    attendee_cred.services << service
+    save!
+    self
+  end
+
   private
 
   def self.decrypt_token (cipher_text)
