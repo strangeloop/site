@@ -1,5 +1,6 @@
 class AttendeesController < ApplicationController
   before_filter :authenticate_attendee_cred!
+  respond_to :html, :ics, :only => :show
 
   expose(:attendee)
 
@@ -8,6 +9,13 @@ class AttendeesController < ApplicationController
   }
 
   expose(:sessions_for_schedule) { attendee.sorted_interested_sessions }
+
+  def show
+    respond_to do |format|
+      format.html
+      format.ics { render :layout => false, :text => attendee.session_calendar.export }
+    end
+  end
 
   def update
     current_attendee.update_attributes params[:attendee]

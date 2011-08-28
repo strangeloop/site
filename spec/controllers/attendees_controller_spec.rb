@@ -4,10 +4,25 @@ describe AttendeesController do
   let(:attendee) { Factory(:attendee) }
   let(:registered_attendee) { Factory(:registered_attendee) }
 
-  it "exposes a specific attendee for #show" do
-    get :show, :id => attendee.id
-    controller.attendee.should eq(attendee)
-  end
+	before(:each) do
+		#Must create an attendee record to prevent refinery
+		#from redirecting to welcome page
+		Factory.create(:admin)
+		@request.env['devise.mapping'] = :admin
+		sign_in attendee.user
+	end
+
+	context ".show" do
+		it "exposes a specific attendee" do
+			get :show, :id => attendee.id
+			controller.attendee.should eq(attendee)
+		end
+
+		it "exports the session calendar for a specific attendee" do
+			get :show, :id => attendee.id, :format => :ics
+			response.body.should eq(attendee.session_calendar.export)
+		end
+	end
 
   context ".current_year_attendees" do
     before(:each) do
@@ -31,18 +46,9 @@ describe AttendeesController do
     end
 
   end
-  context "authenticated action" do
-    before(:each) do
-      #Must create an attendee record to prevent refinery
-      #from redirecting to welcome page
-      Factory.create(:admin)
-      @request.env['devise.mapping'] = :admin
-      sign_in attendee.attendee_cred
-    end
 
-    it "#edit exposes a specific attendee for #edit" do
-      get :edit, :id => attendee.id
-      controller.attendee.should eq(attendee)
-    end
-  end
+	it "#edit exposes a specific attendee for #edit" do
+		get :edit
+		controller.current_attendee.should eq(attendee)
+	end
 end

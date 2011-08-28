@@ -29,12 +29,12 @@ class SessionTime < ActiveRecord::Base
     "#{start_time.strftime('%A from %I:%M')} to #{end_time.strftime('%I:%M %p')}"
   end
 
+  def end_time
+    start_time.advance(:hours => duration_hours, :minutes => duration_minutes)
+  end
+
   private
   def hr_min(time)
     time.strftime('%I:%M %p')
-  end
-
-  def end_time
-    start_time.advance(:hours => duration_hours, :minutes => duration_minutes)
   end
 end

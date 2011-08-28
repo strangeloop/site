@@ -21,6 +21,7 @@ gem 'decent_exposure', '~> 1.0'
 gem 'RedCloth', '~> 4.2'
 gem 'jammit', '~> 0.6'
 gem 'client_side_validations', '~> 3.0.4'
+gem 'ri_cal', '~> 0.8.8'
 
 gem 'savon', '0.9.1'
 

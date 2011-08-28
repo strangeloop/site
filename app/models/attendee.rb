@@ -37,6 +37,21 @@ class Attendee < ActiveRecord::Base
   scope :registered, lambda { where('acct_activation_token IS NULL') }
   scope :current_year, lambda { where('conf_year' => maximum('conf_year')).order('last_name ASC', 'first_name ASC') }
 
+  def session_calendar
+    RiCal.Calendar do |cal|
+      conference_sessions.each do |session|
+        cal.event do |e|
+          e.summary     = session.title
+          e.description = session.description
+          e.dtstart     = session.start_time
+          e.dtend       = session.end_time
+          e.location    = session.location
+          e.url         = session.url
+        end
+      end
+    end
+  end
+
   def twitter_id=(name)
     self[:twitter_id] = name.gsub('@', '')
   end

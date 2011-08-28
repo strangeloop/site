@@ -142,7 +142,7 @@ describe Attendee do
       a = Attendee.find(nrattendee.id)
       cred = a.attendee_cred
       svc = a.attendee_cred.services.first
-      
+
       cred.should_not be_nil
       cred.email.should == a.email
       cred.encrypted_password.should_not be_nil
@@ -156,7 +156,7 @@ describe Attendee do
       svc.provider.should == 'Google'
       svc.uname.should == 'Henry Chinaski'
     end
-      
+
   end
 
   let(:service2){ Service.new(:uemail => 'henry2@chinaski.com',
@@ -172,7 +172,7 @@ describe Attendee do
       a = Attendee.find(attendee.id)
       cred = a.attendee_cred
       svc = a.attendee_cred.services.first
-      
+
       cred.should_not be_nil
       cred.email.should_not == a.email
       cred.encrypted_password.should_not be_nil
@@ -187,6 +187,24 @@ describe Attendee do
       svc.uname.should == 'Henry Chinaski'
     end
   end
-  
+
+  context '#session_calendar' do
+    it "is empty when no sessions have been signed up for" do
+      attendee.session_calendar.should eq(RiCal.Calendar)
+    end
+
+    it "adds signed up sessions to the calendar" do
+      attendee.conference_sessions << session
+      cal = attendee.session_calendar
+      cal.events.size.should eq(1)
+      event = cal.events.first
+      event.summary.should eq(session.title)
+      event.description.should eq(session.description)
+      event.dtstart.should eq(session.start_time)
+      event.dtend.should eq(session.end_time)
+      event.location.should eq(session.location)
+      event.url.should eq(session.url)
+    end
+  end
 end
 

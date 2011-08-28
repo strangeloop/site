@@ -280,6 +280,7 @@ GEM
     require_relative (1.0.1)
     rest-client (1.6.3)
       mime-types (>= 1.16)
+    ri_cal (0.8.8)
     rspec (2.5.0)
       rspec-core (~> 2.5.0)
       rspec-expectations (~> 2.5.0)
@@ -386,6 +387,7 @@ DEPENDENCIES
   refinerycms-proposals (= 1.0)!
   refinerycms-sponsorships (= 1.0)!
   require_relative (= 1.0.1)
+  ri_cal (~> 0.8.8)
   rspec-rails (~> 2.5.0)
   ruby-debug (~> 0.10.4)
   ruby-prof
