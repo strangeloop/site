@@ -1,7 +1,7 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def authenticate_user(provider, attendee_finder)
-    omniauth = env["omniauth.auth"]
+    omniauth = request.env["omniauth.auth"]
     service = Service.send("#{provider}_service".to_sym, omniauth)
     existing_user = Service.find_existing_attendee_cred(service.provider, service.uid)
 
