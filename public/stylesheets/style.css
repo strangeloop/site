@@ -597,43 +597,48 @@ nav {position:absolute; top:0px; right:0}
 }
 
 form fieldset {
-    clear: both;
-    font-size: 1.2em;
-    border: 1px solid #3181c4;
-    margin-right: 15%;
-    margin-left: 15%;
-    padding-left: 1em;
-    padding: 2em;
-    margin-bottom: 5em;
+  clear: both;
+  font-size: 1.2em;
+  border: 1px solid #3181c4;
+  margin-right: 15%;
+  margin-left: 15%;
+  padding-left: 1em;
+  padding: 2em;
+  margin-bottom: 5em;
 }
 form fieldset legend {  }
 form fieldset ul {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 form fieldset li {
-    clear: left;
-    line-height: 25px;
-    list-style-type: none;
-    margin: 0;
-    padding: 5px 0 0;
+  clear: left;
+  line-height: 25px;
+  list-style-type: none;
+  margin: 0;
+  padding: 5px 0 0;
 }
 form fieldset label {
-    display: block;
-    float: left;
-    font-weight: normal;
-    line-height: 20px;
-    margin: 0;
-    padding: 0.5em 5px 0.5em 0.5em;
-    width: 100px;
+  display: block;
+  float: left;
+  font-weight: normal;
+  line-height: 20px;
+  margin: 0 0.7em 0 0;
+  padding: 0.5em 5px 0.5em 1em;
+  width: 7em;
+  text-align: right;
 }
 form fieldset input {
-    float: left;
-    margin: 0 10px 0 0;
-    padding: 0.5em;
+  float: left;
+  margin: 0 10px 0 0;
+  padding: 0.5em;
 }
 form fieldset input[type="text"], form fieldset input[type="password"] {
-    margin-right: 10px;
-    min-width: 200px;
+  margin-right: 10px;
+  min-width: 200px;
+}
+
+form fieldset input[type="checkbox"] {
+  margin-top: 0.7em;
 }
 
