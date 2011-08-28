@@ -76,7 +76,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And a scheduled talk session for this year exists
     And I am interested in that talk
     When I am on my profile page
-    Then I should see "Download my Schedule" as a link to the iCal download
+    Then I should see "Download (.ics)" as a link to the iCal download
 
   @javascript
   Scenario: Login link only shown to unauthenticated visitors

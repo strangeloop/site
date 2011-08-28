@@ -7,10 +7,13 @@ en:
       login_message: Or authenticate using one of the services below (based on your registration)
   attendees:
     attendee:
-      update_profile: Update My Profile
       conference_schedule: My Conference Schedule
+      download_ical: Download (.ics)
+      update_profile: Update My Profile
     no_schedule:
-      no_schedule_yet: "<p>You have not indicated your interest in attending any talks.  Please <a href='/schedule'>visit the schedule page</a> to fill out your session preferences.</p>"
+      no_schedule: "<p>You have not indicated your interest in attending any talks.  Please <a href='/schedule'>visit the schedule page</a> to fill out your session preferences.</p>"
+    no_schedule_visitor:
+      no_schedule: "<p>Has not indicated interest in attending any talks yet.</p>"
     edit:
       blog_url: Blog URL
       city: City

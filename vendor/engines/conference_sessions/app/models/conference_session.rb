@@ -16,6 +16,9 @@
 
 
 class ConferenceSession < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
+  default_url_options[:host] = 'thestrangeloop.com'
+
   belongs_to :slides, :class_name => 'Resource'
   belongs_to :talk
   belongs_to :session_time
@@ -47,12 +50,28 @@ class ConferenceSession < ActiveRecord::Base
     talk.title
   end
 
+  def description
+    talk.abstract
+  end
+
   def day
     session_time.nil? ? 'Unscheduled' : session_time.start_time.strftime('%A, %B %d, %Y')
   end
 
   def start_time
     session_time.try(:start_time)
+  end
+
+  def end_time
+    session_time.try(:end_time)
+  end
+
+  def location
+    room.try(:name)
+  end
+
+  def url
+    conference_session_url(self)
   end
 
   class <<self

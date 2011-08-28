@@ -21,7 +21,7 @@
 
         <% unless attendee.blog_url.blank? -%>
           <div>Blog</div>
-          <div><%= link_to attendee.blog_url, attendee.blog_url %></div>
+          <div><%= link_to content_tag(:strong, attendee.blog_url), attendee.blog_url %></div>
         <% end -%>
 
         <% unless attendee.twitter_id.blank? -%>
@@ -37,6 +37,11 @@
         <% unless attendee.work_for_pie_id.blank? -%>
           <div>WorkForPie</div>
           <div><%= work_for_pie_link attendee.work_for_pie_id %></div>
+        <% end -%>
+
+        <% unless attendee.conference_sessions.empty? -%>
+          <div>My Schedule</div>
+          <div><%= link_to content_tag(:strong, t('.download_ical')), attendee_path(attendee, :format => :ics) %></div>
         <% end -%>
       </div>
       <h4 class="pad3"><%= t('.conference_schedule') %></h4>
