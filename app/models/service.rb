@@ -6,8 +6,29 @@ class Service < ActiveRecord::Base
     validates field, :presence => true
   end
 
-  def self.find_existing_user(omniauth_token)
-    Service.where("provider = ? AND uid = ?", omniauth_token['provider'],  omniauth_token['extra']['user_hash']['id']).first
+  def self.find_existing_attendee_cred(provider, uid)
+    Service.where("provider = ? AND uid = ?", provider, uid).first
+  end
+
+  def self.twitter_service(omniauth)
+    Service.new(:uname => omniauth['user_info']['name'],
+                :uid => omniauth['uid'],
+                :provider =>  omniauth['provider'])
+  end
+
+  def self.github_service(omniauth)
+    Service.new(:uemail => omniauth['user_info']['email'],
+                :uname =>  omniauth['user_info']['name'],
+                :uid =>  omniauth['extra']['user_hash']['id'],
+                :provider =>  omniauth['provider'])
+                
+  end
+
+  def self.google_service(omniauth)
+    Service.new(:uemail => omniauth['user_info']['email'],
+                :uname =>  omniauth['user_info']['name'],
+                :uid =>  omniauth['uid'],
+                :provider =>  omniauth['provider'])
   end
 end
 

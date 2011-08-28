@@ -21,7 +21,15 @@
       <h2>OR</h2>
     <div id="remote">
         <div id="services" class="box">
-            <%= link_to "/auth/google?token=#{attendee.escaped_acct_token}" do %>
+            <% # hard coding this URL because of this bug: https://github.com/plataformatec/devise/issues/1135
+                # currently we're are on Devise 1.2.1, dictated by Refinery.  When we upgrade, hopefully this can be
+                # changed
+                -%>
+            <%= link_to "/attendee_creds/auth/google?token=#{attendee.acct_activation_token}" do %>
+            <%= image_tag "google_64.png", :size => "64x64",  :alt => "Google" %>
+            Google
+            <% end %>
+            <%= link_to  attendee_cred_omniauth_authorize_path(:open_id,  'https://www.google.com/accounts/o8/id') do %>
             <%= image_tag "google_64.png", :size => "64x64",  :alt => "Google" %>
             Google
             <% end %>
