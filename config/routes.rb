@@ -34,16 +34,11 @@ Conf::Application.routes.draw do
   get '/attendees/:id', :to => 'attendees#show', :as => :attendee
 
   match '/media/*dragonfly', :to => Dragonfly[:strangeloop]
-  post 'reg_online/callback', :to => "reg_online#create"
 
   match '/blog/:year/:month/:day/:id' => redirect('/news/%{year}/%{month}/%{day}/%{id}')
   match '/news/:year/:month/:day/:id' => 'news_items#show'
   match '/blog/stloopadm' => redirect('/news')
   match '/blog' => redirect('/news')
-
-  get '/auth/github/callback' => 'omniauth_callbacks#github'
-  
-  resources :services, :only => [:index, :create, :destroy]
 
   get '/activation/:token', :to => 'attendee_cred/sign_up#create', :as => :activation
 
