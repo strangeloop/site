@@ -35,14 +35,6 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I should see a link with "MarioAquino" to "http://workforpie.com/MarioAquino"
     And I should see a link with "http://marioaquino.blogspot.com" to "http://marioaquino.blogspot.com"
 
-  Scenario: Login page for unauthenticated site visitor
-    Given I am on the homepage
-    When I follow "Login"
-    Then I should see "Login with GMail"
-    And I should see "Login with LinkedIn"
-    And I should see "Login with Twitter"
-    And I should see "Login with Yahoo!"
-
   Scenario: Authenticated attendees can see paginated list of current year attendees
     Given I am logged in as a registered attendee
     When I am on the attendees page
@@ -77,6 +69,15 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I am interested in that talk
     When I am on my profile page
     Then I should see "Download my Schedule" as a link to the iCal download
+
+  Scenario: Login page for unauthenticated site visitor
+    Given I am on the attendee login page
+    Then I should see "Email"
+    And I should see "Password"
+    And I should see "Or authenticate using one of the services below (based on your registration)"
+    And I should see login via Twitter link
+    And I should see login via Google link
+    And I should see login via GitHub link
 
   @javascript
   Scenario: Login link only shown to unauthenticated visitors

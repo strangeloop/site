@@ -23,7 +23,7 @@ Conf::Application.routes.draw do
     # through the auth/:provider path.  I think this is due to https://github.com/intridea/omniauth/issues/138.
     # We can't upgrade Devise unless we upgrade Refinery, this hack gets around the issue.
     match 'attendee_creds/auth/google/callback' => 'omniauth_callbacks#google'
-    get '/attendee_creds/auth/:provider' => 'omniauth_callbacks#passthru'
+    get '/attendee_creds/auth/:provider' => 'omniauth_callbacks#passthru', :as => :external_auth
     get '/login' => 'devise/sessions#new', :as => :new_attendee_session
     get '/logout' => 'devise/sessions#destroy', :as => :destroy_attendee_session
   end
