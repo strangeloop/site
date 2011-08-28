@@ -24,8 +24,10 @@ Conf::Application.routes.draw do
     # We can't upgrade Devise unless we upgrade Refinery, this hack gets around the issue.
     match 'attendee_creds/auth/google/callback' => 'omniauth_callbacks#google'
     get '/attendee_creds/auth/:provider' => 'omniauth_callbacks#passthru'
+    get '/login' => 'devise/sessions#new', :as => :new_attendee_session
+    get '/logout' => 'devise/sessions#destroy', :as => :destroy_attendee_session
   end
-  
+
   resource :attendee, :only => [:edit]
   resources :attendees, :only => [:index]
   resources :talks
@@ -41,9 +43,5 @@ Conf::Application.routes.draw do
   match '/blog' => redirect('/news')
 
   get '/activation/:token', :to => 'attendee_cred/sign_up#create', :as => :activation
-
-  get '/login', :to => 'attendee_login#new', :as => :new_attendee_login
-  post '/attendee_login', :to => 'attendee_login#create', :as => :attendee_login
-
 
 end

@@ -2,9 +2,10 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  attendee_login:
-    new:
-      login_message: Or authenticate using one of the services below (based on your registration)
+  devise:
+    sessions:
+      new:
+        login_message: Or authenticate using one of the services below (based on your registration)
   attendees:
     attendee:
       update_profile: Update My Profile
