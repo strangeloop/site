@@ -79,4 +79,5 @@ en:
       submit_talk: Submit a Talk
   devise:
     omniauth_callbacks:
-      success: "Successfully authenticated with %{kind}"
+      success: "Successfully authenticated with %{provider}"
+      register_success: "Successfully registered %{email} via %{provider}"
