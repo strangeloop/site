@@ -1,26 +1,29 @@
 <%= render :partial => 'shared/title', :locals => { :title => 'Conference Attendee Sign-in' } %>
 
-<div class="container_12 pad3">
-  <div class="grid_12">
+<div class="container_12">
+  <%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <%- end -%>
+
+  <div class="grid_12 pad3">
     <div class="login whitebox">
 
-
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
         <%= field_set_tag 'Login' do %>
           <ul>
             <li><%= f.label :email, 'Email:' %><%= f.email_field :email %></li>
             <li><%= f.label :password, 'Password:' %><%= f.password_field :password %></li>
             <% if devise_mapping.rememberable? -%>
-            <li><%= f.check_box :remember_me %> <%= f.label :remember_me %></li>
+              <li><%= f.label :remember_me, 'Remember Me:' %> <%= f.check_box :remember_me %></li>
             <% end -%>
             <li><%= submit_tag 'Login', :class => 'submit' %></li>
           </ul>
         <% end -%>
-        <% end %>
+      <% end %>
       <p><%= t('.login_message') %></p>
-      <%= link_to image_tag('twitter_64.png', :alt => 'Twitter'), '/auth/twitter/callback' %>
-      <%= link_to image_tag('google_64.png', :alt => 'Google'), '/auth/google' %>
-      <%= link_to image_tag('github_64.png', :alt => 'GitHub'), '/auth/github/callback' %>
+      <%= link_to image_tag('twitter_64.png', :alt => 'Twitter'), external_auth_path(:provider => 'twitter') %>
+      <%= link_to image_tag('google_64.png', :alt => 'Google'), external_auth_path(:provider => 'google') %>
+      <%= link_to image_tag('github_64.png', :alt => 'GitHub'), external_auth_path(:provider => 'github') %>
     </div>
     <div class="clear"></div>
   </div>
