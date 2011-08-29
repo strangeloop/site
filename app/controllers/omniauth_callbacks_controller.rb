@@ -6,11 +6,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     existing_user = Service.find_existing_attendee_cred(service.provider, service.uid)
 
     if existing_user
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => provider.to_s.capitalize
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :provider => provider.to_s.capitalize
       sign_in_and_redirect existing_user.attendee_cred, :event => :authentication
     else
       attendee = attendee_finder.call service
       attendee.activate(service)
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.register_success",
+      :email => attendee.email,:provider=> provider.to_s.capitalize
       sign_in_and_redirect attendee.attendee_cred, :event => :authentication
     end
   end
