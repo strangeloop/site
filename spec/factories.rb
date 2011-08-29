@@ -333,6 +333,16 @@ Factory.define :attendee_with_service, :parent => :attendee do |ra|
   end
 end
 
+Factory.define :github_attendee, :parent => :attendee do |ra|
+  ra.after_create do |a|
+    a.attendee_cred.services << Service.new(:uemail => 'henry@chinaski.com',
+                                            :uname => 'Henry Chinaski',
+                                            :uid => 'Henry',
+                                            :provider => 'github')
+    a.save!
+  end
+end
+
 Factory.define :page do
 end
 
