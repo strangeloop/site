@@ -56,6 +56,7 @@ def setup_environment
     config.include Devise::TestHelpers, :type => :controller
     #ControllerMacros adds login for different roles (defined in Proposal engine)
     config.extend ControllerMacros, :type => :controller
+    config.include Devise::TestHelpers, :type => :controller
   end
 end
 

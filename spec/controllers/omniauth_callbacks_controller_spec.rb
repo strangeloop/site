@@ -20,6 +20,8 @@ describe OmniauthCallbacksController do
     it "should log in an existing user" do
       get :google, {:token => attendee.acct_activation_token}
       flash[:notice].should == "Successfully authenticated with Google"
+      subject.current_attendee_cred.should == attendee.attendee_cred
+      subject.attendee_cred_signed_in?.should be_true
     end
   end
 end
