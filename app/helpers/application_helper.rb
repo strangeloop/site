@@ -52,7 +52,7 @@ module ApplicationHelper
   end
 
   def schedule_key
-    current_user.nil? ? 'schedule' : 'auth-schedule'
+    current_attendee_cred.nil? ? 'schedule' : 'auth-schedule'
   end
 
   def time_column_height(session_count)

@@ -7,8 +7,8 @@ module AttendeesHelper
     attendee.conference_sessions.empty? ? 'no_schedule' : 'populated_schedule'
   end
 
-  def is_current_user?(attendee)
-    current_user == attendee.attendee_cred
+  def is_current_attendee?(attendee)
+    current_attendee_cred == attendee.attendee_cred
   end
 
   def company_link(attendee)

@@ -9,7 +9,7 @@
       <p></p>
       <h5><%= company_link(attendee) %></h5>
 
-      <% if is_current_user?(attendee) -%>
+      <% if is_current_attendee?(attendee) -%>
         <p><%= link_to t('.update_profile'), edit_attendee_path %></p>
       <% end -%>
 
