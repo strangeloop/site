@@ -2,10 +2,6 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  devise:
-    sessions:
-      new:
-        login_message: Or authenticate using one of the services below (based on your registration)
   attendees:
     attendee:
       update_profile: Update My Profile
@@ -33,7 +29,13 @@ en:
       work_for_pie_id: WorkForPie ID
     index:
       attendees: Conference Attendees
-
+  devise:
+    omniauth_callbacks:
+      success: "Successfully authenticated with %{provider}"
+      register_success: "Successfully registered %{email} via %{provider}"
+    sessions:
+      new:
+        login_message: Or authenticate using one of the services below (based on your registration)
   shared:
     footer:
       copyright1: Copyright
@@ -77,7 +79,3 @@ en:
       image_hint: "Ideally 450 x 450 image less than 1MB in size"
       commit: Send Talk Proposal
       submit_talk: Submit a Talk
-  devise:
-    omniauth_callbacks:
-      success: "Successfully authenticated with %{provider}"
-      register_success: "Successfully registered %{email} via %{provider}"

@@ -83,7 +83,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
   Scenario: Login link only shown to unauthenticated visitors
     Given a homepage exists
     When I am on the homepage
-    Then I should see "Login" as a link to the login page
+    Then I should see "Login" as a link to the attendee login page
     And I should not see "Log Out"
 
   @javascript
@@ -91,7 +91,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     Given a homepage exists
     And I am logged in as a registered attendee
     When I am on the homepage
-    Then I should see "Log Out" as a link to the logout page
+    Then I should see "Log Out" as a link to the attendee logout page
     And I should not see "Login"
 
   @javascript

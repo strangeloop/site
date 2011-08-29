@@ -160,13 +160,13 @@ describe ApplicationHelper do
     helper.time_column_height(8).should == 3080
   end
 
-  it "exposes a key for authenticated user sessions" do
-    helper.stub(:current_user).and_return('foo')
+  it "exposes a key for authenticated attendee sessions" do
+    helper.stub(:current_attendee_cred).and_return('foo')
     helper.schedule_key.should eq('auth-schedule')
   end
 
-  it "exposes a key for unauthenticated user sessions" do
-    helper.stub(:current_user).and_return(nil)
+  it "exposes a key for unauthenticated attendee sessions" do
+    helper.stub(:current_attendee_cred).and_return(nil)
     helper.schedule_key.should eq('schedule')
   end
 
