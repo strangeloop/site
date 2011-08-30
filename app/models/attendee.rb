@@ -85,13 +85,17 @@ class Attendee < ActiveRecord::Base
   end
 
   def self.check_token (cipher_text)
-    token = decrypt_token(cipher_text)
-    token_time = Time.parse(token[2]).to_i
-    attendee =  Attendee.where("acct_activation_token = ?", token[1]).first
-    if attendee && attendee.token_created_at.to_i == token_time && attendee.email == token[0]
-      attendee
-    else
-      false
+    begin
+      token = decrypt_token(cipher_text)
+      token_time = Time.parse(token[2]).to_i
+      attendee =  Attendee.where("acct_activation_token = ?", token[1]).first
+      if attendee && attendee.token_created_at.to_i == token_time && attendee.email == token[0]
+        attendee
+      else
+        nil
+      end
+    rescue
+      nil
     end
   end
 

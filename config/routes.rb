@@ -26,6 +26,7 @@ Conf::Application.routes.draw do
     get '/attendee_creds/auth/:provider' => 'omniauth_callbacks#passthru', :as => :external_auth
     get '/login' => 'devise/sessions#new', :as => :new_attendee_session
     get '/logout' => 'devise/sessions#destroy', :as => :destroy_attendee_session
+    get '/activation/:token', :to => 'devise/registrations#new', :as => :activation
   end
 
   resource :attendee, :only => [:edit]
@@ -42,6 +43,6 @@ Conf::Application.routes.draw do
   match '/blog/stloopadm' => redirect('/news')
   match '/blog' => redirect('/news')
 
-  get '/activation/:token', :to => 'attendee_cred/sign_up#create', :as => :activation
+
 
 end
