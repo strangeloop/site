@@ -19,7 +19,7 @@ module AttendeesHelper
 
   private
   def no_schedule(attendee)
-    is_current_user?(attendee) ? 'no_schedule' : 'no_schedule_visitor'
+    is_current_attendee?(attendee) ? 'no_schedule' : 'no_schedule_visitor'
   end
 
 end

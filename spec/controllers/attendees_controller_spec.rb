@@ -9,7 +9,7 @@ describe AttendeesController do
 		#from redirecting to welcome page
 		Factory.create(:admin)
 		@request.env['devise.mapping'] = :admin
-		sign_in attendee.user
+		sign_in attendee.attendee_cred
 	end
 
 	context ".show" do

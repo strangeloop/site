@@ -21,12 +21,12 @@ describe AttendeesHelper do
     let(:view) { MockView.new }
 
     it "returns partial name for unpopulated attendee schedule when current user is not the attendee" do
-      view.stub(:current_user) { :foo }
+      view.stub(:current_attendee_cred) { :foo }
       view.schedule_partial(attendee).should eq('no_schedule_visitor')
     end
 
     it "returns partial name for unpopulated attendee schedule when current user is the attendee" do
-      view.stub(:current_user) { attendee.user }
+      view.stub(:current_attendee_cred) { attendee.attendee_cred }
       view.schedule_partial(attendee).should eq('no_schedule')
     end
 

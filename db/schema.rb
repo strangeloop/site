@@ -133,9 +133,9 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
-    t.string   "title"
-    t.string   "external_url"
     t.text     "body"
+    t.string   "external_url"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -180,8 +180,8 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "title"
     t.string   "custom_title"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -305,8 +305,6 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
     t.datetime "updated_at"
     t.integer  "attendee_cred_id"
   end
-
-  add_index "services", ["user_id"], :name => "index_services_on_user_id"
 
   create_table "session_times", :force => true do |t|
     t.datetime "start_time"
