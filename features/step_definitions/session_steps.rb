@@ -23,6 +23,11 @@ Then /^I should see a link with "([^"]*)" to "([^"]*)"$/ do |text, url|
   page.has_link?(text, :href => url).should be_true
 end
 
+And /^I should see a twitter link with "([^"]*)" to "([^"]*)"$/ do |text, url|
+  page.has_xpath?("//a[contains(., '#{text}')]").should be_true
+  page.has_xpath?("//a[contains(@href, '#{url}')]").should be_true
+end
+
 Then /^I should see the (\w+) default speaker image$/ do |image_size|
   page.has_xpath?(".//img[@alt='Attendees#{image_size == 'small' ? '-small' : ''}']").should be_true
 end

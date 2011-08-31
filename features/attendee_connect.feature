@@ -40,7 +40,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     When I am on the attendees page
     Then I should see a link with "Kaiser Von Sozhay" to "/attendees/kaiser-von-sozhay"
     And I should see a link with "Happy Town" to "http://happytown.com"
-    And I should see a link with "@kaiser" to "https://twitter.com/kaiser"
+    And I should see a twitter link with "@kaiser" to "https://twitter.com/kaiser"
 
   Scenario: Non-authenticated visitors don't see talk selection buttons
     Given a scheduled talk session for this year exists
