@@ -55,8 +55,10 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
   end
 
   add_index "attendees", ["cached_slug"], :name => "index_attendees_on_cached_slug", :unique => true
+  add_index "attendees", ["email"], :name => "index_attendees_on_email", :unique => true
   add_index "attendees", ["first_name"], :name => "index_attendees_on_first_name"
   add_index "attendees", ["last_name"], :name => "index_attendees_on_last_name"
+  add_index "attendees", ["twitter_id"], :name => "index_attendees_on_twitter_id", :unique => true
 
   create_table "attendees_conference_sessions", :id => false, :force => true do |t|
     t.integer "attendee_id",           :null => false
@@ -134,8 +136,8 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
     t.integer  "news_item_id"
     t.string   "locale"
     t.text     "body"
-    t.string   "external_url"
     t.string   "title"
+    t.string   "external_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -305,6 +307,8 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
     t.datetime "updated_at"
     t.integer  "attendee_cred_id"
   end
+
+  add_index "services", ["provider", "uemail"], :name => "index_services_on_provider_and_uemail", :unique => true
 
   create_table "session_times", :force => true do |t|
     t.datetime "start_time"

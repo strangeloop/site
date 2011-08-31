@@ -1,7 +1,7 @@
 class ChangeServicesAssociationToAttendeeCred < ActiveRecord::Migration
   def self.up
     change_table :services do |t|
-      t.remove :user_id
+      t.remove_references :user
       t.references :attendee_cred
     end
   end
@@ -9,7 +9,7 @@ class ChangeServicesAssociationToAttendeeCred < ActiveRecord::Migration
   def self.down
     change_table :services do |t|
       t.references :user
-      t.remove :attendee_cred
+      t.remove_references :attendee_cred
     end
   end
 end

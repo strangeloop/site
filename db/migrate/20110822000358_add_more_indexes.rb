@@ -6,7 +6,6 @@ class AddMoreIndexes < ActiveRecord::Migration
     add_index :conference_sessions, :track_id
     add_index :news_items, :image_id
     add_index :proposals, :talk_id
-    add_index :services, :user_id
     add_index :speakers, :image_id
     add_index :sponsors, :image_id
     add_index :sponsorships, :contact_id
@@ -20,7 +19,6 @@ class AddMoreIndexes < ActiveRecord::Migration
     remove_index :sponsorships, :contact_id
     remove_index :sponsors, :image_id
     remove_index :speakers, :image_id
-    remove_index :services, :user_id
     remove_index :proposals, :talk_id
     remove_index :news_items, :image_id
     remove_index :conference_sessions, :track_id
