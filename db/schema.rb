@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
     t.integer  "attendee_cred_id"
   end
 
+  add_index "attendees", ["acct_activation_token"], :name => "index_attendees_on_acct_activation_token", :unique => true
   add_index "attendees", ["cached_slug"], :name => "index_attendees_on_cached_slug", :unique => true
   add_index "attendees", ["email"], :name => "index_attendees_on_email", :unique => true
   add_index "attendees", ["first_name"], :name => "index_attendees_on_first_name"
@@ -136,8 +137,8 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
     t.integer  "news_item_id"
     t.string   "locale"
     t.text     "body"
-    t.string   "title"
     t.string   "external_url"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

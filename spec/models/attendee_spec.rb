@@ -30,6 +30,15 @@ describe Attendee do
     it {should have_db_column(field).of_type(:string)}
   end
 
+  context "testing uniqueness" do
+    before do
+      Factory(:attendee)
+    end
+    it {should validate_uniqueness_of :email}
+    it {should validate_uniqueness_of :acct_activation_token}
+    it {should validate_uniqueness_of :twitter_id}
+  end
+
   it "strips @ symbol from twitter id" do
     Attendee.new(:twitter_id => '@mario').twitter_id.should eq('mario')
   end

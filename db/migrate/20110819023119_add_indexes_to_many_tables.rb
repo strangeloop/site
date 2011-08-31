@@ -4,6 +4,7 @@ class AddIndexesToManyTables < ActiveRecord::Migration
     add_index :attendees, :first_name
     add_index :attendees, :last_name
     add_index :attendees, :twitter_id, :unique => true
+    add_index :attendees, :acct_activation_token, :unique => true
     add_index :attendees, :email, :unique => true
     add_index :conference_sessions, :session_time_id
     add_index :rooms, :name
@@ -23,5 +24,6 @@ class AddIndexesToManyTables < ActiveRecord::Migration
     remove_index :attendees, :last_name
     remove_index :attendees, :first_name
     remove_index :attendees, :cached_slug
+    remove_index :attendees, :acct_activation_token
   end
 end

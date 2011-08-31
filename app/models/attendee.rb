@@ -29,6 +29,10 @@ class Attendee < ActiveRecord::Base
     validates field, :presence => true
   end
 
+  [:email, :twitter_id, :acct_activation_token].each do |field|
+    validates field, :uniqueness => true
+  end
+
   before_create {|um| um.acct_activation_token= UUIDTools::UUID.random_create.to_s}
   before_create AddConfYear
 
