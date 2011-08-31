@@ -299,7 +299,7 @@ Factory.define :attendee do |a|
   a.state 'MO'
   a.country 'United States'
   a.sequence(:email) { |n| "kaiser#{n == 1 ? '' : n}@meatspace.com" }
-  a.twitter_id 'kaiser'
+  a.sequence(:twitter_id){ |n| "kaiser#{n == 1 ? '' : n}" }
   a.blog_url 'http://kaiser.blogspot.com'
   a.reg_id 'abc'
   a.company 'Happy Town'
@@ -342,6 +342,17 @@ Factory.define :github_attendee, :parent => :attendee do |ra|
     a.save!
   end
 end
+
+Factory.define :twitter_attendee, :parent => :attendee do |ra|
+  ra.after_create do |a|
+    a.attendee_cred.services << Service.new(:uemail => 'henry@chinaski.com',
+                                            :uname => 'Henry Chinaski',
+                                            :uid => 'Henry',
+                                            :provider => 'twitter')
+    a.save!
+  end
+end
+
 
 Factory.define :page do
 end

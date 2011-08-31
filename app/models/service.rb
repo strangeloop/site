@@ -1,7 +1,8 @@
 class Service < ActiveRecord::Base
   belongs_to :attendee_cred
   attr_accessible :provider, :uid, :uname, :uemail
-
+  attr_accessor :twitter_id
+  
   [:provider, :uid, :uname].each do |field|
     validates field, :presence => true
   end
@@ -11,9 +12,11 @@ class Service < ActiveRecord::Base
   end
 
   def self.twitter_service(omniauth)
-    Service.new(:uname => omniauth['user_info']['name'],
+    svc = Service.new(:uname => omniauth['user_info']['name'],
                 :uid => omniauth['uid'],
                 :provider =>  omniauth['provider'])
+    svc.twitter_id = omniauth['user_info']['screen_name']
+    svc
   end
 
   def self.github_service(omniauth)

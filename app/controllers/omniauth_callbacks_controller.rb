@@ -22,7 +22,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def twitter
-    authenticate_user(:twitter, lambda {|service| Attendee.find_by_twitter_id(omniauth["extra"]["user_hash"]["screen_name"])})
+    authenticate_user(:twitter, lambda {|service| Attendee.find_by_twitter_id(service.twitter_id)})
   end
 
   def google

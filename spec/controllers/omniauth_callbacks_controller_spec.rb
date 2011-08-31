@@ -87,4 +87,47 @@ describe OmniauthCallbacksController do
       saved_attendee.attendee_cred.services.size.should == 1
     end
   end
+  
+  def twitter_callback(uid, twitter_id)
+    omniauth_callback
+    @request.env['omniauth.auth'] = {'provider' => 'twitter',
+      'uid' => uid,
+      'user_info' =>
+      {'name' => 'Henry Chinaski',
+        'screen_name' => twitter_id}}
+  end
+  
+  let!(:tw_attendee){Factory(:twitter_attendee)}
+  context do
+    before do
+      twitter_callback('Henry', attendee.twitter_id)
+    end
+
+    it "should log in an existing twitter user" do
+      get :twitter
+      flash[:notice].should == "Successfully authenticated with Twitter"
+      subject.current_attendee_cred.should == tw_attendee.attendee_cred
+      subject.attendee_cred_signed_in?.should be_true
+    end
+    
+  end
+
+  context do
+    before do
+      twitter_callback( 'Henry-uid', attendee.twitter_id)
+    end
+
+    it "should register a new twitter user" do
+      attendee.attendee_cred.services.should be_empty
+      get :twitter
+      saved_attendee = Attendee.find(attendee.id)
+      flash[:notice].should == "Successfully registered #{attendee.email} via Twitter"
+      subject.current_attendee_cred.should == saved_attendee.attendee_cred
+      subject.attendee_cred_signed_in?.should be_true
+      saved_attendee.acct_activation_token.should be_nil
+      saved_attendee.token_created_at.should be_nil
+      saved_attendee.attendee_cred.services.size.should == 1
+    end
+  end
+  
 end
