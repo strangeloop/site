@@ -1,10 +1,7 @@
-<%= render :partial => 'shared/title', :locals => { :title => t('.attendee_login_title') } %>
+<%= render 'shared/title',  :title => t('.attendee_login_title') %>
 
 <div class="container_12">
-  <%- flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <%- end -%>
-
+  <%= render '/shared/flash', :flash => flash %>
   <div class="grid_12 pad3">
     <div class="login whitebox">
 
@@ -21,9 +18,9 @@
         <% end -%>
       <% end %>
       <p><%= t('.login_message') %></p>
-      <%= link_to image_tag('twitter_64.png', :alt => 'Twitter'), external_auth_path(:provider => 'twitter') %>
-      <%= link_to image_tag('google_64.png', :alt => 'Google'), external_auth_path(:provider => 'google') %>
-      <%= link_to image_tag('github_64.png', :alt => 'GitHub'), external_auth_path(:provider => 'github') %>
+      <%= link_to image_tag('twitter_64.png', :alt => 'Twitter'), external_auth_path(:twitter) %>
+      <%= link_to image_tag('google_64.png', :alt => 'Google'), external_auth_path(:google) %>
+      <%= link_to image_tag('github_64.png', :alt => 'GitHub'), external_auth_path(:github) %>
     </div>
     <div class="clear"></div>
   </div>
