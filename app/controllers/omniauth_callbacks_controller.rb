@@ -10,19 +10,29 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect existing_user.attendee_cred, :event => :authentication
     else
       attendee = attendee_finder.call service
-      attendee.activate(service)
-      flash[:notice] = I18n.t "devise.omniauth_callbacks.register_success",
-      :email => attendee.email,:provider=> provider.to_s.capitalize
-      sign_in_and_redirect attendee.attendee_cred, :event => :authentication
+
+      if attendee
+        attendee.activate(service)
+        flash[:notice] = I18n.t "devise.omniauth_callbacks.register_success",
+        :email => attendee.email,:provider=> provider.to_s.capitalize
+        sign_in_and_redirect attendee.attendee_cred, :event => :authentication
+      else
+        redirect_to new_attendee_session_path
+      end
     end
   end
 
   def github
     authenticate_user(:github, lambda {|service| Attendee.find_by_email(service.uemail)})
   end
-
+  
   def twitter
-    authenticate_user(:twitter, lambda {|service| Attendee.find_by_twitter_id(service.twitter_id)})
+    authenticate_user(:twitter,
+                      lambda do |service|
+                        attendee = Attendee.find_by_twitter_id(service.twitter_id)
+                        flash[:error] = I18n.t("devise.omniauth_callbacks.twitter_reg_fail") unless attendee
+                        attendee
+                      end)
   end
 
   def google

@@ -130,4 +130,22 @@ describe OmniauthCallbacksController do
     end
   end
 
+  context do
+    before do
+      twitter_callback( 'Henry-uid', 'somethingrandom')
+    end
+
+    it "should not register when the twitter ids don't match" do
+      attendee.attendee_cred.services.should be_empty
+      get :twitter
+      attendee.reload
+
+      flash[:error].should =~ /^Sorry but we could not/
+
+      subject.attendee_cred_signed_in?.should be_false
+      attendee.acct_activation_token.should_not be_nil
+      attendee.token_created_at.should_not be_nil
+      attendee.attendee_cred.services.should be_empty
+    end
+  end
 end
