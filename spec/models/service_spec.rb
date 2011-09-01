@@ -22,5 +22,5 @@ describe Service do
     svc.uid.should == 'Henry'
     svc.provider.should == 'google'
   end
-  
+
 end

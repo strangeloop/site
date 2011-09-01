@@ -23,14 +23,14 @@ describe OmniauthCallbacksController do
     before do
       google_callback
     end
-    
+
     it "should log in an existing user" do
       get :google, {:token => reg_attendee.acct_activation_token}
       flash[:notice].should == "Successfully authenticated with Google"
       subject.current_attendee_cred.should == reg_attendee.attendee_cred
       subject.attendee_cred_signed_in?.should be_true
     end
-    
+
     it "should register a new google user" do
       attendee.attendee_cred.services.should be_empty
       get :google, {:token => attendee.acct_activation_token}
@@ -67,7 +67,7 @@ describe OmniauthCallbacksController do
       subject.current_attendee_cred.should == gh_attendee.attendee_cred
       subject.attendee_cred_signed_in?.should be_true
     end
-    
+
   end
 
   context do
@@ -87,7 +87,7 @@ describe OmniauthCallbacksController do
       saved_attendee.attendee_cred.services.size.should == 1
     end
   end
-  
+
   def twitter_callback(uid, twitter_id)
     omniauth_callback
     @request.env['omniauth.auth'] = {'provider' => 'twitter',
@@ -96,7 +96,7 @@ describe OmniauthCallbacksController do
       {'name' => 'Henry Chinaski',
         'screen_name' => twitter_id}}
   end
-  
+
   let!(:tw_attendee){Factory(:twitter_attendee)}
   context do
     before do
@@ -109,7 +109,7 @@ describe OmniauthCallbacksController do
       subject.current_attendee_cred.should == tw_attendee.attendee_cred
       subject.attendee_cred_signed_in?.should be_true
     end
-    
+
   end
 
   context do
@@ -129,5 +129,5 @@ describe OmniauthCallbacksController do
       saved_attendee.attendee_cred.services.size.should == 1
     end
   end
-  
+
 end
