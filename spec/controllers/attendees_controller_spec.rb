@@ -24,6 +24,13 @@ describe AttendeesController do
     end
   end
 
+  context ".update" do
+    it "writes flash error when attendee attribute update fails" do
+      post :update, :attendee => {:twitter_id => registered_attendee.twitter_id}
+      flash[:alert].should eq('The update failed: Twitter has already been taken')
+    end
+  end
+
   context ".current_year_attendees" do
     before(:each) do
       attendee

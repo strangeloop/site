@@ -18,8 +18,11 @@ class AttendeesController < ApplicationController
   end
 
   def update
-    current_attendee.update_attributes params[:attendee]
+    begin
+      result = current_attendee.update_attributes! params[:attendee]
+    rescue StandardError => issue
+      flash[:alert] = "The update failed#{issue.message.gsub('Validation failed', '')}"
+    end
     redirect_to current_attendee
   end
-
 end
