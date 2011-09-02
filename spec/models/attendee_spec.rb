@@ -242,5 +242,21 @@ describe Attendee do
     old_token.should_not == attendee.acct_activation_token
     old_created_dt.should_not == attendee.token_created_at
   end
+
+  it "should raise an exception when attendee does not have a token" do
+    attendee.acct_activation_token= nil
+    lambda{attendee.activation_token}.should raise_error
+  end
+
+  it "should raise an exception when attendee does not have a token creation date" do
+    attendee.token_created_at= nil
+    lambda{attendee.activation_token}.should raise_error
+  end
+
+  it "should raise an exception when attendee does not have an email" do
+    attendee.email= nil
+    lambda{attendee.activation_token}.should raise_error
+  end
+  
 end
 

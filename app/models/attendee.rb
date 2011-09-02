@@ -107,7 +107,11 @@ class Attendee < ActiveRecord::Base
   end
 
   def activation_token
-    encode(encrypt_str([email,acct_activation_token,token_created_at].join("|")))
+    if email && acct_activation_token && token_created_at
+      encode(encrypt_str([email,acct_activation_token,token_created_at].join("|")))
+    else
+      raise "Error creating token. Email is #{email}, token is #{acct_activation_token}, creation date #{token_created_at}"
+    end
   end
 
   def self.check_token (cipher_text)
