@@ -25,6 +25,16 @@ describe Attendee do
 
   it {should belong_to :attendee_cred}
 
+  context "protected attributes" do
+    [ :reg_id, :acct_activation_token,
+      :attendee_cred_id, :conf_year].each do |field|
+      it {should protect_attribute(field, 'foo')}
+      end
+
+    it {should protect_attribute(:token_created_at, Time.now)}
+    it {should protect_attribute(:conf_year, 1400)}
+  end
+
   [:middle_name, :city, :state, :country, :email,
    :twitter_id, :blog_url, :company].each do |field|
     it {should have_db_column(field).of_type(:string)}

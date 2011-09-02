@@ -20,6 +20,7 @@ require 'factory_girl'
 require 'warden'
 require 'devise/test_helpers'
 require File.join(File.dirname(__FILE__), 'controller_macros')
+require File.join(File.dirname(__FILE__), 'custom_matchers')
 require File.join(File.dirname(__FILE__), '../vendor/engines/proposals/spec/factories')
 
 def setup_environment

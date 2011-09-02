@@ -21,6 +21,8 @@ class Attendee < ActiveRecord::Base
 
   @@activation_key = YAML::load_file('config/activation.yml')["activation_key"]
 
+  attr_protected :reg_id, :acct_activation_token, :token_created_at, :attendee_cred_id, :conf_year
+
   has_and_belongs_to_many :conference_sessions,
                           :uniq => true
 
