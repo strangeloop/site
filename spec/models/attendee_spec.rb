@@ -37,6 +37,10 @@ describe Attendee do
     it {should validate_uniqueness_of :email}
     it {should validate_uniqueness_of :acct_activation_token}
     it {should validate_uniqueness_of :twitter_id}
+
+    it "allows nil for twitter_id and acct_activation_token" do
+      2.times{ Factory(:attendee, :acct_activation_token => nil, :twitter_id => nil).should be_valid}
+    end
   end
 
   it "strips @ symbol from twitter id" do

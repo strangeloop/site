@@ -30,7 +30,7 @@ class Attendee < ActiveRecord::Base
   end
 
   [:email, :twitter_id, :acct_activation_token].each do |field|
-    validates field, :uniqueness => true
+    validates field, :uniqueness => true, :allow_nil => (field != :email)
   end
 
   before_create {|um| um.acct_activation_token= UUIDTools::UUID.random_create.to_s}
@@ -57,7 +57,7 @@ class Attendee < ActiveRecord::Base
   end
 
   def twitter_id=(name)
-    self[:twitter_id] = name.gsub('@', '')
+    self[:twitter_id] = name.try(:gsub, '@', '')
   end
 
   def full_name
