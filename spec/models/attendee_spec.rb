@@ -64,9 +64,9 @@ describe Attendee do
 
   it "should decrypt encrypted strings" do
     encrypted_txt = attendee.activation_token
-    encrypted_txt.should_not ==  "#{attendee.email}|#{attendee.acct_activation_token}|2011-07-04 11:19:00 UTC"
+    encrypted_txt.should_not ==  "#{attendee.email}|#{attendee.acct_activation_token}|#{attendee.token_created_at}"
     decrypted_txt = Attendee.decrypt_token CGI.unescape(encrypted_txt)
-    decrypted_txt.should ==  [attendee.email,attendee.acct_activation_token,"2011-07-04 11:19:00 UTC"]
+    decrypted_txt.should ==  [attendee.email,attendee.acct_activation_token,attendee.token_created_at.to_s]
   end
 
   it "should pass an auth check for a known users" do
@@ -228,6 +228,19 @@ describe Attendee do
       event.location.should eq(session.location)
       event.url.should eq(session.url)
     end
+  end
+
+  it "should reset token for an existing attendee" do
+    attendee.acct_activation_token.should_not be_nil
+    attendee.token_created_at.should_not be_nil
+
+    old_token = attendee.acct_activation_token
+    old_created_dt = attendee.token_created_at
+
+    attendee.reset_token
+    
+    old_token.should_not == attendee.acct_activation_token
+    old_created_dt.should_not == attendee.token_created_at
   end
 end
 

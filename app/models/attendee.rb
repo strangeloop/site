@@ -35,7 +35,12 @@ class Attendee < ActiveRecord::Base
     validates field, :uniqueness => true, :allow_nil => (field != :email)
   end
 
-  before_create {|um| um.acct_activation_token= UUIDTools::UUID.random_create.to_s}
+  def reset_token
+    self.acct_activation_token= UUIDTools::UUID.random_create.to_s
+    self.token_created_at= Time.now
+  end
+
+  before_create {|um| um.reset_token}
   before_create AddConfYear
 
   has_friendly_id :full_name, :use_slug => true
