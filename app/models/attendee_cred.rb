@@ -13,6 +13,7 @@ class AttendeeCred < ActiveRecord::Base
     validates field, :presence => true
   end
 
+  has_one :attendee
   has_many :services
 
 end

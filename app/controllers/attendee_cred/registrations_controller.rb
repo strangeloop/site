@@ -5,11 +5,19 @@ class AttendeeCred
       render 'devise/registrations/new'
     end
 
+    def after_sign_up_path_for(resource)
+      attendee_path(resource.attendee)
+    end
+    
     def create
 
       build_resource
+      attendee = Attendee.check_token(CGI.unescape(params[:token][:text]))
+      attendee.register resource
+      resource.attendee= attendee
 
-      if resource.save
+      if attendee && resource.save
+
         if resource.active_for_authentication?
           set_flash_message :notice, :signed_up
           sign_in_and_redirect(resource_name, resource)

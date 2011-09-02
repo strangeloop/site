@@ -39,3 +39,16 @@ an account using a third party for authentication
       And I press "Register"
       Then I should see "Failed to create password"      
       
+  Scenario: Attendee can create attendee credentials with a password
+      Given an admin exists
+      And an attendee exists
+      When I am on my activation page
+      Then I should see "Email"
+      And I should see "Password"
+      And I should see "Password Confirmation"
+      Then I fill in "Password" with "somelongvalue"
+      Then I fill in "Password Confirmation" with "somelongvalue"
+      And I press "Register"
+      Then I should see "Welcome! You have signed up successfully."
+      Then I should see "My Conference Schedule"
+
