@@ -16,4 +16,4 @@ an account using a third party for authentication
       Given an admin exists
       And an attendee exists
       And I am on my bad activation token page
-      Then I should see "Invalid Token"
+      Then I should see "Sorry but the link you followed seems to be missing some important bits"
