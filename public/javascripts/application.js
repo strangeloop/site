@@ -20,6 +20,8 @@ $(document).ready(function() {
     SL.prependNav(username, attendee_path);
     SL.appendNav('Log Out', logout_path);
   }
+
+  $('#flash_notice').delay(5000).fadeOut('fast');
 });
 
 var SL = function() {

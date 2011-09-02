@@ -34,6 +34,11 @@ describe AttendeesController do
       post :update, :attendee => {:email => nil}
       flash[:alert].should eq("The update failed: Email can't be blank")
     end
+
+    it "writes a flash notice on successful update" do
+      post :update, :attendee => {:email => 'me@you.com'}
+      flash[:notice].should eq('Update successful')
+    end
   end
 
   context ".current_year_attendees" do
