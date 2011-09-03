@@ -1,9 +1,11 @@
 Feature: A conference attendee can click on a special URL and create an account using a third party for authentication
 
-  Scenario: Attendee can click an activation link
+  Background:
     Given an admin exists
     And an attendee exists
-    When I am on my activation page
+
+  Scenario: Attendee can click an activation link
+    Given I am on my activation page
     Then I should see "Email"
     And I should see "Password"
     And I should see "Password Confirmation"
@@ -12,15 +14,11 @@ Feature: A conference attendee can click on a special URL and create an account 
     And I should see login via Google activation link
 
   Scenario: Attendee can click an activation link
-    Given an admin exists
-    And an attendee exists
-    When I am on my bad activation token page
+    Given I am on my bad activation token page
     Then I should see "Sorry but the link you followed seems to be missing some important bits"
 
   Scenario: Attendee gets error message when not entering password
-    Given an admin exists
-    And an attendee exists
-    And I am on my activation page
+    Given I am on my activation page
     And I should see "Email"
     And I should see "Password"
     And I should see "Password Confirmation"
@@ -28,17 +26,13 @@ Feature: A conference attendee can click on a special URL and create an account 
     Then I should see "Failed to create password"
 
   Scenario: Attendee gets error message when not entering password confirmation
-    Given an admin exists
-    And an attendee exists
-    And I am on my activation page
+    Given I am on my activation page
     And I fill in "Password" with "somelongvalue"
     When I press "Register"
     Then I should see "Failed to create password"
 
   Scenario: Attendee can create attendee credentials with a password
-    Given an admin exists
-    And an attendee exists
-    And I am on my activation page
+    Given I am on my activation page
     And I fill in "Password" with "somelongvalue"
     And I fill in "Password Confirmation" with "somelongvalue"
     When I press "Register"
@@ -46,17 +40,32 @@ Feature: A conference attendee can click on a special URL and create an account 
     And I should see "My Conference Schedule"
 
   Scenario: Attendee can login with new credentials
-    Given an admin exists
-    And an attendee exists
-    When I am on my activation page
-    Then I fill in "Password" with "somelongvalue"
-    Then I fill in "Password Confirmation" with "somelongvalue"
-    And I press "Register"
-    Then I should see "Welcome! You have signed up successfully."
-    Then I sign out
-    Then I click sign in
-    Then I fill in my email address
+    Given I am on my activation page
     And I fill in "Password" with "somelongvalue"
-    Then I press "Login"
+    And I fill in "Password Confirmation" with "somelongvalue"
+    When I press "Register"
+    Then I should see "Welcome! You have signed up successfully."
+    When I sign out
+    And I click sign in
+    And I fill in my email address
+    And I fill in "Password" with "somelongvalue"
+    And I press "Login"
     Then I should see "Signed in successfully"
     Then I should see "My Conference Schedule"
+
+  Scenario: Attendee forgets password
+    Given a registered attendee exists
+    And I am on the homepage
+    And I click sign in
+    And I follow "Forgot your password?"
+    And I fill in my registered email address
+    When I press "Reset Password"
+    Then I should see "You will receive an email with instructions about how to reset your password in a few minutes."
+
+  Scenario: Invalid password supplied to password reset form
+    Given I am on the homepage
+    And I click sign in
+    And I follow "Forgot your password?"
+    And I fill in "Registration Email" with "foo@bar.com"
+    When I press "Reset Password"
+    Then I should see "Email not found"

@@ -13,5 +13,10 @@ end
 
 Then /^I fill in my email address$/ do
   fill_in("Email", :with => Attendee.first.email)
-end  
+end
+
+Given /^I fill in my registered email address$/ do
+  fill_in 'Registration Email:', :with => Attendee.last.email
+end
+
 
