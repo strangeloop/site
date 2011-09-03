@@ -52,3 +52,22 @@ an account using a third party for authentication
       Then I should see "Welcome! You have signed up successfully."
       Then I should see "My Conference Schedule"
 
+  Scenario: Attendee can login with new credentials
+      Given an admin exists
+      And an attendee exists
+      When I am on my activation page
+      Then I should see "Email"
+      And I should see "Password"
+      And I should see "Password Confirmation"
+      Then I fill in "Password" with "somelongvalue"
+      Then I fill in "Password Confirmation" with "somelongvalue"
+      And I press "Register"
+      Then I should see "Welcome! You have signed up successfully."
+      Then I should see "My Conference Schedule"
+      Then I sign out
+      Then I click sign in
+      Then I fill in my email address
+      And I fill in "Password" with "somelongvalue"
+      Then I press "Login"
+      Then I should see "Signed in successfully"
+      Then I should see "My Conference Schedule"
