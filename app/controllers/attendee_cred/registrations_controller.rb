@@ -27,10 +27,14 @@ class AttendeeCred::RegistrationsController < Devise::RegistrationsController
       end
     else
       clean_up_passwords(resource)
-      #TODO: display combination of resource.errors & attendee.errors
-      flash[:error] = "Registration failed, please try again"
-      redirect_to activation_path(:token => params[:token])
+      flash[:error] = "Registration failed, please try again: #{stringify_resource_error}"
+      redirect_to activation_path(:token => params[:token][:text])
     end
 
+  end
+
+  private
+  def stringify_resource_error
+    resource.errors.map{|key, val| "#{key} #{val}"}
   end
 end
