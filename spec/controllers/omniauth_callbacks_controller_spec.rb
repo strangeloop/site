@@ -32,7 +32,7 @@ describe OmniauthCallbacksController do
     end
 
     it "should register a new google user" do
-      attendee.attendee_cred.services.should be_empty
+      attendee.attendee_cred.should be_nil
       get :google, {:token => attendee.acct_activation_token}
 
       saved_attendee = Attendee.find(attendee.id)
@@ -76,7 +76,7 @@ describe OmniauthCallbacksController do
     end
 
     it "should register a new google user" do
-      attendee.attendee_cred.services.should be_empty
+      attendee.attendee_cred.should be_nil
       get :github
       saved_attendee = Attendee.find(attendee.id)
       flash[:notice].should == "Successfully registered #{attendee.email} via Github"
@@ -118,7 +118,7 @@ describe OmniauthCallbacksController do
     end
 
     it "should register a new twitter user" do
-      attendee.attendee_cred.services.should be_empty
+      attendee.attendee_cred.should be_nil
       get :twitter
       saved_attendee = Attendee.find(attendee.id)
       flash[:notice].should == "Successfully registered #{attendee.email} via Twitter"
@@ -136,7 +136,7 @@ describe OmniauthCallbacksController do
     end
 
     it "should not register when the twitter ids don't match" do
-      attendee.attendee_cred.services.should be_empty
+      attendee.attendee_cred.should be_nil
       get :twitter
       attendee.reload
 
@@ -145,7 +145,7 @@ describe OmniauthCallbacksController do
       subject.attendee_cred_signed_in?.should be_false
       attendee.acct_activation_token.should_not be_nil
       attendee.token_created_at.should_not be_nil
-      attendee.attendee_cred.services.should be_empty
+      attendee.attendee_cred.should be_nil
     end
   end
 end

@@ -22,7 +22,7 @@ describe ConferenceSessionsController do
   let(:talk) { session.talk }
   let(:speaker) { talk.speakers.first }
   let(:last_years_session) { Factory(:last_years_talk_session) }
-  let(:attendee) { Factory(:attendee) }
+  let(:attendee) { Factory(:registered_attendee) }
 
   context "show action" do
    before { get :show, :id => session.friendly_id }

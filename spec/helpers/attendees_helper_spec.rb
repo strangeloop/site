@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe AttendeesHelper do
-  let(:attendee) {Factory(:attendee)}
+  let(:attendee) {Factory(:registered_attendee)}
 
    context ".full_name" do
      it "retrieves a full name from a user" do

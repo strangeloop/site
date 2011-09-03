@@ -291,7 +291,6 @@ Factory.define :attendee_cred do |u|
 end
 
 Factory.define :attendee do |a|
-  a.attendee_cred { Factory(:attendee_cred) }
   a.first_name 'Kaiser'
   a.middle_name 'Von'
   a.last_name 'Sozhay'
@@ -308,23 +307,21 @@ Factory.define :attendee do |a|
   a.token_created_at DateTime.parse('Thursday, July 4, 2011 11:19 AM')
 end
 
-
 Factory.define :registered_attendee, :parent => :attendee do |ra|
   ra.after_create do |a|
+    a.attendee_cred = Factory(:attendee_cred, :email => a.email, :attendee => a)
     a.acct_activation_token = nil
+    a.token_created_at = nil
     a.save!
   end
 end
 
 Factory.define :not_registered_attendee, :parent => :attendee do |ra|
-  ra.after_create do |a|
-    a.attendee_cred = nil
-    a.save!
-  end
 end
 
 Factory.define :attendee_with_service, :parent => :attendee do |ra|
   ra.after_create do |a|
+    a.attendee_cred = Factory(:attendee_cred)
     a.attendee_cred.services << Service.new(:uemail => 'henry@chinaski.com',
                                             :uname => 'Henry Chinaski',
                                             :uid => 'Henry',
@@ -335,6 +332,7 @@ end
 
 Factory.define :github_attendee, :parent => :attendee do |ra|
   ra.after_create do |a|
+    a.attendee_cred = Factory(:attendee_cred)
     a.attendee_cred.services << Service.new(:uemail => 'henry@chinaski.com',
                                             :uname => 'Henry Chinaski',
                                             :uid => 'Henry',
@@ -345,6 +343,7 @@ end
 
 Factory.define :twitter_attendee, :parent => :attendee do |ra|
   ra.after_create do |a|
+    a.attendee_cred = Factory(:attendee_cred)
     a.attendee_cred.services << Service.new(:uemail => 'henry@chinaski.com',
                                             :uname => 'Henry Chinaski',
                                             :uid => 'Henry',

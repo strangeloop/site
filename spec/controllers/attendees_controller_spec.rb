@@ -9,7 +9,7 @@ describe AttendeesController do
     #from redirecting to welcome page
     Factory.create(:admin)
     @request.env['devise.mapping'] = :admin
-    sign_in attendee.attendee_cred
+    sign_in registered_attendee.attendee_cred
   end
 
   context ".show" do
@@ -26,7 +26,7 @@ describe AttendeesController do
 
   context ".update" do
     it "writes flash error when an attendee unique attribute update fails" do
-      post :update, :attendee => {:twitter_id => registered_attendee.twitter_id}
+      post :update, :attendee => {:twitter_id => attendee.twitter_id}
       flash[:alert].should eq('The update failed: Twitter has already been taken')
     end
 
@@ -66,6 +66,6 @@ describe AttendeesController do
 
   it "#edit exposes a specific attendee for #edit" do
     get :edit
-    controller.current_attendee.should eq(attendee)
+    controller.current_attendee.should eq(registered_attendee)
   end
 end

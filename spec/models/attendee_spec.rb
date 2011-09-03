@@ -183,9 +183,9 @@ describe Attendee do
   end
 
   let(:service2){ Service.new(:uemail => 'henry2@chinaski.com',
-                             :uid => 'Henry2',
-                             :provider => 'Google',
-                             :uname => 'Henry Chinaski')}
+                              :uid => 'Henry2',
+                              :provider => 'Google',
+                              :uname => 'Henry Chinaski')}
 
   context "activating an attendee" do
     before do
@@ -194,20 +194,15 @@ describe Attendee do
     it "should not create a new attendee_cred if one already exists" do
       a = Attendee.find(attendee.id)
       cred = a.attendee_cred
-      svc = a.attendee_cred.services.first
 
-      cred.should_not be_nil
-      cred.email.should_not == a.email
+      cred.email.should eq(a.email)
       cred.encrypted_password.should_not be_nil
 
       a.acct_activation_token.should be_nil
       a.token_created_at be_nil
 
       cred.services.size == 1
-      svc.uemail.should == 'henry2@chinaski.com'
-      svc.uid.should == 'Henry2'
-      svc.provider.should == 'Google'
-      svc.uname.should == 'Henry Chinaski'
+      a.attendee_cred.services.first.should eq(service2)
     end
   end
 
@@ -238,7 +233,7 @@ describe Attendee do
     old_created_dt = attendee.token_created_at
 
     attendee.reset_token
-    
+
     old_token.should_not == attendee.acct_activation_token
     old_created_dt.should_not == attendee.token_created_at
   end
@@ -257,6 +252,6 @@ describe Attendee do
     attendee.email= nil
     lambda{attendee.activation_token}.should raise_error
   end
-  
+
 end
 
