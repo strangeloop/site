@@ -115,9 +115,9 @@ class Attendee < ActiveRecord::Base
   end
 
   def register(cred)
-    attendee_cred= cred
-    acct_activation_token= nil
-    token_created_at= nil
+    self[:attendee_cred] = cred
+    self[:acct_activation_token] = nil
+    self[:token_created_at] = nil
   end
 
   def self.check_token (cipher_text)

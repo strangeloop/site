@@ -18,6 +18,8 @@
 require 'spec_helper'
 
 describe Attendee do
+  let(:attendee) { Factory(:attendee) }
+  let(:registered_attendee) { Factory(:registered_attendee) }
 
   [:first_name, :last_name, :email, :reg_id].each do |field|
     it {should validate_presence_of field}
@@ -59,8 +61,6 @@ describe Attendee do
 
   it {should have_db_column(:token_created_at).of_type(:datetime)}
 
-  let(:attendee) { Factory(:attendee) }
-  let(:registered_attendee) { Factory(:registered_attendee) }
 
   it "should decrypt encrypted strings" do
     encrypted_txt = attendee.activation_token
@@ -113,6 +113,17 @@ describe Attendee do
     attendee
 
     Attendee.current_year.should eq([attendee])
+  end
+
+  it "#register clears activation fields" do
+    attendee.acct_activation_token.should_not be_nil
+    attendee.token_created_at.should_not be_nil
+    cred = Factory(:attendee_cred)
+
+    attendee.register(cred)
+
+    attendee.acct_activation_token.should be_nil
+    attendee.token_created_at.should be_nil
   end
 
   it "joins all names in #full_name" do
