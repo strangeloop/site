@@ -45,6 +45,7 @@ en:
     registrations:
       new:
         invalid_token: "Sorry but the link you followed seems to be missing some important bits that help us know who you are.  Would you mind checking to make sure the entire link from the site registration email is included in the address bar?  If you tried that and are still unable to register, please send an email to: <a href='mailto:info@thestrangeloop.com?subject=Registration Token Fails'>info@thestrangeloop.com</a> for help."
+        registration: Conference Attendee Registration
     sessions:
       new:
         attendee_login_title: Conference Attendee Login

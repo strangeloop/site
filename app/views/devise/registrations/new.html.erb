@@ -1,4 +1,4 @@
-<%= render '/shared/title', :title => 'Conference Attendee Sign-up' %>
+<%= render '/shared/title', :title => t('.registration') %>
 
 <div class="container_12">
   <%= render '/shared/flash', :flash => flash %>
@@ -8,7 +8,7 @@
     <div class="login whitebox">
 
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-        <%= field_set_tag 'Registration' do %>
+        <%= field_set_tag '' do %>
         <%= hidden_field(:token, :text, :value => attendee.activation_token) %>
           <ul>
             <li><%= f.label :email, 'Email:' %><%= f.text_field :email, :value => "#{attendee.email}" %></li>
