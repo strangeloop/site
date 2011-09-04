@@ -22,22 +22,25 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+  def error_on_nil(attendee, error_s)
+    flash[:error] = I18n.t(error_s) unless attendee
+    attendee
+  end
+
+  def github_attendee(service)
+    error_on_nil(Attendee.find_by_email(service.uemail), "devise.omniauth_callbacks.github_reg_fail")
+  end
+
   def github
-    authenticate_user(:github,
-                      lambda do |service|
-                        attendee = Attendee.find_by_email(service.uemail)
-                        flash[:error] = I18n.t("devise.omniauth_callbacks.github_reg_fail") unless attendee
-                        attendee
-                      end)
+    authenticate_user(:github, method(:github_attendee))
+  end
+
+  def twitter_attendee(service)
+    error_on_nil(Attendee.find_by_twitter_id(service.twitter_id),"devise.omniauth_callbacks.twitter_reg_fail")
   end
   
   def twitter
-    authenticate_user(:twitter,
-                      lambda do |service|
-                        attendee = Attendee.find_by_twitter_id(service.twitter_id)
-                        flash[:error] = I18n.t("devise.omniauth_callbacks.twitter_reg_fail") unless attendee
-                        attendee
-                      end)
+    authenticate_user(:twitter, method(:twitter_attendee))
   end
 
   def google
