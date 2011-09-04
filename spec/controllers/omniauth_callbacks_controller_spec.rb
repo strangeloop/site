@@ -45,12 +45,12 @@ describe OmniauthCallbacksController do
     end
   end
 
-  def github_callback(uid)
+  def github_callback(uid, email=attendee.email)
     omniauth_callback
     @request.env['omniauth.auth'] = {'provider' => 'github',
       'extra' => {'user_hash' => {'id' => uid}},
       'user_info' =>
-      {'email' => attendee.email,
+      {'email' => email,
         'name' => 'Henry Chinaski'}}
   end
 
@@ -58,7 +58,7 @@ describe OmniauthCallbacksController do
   let!(:gh_attendee){Factory(:github_attendee)}
   context do
     before do
-      github_callback( 'Henry')
+      github_callback('Henry')
     end
 
     it "should log in an existing user" do
@@ -72,7 +72,7 @@ describe OmniauthCallbacksController do
 
   context do
     before do
-      github_callback( 'Henry-uid')
+      github_callback('Henry-uid')
     end
 
     it "should register a new google user" do
@@ -85,6 +85,24 @@ describe OmniauthCallbacksController do
       saved_attendee.acct_activation_token.should be_nil
       saved_attendee.token_created_at.should be_nil
       saved_attendee.attendee_cred.services.size.should == 1
+    end
+  end
+
+  context do
+    before do
+      github_callback('Henry-uid', 'differentemail@chinaski.com')
+    end
+
+    it "should register a new google user" do
+      attendee.attendee_cred.should be_nil
+      get :github
+      saved_attendee = Attendee.find(attendee.id)
+      subject.current_attendee_cred.should == saved_attendee.attendee_cred
+      flash[:error].should =~ /doesn't match the email that you provided when you registered/
+      subject.attendee_cred_signed_in?.should be_false
+      saved_attendee.acct_activation_token.should_not be_nil
+      saved_attendee.token_created_at.should_not be_nil
+      saved_attendee.attendee_cred.should be_nil
     end
   end
 

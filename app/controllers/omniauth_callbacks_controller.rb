@@ -23,7 +23,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def github
-    authenticate_user(:github, lambda {|service| Attendee.find_by_email(service.uemail)})
+    authenticate_user(:github,
+                      lambda do |service|
+                        attendee = Attendee.find_by_email(service.uemail)
+                        flash[:error] = I18n.t("devise.omniauth_callbacks.github_reg_fail") unless attendee
+                        attendee
+                      end)
   end
   
   def twitter
