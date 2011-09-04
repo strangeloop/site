@@ -20,7 +20,7 @@
       <% end -%>
       <p>OR</p>
 
-      <%= link_to image_tag("twitter_64.png",:alt => "Twitter"), external_auth_path(:twitter) %>
+      <%= link_to(image_tag("twitter_64.png",:alt => "Twitter"), external_auth_path(:twitter)) unless attendee.twitter_id.blank? %>
       <%= link_to image_tag("google_64.png", :alt => "Google"), external_auth_path(:google, :token => attendee.acct_activation_token) %>
       <%= link_to image_tag("github_64.png", :alt => "Github"), external_auth_path(:github) %>
 

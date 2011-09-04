@@ -79,6 +79,9 @@ module NavigationHelpers
     when /my activation page/
       activation_path(:token => Attendee.first.activation_token)
 
+    when /the activation page for a no twitter attendee/
+      activation_path(:token => Factory(:attendee, :twitter_id => nil).activation_token)
+
     when /my bad activation token page/
       activation_path(:token => "foo")
 
