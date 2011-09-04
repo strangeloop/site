@@ -19,6 +19,34 @@ describe OmniauthCallbacksController do
           'name' => 'Henry Chinaski'}}
   end
 
+  def assert_registered_attendee(attendee, provider_s)
+    attendee.reload
+
+    flash[:notice].should == "Successfully registered #{attendee.email} via #{provider_s}"
+    subject.current_attendee_cred.should == attendee.attendee_cred
+    subject.attendee_cred_signed_in?.should be_true
+    attendee.acct_activation_token.should be_nil
+    attendee.token_created_at.should be_nil
+    attendee.attendee_cred.services.size.should == 1
+  end
+
+  def assert_failed_registration(attendee, error_regex)
+    attendee.reload
+
+    subject.current_attendee_cred.should == attendee.attendee_cred
+    flash[:error].should =~ error_regex
+    subject.attendee_cred_signed_in?.should be_false
+    attendee.acct_activation_token.should_not be_nil
+    attendee.token_created_at.should_not be_nil
+    attendee.attendee_cred.should be_nil
+  end
+
+  def assert_logged_in(attendee, provider)
+    flash[:notice].should == "Successfully authenticated with #{provider}"
+    subject.current_attendee_cred.should == attendee.attendee_cred
+    subject.attendee_cred_signed_in?.should be_true
+  end
+  
   context do
     before do
       google_callback
@@ -26,22 +54,13 @@ describe OmniauthCallbacksController do
 
     it "should log in an existing user" do
       get :google, {:token => reg_attendee.acct_activation_token}
-      flash[:notice].should == "Successfully authenticated with Google"
-      subject.current_attendee_cred.should == reg_attendee.attendee_cred
-      subject.attendee_cred_signed_in?.should be_true
+      assert_logged_in(reg_attendee, "Google")
     end
 
     it "should register a new google user" do
       attendee.attendee_cred.should be_nil
       get :google, {:token => attendee.acct_activation_token}
-
-      saved_attendee = Attendee.find(attendee.id)
-      flash[:notice].should == "Successfully registered #{attendee.email} via Google"
-      subject.current_attendee_cred.should == saved_attendee.attendee_cred
-      subject.attendee_cred_signed_in?.should be_true
-      saved_attendee.acct_activation_token.should be_nil
-      saved_attendee.token_created_at.should be_nil
-      saved_attendee.attendee_cred.services.size.should == 1
+      assert_registered_attendee(attendee, "Google")
     end
   end
 
@@ -63,9 +82,7 @@ describe OmniauthCallbacksController do
 
     it "should log in an existing user" do
       get :github
-      flash[:notice].should == "Successfully authenticated with Github"
-      subject.current_attendee_cred.should == gh_attendee.attendee_cred
-      subject.attendee_cred_signed_in?.should be_true
+      assert_logged_in(gh_attendee, "Github")
     end
 
   end
@@ -75,16 +92,10 @@ describe OmniauthCallbacksController do
       github_callback('Henry-uid')
     end
 
-    it "should register a new google user" do
+    it "should register a new github user" do
       attendee.attendee_cred.should be_nil
       get :github
-      saved_attendee = Attendee.find(attendee.id)
-      flash[:notice].should == "Successfully registered #{attendee.email} via Github"
-      subject.current_attendee_cred.should == saved_attendee.attendee_cred
-      subject.attendee_cred_signed_in?.should be_true
-      saved_attendee.acct_activation_token.should be_nil
-      saved_attendee.token_created_at.should be_nil
-      saved_attendee.attendee_cred.services.size.should == 1
+      assert_registered_attendee(attendee, "Github")
     end
   end
 
@@ -93,16 +104,10 @@ describe OmniauthCallbacksController do
       github_callback('Henry-uid', 'differentemail@chinaski.com')
     end
 
-    it "should register a new google user" do
+    it "should not register a github user with wrong email" do
       attendee.attendee_cred.should be_nil
       get :github
-      saved_attendee = Attendee.find(attendee.id)
-      subject.current_attendee_cred.should == saved_attendee.attendee_cred
-      flash[:error].should =~ /doesn't match the email that you provided when you registered/
-      subject.attendee_cred_signed_in?.should be_false
-      saved_attendee.acct_activation_token.should_not be_nil
-      saved_attendee.token_created_at.should_not be_nil
-      saved_attendee.attendee_cred.should be_nil
+      assert_failed_registration(attendee,  /doesn't match the email that you provided when you registered/)
     end
   end
 
@@ -123,9 +128,7 @@ describe OmniauthCallbacksController do
 
     it "should log in an existing twitter user" do
       get :twitter
-      flash[:notice].should == "Successfully authenticated with Twitter"
-      subject.current_attendee_cred.should == tw_attendee.attendee_cred
-      subject.attendee_cred_signed_in?.should be_true
+      assert_logged_in(tw_attendee, "Twitter")
     end
 
   end
@@ -138,13 +141,7 @@ describe OmniauthCallbacksController do
     it "should register a new twitter user" do
       attendee.attendee_cred.should be_nil
       get :twitter
-      saved_attendee = Attendee.find(attendee.id)
-      flash[:notice].should == "Successfully registered #{attendee.email} via Twitter"
-      subject.current_attendee_cred.should == saved_attendee.attendee_cred
-      subject.attendee_cred_signed_in?.should be_true
-      saved_attendee.acct_activation_token.should be_nil
-      saved_attendee.token_created_at.should be_nil
-      saved_attendee.attendee_cred.services.size.should == 1
+      assert_registered_attendee(attendee, "Twitter")
     end
   end
 
@@ -156,14 +153,7 @@ describe OmniauthCallbacksController do
     it "should not register when the twitter ids don't match" do
       attendee.attendee_cred.should be_nil
       get :twitter
-      attendee.reload
-
-      flash[:error].should =~ /^Sorry but we could not/
-
-      subject.attendee_cred_signed_in?.should be_false
-      attendee.acct_activation_token.should_not be_nil
-      attendee.token_created_at.should_not be_nil
-      attendee.attendee_cred.should be_nil
+      assert_failed_registration(attendee, /^Sorry but we could not/)
     end
   end
 end
