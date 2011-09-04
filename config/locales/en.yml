@@ -38,6 +38,7 @@ en:
       success: "Successfully authenticated with %{provider}"
       twitter_reg_fail: "Sorry but we could not authenticate you using your Twitter ID because it wasn't included when you registered for the conference.  Would you mind registering with a username/password?  If you tried that and are still unable to register, please send an email to: info@thestrangeloop.com for help."
       github_reg_fail: "Sorry but we couldn't authenticate you using your Github credentials because the email address Github has for you doesn't match the email that you provided when you registered for the conference.  Would you mind registering with a username/password?  If you tried that and are still unable to register, please send an email to: info@thestrangeloop.com for help."
+      google_reg_fail: "Sorry but we couldn't authenticate you using your GMail credentials.  Would you mind registering with a username/password?  If you tried that and are still unable to register, please send an email to: info@thestrangeloop.com for help."
     passwords:
       new:
         email: "Registration Email:"

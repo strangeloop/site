@@ -43,8 +43,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     authenticate_user(:twitter, method(:twitter_attendee))
   end
 
+  def google_attendee(service)
+    error_on_nil(Attendee.find_by_acct_activation_token(params[:token]), "devise.omniauth_callbacks.google_reg_fail")
+  end
+
   def google
-    authenticate_user(:google, lambda {|service| Attendee.find_by_acct_activation_token(params[:token])})
+    authenticate_user(:google, method(:google_attendee))
   end
 
   def passthru

@@ -10,15 +10,6 @@ describe OmniauthCallbacksController do
     request.env["devise.mapping"] = Devise.mappings[:attendee_cred]
   end
 
-  def google_callback
-    omniauth_callback
-    @request.env['omniauth.auth'] = {'uid' => 'Henry',
-        'provider' => 'google',
-        'user_info' =>
-        {'email' => 'henry@chinaski.com',
-          'name' => 'Henry Chinaski'}}
-  end
-
   def assert_registered_attendee(attendee, provider_s)
     attendee.reload
 
@@ -46,6 +37,15 @@ describe OmniauthCallbacksController do
     subject.current_attendee_cred.should == attendee.attendee_cred
     subject.attendee_cred_signed_in?.should be_true
   end
+
+  def google_callback
+    omniauth_callback
+    @request.env['omniauth.auth'] = {'uid' => 'Henry',
+        'provider' => 'google',
+        'user_info' =>
+        {'email' => 'henry@chinaski.com',
+          'name' => 'Henry Chinaski'}}
+  end
   
   context do
     before do
@@ -61,6 +61,12 @@ describe OmniauthCallbacksController do
       attendee.attendee_cred.should be_nil
       get :google, {:token => attendee.acct_activation_token}
       assert_registered_attendee(attendee, "Google")
+    end
+
+    it "should not register a new google user if the uid doesn't match" do
+      attendee.attendee_cred.should be_nil
+      get :google, {:token => 'something random'}
+      assert_failed_registration(attendee, /authenticate you using your GMail credentials/)
     end
   end
 
