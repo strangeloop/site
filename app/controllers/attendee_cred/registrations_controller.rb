@@ -35,6 +35,8 @@ class AttendeeCred::RegistrationsController < Devise::RegistrationsController
 
   private
   def stringify_resource_error
-    resource.errors.map{|key, val| "#{key} #{val}"}
+    messages = {}
+    resource.errors.each{|k, v| v.each{|issue| messages["#{k} #{issue}"] = ''}}
+    messages
   end
 end

@@ -27,7 +27,7 @@ Conf::Application.routes.draw do
     get '/login' => 'devise/sessions#new', :as => :new_attendee_session
     get '/logout' => 'devise/sessions#destroy', :as => :destroy_attendee_session
     get '/activation/:token', :to => 'devise/registrations#new', :as => :activation
-    root :to => "attendees#show"
+    match '/attendees' => 'attendees#index', :as => :attendee_cred_root
   end
 
   resource :attendee, :only => [:edit]

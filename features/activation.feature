@@ -23,13 +23,13 @@ Feature: A conference attendee can click on a special URL and create an account 
     And I should see "Password"
     And I should see "Password Confirmation"
     When I press "Register"
-    Then I should see "Failed to create password"
+    Then I should see "Registration failed, please try again: password can't be blank"
 
   Scenario: Attendee gets error message when not entering password confirmation
     Given I am on my activation page
     And I fill in "Password" with "somelongvalue"
     When I press "Register"
-    Then I should see "Failed to create password"
+    Then I should see "Registration failed, please try again: password doesn't match confirmation"
 
   Scenario: Attendee can create attendee credentials with a password
     Given I am on my activation page
@@ -50,8 +50,7 @@ Feature: A conference attendee can click on a special URL and create an account 
     And I fill in my email address
     And I fill in "Password" with "somelongvalue"
     And I press "Login"
-    Then I should see "Signed in successfully"
-    Then I should see "My Conference Schedule"
+    Then I should see "Conference Attendees"
 
   Scenario: Attendee forgets password
     Given a registered attendee exists
