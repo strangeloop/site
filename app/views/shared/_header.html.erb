@@ -5,7 +5,9 @@
 <%= render "/shared/menu", :dom_id => 'menu', :css => 'menu' -%>
 
 <% end -%>
-<%= render '/shared/current_attendee', :username => current_attendee.try(:full_name),
-  :attendee_path => (current_attendee ? attendee_path(current_attendee) : ''),
-  :login_path => new_attendee_cred_session_path,
-  :logout_path => destroy_attendee_cred_session_path %>
+<% if RefinerySetting.find_or_set(:attendee_login_enabled, 'false').to_s =~ /true/ -%>
+  <%= render '/shared/current_attendee', :username => current_attendee.try(:full_name),
+    :attendee_path => (current_attendee ? attendee_path(current_attendee) : ''),
+    :login_path => new_attendee_cred_session_path,
+    :logout_path => destroy_attendee_cred_session_path %>
+<% end -%>
