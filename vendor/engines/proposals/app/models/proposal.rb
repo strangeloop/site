@@ -40,6 +40,13 @@ class Proposal < ActiveRecord::Base
     comments_ordered_by_submitted.select{|item| item.user_id == user.id}
   end
 
+  def accepted?
+    self.status == 'accepted'
+  end
+
+  def rejected?
+    self.status == 'rejected'
+  end
 
   # Returns hash of comments and ratings (appeal dimension) that uses user
   # as the key. Each value is a hash with :comments and :rating as its key.

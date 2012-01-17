@@ -273,4 +273,28 @@ describe Proposal do
       data_row_3[1].should == "under review"
     end
   end
+
+  describe '#accepted?' do
+    it 'returns true when the status is accepted' do
+      subject.status = 'accepted'
+      subject.accepted?.should be_true
+    end
+
+    it 'returns false when the status is not accepted' do
+      subject.status = 'rejected'
+      subject.accepted?.should be_false
+    end
+  end
+
+  describe '#rejected?' do
+    it 'returns true when the status is rejected' do
+      subject.status = 'rejected'
+      subject.rejected?.should be_true
+    end
+
+    it 'returns false when the status is not rejected' do
+      subject.status = 'accepted'
+      subject.rejected?.should be_false
+    end
+  end
 end

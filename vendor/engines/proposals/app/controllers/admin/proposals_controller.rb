@@ -17,6 +17,9 @@
 
 module Admin
   class ProposalsController < Admin::BaseController
+    expose(:proposal)
+    expose(:session_times) { SessionTime.current_year }
+
     before_filter(:only => [:rate, :add_comment]) do
       redirect_to(root_path) unless current_user.has_role? :reviewer
     end
@@ -25,15 +28,11 @@ module Admin
       redirect_to(root_path) unless current_user.has_role? :organizer
     end
 
-    before_filter(:only => [:edit]) do
-      @session_times = SessionTime.current_year
-    end
-
     crudify :proposal,
             :title_attribute => 'status', :order => 'created_at DESC'
 
     def rate
-      @proposal = Proposal.find(params[:id]).tap do |proposal|
+      @proposal = proposal.tap do |proposal|
         proposal.rate(params[:stars], current_user, params[:dimension])
         #the reload is needed in case the status changed,
         #I wish this could be more elegant
@@ -43,22 +42,22 @@ module Admin
     end
 
     def add_comment
-      proposal = Proposal.find(params[:id]).tap do |proposal|
-        proposal.comments.create(:comment => params[:comment], :user => current_user)
-        #the reload is needed in case the status changed,
-        #I wish this could be more elegant
-        proposal.reload
-      end
+      proposal.comments.create(:comment => params[:comment], :user => current_user)
+      #the reload is needed in case the status changed,
+      #I wish this could be more elegant
+      proposal.reload
       @comment = params[:comment]
       @status = proposal.status
     end
 
     def proposal_update
-      send_mail = params[:sendmail] == "1"
-      if params[:approve]
-        approve_proposal(send_mail)
-      elsif params[:reject]
-        reject_proposal(send_mail)
+      if accepted?
+        approve_proposal
+      elsif rejected?
+        reject_proposal
+      else
+        @proposal = proposal
+        render :edit
       end
     end
 
@@ -69,30 +68,45 @@ module Admin
     end
 
     private
-    def approve_proposal(send_email)
-      proposal = update_proposal_status("accepted")
-      session_time = SessionTime.find(params[:conference_session][:session_time_id])
-      talk = proposal.talk
-      conf_session = ConferenceSession.create(:talk => talk, :session_time => session_time)
-
-      SpeakerMailer.talk_accepted_email(talk, session_time).deliver if send_email
-
-      redirect_to :action => :index
+    def accepted?
+      params[:status] == 'accepted'
     end
 
-    def reject_proposal(send_email)
-      proposal = update_proposal_status("rejected")
+    def rejected?
+      params[:status] == 'rejected'
+    end
 
+    def send_email
+      params[:sendmail] == '1'
+    end
+
+    def approve_proposal
+      conf_param = params[:conference_session]
+      if conf_param
+        update_proposal_status
+        session_time = SessionTime.find(conf_param[:session_time_id])
+        talk = proposal.talk
+        conf_session = ConferenceSession.create(:talk => talk, :session_time => session_time)
+
+        SpeakerMailer.talk_accepted_email(talk, session_time).deliver if send_email
+
+        redirect_to :action => :index
+      else
+        @proposal = proposal
+        proposal.errors.add :you, 'must select a session time'
+        render :edit
+      end
+    end
+
+    def reject_proposal
+      update_proposal_status
       SpeakerMailer.talk_rejected_email(proposal.talk).deliver if send_email
 
       redirect_to :action => :index
     end
 
-    def update_proposal_status(status)
-      Proposal.find(params[:id]).tap do |proposal|
-        proposal.status = status
-        proposal.save
-      end
+    def update_proposal_status
+      proposal.update_attribute :status, params[:status]
     end
   end
 end

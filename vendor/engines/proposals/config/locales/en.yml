@@ -10,7 +10,7 @@ en:
     proposals:
       index:
         title: Proposals
-        all_proposals: Proposed Talks 
+        all_proposals: Proposed Talks
         reorder: Reorder Proposals
         reorder_done: Done Reordering Proposals
         sorry_no_results: Sorry! There are no results found.
@@ -27,6 +27,7 @@ en:
         comments: Comments from Speaker
         company: Company/URL
         country: Country
+        decide: Decide
         details: Details
         email: Email
         from_reviewer: Feedback from
@@ -34,7 +35,7 @@ en:
         prereqs: Prerequisites
         proposal: Proposal
         reviewer_comments: Reviewer Comments
-        session_time: Schedule a Session Time for this Proposal
+        session_time: Schedule the Session Time
         state: State
         status: Review Status
         talk_type: Talk Type
@@ -42,7 +43,7 @@ en:
         twitter_id: Twitter Username
         video_approval: Video Approval
         your_rating: Your feedback
-        send_mail: Send Email?
+        send_mail: Send Notification Email to Speaker?
         approve_talk: Approve Talk
         reject_talk: Reject Talk
       add_comment:
