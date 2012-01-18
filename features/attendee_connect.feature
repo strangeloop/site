@@ -82,13 +82,15 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
   @javascript
   Scenario: Login link only shown to unauthenticated visitors
     Given a homepage exists
+    And app logins have been enabled
     When I am on the homepage
     Then I should see "Login" as a link to the attendee login page
     And I should not see "Log Out"
 
   @javascript
   Scenario: Logout link only shown to authenticated visitors
-    Given a homepage exists
+    Given app logins have been enabled
+    And a homepage exists
     And I am logged in as a registered attendee
     When I am on the homepage
     Then I should see "Log Out" as a link to the attendee logout page
@@ -97,6 +99,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
   @javascript
   Scenario: Authenticated attendee updates profile
     Given a homepage exists
+    And app logins have been enabled
     And I am logged in as a registered attendee
     And I am on the homepage
     And I follow "Kaiser Von Sozhay"
@@ -110,7 +113,8 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
 
   @javascript
   Scenario: Authenticated attendees can select a talk they are interested in
-    Given I am logged in as a registered attendee
+    Given app logins have been enabled
+    And I am logged in as a registered attendee
     And a scheduled talk session for this year exists
     And I am on the schedule page
     When I click the add icon
@@ -119,7 +123,8 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
 
   @javascript
   Scenario: Authenticated attendees can deselect a talk they don't plan to attend
-    Given I am logged in as a registered attendee
+    Given app logins have been enabled
+    And I am logged in as a registered attendee
     And a scheduled talk session for this year exists
     And I am interested in that talk
     And I am on the schedule page

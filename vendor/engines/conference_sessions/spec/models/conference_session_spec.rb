@@ -21,10 +21,6 @@ describe ConferenceSession do
   let(:talk) { Factory(:talk) }
   let(:conference_session) { ConferenceSession.new(:talk => talk) }
 
-  it "should auto add the current year as conf_year" do
-    conference_session.conf_year.should == Time.now.year
-  end
-
   context "validations" do
 
     it "rejects empty format" do

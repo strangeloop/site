@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cached_slug"
-    t.integer  "conf_year",       :default => 2011
+    t.integer  "conf_year"
     t.integer  "session_time_id"
     t.integer  "room_id"
     t.integer  "track_id"

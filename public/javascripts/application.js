@@ -14,14 +14,16 @@ $(document).ready(function() {
     }
   });
 
-  if(username === '') {
-    SL.appendNav('Login', login_path);
-  } else {
-    SL.prependNav(username, attendee_path);
-    SL.appendNav('Log Out', logout_path);
-  }
+  if (attendee_login_enabled) {
+    if(username === '') {
+      SL.appendNav('Login', login_path);
+    } else {
+      SL.prependNav(username, attendee_path);
+      SL.appendNav('Log Out', logout_path);
+    }
 
-  $('#flash_notice').delay(5000).fadeOut('fast');
+    $('#flash_notice').delay(5000).fadeOut('fast');
+  }
 });
 
 var SL = function() {

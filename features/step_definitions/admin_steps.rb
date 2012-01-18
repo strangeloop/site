@@ -34,6 +34,11 @@ Given /^I am a logged in (\w+\s?\w*)$/ do |role|
   login
 end
 
+
+Given /^app logins have been enabled$/ do
+  RefinerySetting.set(:attendee_login_enabled, 'true')
+end
+
 Given /^I am logged in as a registered attendee$/ do
   attendee_login Factory(:registered_attendee).attendee_cred
 end

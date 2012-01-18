@@ -189,7 +189,7 @@ Factory.define :sponsorship do |s|
   s.contact { Factory(:contact) }
   s.sponsorship_level { Factory(:sponsorship_level) }
   s.visible true
-  s.year 2011
+  s.year Time.now.year
   s.position 1
 end
 
