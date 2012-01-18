@@ -16,19 +16,19 @@ Feature: As a conference talks reviewer
 
   Scenario: Reviewer views list of submitted Proposals
     Given the following talks have been submitted:
-       | title     | by       | status    | 
-       | Free Beer | Bud Hops | submitted | 
+       | title     | by       | status    |
+       | Free Beer | Bud Hops | submitted |
     And I am a logged in reviewer
     When I follow "Proposals (1)"
     Then I should see "Proposed Talks"
     And I should see "Free Beer"
     And I should see "Bud Hops"
     And I should see "submitted"
-    
+
   Scenario: Reviewer views submitted proposal
     Given the following talks have been submitted:
-      | title     | by       | abstract              | bio    | av req    | approve video | talk type |  status    | 
-      | Free Beer | Bud Hops | Talk about cold gold. | My bio | Projector | Yes           | Intro     |  submitted | 
+      | title     | by       | abstract              | bio    | av req    | approve video | talk type |  status    |
+      | Free Beer | Bud Hops | Talk about cold gold. | My bio | Projector | Yes           | Intro     |  submitted |
 		And I am a logged in reviewer
 		And I am on the review proposals page
     When I follow "Free Beer"
@@ -58,7 +58,7 @@ Feature: As a conference talks reviewer
     When I am on the default proposal review page
     Then I should see "Feedback from: reviewer"
     And I should see "Like it"
-  
+
   @javascript
   Scenario: Reviewer comments on a proposal
     Given a proposal exists
@@ -68,7 +68,7 @@ Feature: As a conference talks reviewer
     And I press "Add Comment"
     Then I should see "My comments here"
     And I should see "under review"
-    
+
   @javascript
   Scenario: Reviewer submits a proposal rating
     Given a proposal exists
@@ -84,14 +84,25 @@ Feature: As a conference talks reviewer
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
-    Then I check "sendmail"
-    Then I press "Approve"
+    And I check "sendmail"
+    And I choose "Approve Talk"
+    When I press "Decide"
     Then I should see "accepted"
     And a congrats email should be sent to the submitter
-    Then I follow "Proposals"
-    Then I should see "accepted"
-    When I am on the default conference session page
-    Then I should see "Title"
+    And I follow "Proposals"
+    And I should see "accepted"
+    Then I am on the default conference session page
+    And I should see "Title"
+
+  Scenario: Conference organizer tries to approve proposal without a session time
+    Given a proposal exists
+    And there are no conference sessions
+    And I am a logged in organizer
+    And I am on the default proposal review page
+    And I choose "Approve Talk"
+    And I check "sendmail"
+    When I press "Decide"
+    Then I should see "You must select a session time"
 
   Scenario: Conference organizer approves proposal, does not want email sent
     Given a proposal exists
@@ -99,12 +110,13 @@ Feature: As a conference talks reviewer
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
-    Then I press "Approve"
+    And I choose "Approve Talk"
+    When I press "Decide"
     Then I should see "accepted"
     And no email should be sent
-    Then I follow "Proposals"
-    Then I should see "accepted"
-    When I am on the default conference session page
+    And I follow "Proposals"
+    And I should see "accepted"
+    And I am on the default conference session page
     Then I should see "Title"
 
   Scenario: Conference organizer rejects an approved proposal
@@ -112,11 +124,12 @@ Feature: As a conference talks reviewer
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
-    Then I check "sendmail"    
-    Then I press "Reject Talk"
+    And I check "sendmail"
+    And I choose "Reject Talk"
+    When I press "Decide"
     Then I should see "rejected"
-    And a rejection email should be sent to the submitter  
-    Then I follow "Proposals"
+    And a rejection email should be sent to the submitter
+    And I follow "Proposals"
     Then I should see "rejected"
 
     Scenario: Conference organizer rejects an approved proposal
@@ -124,12 +137,13 @@ Feature: As a conference talks reviewer
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
-    Then I press "Reject Talk"
+    And I choose "Reject Talk"
+    When I press "Decide"
     Then I should see "rejected"
-    And no email should be sent    
-    Then I follow "Proposals"
+    And no email should be sent
+    And I follow "Proposals"
     Then I should see "rejected"
 
 
-    
+
 

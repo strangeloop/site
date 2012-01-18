@@ -8,7 +8,8 @@ Feature: As a user I can see talks I might want to attend
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
-    When I press "Approve"
+    And I choose "Approve Talk"
+    When I press "Decide"
     Then I am on the default conference session page
     And I should see "Title"
     And I should see "Abstract"

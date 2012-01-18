@@ -46,7 +46,7 @@ describe Admin::ProposalsController do
     login_admin
 
     let(:approval_params) do
-      { :approve => 'Approve Talk',
+      { :status => 'accepted',
         :conference_session => { :session_time_id => 1 },
         :id => 2 }
     end
@@ -69,8 +69,7 @@ describe Admin::ProposalsController do
     end
 
     it "updates the proposal status to 'accepted'" do
-      proposal.should_receive(:status=).with('accepted')
-      proposal.should_receive(:save)
+      proposal.should_receive(:update_attribute).with(:status, 'accepted')
 
       proposal_approval
 
@@ -90,7 +89,7 @@ describe Admin::ProposalsController do
     login_admin
 
     let(:rejection_options) do
-      {:reject => 'Reject Talk', :id => 1}
+      {:status => 'rejected', :id => 1}
     end
 
     let(:proposal_rejection) do
@@ -106,8 +105,7 @@ describe Admin::ProposalsController do
     end
 
     it "updates the proposal status to 'rejected'" do
-      proposal.should_receive(:status=).with('rejected')
-      proposal.should_receive(:save)
+      proposal.should_receive(:update_attribute).with(:status, 'rejected')
 
       proposal_rejection
 

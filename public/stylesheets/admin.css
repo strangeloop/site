@@ -1,4 +1,37 @@
 /*Proposals*/
-#session-time { padding: 10px 0 10px; }
 #rating { margin-top: 20px; }
 #rating textarea { margin-top: 10px; }
+#statusForm { padding-bottom: 3em }
+#statusForm fieldset {
+  padding: 1.5em;
+  margin-top: 2em;
+}
+
+#statusForm label {
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+#statusForm #sendmail {
+  padding-top: 2em;
+  clear: left;
+  float: left;
+  display: inline-block;
+}
+
+#statusForm input[type="submit"] {
+  margin: 1.5em 0 0 8em;
+  width: 8em;
+  float: left;
+}
+
+#statusForm input, #statusForm select {
+  float: left;
+  margin-right: 1em;
+}
+
+#proposal-status {
+  width: 30%;
+  float: left;
+}
+

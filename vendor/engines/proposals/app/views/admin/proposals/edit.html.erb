@@ -117,20 +117,35 @@
         </div>
 
       <% end %>
-      <%= form_tag(:controller => "proposals", :action =>  "proposal_update", :method => "post") do %>
-        <% if @proposal.status != 'accepted' %>
-          <div id='session-time'>
-            <%= label_tag :session_time_id, t('.session_time') -%>
-            <%= collection_select(:conference_session, :session_time_id, @session_times, :id, :title) -%>
+
+      <%= form_tag({:controller => "proposals", :action =>  "proposal_update"}, {:id => 'statusForm'}) do %>
+        <fieldset>
+          <legend>Make a Decision about this Proposal</legend>
+
+          <div id='proposal-status'>
+            <%= radio_button_tag :status, 'accepted', @proposal.accepted? %>
+            <%= label_tag :status_accepted, t('.approve_talk') %>
+
+            <%= radio_button_tag :status, 'rejected', @proposal.rejected? %>
+            <%= label_tag :status_rejected, t('.reject_talk') %>
           </div>
-          <%= submit_tag(t('.approve_talk'), :name => "approve") %>
-        <% end %>
-        <% if @proposal.status != 'rejected' %>
-          <%= submit_tag(t('.reject_talk'), :name => "reject") %>
-        <% end %>
-        <%= check_box_tag(:sendmail) -%>
-        <strong><%=t('.send_mail')%></strong>
+          <% if !@proposal.accepted? %>
+            <div id='session-time'>
+              <%= collection_select(:conference_session, :session_time_id, session_times, :id, :title ) -%>
+              <%= label_tag :conference_session_session_time_id, t('.session_time') -%>
+            </div>
+          <% end %>
+
+          <div id="sendmail">
+            <%= check_box_tag(:sendmail) -%>
+            <%= label_tag :sendmail, t('.send_mail') %>
+          </div>
+
+          <%= submit_tag t('.decide') %>
+
+        </fieldset>
       <% end %>
+
     <% end %>
 
     <% if current_user.has_role? :reviewer -%>
