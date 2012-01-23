@@ -24,7 +24,7 @@ describe ConferenceSessionsController do
   let(:last_years_session) { Factory(:last_years_talk_session) }
   let(:attendee) { Factory(:registered_attendee) }
 
-  context "show action" do
+  describe "show action" do
    before { get :show, :id => session.friendly_id }
 
     it "exposes a specific conference session" do
@@ -40,7 +40,7 @@ describe ConferenceSessionsController do
     end
   end
 
-  context "index action" do
+  describe "index action" do
     it "loads current year sessions by default" do
       session #load a current year session
       get :index
@@ -75,7 +75,7 @@ describe ConferenceSessionsController do
     end
   end
 
-  context "authenticated action" do
+  describe "authenticated action" do
     before(:each) do
       #Must create an attendee record to prevent refinery
       #from redirecting to welcome page

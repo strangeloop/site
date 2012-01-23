@@ -21,7 +21,7 @@ describe ConferenceSession do
   let(:talk) { Factory(:talk) }
   let(:conference_session) { ConferenceSession.new(:talk => talk) }
 
-  context "validations" do
+  describe "validations" do
 
     it "rejects empty format" do
       ConferenceSession.new(:format => '').should_not be_valid
@@ -77,7 +77,7 @@ describe ConferenceSession do
     ConferenceSession.all_years.should == [current_year, current_year - 1]
   end
 
-  context "#from_year" do
+  describe ".from_year" do
     let(:current_year_session) { Factory(:talk_session) }
     let(:last_years_session) { Factory(:last_years_talk_session) }
 
@@ -95,7 +95,7 @@ describe ConferenceSession do
     end
   end
 
-  context "CSV export tests" do
+  describe "CSV export tests" do
     NUM_CONF_SESSION_CSV_FIELDS = 12
 
     before do
@@ -156,7 +156,7 @@ describe ConferenceSession do
     end
   end
 
-  context "#by_session_time" do
+  describe ".by_session_time" do
     let(:small_room) { Factory(:small_room) }
     let(:big_room) { Factory(:big_room) }
     let(:evening_session_time) { Factory(:evening_session_time) }
