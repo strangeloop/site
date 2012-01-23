@@ -163,4 +163,9 @@ Feature: As a user I can see talks I might want to attend
     And I should see "Old talk abstract"
     And I should see "I write books about the universe and stuff"
 
+  Scenario: Check back message when no sessions scheduled
+    Given there are no conference sessions
+    When I am on the sessions page
+    Then I should see the come back later message
+
 

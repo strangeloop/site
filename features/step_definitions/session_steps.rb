@@ -19,17 +19,8 @@ Given /^there are no conference sessions$/ do
   ConferenceSession.destroy_all
 end
 
-Then /^I should see a link with "([^"]*)" to "([^"]*)"$/ do |text, url|
-  page.has_link?(text, :href => url).should be_true
-end
-
-And /^I should see a twitter link with "([^"]*)" to "([^"]*)"$/ do |text, url|
-  page.has_xpath?("//a[contains(., '#{text}')]").should be_true
-  page.has_xpath?("//a[contains(@href, '#{url}')]").should be_true
-end
-
-Then /^I should see the (\w+) default speaker image$/ do |image_size|
-  page.has_xpath?(".//img[@alt='Attendees#{image_size == 'small' ? '-small' : ''}']").should be_true
+Given /^I am interested in that talk$/ do
+  Attendee.first.conference_sessions << ConferenceSession.first
 end
 
 When /^I click the (.*)$/ do |text|
@@ -54,10 +45,20 @@ Then /^I should not see the add or remove icons$/ do
   page.has_no_css?('li.column2').should be_true
 end
 
-Given /^I am interested in that talk$/ do
-  Attendee.first.conference_sessions << ConferenceSession.first
+Then /^I should see a link with "([^"]*)" to "([^"]*)"$/ do |text, url|
+  page.has_link?(text, :href => url).should be_true
 end
 
+And /^I should see a twitter link with "([^"]*)" to "([^"]*)"$/ do |text, url|
+  page.has_xpath?("//a[contains(., '#{text}')]").should be_true
+  page.has_xpath?("//a[contains(@href, '#{url}')]").should be_true
+end
 
+Then /^I should see the (\w+) default speaker image$/ do |image_size|
+  page.has_xpath?(".//img[@alt='Attendees#{image_size == 'small' ? '-small' : ''}']").should be_true
+end
 
+Then /^I should see the come back later message$/ do
+  page.should have_content("No sessions for the #{Time.now.year} conference have been announced yet. Please check back later, follow us on Twitter, or subscribe to our mailing list.")
+end
 

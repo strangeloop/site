@@ -32,5 +32,8 @@
 
     <% end -%>
 
+    <% if sessions_by_format.empty? -%>
+      <%= t('.no_sessions_message', :next_conf_year => Time.now.year).html_safe %>
+    <% end -%>
   </div>
 </div>
