@@ -1,6 +1,6 @@
 <% cache('header') do -%>
 <div class="logo">
-  <%= link_to image_tag('logo2.gif', :alt => RefinerySetting.find_or_set(:site_name, "Strange Loop")) , root_path %>
+  <%= link_to image_tag('logo2.png', :alt => RefinerySetting.find_or_set(:site_name, "Strange Loop")) , root_path %>
 </div>
 <%= render "/shared/menu", :dom_id => 'menu', :css => 'menu' -%>
 
