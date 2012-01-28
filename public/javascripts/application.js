@@ -14,7 +14,7 @@ $(document).ready(function() {
     }
   });
 
-  if (attendee_login_enabled) {
+  if (typeof attendee_login_enabled != 'undefined') {
     if(username === '') {
       SL.appendNav('Login', login_path);
     } else {
