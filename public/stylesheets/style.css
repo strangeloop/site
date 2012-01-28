@@ -253,7 +253,7 @@ p {margin-bottom:22px;}
 
 
 body {
-	background:#000 url(../images/csg-4e56307fa551f.gif) repeat-x 0px 28px; background-position: 0 -1842px;
+  background: url("../images/top_bg.gif") repeat-x scroll 0 28px #000000;
 }
 html, body {
 	height:100%;
