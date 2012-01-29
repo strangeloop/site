@@ -32,6 +32,7 @@ gem 'oa-openid', :require => 'omniauth/openid'
 gem 'faraday_middleware','0.6.3'
 
 group :development, :test do
+  gem 'mongrel', '~> 1.2.0.pre2'
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
   gem 'awesome_print', '~> 0.4.0'
   gem 'ruby-debug', '~> 0.10.4'

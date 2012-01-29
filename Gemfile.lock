@@ -130,6 +130,7 @@ GEM
       capybara (>= 1.0.0)
       cucumber (~> 1.0.0)
       nokogiri (>= 1.4.6)
+    daemons (1.0.10)
     database_cleaner (0.6.7)
     decent_exposure (1.0.1)
     devise (1.2.1)
@@ -159,6 +160,7 @@ GEM
       i18n (~> 0.4)
     friendly_id_globalize3 (3.2.1.4)
       babosa (~> 0.3.0)
+    gem_plugin (0.2.3)
     gherkin (2.4.6)
       json (>= 1.4.6)
     globalize3 (0.2.0.beta3)
@@ -193,6 +195,9 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     mmcopyrights (1.1.0)
+    mongrel (1.2.0.pre2)
+      daemons (~> 1.0.10)
+      gem_plugin (~> 0.2.3)
     moretea-awesome_nested_set (1.4.3.1)
       activerecord (~> 3.0.0)
     multi_json (1.0.3)
@@ -373,6 +378,7 @@ DEPENDENCIES
   json_pure (~> 1.5.1)
   launchy (~> 0.3.7)
   mmcopyrights
+  mongrel (~> 1.2.0.pre2)
   mysql2 (= 0.2.7)
   oa-openid
   omniauth (= 0.2.6)
