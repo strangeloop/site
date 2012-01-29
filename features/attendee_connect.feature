@@ -74,10 +74,6 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     Given I am on the attendee login page
     Then I should see "Email"
     And I should see "Password"
-    And I should see "Or authenticate using one of the services below (based on your registration)"
-    And I should see login via Twitter link
-    And I should see login via Google link
-    And I should see login via GitHub link
 
   @javascript
   Scenario: Login link only shown to unauthenticated visitors

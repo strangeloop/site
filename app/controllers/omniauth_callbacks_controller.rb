@@ -27,30 +27,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     attendee
   end
 
-  def github_attendee(service)
-    error_on_nil(Attendee.find_by_email(service.uemail), "devise.omniauth_callbacks.github_reg_fail")
-  end
-
-  def github
-    authenticate_user(:github, method(:github_attendee))
-  end
-
-  def twitter_attendee(service)
-    error_on_nil(Attendee.find_by_twitter_id(service.twitter_id),"devise.omniauth_callbacks.twitter_reg_fail")
-  end
-  
-  def twitter
-    authenticate_user(:twitter, method(:twitter_attendee))
-  end
-
-  def google_attendee(service)
-    error_on_nil(Attendee.find_by_acct_activation_token(params[:token]), "devise.omniauth_callbacks.google_reg_fail")
-  end
-
-  def google
-    authenticate_user(:google, method(:google_attendee))
-  end
-
   def passthru
     render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
   end
