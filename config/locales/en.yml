@@ -33,12 +33,6 @@ en:
     index:
       attendees: Conference Attendees
   devise:
-    omniauth_callbacks:
-      register_success: "Successfully registered %{email} via %{provider}"
-      success: "Successfully authenticated with %{provider}"
-      twitter_reg_fail: "Sorry but we could not authenticate you using your Twitter ID because it wasn't included when you registered for the conference.  Would you mind registering with a username/password?  If you tried that and are still unable to register, please send an email to: <a href='mailto:info@thestrangeloop.com?subject=Registration with Twitter Auth failed'>info@thestrangeloop.com</a> for help."
-      github_reg_fail: "Sorry but we couldn't authenticate you using your Github credentials because the email address Github has for you doesn't match the email that you provided when you registered for the conference.  Would you mind registering with a username/password?  If you tried that and are still unable to register, please send an email to: <a href='mailto:info@thestrangeloop.com?subject=Registration with Github Auth failed'>info@thestrangeloop.com</a> for help."
-      google_reg_fail: "Sorry but we couldn't authenticate you using your GMail credentials.  Would you mind registering with a username/password?  If you tried that and are still unable to register, please send an email to: <a href='mailto:info@thestrangeloop.com?subject=Registration with GMail credentials failed'>info@thestrangeloop.com</a> for help."
     passwords:
       edit:
         change_password: "Change your password"

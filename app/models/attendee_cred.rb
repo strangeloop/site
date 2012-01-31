@@ -2,7 +2,7 @@ class AttendeeCred < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
+  :recoverable, :rememberable, :trackable, :validatable,
   :authentication_keys => [:email]
 
 
@@ -14,6 +14,5 @@ class AttendeeCred < ActiveRecord::Base
   end
 
   has_one :attendee
-  has_many :services
 
 end
