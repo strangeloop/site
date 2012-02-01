@@ -51,6 +51,5 @@ Conf::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
-  OmniAuth.config.test_mode = true
 end
 Refinery.rescue_not_found = false

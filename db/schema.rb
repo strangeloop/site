@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822055819) do
+ActiveRecord::Schema.define(:version => 20120131030638) do
 
   create_table "attendee_creds", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -298,18 +298,6 @@ ActiveRecord::Schema.define(:version => 20110822055819) do
 
   add_index "seo_meta", ["id"], :name => "index_seo_meta_on_id"
   add_index "seo_meta", ["seo_meta_id", "seo_meta_type"], :name => "index_seo_meta_on_seo_meta_id_and_seo_meta_type"
-
-  create_table "services", :force => true do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "uname"
-    t.string   "uemail"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "attendee_cred_id"
-  end
-
-  add_index "services", ["provider", "uemail"], :name => "index_services_on_provider_and_uemail", :unique => true
 
   create_table "session_times", :force => true do |t|
     t.datetime "start_time"

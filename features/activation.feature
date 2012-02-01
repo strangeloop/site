@@ -9,18 +9,6 @@ Feature: A conference attendee can click on a special URL and create an account 
     Then I should see "Email"
     And I should see "Password"
     And I should see "Password Confirmation"
-    And I should see login via Twitter link
-    And I should see login via Github link
-    And I should see login via Google activation link
-
-  Scenario: Attendee without supplied Twitter ID does not see Twitter auth option
-    Given I am on the activation page for a no twitter attendee
-    Then I should see "Email"
-    And I should see "Password"
-    And I should see "Password Confirmation"
-    And I should not see login via Twitter link
-    And I should see login via Github link
-    And I should see login via Google activation link
 
   Scenario: Attendee can click an activation link
     Given I am on my bad activation token page
