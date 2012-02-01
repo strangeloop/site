@@ -28,6 +28,7 @@ Feature: A conference attendee can click on a special URL and create an account 
     When I press "Register"
     Then I should see "Registration failed, please try again: password doesn't match confirmation"
 
+  @wip
   Scenario: Attendee can create attendee credentials with a password
     Given I am on my activation page
     And I fill in "Password" with "somelongvalue"
@@ -36,6 +37,7 @@ Feature: A conference attendee can click on a special URL and create an account 
     Then I should see "Welcome! You have signed up successfully."
     And I should see "My Conference Schedule"
 
+  @wip
   Scenario: Attendee can login with new credentials
     Given I am on my activation page
     And I fill in "Password" with "somelongvalue"
