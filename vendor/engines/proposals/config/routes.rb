@@ -18,7 +18,7 @@
 Refinery::Application.routes.draw do
   resources :proposals, :only => [:new, :create]
 
-  get '/proposal/new/:format' => 'proposals#new', :as => :new_proposal_of
+  get '/proposals/new/:format' => 'proposals#new', :as => :new_proposal_of
 
   scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
     resources :proposals, :except => :show do
