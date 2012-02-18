@@ -28,6 +28,8 @@ class Proposal < ActiveRecord::Base
   validates_inclusion_of :status, :in => %w(submitted under\ review accepted rejected)
   validates_presence_of :talk
 
+  accepts_nested_attributes_for :talk
+
   scope :pending, lambda {
     where(:status => ['submitted', 'under review'])
   }
