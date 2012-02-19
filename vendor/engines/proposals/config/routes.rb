@@ -27,6 +27,8 @@ Refinery::Application.routes.draw do
         get 'export/pending', :action => :export, :as => 'export'
       end
 
+      get '/refinery/proposals/:format' => 'admin::proposals#index'
+
       post :rate, :on => :member
       post :add_comment, :on => :member
       post :proposal_update, :on => :member

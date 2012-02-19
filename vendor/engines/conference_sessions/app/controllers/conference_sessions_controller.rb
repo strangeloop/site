@@ -44,6 +44,9 @@ class ConferenceSessionsController < ApplicationController
   def index
   end
 
+  def index_workshop
+  end
+
   def show
   end
 

@@ -10,11 +10,11 @@ en:
     proposals:
       index:
         title: Proposals
-        all_proposals: Proposed Talks
+        all_proposals: "Proposed %{proposal_format}"
         reorder: Reorder Proposals
         reorder_done: Done Reordering Proposals
         sorry_no_results: Sorry! There are no results found.
-        no_items_yet: There are no talks ready for review
+        no_items_yet: "There are no %{proposal_format} ready for review"
       edit:
         abstract: Abstract
         actions: Actions

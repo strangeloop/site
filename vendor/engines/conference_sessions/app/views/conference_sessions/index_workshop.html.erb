@@ -1,0 +1,27 @@
+<div class="row_top_tile_sub">
+  <div class="container_12">
+    <div class="grid_8">
+      <div class="page_title">
+        <%= "#{year} Workshops" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="main" class="shape">
+  <div class="container_12 pad3">
+    <% if sessions_by_format.include? 'workshop' -%>
+    <div class="overflow p1">
+      <% sessions_by_format['workshop'].each do |session| %>
+
+        <%= render 'workshop', :talk => session.talk,
+                              :speaker => session.talk.speakers.first,
+                              :session => session %>
+      <% end %>
+    </div>
+    <% end -%>
+
+    <% if sessions_by_format['workshop'].empty? -%>
+      <%= t('.no_sessions_message', :next_conf_year => Time.now.year).html_safe %>
+    <% end -%>
+  </div>
+</div>
