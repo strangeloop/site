@@ -2,10 +2,8 @@
   <% if searching? %>
     <h2><%= t('results_for', :scope => 'shared.admin.search', :query => params[:search]) %></h2>
   <% end %>
-  <% if @conference_sessions.any? %>
-    <div class='pagination_container'>
-      <%= render 'conference_sessions', :conference_sessions => @conference_sessions %>
-    </div>
+  <% if current_conference_sessions.any? %>
+      <%= render 'conference_sessions', :conference_sessions => current_conference_sessions %>
   <% else %>
     <p>
       <% unless searching? %>
