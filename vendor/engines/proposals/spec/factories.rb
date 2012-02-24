@@ -17,5 +17,6 @@
 
 Factory.define :proposal do |p|
   p.status 'submitted'
+  p.format 'talk'
   p.talk   { Factory(:talk) }
 end

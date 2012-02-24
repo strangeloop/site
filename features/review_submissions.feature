@@ -12,7 +12,7 @@ Feature: As a conference talks reviewer
     Given I am a logged in reviewer
     And there are no submitted talks
     When I follow "Proposals"
-    Then I should see "There are no talks ready for review"
+    Then I should see "There are no Talks ready for review"
 
   Scenario: Reviewer views list of submitted Proposals
     Given the following talks have been submitted:

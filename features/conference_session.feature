@@ -29,7 +29,7 @@ Feature: As a user I can see talks I might want to attend
 
   Scenario: Site visitors see published workshops
     Given a workshop session exists
-    When I am on the sessions page
+    When I am on the workshops page
     Then I should see "Workshops"
     And I should not see "Keynotes"
     And I should not see "Talks"

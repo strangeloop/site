@@ -24,7 +24,7 @@
     </div>
     <% end -%>
 
-    <% ['workshop', 'talk', 'lightning', 'strange_passions', 'panel'].each do |format| -%>
+    <% %w(talk lightning strange_passions panel).each do |format| -%>
 
     <%= render 'session_groups',  :sessions_by_format => sessions_by_format,
                                   :format => format.gsub('_', ' '),
@@ -32,7 +32,7 @@
 
     <% end -%>
 
-    <% if sessions_by_format.empty? -%>
+    <% if (sessions_by_format.keys - %w(keynote talk lightning strange_passions panel)).empty? -%>
       <%= t('.no_sessions_message', :next_conf_year => Time.now.year).html_safe %>
     <% end -%>
   </div>

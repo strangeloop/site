@@ -37,6 +37,9 @@ module NavigationHelpers
     when /the new talks page/
       new_talk_path
 
+    when /the new workshops page/
+      new_proposal_of_path(:workshop)
+
     when /the review proposals page/
       admin_proposals_path
 

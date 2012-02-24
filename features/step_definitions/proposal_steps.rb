@@ -58,6 +58,7 @@ Given /^the following talks have been submitted:$/ do |table|
     talk.save
     proposal = group[:proposal]
     proposal.talk = talk
+    proposal.format = 'talk'
     proposal.save
   end
 end
