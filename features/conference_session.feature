@@ -34,8 +34,8 @@ Feature: As a user I can see talks I might want to attend
     And I should not see "Keynotes"
     And I should not see "Talks"
     And I should see "Winning with Tiger Blood"
-    And I should see the medium default speaker image
-    And I should see a link with "Twinings" to "http://winning.com"
+    And I should see the small default speaker image
+    And I should see a link with "Charlie Sheen" to "http://winning.com"
     And I should see a link with "@adonisdna" to "https://twitter.com/adonisdna"
 
   Scenario: Site visitors see published talks
