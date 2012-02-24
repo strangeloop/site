@@ -41,6 +41,11 @@ describe ConferenceSessionsController do
   end
 
   describe "index action" do
+    it "loads current year sessions by default" do
+      session #load a current year session
+      get :index
+      controller.sessions_from_year.should == [session]
+    end    
     context "discriminates on conf_year" do
       before { last_years_session }
 
