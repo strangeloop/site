@@ -18,7 +18,7 @@
 Refinery::Application.routes.draw do
   resources :conference_sessions, :path => '/sessions', :only => [:index, :show]
 
-  get '/workshops', :to => 'conference_sessions#index_workshop', :as => 'workshops'
+  get '/preconf', :to => 'conference_sessions#index_workshop', :as => 'workshops'
 
   match '/schedule', :to => 'conference_sessions#schedule'
 

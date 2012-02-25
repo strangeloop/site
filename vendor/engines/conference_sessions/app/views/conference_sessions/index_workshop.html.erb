@@ -2,25 +2,22 @@
   <div class="container_12">
     <div class="grid_8">
       <div class="page_title">
-        <%= "#{year} Workshops" %>
+        <%= "#{year} Preconference" %>
       </div>
     </div>
   </div>
 </div>
 <div id="main" class="shape">
   <div class="container_12 pad3">
-    <% if sessions_by_format.include? 'workshop' -%>
-    <div class="overflow p1">
-      <% sessions_by_format['workshop'].each do |session| %>
+    <% %w(ELC workshop).each do |format| -%>
 
-        <%= render 'workshop', :talk => session.talk,
-                              :speaker => session.talk.speakers.first,
-                              :session => session %>
-      <% end %>
-    </div>
+    <%= render 'session_groups',  :sessions_by_format => sessions_by_format,
+                                  :format => format.gsub('_', ' '),
+                                  :label => t(".#{format}") %>
+
     <% end -%>
 
-    <% if sessions_by_format['workshop'].empty? -%>
+    <% if (sessions_by_format.keys - %w(ELC workshop)).empty? -%>
       <%= t('.no_sessions_message', :next_conf_year => Time.now.year).html_safe %>
     <% end -%>
   </div>
