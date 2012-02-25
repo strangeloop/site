@@ -28,6 +28,8 @@ class Proposal < ActiveRecord::Base
   validates_inclusion_of :status, :in => %w(submitted under\ review accepted rejected)
   validates_presence_of :talk
 
+  accepts_nested_attributes_for :talk
+
   scope :pending, lambda {
     where(:status => ['submitted', 'under review'])
   }
@@ -35,6 +37,9 @@ class Proposal < ActiveRecord::Base
   scope :current, lambda {
     where('created_at > ?', DateTime.parse("Jan 1, #{Time.now.year}"))
   }
+
+  scope :talk, lambda { where(:format => 'talk') }
+  scope :workshop, lambda { where(:format => 'workshop') }
 
   def comments_by_user(user)
     comments_ordered_by_submitted.select{|item| item.user_id == user.id}

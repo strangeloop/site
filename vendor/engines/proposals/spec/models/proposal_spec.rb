@@ -46,8 +46,8 @@ describe Proposal do
 
     it "requires valid attributes and a related Talk" do
       p = Proposal.new(valid_attributes)
-      p.talk = Talk.new(:title => 'Writing a conf site',
-                        :abstract => 'Moar codez')
+      p.talk = Talk.new(:title => 'Writing a conf site', :abstract => 'Moar codez',
+                        :video_approval => 'Yes', :talk_type => 'Intro')
       p.should be_valid
     end
   end

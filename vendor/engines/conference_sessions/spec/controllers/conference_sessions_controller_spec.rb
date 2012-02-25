@@ -45,8 +45,7 @@ describe ConferenceSessionsController do
       session #load a current year session
       get :index
       controller.sessions_from_year.should == [session]
-    end
-
+    end    
     context "discriminates on conf_year" do
       before { last_years_session }
 

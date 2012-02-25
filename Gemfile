@@ -29,6 +29,8 @@ gem 'require_relative', '1.0.1'
 
 gem 'faraday_middleware','0.6.3'
 
+gem 'rbx-require-relative','0.0.5'
+
 group :development, :test do
   gem 'mongrel', '~> 1.2.0.pre2'
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
@@ -68,7 +70,7 @@ group :development, :test do
   # RSpec
   gem 'rspec-rails', '~> 2.5.0'
   # Cucumber
-  gem 'capybara', '~> 1.0.0'
+  gem 'capybara', '~> 1.1.2'
   gem 'database_cleaner', '~> 0.6.0'
   gem 'cucumber-rails', '~> 1.0.2'
   gem 'launchy', '~> 0.3.7'

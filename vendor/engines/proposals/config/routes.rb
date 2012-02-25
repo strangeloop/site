@@ -16,12 +16,18 @@
 
 
 Refinery::Application.routes.draw do
+  resources :proposals, :only => [:new, :create]
+
+  get '/proposals/new/:format' => 'proposals#new', :as => :new_proposal_of
+
   scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
     resources :proposals, :except => :show do
       collection do
         post :update_positions
         get 'export/pending', :action => :export, :as => 'export'
       end
+
+      get '/refinery/proposals/:format' => 'admin::proposals#index'
 
       post :rate, :on => :member
       post :add_comment, :on => :member

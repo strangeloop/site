@@ -24,7 +24,7 @@
     </div>
     <% end -%>
 
-    <% ['workshop', 'talk', 'lightning', 'strange_passions', 'panel'].each do |format| -%>
+    <% ['talk', 'lightning', 'strange_passions', 'panel'].each do |format| -%>
 
     <%= render 'session_groups',  :sessions_by_format => sessions_by_format,
                                   :format => format.gsub('_', ' '),

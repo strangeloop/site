@@ -25,14 +25,9 @@ module Admin
       prepend_before_filter fltr, :only => [:new, :edit]
     end
 
+    expose(:current_conference_sessions) { ConferenceSession.paginate({:page => params[:page], :per_page => 30})}
+    
     crudify :conference_session
-
-    def index
-      search_all_conference_sessions if searching?
-      paginate_all_conference_sessions
-
-      render :partial => 'conference_sessions' if request.xhr?
-    end
 
     def new
       @conference_session = ConferenceSession.new(:talk => Talk.new(:speakers => [Speaker.new]))

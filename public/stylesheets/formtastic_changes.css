@@ -41,11 +41,12 @@ form.formtastic fieldset > ol > li p.inline-hints {
 }
 
 form.formtastic fieldset {
+  font-size: 1.04em;
   margin-left:auto;
   margin-right:auto;
   padding-top: 1.5em;
   padding-bottom: 1.5em;
-  background-color: white;  
+  background-color: white;
 }
 
 form.formtastic fieldset.buttons {
@@ -60,6 +61,4 @@ form.formtastic legend {
   font-size: 25px;
   padding-left: 3.5em;
 }
-
-
 

@@ -2,19 +2,19 @@
   <% if searching? %>
     <h2><%= t('results_for', :scope => 'shared.admin.search', :query => params[:search]) %></h2>
   <% else %>
-    <h2><%= t('.all_proposals') %></h2>
+    <h2><%= t('.all_proposals', :proposal_format => format_name) %></h2>
   <% end %>
-  <% if @proposals.any? %>
-    <%= will_paginate @proposals %>
+  <% if current_proposals.any? %>
+    <%= will_paginate current_proposals %>
 
-    <%= render "sortable_list", :proposals => @proposals %>
+    <%= render "sortable_list", :proposals => current_proposals %>
 
-    <%= will_paginate @proposals %>
+    <%= will_paginate current_proposals %>
   <% else %>
     <p>
       <% unless searching? %>
         <strong>
-          <%= t('.no_items_yet') %>
+          <%= t('.no_items_yet', :proposal_format => format_name) %>
         </strong>
       <% else %>
         <%= t('no_results', :scope => 'shared.admin.search') %>
