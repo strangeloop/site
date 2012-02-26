@@ -18,6 +18,9 @@ en:
         manage_rooms: Manage Conference Rooms
         manage_session_times: Manage Conference Session Times
         manage_tracks: Manage Conference Tracks
+        manage_sessions_from: "Manage Conference Sessions from %{year}"
+        export_sessions_from: "Export Conference Sessions from %{year}"
+        sessions_for_year: "Sessions for %{year}"
       conference_session:
         view_live_html: View this conference session live <br/><em>(opens in a new window)</em>
         edit: Edit this conference session

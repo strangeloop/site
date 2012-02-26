@@ -82,6 +82,28 @@ describe Admin::ConferenceSessionsController do
       response.body.should == 'a, b, c'
     end
   end
+
+  describe '#all_years' do
+    let(:mock_years) { mock 'all years'  }
+    it 'delegates to ConferenceSession' do
+      ConferenceSession.should_receive(:all_years).and_return(mock_years)
+      subject.all_years.should == mock_years
+    end
+  end
+
+  describe '#current_conference_sessions' do
+    let(:mock_year) { Time.now.year }
+    let(:mock_page) { mock 'page' }
+    let(:mock_params) { {:page => mock_page, :year => mock_year} }
+    let(:mock_scope) { mock 'session scope' }
+    before { subject.stub(:params => mock_params) }
+
+    it 'returns paginated sessions for the requested year' do
+      ConferenceSession.should_receive(:from_year).with(mock_year).and_return(mock_scope)
+      mock_scope.should_receive(:paginate).with({:page => mock_page, :per_page => 30}).and_return(mock_scope)
+      subject.current_conference_sessions.should == mock_scope
+    end
+  end
 end
 
 

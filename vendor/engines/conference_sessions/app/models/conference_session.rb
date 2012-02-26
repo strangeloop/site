@@ -42,12 +42,10 @@ class ConferenceSession < ActiveRecord::Base
   scope :defined_format, where('format <> ?', 'undefined')
   scope :by_start_time_and_room, includes(:session_time, :room).order('session_times.start_time', 'rooms.position ASC')
 
+  delegate :title, :to => :talk
+
   def format
     self[:format] || 'undefined'
-  end
-
-  def title
-    talk.title
   end
 
   def description

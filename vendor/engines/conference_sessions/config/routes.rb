@@ -26,7 +26,6 @@ Refinery::Application.routes.draw do
 
   put '/toggle_session', :to => 'conference_sessions#toggle_session'
 
-
   scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
     resources :conference_sessions, :except => :show do
       collection do
