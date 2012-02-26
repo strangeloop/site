@@ -74,38 +74,36 @@ class ConferenceSession < ActiveRecord::Base
     conference_session_url(self)
   end
 
-  class <<self
-    def all_years
-      this_year = Time.now.year
-      ((minimum('conf_year') || this_year)..this_year).to_a.reverse
-    end
+  def self.all_years
+    this_year = Time.now.year
+    ((minimum('conf_year') || this_year)..this_year).to_a.reverse
+  end
 
-    def from_year(year = nil)
-      where(:conf_year => year || maximum('conf_year'))
-    end
+  def self.from_year(year = nil)
+    where(:conf_year => year || maximum('conf_year'))
+  end
 
-    #returns ordered map of "defined" conference sessions, for
-    #the current year, keyed by session day, then session_time (ascending)
-    def by_session_time
-      sessions = defined_format.from_year.by_start_time_and_room
-      hash = ActiveSupport::OrderedHash.new{|h, k| h[k] = ConferenceSession::new_ordered_hash_of_arrays }
-      sessions.each{|session| hash[session.day][session.session_time] << session }
-      hash
-    end
+  #returns ordered map of "defined" conference sessions, for
+  #the current year, keyed by session day, then session_time (ascending)
+  def self.by_session_time
+    sessions = defined_format.from_year.by_start_time_and_room
+    hash = ActiveSupport::OrderedHash.new{|h, k| h[k] = ConferenceSession::new_ordered_hash_of_arrays }
+    sessions.each{|session| hash[session.day][session.session_time] << session }
+    hash
+  end
 
-    def to_csv(year = nil)
-      FasterCSV.generate({:force_quotes => true}) do |csv|
-        csv << ["conf_year", "start_time", "position",
-          "title", "format", "talk_type",
-          "abstract", "comments", "prereqs",
-          "av_requirement", "video_approval", "speaker"]
-        from_year(year).each do |c|
-          speakers = c.talk.speakers.to_a
-          csv << [c.conf_year, c.start_time, c.position,
-            c.title, c.format, c.talk.talk_type,
-            c.talk.abstract, c.talk.comments, c.talk.prereqs,
-            c.talk.av_requirement, c.talk.video_approval, speakers.join(";")]
-        end
+  def self.to_csv(year = nil)
+    FasterCSV.generate({:force_quotes => true}) do |csv|
+      csv << ["conf_year", "start_time", "position",
+        "title", "format", "talk_type",
+        "abstract", "comments", "prereqs",
+        "av_requirement", "video_approval", "speaker"]
+      from_year(year).each do |c|
+        speakers = c.talk.speakers.to_a
+        csv << [c.conf_year, c.start_time, c.position,
+          c.title, c.format, c.talk.talk_type,
+          c.talk.abstract, c.talk.comments, c.talk.prereqs,
+          c.talk.av_requirement, c.talk.video_approval, speakers.join(";")]
       end
     end
   end
