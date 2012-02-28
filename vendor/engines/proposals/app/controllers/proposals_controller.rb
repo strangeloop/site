@@ -11,7 +11,8 @@ class ProposalsController < ApplicationController
   def create
     if talk.save
       Proposal.create :status => 'submitted', :talk => talk, :format => format
-      SpeakerMailer.talk_submission_email(talk).deliver
+      email_method = format == 'talk' ? 'talk_submission_email' : 'workshop_submission_email'
+      SpeakerMailer.send(email_method, talk).deliver
       render "create_#{format}"
     else
       render "new_#{format}"

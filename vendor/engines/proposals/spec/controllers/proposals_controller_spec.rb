@@ -25,7 +25,7 @@ describe ProposalsController do
           Talk.stub(:new => mock_talk)
           mock_talk.stub(:save => true, :tap => mock_talk)
           Proposal.stub(:create)
-          SpeakerMailer.stub_chain(:talk_submission_email, :deliver)
+          SpeakerMailer.stub_chain(:send, :deliver)
         end
 
         it 'creates a new talk' do
@@ -45,7 +45,7 @@ describe ProposalsController do
         end
 
         it 'sends an email to the speaker' do
-          SpeakerMailer.should_receive(:talk_submission_email).with(mock_talk).and_return(mock_email)
+          SpeakerMailer.should_receive(:send).with("workshop_submission_email", mock_talk).and_return(mock_email)
           mock_email.should_receive(:deliver)
           post :create, params
         end

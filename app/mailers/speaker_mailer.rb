@@ -32,7 +32,12 @@ class SpeakerMailer < ActionMailer::Base
 
   def talk_submission_email(talk)
     @talk = talk
-    send_email_with_cc(talk, "Your talk was successfully submitted")
+    send_email_with_cc(talk, "Your talk proposal was successfully submitted")
+  end
+
+  def workshop_submission_email(talk)
+    @talk = talk
+    send_email_with_cc(talk, "Your workshop proposal was successfully submitted")
   end
 
   def talk_accepted_email(talk, session_time)
