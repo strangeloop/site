@@ -62,3 +62,7 @@ Then /^I should see the come back later message$/ do
   page.should have_content("No sessions for the #{Time.now.year} conference have been announced yet. Please check back later, follow us on Twitter, or subscribe to our mailing list.")
 end
 
+Then /^I should not see the come back later message$/ do
+  page.should_not have_content("Please check back later, follow us on Twitter")
+end
+

@@ -67,4 +67,14 @@ Feature: As a user I can see talks I might want to attend
     When I am on the sessions page
     Then I should see the come back later message
 
+  Scenario: No check-back message when sessions scheduled
+    Given a keynote session exists
+    When I am on the sessions page
+    Then I should not see the come back later message
+
+  Scenario: No check-back message when workshops scheduled
+    Given a workshop session exists
+    When I am on the workshops page
+    Then I should not see the come back later message
+
 

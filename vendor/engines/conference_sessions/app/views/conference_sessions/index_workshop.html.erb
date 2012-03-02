@@ -18,7 +18,7 @@
 
     <% end -%>
 
-    <% unless (sessions_by_format.keys.include?('ELC') || sessions_by_format.keys.include?('workshop')) -%>
+    <% unless sessions_by_format.keys.any? {|session| %w(ELC workshop).include? session} -%>
       <%= t('.no_sessions_message', :next_conf_year => Time.now.year).html_safe %>
     <% end -%>
   </div>
