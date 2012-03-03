@@ -29,6 +29,8 @@
         <%= render "/shared/admin/search", :url => admin_proposals_url %>
       </li>
     <% end %>
+    <li><%= link_to "Current Year Talk Proposals", admin_proposals_path(:format => 'talk') %></li>
+    <li><%= link_to "Current Year Workshop Proposals", admin_proposals_path(:format => 'workshop') %></li>
   <% if current_user.has_role? :organizer -%>
     <li><%= link_to "Export Proposals", export_admin_proposals_path("csv") %></li>
   <% end -%>
