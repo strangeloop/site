@@ -3,7 +3,7 @@
     <div class="p3">
       <h3><%= session_day %></h3>
       <% session_times.each_pair do |session_time, sessions| %>
-        <ul class="free">
+        <ul class="free clearfix">
           <li class="column1" style="line-height: <%= time_column_height sessions.size %>%">
             <%= time_period_for session_time %>
           </li>
