@@ -91,6 +91,7 @@ en:
       ELC: Emerging Languages Camp
       workshop: Workshops
     schedule:
+      hide_schedule_details: "The schedule for the next Strange Loop conference has not yet been announced.  Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
       schedule: Schedule
     show:
       other: Other Conference Sessions

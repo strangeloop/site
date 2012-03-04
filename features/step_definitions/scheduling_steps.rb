@@ -26,8 +26,15 @@ Given /^there are no tracks$/ do
   Track.destroy_all
 end
 
+Given /^schedule details are configured to be hidden$/ do
+  RefinerySetting.set(:hide_schedule_details, 'true')
+end
+
 Then /^I should see "([^"]*)" as a link to the schedule page$/ do |link_text|
   page.has_link?(link_text, :href => schedule_path).should be_true
 end
 
+Then /^I see the come back later message$/ do
+  page.should have_content('The schedule for the next Strange Loop conference has not yet been announced.')
+end
 
