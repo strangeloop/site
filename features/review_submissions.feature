@@ -85,7 +85,7 @@ Feature: As a conference talks reviewer
     And I am a logged in organizer
     And I am on the default proposal review page
     And I check "sendmail"
-    And I choose "Approve Talk"
+    And I choose "Approve talk"
     When I press "Decide"
     Then I should see "accepted"
     And a congrats email should be sent to the submitter
@@ -99,7 +99,7 @@ Feature: As a conference talks reviewer
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
-    And I choose "Approve Talk"
+    And I choose "Approve talk"
     And I check "sendmail"
     When I press "Decide"
     Then I should see "You must select a session time"
@@ -110,7 +110,7 @@ Feature: As a conference talks reviewer
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
-    And I choose "Approve Talk"
+    And I choose "Approve talk"
     When I press "Decide"
     Then I should see "accepted"
     And no email should be sent
@@ -125,7 +125,7 @@ Feature: As a conference talks reviewer
     And I am a logged in organizer
     And I am on the default proposal review page
     And I check "sendmail"
-    And I choose "Reject Talk"
+    And I choose "Reject talk"
     When I press "Decide"
     Then I should see "rejected"
     And a rejection email should be sent to the submitter
@@ -137,7 +137,7 @@ Feature: As a conference talks reviewer
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
-    And I choose "Reject Talk"
+    And I choose "Reject talk"
     When I press "Decide"
     Then I should see "rejected"
     And no email should be sent

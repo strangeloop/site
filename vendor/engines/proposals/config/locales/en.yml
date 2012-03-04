@@ -33,7 +33,7 @@ en:
         from_reviewer: Feedback from
         image: Speaker Image
         prereqs: Prerequisites
-        proposal: Proposal
+        proposal: "%{proposal_format} Proposal"
         reviewer_comments: Reviewer Comments
         session_time: Schedule the Session Time
         state: State
@@ -44,8 +44,8 @@ en:
         video_approval: Video Approval
         your_rating: Your feedback
         send_mail: Send Notification Email to Speaker?
-        approve_talk: Approve Talk
-        reject_talk: Reject Talk
+        approve_talk: "Approve %{proposal_format}"
+        reject_talk: "Reject %{proposal_format}"
       add_comment:
         comment_button: Add Comment
 

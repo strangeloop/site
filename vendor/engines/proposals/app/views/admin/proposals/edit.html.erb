@@ -18,7 +18,7 @@
 
 
 <div id='records'>
-  <h2><%= t('.proposal') %></h2>
+  <h2><%= t('.proposal', :proposal_format => @proposal.format.capitalize ) %></h2>
 
   <table id="inquiry">
     <tbody>
@@ -124,10 +124,10 @@
 
           <div id='proposal-status'>
             <%= radio_button_tag :status, 'accepted', @proposal.accepted? %>
-            <%= label_tag :status_accepted, t('.approve_talk') %>
+            <%= label_tag :status_accepted, t('.approve_talk', :proposal_format => @proposal.format) %>
 
             <%= radio_button_tag :status, 'rejected', @proposal.rejected? %>
-            <%= label_tag :status_rejected, t('.reject_talk') %>
+            <%= label_tag :status_rejected, t('.reject_talk', :proposal_format => @proposal.format) %>
           </div>
           <% if !@proposal.accepted? %>
             <div id='session-time'>
