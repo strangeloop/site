@@ -43,4 +43,7 @@ class Talk < ActiveRecord::Base
 
   accepts_nested_attributes_for :tags
 
+  def main_speaker
+    speakers.first
+  end
 end
