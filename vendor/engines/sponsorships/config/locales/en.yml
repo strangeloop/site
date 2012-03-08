@@ -20,6 +20,7 @@ en:
       actions:
         create_new: Add New Sponsorship
         manage_sponsorship_levels: Manage Sponsorship Levels
+        manage_sponsorships_from: "Manage Sponsorships from %{year}"
         reorder: Reorder Sponsorships
         reorder_done: Done Reordering Sponsorships
       form:
