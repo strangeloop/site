@@ -23,6 +23,8 @@ module Admin
 
     crudify :sponsorship, :xhr_paging => true
 
+    expose(:conf_sponsorships){ Sponsorship.paginate({:page => params[:page], :per_page => 1})}
+
     def new
       @sponsorship = Sponsorship.new(:contact => Contact.new, :sponsor => Sponsor.new)
     end
