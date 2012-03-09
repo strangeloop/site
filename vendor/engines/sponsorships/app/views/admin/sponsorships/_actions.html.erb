@@ -25,4 +25,7 @@
 <li>
   <%= link_to t('.manage_sponsorship_levels'), admin_sponsorship_levels_url %>
 </li>
+<% for year in all_years %>
+      <li><%= link_to t(".manage_sponsorships_from", :year => year), admin_sponsorships_path(:year => year) %></li>
+<% end %>
 </ul>
