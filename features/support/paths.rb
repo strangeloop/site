@@ -40,6 +40,9 @@ module NavigationHelpers
     when /the new workshops page/
       new_proposal_of_path(:workshop)
 
+    when /the new elc talks page/
+      new_proposal_of_path(:elc)
+
     when /the review proposals page/
       admin_proposals_path
 

@@ -1,0 +1,47 @@
+<div class="container_12">
+  <div class="overflow p3 pad3">
+    <h3>Emerging Languages Camp Talk Submitted</h3>
+  </div>
+  <div class="list4">
+    <div>Title</div>
+    <div><%= talk.title %></div>
+    <div>Abstract</div>
+    <div><%= raw textilize(talk.abstract) %></div>
+    <div>Talk Type</div>
+    <div><%= talk.talk_type %></div>
+    <div>Video Approval</div>
+    <div><%= talk.video_approval %></div>
+    <div>Comments</div>
+    <div><%= talk.comments %></div>
+    <div>Prereqs</div>
+    <div><%= talk.prereqs %></div>
+    <div>Audio/Visual Requirements</div>
+    <div><%= talk.av_requirement %></div>
+    <div>Tags</div>
+    <div><%= talk.tag_list %></div>
+  </div>
+  <div class="overflow p3">
+    <h3>Speaker Info</h3>
+  </div>
+  <div class="list4">
+    <div>Name</div>
+    <div><%= speaker_for(talk) %></div>
+    <div>Email</div>
+    <div><%= speaker.email %></div>
+    <div>Twitter ID:</div>
+    <div><%= twitter_link speaker.twitter_id %></div>
+    <div>Company</div>
+    <div><%= link_to speaker.company, speaker.company_url %></div>
+    <div>Bio</div>
+    <div><%= raw textilize(speaker.bio) %></div>
+    <div>Phone</div>
+    <div><%= speaker.phone %></div>
+    <div>City</div>
+    <div><%= speaker.city %></div>
+    <div>State</div>
+    <div><%= speaker.state %></div>
+    <div>Country</div>
+    <div><%= speaker.country %></div>
+  </div>
+</div>
+<div class="push"></div>

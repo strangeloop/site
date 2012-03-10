@@ -120,5 +120,41 @@ en:
       image_hint: "Ideally 450 x 450 image less than 1MB in size"
       commit: Send Talk Proposal
       submit_talk: Submit a Talk
+    new_elc:
+      title: Title
+      title_hint: "Max length: 55 characters."
+      abstract: Abstract
+      abstract_hint: "Max length: 2000 characters. Supports Textile markup."
+      talk_type: Talk Type
+      talk_length: Talk Format
+      video_approval: Video Approval
+      video_approval_hint: "If talks are recorded, are you willing to have your talk recorded and released publicly?  Even after the talk is recorded, you can change your mind and not release the video."
+      comments: Reviewer Comments
+      comments_hint: "These comments will not be released publicly but will be available to those reviewing your talk. It's a good place to indicate whether you have or have not done this talk before, your speaking experience, bribes, etc."
+      prereqs: Prerequisites
+      prereq_hint: "Please list a brief list of expected background for the talk.  This section is especially helpful if you are doing a Deep Dive talk to indicate what an attendee is expected to know."
+      av_req: Audio/Video Requirement
+      av_req_hint: "All speakers will be provided with power and a VGA cable connector for the projector, and a wireless mic as appropriate to the room.  If you need anything else (for example: sound from your computer), please indicate it here."
+      tags: Tags
+      tags_hint: "Please list tags, comma-delimited, related to your talk.  Good tags include the language you're using, key libraries, concepts, etc.  These tags will likely be modified to create common tags between talks before they are posted on the web site."
+      speaker: Speaker
+      fname: First Name
+      lname: Last Name
+      email: Email
+      twitter_id: Twitter ID
+      company: Company
+      company_url: Company Website
+      bio: Bio
+      bio_hint: Supports Textile markup
+      phone: Phone
+      phone_hint: "Optional, for emergency contact"
+      city: City
+      city_hint: "City, State, and Country are private fields used for an estimate of travel cost."
+      state: State
+      country: Country
+      image: Speaker Image
+      image_hint: "Ideally 450 x 450 image less than 1MB in size"
+      commit: Send ELC Proposal
+      submit_talk: Emerging Languages Camp Proposal
     show:
       other: Other Proposals
