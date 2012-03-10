@@ -23,6 +23,10 @@ module Admin
 
     crudify :sponsorship, :xhr_paging => true
 
+    expose(:year) { params[:year] || Time.now.year }
+    expose(:all_years) { Sponsorship.all_years }
+    expose(:current_sponsorships){ Sponsorship.from_year(year).paginate({:page => params[:page], :per_page => 30})}
+    
     def new
       @sponsorship = Sponsorship.new(:contact => Contact.new, :sponsor => Sponsor.new)
     end
