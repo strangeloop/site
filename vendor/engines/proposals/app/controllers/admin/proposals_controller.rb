@@ -45,10 +45,8 @@ module Admin
     end
 
     def proposals_for_format
-      if (format == 'talk')
-        Proposal.current.talk
-      elsif (format == 'workshop')
-        Proposal.current.workshop
+      if (Proposal.format_options.include?(format))
+        Proposal.current.send(format)
       else
         []
       end

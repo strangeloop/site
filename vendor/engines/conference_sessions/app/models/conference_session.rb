@@ -13,10 +13,11 @@
 #- limitations under the License.
 #-
 
-
+require 'session_formats'
 
 class ConferenceSession < ActiveRecord::Base
   include Rails.application.routes.url_helpers
+  include SessionFormats
   default_url_options[:host] = 'thestrangeloop.com'
 
   belongs_to :slides, :class_name => 'Resource'
@@ -27,10 +28,6 @@ class ConferenceSession < ActiveRecord::Base
 
   acts_as_indexed :fields => [:conf_year]
   accepts_nested_attributes_for :talk
-
-  def self.format_options
-    %w(keynote workshop ELC talk lightning undefined strange\ passions panel miscellaneous)
-  end
 
   validates_inclusion_of :format, :in => format_options
   validates_presence_of :talk
