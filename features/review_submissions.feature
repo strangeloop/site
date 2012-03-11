@@ -75,7 +75,7 @@ Feature: As a conference talks reviewer
     And I am a logged in reviewer
     And I am on the default proposal review page
     When I rate the proposal with 3 stars
-    Then the default proposal should have a 3 out of 5 star rating
+    Then the proposal I rated should have a 3 out of 5 star rating
     And I should see "under review"
 
   Scenario: Conference organizer approves proposal
@@ -132,7 +132,7 @@ Feature: As a conference talks reviewer
     And I follow "Proposals"
     Then I should see "rejected"
 
-    Scenario: Conference organizer rejects an approved proposal
+  Scenario: Conference organizer rejects an approved proposal
     Given a proposal exists
     And there are no conference sessions
     And I am a logged in organizer
@@ -144,6 +144,11 @@ Feature: As a conference talks reviewer
     And I follow "Proposals"
     Then I should see "rejected"
 
-
+  @57
+  Scenario: Reviewers see rating indicator for proposals they have already rated
+    Given I am a logged in reviewer
+    And I have rated a proposal
+    When I see all proposals
+    Then the proposal I rated should have a 3 out of 5 star rating
 
 
