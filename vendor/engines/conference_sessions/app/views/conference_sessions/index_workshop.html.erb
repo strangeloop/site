@@ -10,7 +10,7 @@
 <div id="main" class="shape">
   <div class="container_12 pad3">
     <%= raw t('.call_for_workshops_message') %>
-    <% %w(ELC workshop).each do |format| -%>
+    <% %w(elc workshop).each do |format| -%>
 
     <%= render 'session_groups',  :sessions_by_format => sessions_by_format,
                                   :format => format.gsub('_', ' '),
@@ -18,7 +18,7 @@
 
     <% end -%>
 
-    <% unless sessions_by_format.keys.any? {|session| %w(ELC workshop).include? session} -%>
+    <% unless sessions_by_format.keys.any? {|session| %w(elc workshop).include? session} -%>
       <%= t('.no_sessions_message', :next_conf_year => Time.now.year).html_safe %>
     <% end -%>
   </div>
