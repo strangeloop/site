@@ -8,6 +8,11 @@
   <p>
     <strong><%= t('.age') %>:</strong> <%= time_ago_in_words(@proposal.created_at) %>
   </p>
+  <p>
+    <strong><%= t('.status') -%></strong>
+
+    <span id='proposal_status'><%= @proposal.status -%></span>
+  </p>
   <h2><%= t('.actions') %></h2>
   <ul>
     <li>
@@ -24,7 +29,7 @@
     <tbody>
 
       <% [:title, :abstract, :comments, :prereqs, :av_requirement,
-        :video_approval, :talk_type].each do |field| %>
+          :video_approval, :talk_type].each do |field| %>
 
           <tr>
             <td>
@@ -83,13 +88,6 @@
           <% end -%>
         <% end %>
 
-        <tr>
-          <td>
-            <strong><%= t('.status') -%></strong>
-          </td>
-
-          <td id='proposal_status'><%= @proposal.status -%></td>
-        </tr>
 
         <tr>
           <td>
