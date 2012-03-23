@@ -151,4 +151,15 @@ Feature: As a conference talks reviewer
     When I see all proposals
     Then the proposal I rated should have a 3 out of 5 star rating
 
+  @wip
+  Scenario: Reviewer flags a proposal for follow-up
+    Given a proposal exists
+    When I flag the proposal for follow-up
+    Then I should see the proposal has been flagged
+
+  @wip
+  Scenario: Reviewer clears follow-up flag on proposal
+    Given a flagged proposal exists
+    When I clear the follow-up flag on the proposal
+    Then I should see the proposal is no longer flagged
 
