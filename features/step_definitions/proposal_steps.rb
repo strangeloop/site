@@ -15,10 +15,6 @@
 
 
 
-When /^I approve the proposal$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
 Given /^there are no submitted talks$/ do
   Proposal.destroy_all
 end
@@ -63,16 +59,28 @@ Given /^the following talks have been submitted:$/ do |table|
   end
 end
 
-When /^I rate the proposal with (\d+) stars$/ do |rating|
-  click_link rating
-end
-
-Then /^the default proposal should have a (\d+) out of (\d+) star rating$/ do |rating, maximum|
-  page.should have_content("Your rating: #{rating} out of #{maximum}")
+Given /^a comment "([^"]*)" was added to the proposal by (.*)$/ do |comment, reviewer|
+  Proposal.first.tap{|p| p.comments.create(:comment => comment, :user => User.find_by_username(reviewer))}.save
 end
 
 Given /^the proposal was rated with (\d+) star[s]? by (.*)$/ do |stars, reviewer|
   Proposal.first.rate(stars.to_i, User.find_by_username(reviewer), 'appeal')
+end
+
+Given /^I have rated a proposal$/ do
+  Factory(:proposal).rate(3, User.last, 'appeal')
+end
+
+When /^I rate the proposal with (\d+) stars$/ do |rating|
+  click_link rating
+end
+
+When /^I see all proposals$/ do
+  visit admin_proposals_path
+end
+
+Then /^the proposal I rated should have a (\d+) out of (\d+) star rating$/ do |rating, maximum|
+  page.should have_content("Your rating: #{rating} out of #{maximum}")
 end
 
 def check_email(body)
@@ -84,22 +92,20 @@ def check_email(body)
   ActionMailer::Base.deliveries.clear
 end
 
-And /^a congrats email should be sent to the submitter$/ do
+Then /^a congrats email should be sent to the submitter$/ do
   check_email "Congrats"
 end
 
-And /^a rejection email should be sent to the submitter$/ do
+Then /^a rejection email should be sent to the submitter$/ do
   check_email "isn't a good fit"
 end
 
-And /^no email should be sent$/ do
+Then /^no email should be sent$/ do
   ActionMailer::Base.deliveries.size.should == 0
 end
 
-Given /^a comment "([^"]*)" was added to the proposal by (.*)$/ do |comment, reviewer|
-  Proposal.first.tap{|p| p.comments.create(:comment => comment, :user => User.find_by_username(reviewer))}.save
+Then /^I see that I have rated the proposal$/ do
+  page.should have_content("")
+  page.should have_css('li#proposal-1 span.stars-3')
 end
-
-
-
 

@@ -19,7 +19,7 @@
     padding: 0;
     background-position: left top;
 }
-.ajaxful-rating li{ display: inline; }
+/* .ajaxful-rating li{ display: inline; }*/
 .ajaxful-rating a,
 .ajaxful-rating span,
 .ajaxful-rating .show-value{
@@ -32,16 +32,17 @@
     outline: none;
     overflow: hidden;
     border: none;
+    padding: 0 0 !important;
 }
 .ajaxful-rating a:hover,
 .ajaxful-rating a:active,
-.ajaxful-rating a:focus{
+.ajaxful-rating a:focus {
     background-position: left bottom;
 }
 
 /* This section is generated dynamically.
 Just add a call to the helper method 'ajaxful_rating_style' within
-the head tags in your main layout 
+the head tags in your main layout
 .ajaxful-rating .stars-1{
 width: 20%;
 z-index: 6;
