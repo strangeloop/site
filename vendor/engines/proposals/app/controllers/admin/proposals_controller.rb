@@ -18,7 +18,7 @@
 module Admin
   class ProposalsController < Admin::BaseController
     expose(:proposal)
-    expose(:current_proposals) { proposals_for_format.paginate({:page => params[:page], :per_page => 10})}
+    expose(:current_proposals) { proposals_for_format.paginate({:page => params[:page], :per_page => 20})}
     expose(:session_times) { SessionTime.current_year }
     expose(:format) { params[:format] || 'talk' }
     expose(:format_name) { format.capitalize.pluralize }
