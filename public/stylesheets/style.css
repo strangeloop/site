@@ -645,3 +645,7 @@ form fieldset input[type="submit"] {
   margin-top: 3em;
 }
 
+.session_message {
+  font-size: 1.2em;
+}
+

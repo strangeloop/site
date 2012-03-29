@@ -86,7 +86,7 @@ en:
       talk: Talks
       workshop: Workshops
     index_workshop:
-      call_for_workshops_message: "<p>The Strange Loop 2012 conference will take place Sept 24-25th.  The preconf day will take place on Sept 23rd and consist of longer form workshops and the co-located Emerging Languages Camp.  All events on Sept 23rd are optional and additional cost.  If you are interested in teaching a workshop, please see the <a href='/preconf-page/call-for-workshops'>call for workshops</a>.</p><br/>"
+      call_for_workshops_message: "<p>The Strange Loop 2012 conference will take place Sept 24-25th. The preconf day (all workshops and the Emerging Languages Camp listed here) will take place on Sept 23rd. All events on Sept 23rd are optional and <strong>ARE NOT INCLUDED</strong> in the Strange Loop conference rate. You must register and pay for these events.</p>"
       no_sessions_message: "No workshops for the %{next_conf_year} conference have been announced yet. Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
       elc: Emerging Languages Camp
       workshop: Workshops
@@ -94,4 +94,10 @@ en:
       hide_schedule_details: "The schedule for the next Strange Loop conference has not yet been announced.  Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
       schedule: Schedule
     show:
+      elc_session_message: "This session is part of the optional Emerging Languages Camp on the preconference day, Sunday Sept. 23rd. You must be registered for Strange Loop to sign up for the Emerging Languages Camp.  Registering for the camp is an additional cost ($150)."
+      lightning_session_message: ""
+      keynote_session_message: ""
+      panel_session_message: ""
+      talk_session_message: ""
+      workshop_session_message: "This workshop is an optional paid event on the preconference day, Sunday Sept. 23rd. You must be registered for Strange Loop to sign up for this workshop. Registering for this workshop is an additional cost ($100)."
       other: Other Conference Sessions

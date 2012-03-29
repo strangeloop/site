@@ -17,6 +17,9 @@
           <%= raw textilize(speaker.bio) %>
         </p>
     <% end %>
+    <% if conference_session.conf_year == Time.now.year %>
+      <div class="session_message"><%= t(".#{conference_session.format}_session_message") %></div>
+    <% end %>
     </div>
   </div>
 </div>
