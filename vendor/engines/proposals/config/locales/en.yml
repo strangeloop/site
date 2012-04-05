@@ -92,6 +92,7 @@ en:
       talk_length: Talk Format
       video_approval: Video Approval
       video_approval_hint: "If talks are recorded, are you willing to have your talk recorded and released publicly?  Even after the talk is recorded, you can change your mind and not release the video."
+      duration: Talk Duration
       comments: Reviewer Comments
       comments_hint: "These comments will not be released publicly but will be available to those reviewing your talk. It's a good place to indicate whether you have or have not done this talk before, your speaking experience, bribes, etc."
       prereqs: Prerequisites

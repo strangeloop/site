@@ -33,8 +33,13 @@ class Talk < ActiveRecord::Base
     ["Deep Dive", "Intro", "Survey", "Other"]
   end
 
+  def self.talk_durations
+    ["50 Minutes", "20 Minutes"]
+  end
+
   validates_inclusion_of :video_approval, :in => video_approvals
   validates_inclusion_of :talk_type, :in => talk_types
+  validates_inclusion_of :duration, :in => talk_durations, :allow_nil => true
 
   validates_length_of :title, :maximum => 55
   validates_length_of :abstract, :maximum => 2000
