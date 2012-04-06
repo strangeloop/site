@@ -96,6 +96,7 @@ Factory.define :talk do |t|
   t.abstract       'A talk about samples'
   t.talk_type      'Intro'
   t.video_approval 'Yes'
+  t.duration       '50 Minutes'
   t.speakers       { [Factory(:speaker)] }
 end
 
