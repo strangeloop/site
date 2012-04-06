@@ -73,6 +73,7 @@ en:
       company: Company
       company_url: Company Website
       bio: Bio
+      bio_hint: ""
       phone: Phone
       phone_hint: "Optional, for emergency contact"
       city: City
@@ -109,6 +110,7 @@ en:
       company: Company
       company_url: Company Website
       bio: Bio
+      bio_hint: ""
       phone: Phone
       phone_hint: "Optional, for emergency contact"
       city: City
@@ -144,6 +146,7 @@ en:
       company: Company
       company_url: Company Website
       bio: Bio
+      bio_hint: ""
       phone: Phone
       phone_hint: "Optional, for emergency contact"
       city: City
