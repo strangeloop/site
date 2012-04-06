@@ -11,6 +11,7 @@ Feature: As a conference organizer, I should be able to manage and search
     And I am on the default conference session page
     And I change the Title field to "New title"
     And I change the Abstract field to "New abstract"
+    And I change the Talk Duration field to "20 Minutes"
     When I push the Save button
     Then I should be on the dashboard page
     Then I visit the default conference session page
