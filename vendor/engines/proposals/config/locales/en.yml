@@ -46,6 +46,7 @@ en:
         send_mail: Send Notification Email to Speaker?
         approve_talk: "Approve %{proposal_format}"
         reject_talk: "Reject %{proposal_format}"
+        duration: Duration
       add_comment:
         comment_button: Add Comment
 
