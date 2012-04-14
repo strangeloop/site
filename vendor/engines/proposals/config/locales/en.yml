@@ -51,6 +51,8 @@ en:
         comment_button: Add Comment
 
   proposals:
+    cfp_expired:
+      expiration_message: "The call for %{proposal_format} proposals has expired."
     new_workshop:
       title: Title
       title_hint: "Max length: 55 characters."

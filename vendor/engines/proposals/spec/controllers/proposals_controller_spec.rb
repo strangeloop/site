@@ -4,13 +4,32 @@ describe ProposalsController do
   #necessary because refinery serves admin creation page unless an admin acct exists
   login_admin
 
-  context 'format is workshop' do
-    describe '#new' do
-      it 'renders the new_workshop template' do
-        get :new, :format => 'workshop'
-        response.should render_template('proposals/new_workshop')
+  shared_examples_for "proposal format" do |proposal_format|
+    context 'CFP expired' do
+      describe '#new' do
+        before { RefinerySetting.set("#{proposal_format}_proposals_accepted".to_sym, 'false') }
+
+        it 'renders the cfp_expired template' do
+          get :new, :format => proposal_format
+          response.should render_template("proposals/cfp_expired")
+        end
       end
     end
+
+    context 'CFP open' do
+      describe '#new' do
+        before { RefinerySetting.set("#{proposal_format}_proposals_accepted".to_sym, 'true') }
+        it 'renders the new template' do
+          get :new, :format => proposal_format
+          response.should render_template("proposals/new_#{proposal_format}")
+        end
+      end
+    end
+  end
+
+  context 'format is workshop' do
+
+    it_should_behave_like "proposal format", "workshop"
 
     describe '#create' do
       context 'valid workshop and speaker data is submitted' do
@@ -66,9 +85,10 @@ describe ProposalsController do
   end
 
   context 'format is talk' do
-    it 'renders the new_talk template' do
-      get :new, :format => 'talk'
-      response.should render_template('proposals/new_talk')
-    end
+    it_should_behave_like "proposal format", "talk"
+  end
+
+  context 'format is elc' do
+    it_should_behave_like "proposal format", "elc"
   end
 end
