@@ -4,6 +4,7 @@ Feature: As an anonymous user I can enter a workshop along with
 
   Scenario: Users can enter a workshop
       Given an admin exists
+      And the workshop cfp is open
       And I go to the new workshops page
       And I fill in the following:
       | Title | Squashing NP Hard Problems with Clojure |
