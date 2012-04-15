@@ -9,6 +9,8 @@
     <div><%= raw textilize(talk.abstract) %></div>
     <div>Talk Type</div>
     <div><%= talk.talk_type %></div>
+    <div>Track</div>
+    <div><%= talk.track.name if talk.track %></div>
     <div>Video Approval</div>
     <div><%= talk.video_approval %></div>
     <div>Talk Duration</div>
