@@ -13,7 +13,7 @@
             <%= talk_form.input :abstract, :label => t('.abstract'),
                 :input_html => { :class => "freetext" }, :hint => t('.abstract_hint')%>
             <%= talk_form.input :talk_type, :label => t('.workshop_type'),
-                :as => :select, :collection => Talk.talk_types %>
+                :as => :select, :collection => talk_types %>
             <%= talk_form.input :comments, :label => t('.comments'),
                 :hint => t('.comments_hint') , :input_html => { :class => "freetext" }%>
             <%= talk_form.input :prereqs, :label => t('.prereqs'),

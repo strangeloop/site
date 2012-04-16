@@ -39,6 +39,10 @@ class Proposal < ActiveRecord::Base
     where('created_at > ?', DateTime.parse("Jan 1, #{Time.now.year}"))
   }
 
+  def self.by_taggings(*tags)
+    joins(:talk => :tags).where('tags.name' => tags).uniq
+  end
+
   format_options.each {|format| scope format, :conditions => { :format => format } }
 
   def comments_by_user(user)

@@ -22,6 +22,7 @@ module Admin
     expose(:session_times) { SessionTime.current_year }
     expose(:format) { params[:format] || 'talk' }
     expose(:format_name) { format.capitalize.pluralize }
+    expose(:tracks) { Track.current_year }
 
     before_filter(:only =>[:rate, :add_comment]) do
       redirect_to(root_path) unless current_user.has_role? :reviewer

@@ -6,7 +6,9 @@ Feature: As an anonymous user I can enter a talk along with
     Given an admin exists
 
   Scenario: Users can enter a talk
-      Given I go to the talk submission page
+      Given an admin exists
+      And a talk track exists
+      And I go to the talk submission page
       And I fill in the following:
       | Title | Squashing NP Hard Problems with Clojure |
       | Abstract | Using only functions, sequences and three toothpicks I will make 3 SAT solvable in O(n) time |
@@ -25,6 +27,7 @@ Feature: As an anonymous user I can enter a talk along with
       | State | MO |
 
       And I select "Deep Dive" in "Talk Type"
+      And I select "Big Data" in "Track"
       And I select "No" in "Video Approval"
       And I select "United States" in "Country"
       And I select "50 Minutes" in "Talk Duration"
@@ -35,6 +38,7 @@ Feature: As an anonymous user I can enter a talk along with
       When I press "Send Talk Proposal"
       Then I should see "Squashing NP Hard Problems with Clojure"
       And I should see "Deep Dive"
+      And I should see "Big Data"
       And I should see "50 Minutes"
       And I should see "Karp"
       And I should see "projector"
