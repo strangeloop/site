@@ -9,7 +9,11 @@ class ProposalsController < ApplicationController
   expose(:durations) { Talk.talk_durations }
 
   def new
-    render "new_#{format}"
+    if RefinerySetting.find_or_set("#{format}_proposals_accepted".to_sym, 'true') == true
+      render "new_#{format}"
+    else
+      render "cfp_expired"
+    end
   end
 
   def create

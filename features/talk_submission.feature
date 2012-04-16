@@ -2,6 +2,9 @@ Feature: As an anonymous user I can enter a talk along with
   speaker information so that it can be reviewed and determined
   if it is appropriate for the conference
 
+  Background:
+    Given an admin exists
+
   Scenario: Users can enter a talk
       Given an admin exists
       And a talk track exists
@@ -53,8 +56,7 @@ Feature: As an anonymous user I can enter a talk along with
       And an email should be sent
 
   Scenario: Users can enter a short talk
-      Given an admin exists
-      And I go to the talk submission page
+      Given I go to the talk submission page
       And I fill in the following:
       | Title | Squashing NP Hard Problems with Clojure |
       | Abstract | Using only functions, sequences and three toothpicks I will make 3 SAT solvable in O(n) time |
@@ -99,7 +101,11 @@ Feature: As an anonymous user I can enter a talk along with
       And I should see "clojure"
       And an email should be sent
 
-
+  @60
+  Scenario: Proposal submission period expired
+    Given the period for submitting workshop proposals has expired
+    When I try to create a new workshop proposal
+    Then I see a message that the workshop proposal period has expired
 
 
 
