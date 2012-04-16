@@ -10,6 +10,21 @@
   </p>
   <h2><%= t('.actions') %></h2>
   <ul>
+    <% if @proposal.format == 'talk' %>
+      <li>
+      <%= form_for [:admin, proposal] do |f| -%>
+        <fieldset>
+          <legend>Proposal Track</legend>
+
+        <%= f.fields_for :talk do |talk_form| %>
+          <%= talk_form.label :track_id, t('.track') -%>
+          <%= talk_form.collection_select :track_id, tracks, :id, :name, :prompt => true -%>
+        <% end %>
+        <%= submit_tag t('.update_track') %>
+        </fieldset>
+      <% end %>
+      </li>
+    <% end %>
     <li>
       <%= link_to t('.back_to_all_proposals'), {:action => 'index'}, :class => "back_icon" %>
     </li>

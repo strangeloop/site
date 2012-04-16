@@ -40,10 +40,12 @@ en:
         status: Review Status
         talk_type: Talk Type
         title: Title
+        track: Track
         twitter_id: Twitter Username
         video_approval: Video Approval
         your_rating: Your feedback
         send_mail: Send Notification Email to Speaker?
+        update_track: Update
         approve_talk: "Approve %{proposal_format}"
         reject_talk: "Reject %{proposal_format}"
         duration: Duration
