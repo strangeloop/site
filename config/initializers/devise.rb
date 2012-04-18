@@ -158,7 +158,7 @@
   require 'regonline_auth_strategy'
   
   config.warden do |manager|
-    manager.default_strategies(:scope => :user).unshift :regonline_authenticatable
+    manager.default_strategies(:scope => :attendee_cred).unshift :regonline_authenticatable
   end
   
 end
