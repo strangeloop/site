@@ -13,24 +13,20 @@
 #- limitations under the License.
 #-
 
-
+require 'session_formats'
 
 class ConferenceSession < ActiveRecord::Base
   include Rails.application.routes.url_helpers
+  include SessionFormats
   default_url_options[:host] = 'thestrangeloop.com'
 
   belongs_to :slides, :class_name => 'Resource'
   belongs_to :talk
   belongs_to :session_time
   belongs_to :room
-  belongs_to :track
 
   acts_as_indexed :fields => [:conf_year]
   accepts_nested_attributes_for :talk
-
-  def self.format_options
-    %w(keynote workshop ELC talk lightning undefined strange\ passions panel miscellaneous)
-  end
 
   validates_inclusion_of :format, :in => format_options
   validates_presence_of :talk
@@ -42,12 +38,10 @@ class ConferenceSession < ActiveRecord::Base
   scope :defined_format, where('format <> ?', 'undefined')
   scope :by_start_time_and_room, includes(:session_time, :room).order('session_times.start_time', 'rooms.position ASC')
 
+  [:title, :track, :track=].each {|field| delegate field, :to => :talk}
+
   def format
     self[:format] || 'undefined'
-  end
-
-  def title
-    talk.title
   end
 
   def description
@@ -74,38 +68,36 @@ class ConferenceSession < ActiveRecord::Base
     conference_session_url(self)
   end
 
-  class <<self
-    def all_years
-      this_year = Time.now.year
-      ((minimum('conf_year') || this_year)..this_year).to_a.reverse
-    end
+  def self.all_years
+    this_year = Time.now.year
+    ((minimum('conf_year') || this_year)..this_year).to_a.reverse
+  end
 
-    def from_year(year = nil)
-      where(:conf_year => year || maximum('conf_year'))
-    end
+  def self.from_year(year = nil)
+    where(:conf_year => year || maximum('conf_year'))
+  end
 
-    #returns ordered map of "defined" conference sessions, for
-    #the current year, keyed by session day, then session_time (ascending)
-    def by_session_time
-      sessions = defined_format.from_year.by_start_time_and_room
-      hash = ActiveSupport::OrderedHash.new{|h, k| h[k] = ConferenceSession::new_ordered_hash_of_arrays }
-      sessions.each{|session| hash[session.day][session.session_time] << session }
-      hash
-    end
+  #returns ordered map of "defined" conference sessions, for
+  #the current year, keyed by session day, then session_time (ascending)
+  def self.by_session_time
+    sessions = defined_format.from_year.by_start_time_and_room
+    hash = ActiveSupport::OrderedHash.new{|h, k| h[k] = ConferenceSession::new_ordered_hash_of_arrays }
+    sessions.each{|session| hash[session.day][session.session_time] << session }
+    hash
+  end
 
-    def to_csv(year = nil)
-      FasterCSV.generate({:force_quotes => true}) do |csv|
-        csv << ["conf_year", "start_time", "position",
-          "title", "format", "talk_type",
-          "abstract", "comments", "prereqs",
-          "av_requirement", "video_approval", "speaker"]
-        from_year(year).each do |c|
-          speakers = c.talk.speakers.to_a
-          csv << [c.conf_year, c.start_time, c.position,
-            c.title, c.format, c.talk.talk_type,
-            c.talk.abstract, c.talk.comments, c.talk.prereqs,
-            c.talk.av_requirement, c.talk.video_approval, speakers.join(";")]
-        end
+  def self.to_csv(year = nil)
+    FasterCSV.generate({:force_quotes => true}) do |csv|
+      csv << ["conf_year", "start_time", "position",
+        "title", "format", "talk_type",
+        "abstract", "comments", "prereqs",
+        "av_requirement", "video_approval", "speaker"]
+      from_year(year).each do |c|
+        speakers = c.talk.speakers.to_a
+        csv << [c.conf_year, c.start_time, c.position,
+          c.title, c.format, c.talk.talk_type,
+          c.talk.abstract, c.talk.comments, c.talk.prereqs,
+          c.talk.av_requirement, c.talk.video_approval, speakers.join(";")]
       end
     end
   end

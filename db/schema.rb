@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215110221) do
+ActiveRecord::Schema.define(:version => 20120412044558) do
 
   create_table "attendee_creds", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(:version => 20120215110221) do
     t.integer  "conf_year"
     t.integer  "session_time_id"
     t.integer  "room_id"
-    t.integer  "track_id"
   end
 
   add_index "conference_sessions", ["cached_slug"], :name => "index_conference_sessions_on_cached_slug", :unique => true
@@ -103,7 +102,6 @@ ActiveRecord::Schema.define(:version => 20120215110221) do
   add_index "conference_sessions", ["session_time_id"], :name => "index_conference_sessions_on_session_time_id"
   add_index "conference_sessions", ["slides_id"], :name => "index_conference_sessions_on_slides_id"
   add_index "conference_sessions", ["talk_id"], :name => "index_conference_sessions_on_talk_id"
-  add_index "conference_sessions", ["track_id"], :name => "index_conference_sessions_on_track_id"
 
   create_table "contacts", :force => true do |t|
     t.string   "name"
@@ -414,6 +412,8 @@ ActiveRecord::Schema.define(:version => 20120215110221) do
     t.datetime "updated_at"
     t.string   "video_approval"
     t.string   "talk_type"
+    t.string   "duration"
+    t.integer  "track_id"
   end
 
   create_table "tracks", :force => true do |t|

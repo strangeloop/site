@@ -33,28 +33,33 @@ en:
         from_reviewer: Feedback from
         image: Speaker Image
         prereqs: Prerequisites
-        proposal: Proposal
+        proposal: "%{proposal_format} Proposal"
         reviewer_comments: Reviewer Comments
         session_time: Schedule the Session Time
         state: State
         status: Review Status
         talk_type: Talk Type
         title: Title
+        track: Track
         twitter_id: Twitter Username
         video_approval: Video Approval
         your_rating: Your feedback
         send_mail: Send Notification Email to Speaker?
-        approve_talk: Approve Talk
-        reject_talk: Reject Talk
+        update_track: Update
+        approve_talk: "Approve %{proposal_format}"
+        reject_talk: "Reject %{proposal_format}"
+        duration: Duration
       add_comment:
         comment_button: Add Comment
 
   proposals:
+    cfp_expired:
+      expiration_message: "The call for %{proposal_format} proposals has expired."
     new_workshop:
       title: Title
       title_hint: "Max length: 55 characters."
       abstract: Abstract
-      abstract_hint: "Max length: 2000 characters. Supports Textile markup."
+      abstract_hint: "Max length: 2000 characters."
       workshop_type: Workshop Type
       talk_length: Workshop Format
       comments: Reviewer Comments
@@ -73,7 +78,7 @@ en:
       company: Company
       company_url: Company Website
       bio: Bio
-      bio_hint: Supports Textile markup
+      bio_hint: ""
       phone: Phone
       phone_hint: "Optional, for emergency contact"
       city: City
@@ -88,7 +93,45 @@ en:
       title: Title
       title_hint: "Max length: 55 characters."
       abstract: Abstract
-      abstract_hint: "Max length: 2000 characters. Supports Textile markup."
+      abstract_hint: "Max length: 2000 characters."
+      talk_type: Talk Type
+      talk_length: Talk Format
+      track: Track
+      video_approval: Video Approval
+      video_approval_hint: "If talks are recorded, are you willing to have your talk recorded and released publicly?  Even after the talk is recorded, you can change your mind and not release the video."
+      duration: Talk Duration
+      comments: Reviewer Comments
+      comments_hint: "These comments will not be released publicly but will be available to those reviewing your talk. It's a good place to indicate whether you have or have not done this talk before, your speaking experience, bribes, etc."
+      prereqs: Prerequisites
+      prereq_hint: "Please list a brief list of expected background for the talk.  This section is especially helpful if you are doing a Deep Dive talk to indicate what an attendee is expected to know."
+      av_req: Audio/Video Requirement
+      av_req_hint: "All speakers will be provided with power and a VGA cable connector for the projector, and a wireless mic as appropriate to the room.  If you need anything else (for example: sound from your computer), please indicate it here."
+      tags: Tags
+      tags_hint: "Please list tags, comma-delimited, related to your talk.  Good tags include the language you're using, key libraries, concepts, etc.  These tags will likely be modified to create common tags between talks before they are posted on the web site."
+      speaker: Speaker
+      fname: First Name
+      lname: Last Name
+      email: Email
+      twitter_id: Twitter ID
+      company: Company
+      company_url: Company Website
+      bio: Bio
+      bio_hint: ""
+      phone: Phone
+      phone_hint: "Optional, for emergency contact"
+      city: City
+      city_hint: "City, State, and Country are private fields used for an estimate of travel cost."
+      state: State
+      country: Country
+      image: Speaker Image
+      image_hint: "Ideally 450 x 450 image less than 1MB in size"
+      commit: Send Talk Proposal
+      submit_talk: Submit a Talk
+    new_elc:
+      title: Title
+      title_hint: "Max length: 55 characters."
+      abstract: Abstract
+      abstract_hint: "Max length: 2000 characters."
       talk_type: Talk Type
       talk_length: Talk Format
       video_approval: Video Approval
@@ -109,7 +152,7 @@ en:
       company: Company
       company_url: Company Website
       bio: Bio
-      bio_hint: Supports Textile markup
+      bio_hint: ""
       phone: Phone
       phone_hint: "Optional, for emergency contact"
       city: City
@@ -118,7 +161,7 @@ en:
       country: Country
       image: Speaker Image
       image_hint: "Ideally 450 x 450 image less than 1MB in size"
-      commit: Send Talk Proposal
-      submit_talk: Submit a Talk
+      commit: Send ELC Proposal
+      submit_talk: Emerging Languages Camp Proposal
     show:
       other: Other Proposals

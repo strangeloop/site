@@ -22,6 +22,7 @@ class Talk < ActiveRecord::Base
   end
 
   has_and_belongs_to_many :speakers
+  belongs_to :track
 
   accepts_nested_attributes_for :speakers
 
@@ -33,8 +34,17 @@ class Talk < ActiveRecord::Base
     ["Deep Dive", "Intro", "Survey", "Other"]
   end
 
+  def self.talk_durations
+    ["50 Minutes", "20 Minutes"]
+  end
+
+  def duration
+    self[:duration] || Talk.talk_durations.first
+  end
+
   validates_inclusion_of :video_approval, :in => video_approvals
   validates_inclusion_of :talk_type, :in => talk_types
+  validates_inclusion_of :duration, :in => talk_durations, :allow_nil => true
 
   validates_length_of :title, :maximum => 55
   validates_length_of :abstract, :maximum => 2000
@@ -43,4 +53,7 @@ class Talk < ActiveRecord::Base
 
   accepts_nested_attributes_for :tags
 
+  def main_speaker
+    speakers.first
+  end
 end

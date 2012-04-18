@@ -94,7 +94,7 @@ GEM
     acts_as_commentable (3.0.1)
     acts_as_indexed (0.7.7)
     addressable (2.2.7)
-    ajaxful_rating (3.0.0.beta8)
+    ajaxful_rating (3.0.0.beta7)
     arel (2.0.10)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
@@ -308,9 +308,9 @@ PLATFORMS
 DEPENDENCIES
   RedCloth (~> 4.2)
   ZenTest (= 4.6.0)
-  acts-as-taggable-on
+  acts-as-taggable-on (~> 2.2.2)
   acts_as_commentable (= 3.0.1)
-  ajaxful_rating (~> 3.0.0.beta3)
+  ajaxful_rating (= 3.0.0.beta7)
   autotest (= 4.4.6)
   autotest-notification (= 2.3.3)
   autotest-rails (= 4.1.0)

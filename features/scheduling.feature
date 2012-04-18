@@ -36,7 +36,7 @@ Feature: As a conference organizer, I can manage where and when
     And I am on the conference sessions admin index page
     And I follow "Manage Conference Session Times"
     And I follow "Add a Session Time"
-    When I select "June 7, 2011, 14:00" as the "Start Time" date and time 
+    When I select "June 7, 2011, 14:00" as the "Start Time" date and time
     And I select "1" from "Duration (Hours:Minutes)"
     And I push the Save button
     Then I should be on the session times index page
@@ -85,5 +85,10 @@ Feature: As a conference organizer, I can manage where and when
     And I should see "'Sample Talk' was successfully updated."
 
   Scenario: Site visitor views populated schedule page
-    
 
+  Scenario: Schedule page shows message to come back later for schedule
+    Given a talk session exists
+    And I am a logged in organizer
+    And schedule details are configured to be hidden
+    When I am on the schedule page
+    Then I see the come back later message

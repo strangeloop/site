@@ -41,5 +41,15 @@ class Sponsorship < ActiveRecord::Base
       sponsorships.each{|s| hash[s.sponsorship_level.name] << s }
       hash
     end
+
+    def all_years
+      this_year = Time.now.year
+      ((minimum('year') || this_year)..this_year).to_a.reverse
+    end
+
+    def from_year(year = nil)
+      where(:year => year || maximum('year'))
+    end
+
   end
 end

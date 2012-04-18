@@ -10,6 +10,21 @@
   </p>
   <h2><%= t('.actions') %></h2>
   <ul>
+    <% if @proposal.format == 'talk' %>
+      <li>
+      <%= form_for [:admin, proposal] do |f| -%>
+        <fieldset>
+          <legend>Proposal Track</legend>
+
+        <%= f.fields_for :talk do |talk_form| %>
+          <%= talk_form.label :track_id, t('.track') -%>
+          <%= talk_form.collection_select :track_id, tracks, :id, :name, :prompt => true -%>
+        <% end %>
+        <%= submit_tag t('.update_track') %>
+        </fieldset>
+      <% end %>
+      </li>
+    <% end %>
     <li>
       <%= link_to t('.back_to_all_proposals'), {:action => 'index'}, :class => "back_icon" %>
     </li>
@@ -18,13 +33,13 @@
 
 
 <div id='records'>
-  <h2><%= t('.proposal') %></h2>
+  <h2><%= t('.proposal', :proposal_format => @proposal.format.capitalize ) %></h2>
 
   <table id="inquiry">
     <tbody>
 
       <% [:title, :abstract, :comments, :prereqs, :av_requirement,
-        :video_approval, :talk_type].each do |field| %>
+        :video_approval, :talk_type, :duration].each do |field| %>
 
           <tr>
             <td>
@@ -124,10 +139,10 @@
 
           <div id='proposal-status'>
             <%= radio_button_tag :status, 'accepted', @proposal.accepted? %>
-            <%= label_tag :status_accepted, t('.approve_talk') %>
+            <%= label_tag :status_accepted, t('.approve_talk', :proposal_format => @proposal.format) %>
 
             <%= radio_button_tag :status, 'rejected', @proposal.rejected? %>
-            <%= label_tag :status_rejected, t('.reject_talk') %>
+            <%= label_tag :status_rejected, t('.reject_talk', :proposal_format => @proposal.format) %>
           </div>
           <% if !@proposal.accepted? %>
             <div id='session-time'>

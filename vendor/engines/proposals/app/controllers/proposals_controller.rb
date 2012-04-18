@@ -3,15 +3,24 @@ class ProposalsController < ApplicationController
   expose(:speaker) { talk.speakers.first }
   expose(:format) { params[:format] || params[:proposal][:format] }
   expose(:proposal) { Proposal.new :format => format, :talk => talk }
+  expose(:talk_types) { Talk.talk_types }
+  expose(:tracks) { Track.current_year }
+  expose(:video_approvals) { Talk.video_approvals }
+  expose(:durations) { Talk.talk_durations }
 
   def new
-    render "new_#{format}"
+    if RefinerySetting.find_or_set("#{format}_proposals_accepted".to_sym, 'true') == true
+      render "new_#{format}"
+    else
+      render "cfp_expired"
+    end
   end
 
   def create
     if talk.save
       Proposal.create :status => 'submitted', :talk => talk, :format => format
-      SpeakerMailer.talk_submission_email(talk).deliver
+      email_method = format == 'workshop' ? 'workshop_submission_email' : 'talk_submission_email'
+      SpeakerMailer.send(email_method, talk).deliver
       render "create_#{format}"
     else
       render "new_#{format}"

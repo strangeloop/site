@@ -75,7 +75,7 @@ Feature: As a conference talks reviewer
     And I am a logged in reviewer
     And I am on the default proposal review page
     When I rate the proposal with 3 stars
-    Then the default proposal should have a 3 out of 5 star rating
+    Then the proposal I rated should have a 3 out of 5 star rating
     And I should see "under review"
 
   Scenario: Conference organizer approves proposal
@@ -85,7 +85,7 @@ Feature: As a conference talks reviewer
     And I am a logged in organizer
     And I am on the default proposal review page
     And I check "sendmail"
-    And I choose "Approve Talk"
+    And I choose "Approve talk"
     When I press "Decide"
     Then I should see "accepted"
     And a congrats email should be sent to the submitter
@@ -99,7 +99,7 @@ Feature: As a conference talks reviewer
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
-    And I choose "Approve Talk"
+    And I choose "Approve talk"
     And I check "sendmail"
     When I press "Decide"
     Then I should see "You must select a session time"
@@ -110,7 +110,7 @@ Feature: As a conference talks reviewer
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
-    And I choose "Approve Talk"
+    And I choose "Approve talk"
     When I press "Decide"
     Then I should see "accepted"
     And no email should be sent
@@ -125,25 +125,32 @@ Feature: As a conference talks reviewer
     And I am a logged in organizer
     And I am on the default proposal review page
     And I check "sendmail"
-    And I choose "Reject Talk"
+    And I choose "Reject talk"
     When I press "Decide"
     Then I should see "rejected"
     And a rejection email should be sent to the submitter
     And I follow "Proposals"
     Then I should see "rejected"
 
-    Scenario: Conference organizer rejects an approved proposal
+  Scenario: Conference organizer rejects an approved proposal
     Given a proposal exists
     And there are no conference sessions
     And I am a logged in organizer
     And I am on the default proposal review page
-    And I choose "Reject Talk"
+    And I choose "Reject talk"
     When I press "Decide"
     Then I should see "rejected"
     And no email should be sent
     And I follow "Proposals"
     Then I should see "rejected"
 
+  @57
+  Scenario: Reviewers see rating indicator for proposals they have already rated
+    Given I am a logged in reviewer
+    And I have rated a proposal
+    When I see all proposals
+    Then the proposal I rated should have a 3 out of 5 star rating
 
+  
 
 

@@ -18,10 +18,11 @@
 module Admin
   class ProposalsController < Admin::BaseController
     expose(:proposal)
-    expose(:current_proposals) { proposals_for_format.paginate({:page => params[:page], :per_page => 10})}
+    expose(:current_proposals) { proposals_for_format.paginate({:page => params[:page], :per_page => 20})}
     expose(:session_times) { SessionTime.current_year }
     expose(:format) { params[:format] || 'talk' }
     expose(:format_name) { format.capitalize.pluralize }
+    expose(:tracks) { Track.current_year }
 
     before_filter(:only =>[:rate, :add_comment]) do
       redirect_to(root_path) unless current_user.has_role? :reviewer
@@ -45,10 +46,8 @@ module Admin
     end
 
     def proposals_for_format
-      if (format == 'talk')
-        Proposal.current.talk
-      elsif (format == 'workshop')
-        Proposal.current.workshop
+      if (Proposal.format_options.include?(format))
+        Proposal.current.send(format)
       else
         []
       end

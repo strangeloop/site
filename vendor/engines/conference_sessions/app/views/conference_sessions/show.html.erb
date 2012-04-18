@@ -8,13 +8,18 @@
       <h3><%= talk.title %></h3>
       <%= raw textilize(talk.abstract) %>
       <p></p>
-      <h4><%= speaker_for(talk) %></h4>
-      <h5><%= link_to speaker.company, speaker.company_url %></h5>
-      <%= twitter_link speaker.twitter_id %>
-      <p>
-        <strong>Bio:</strong>
-        <%= raw textilize(speaker.bio) %>
-      </p>
+      <% talk.speakers.each do |speaker| %>
+        <h4><%= "#{speaker.first_name} #{speaker.last_name}" %></h4>
+        <h5><%= link_to speaker.company, speaker.company_url %></h5>
+        <%= twitter_link speaker.twitter_id %>
+        <p>
+          <strong>Bio:</strong>
+          <%= raw textilize(speaker.bio) %>
+        </p>
+    <% end %>
+    <% if conference_session.conf_year == Time.now.year %>
+      <div class="session_message"><%= t(".#{conference_session.format}_session_message") %></div>
+    <% end %>
     </div>
   </div>
 </div>

@@ -13,10 +13,11 @@
 #- limitations under the License.
 #-
 
-
+require 'session_formats'
 
 class Proposal < ActiveRecord::Base
   extend ActiveSupport::Memoizable
+  include SessionFormats
 
   belongs_to :talk
   ajaxful_rateable :stars => 5, :dimensions => [:appeal]
@@ -38,8 +39,11 @@ class Proposal < ActiveRecord::Base
     where('created_at > ?', DateTime.parse("Jan 1, #{Time.now.year}"))
   }
 
-  scope :talk, lambda { where(:format => 'talk') }
-  scope :workshop, lambda { where(:format => 'workshop') }
+  def self.by_taggings(*tags)
+    joins(:talk => :tags).where('tags.name' => tags).uniq
+  end
+
+  format_options.each {|format| scope format, :conditions => { :format => format } }
 
   def comments_by_user(user)
     comments_ordered_by_submitted.select{|item| item.user_id == user.id}

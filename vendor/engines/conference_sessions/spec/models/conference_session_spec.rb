@@ -46,7 +46,7 @@ describe ConferenceSession do
       ConferenceSession.new(:talk => talk, :session_time => Factory(:session_time)).should be_valid
     end
 
-    %w(workshop keynote talk lightning undefined strange\ passions panel).each do |talk_format|
+    %w(workshop keynote elc talk lightning undefined strange\ passions panel).each do |talk_format|
       context "talk format validation" do
         let(:session) { ConferenceSession.new(:talk => Factory(:talk), :format => talk_format) }
         it "is valid with talk and #{talk_format}" do
@@ -64,7 +64,6 @@ describe ConferenceSession do
   it {should belong_to :slides}
   it {should belong_to :session_time}
   it {should belong_to :room}
-  it {should belong_to :track}
 
   it "gets its title from its talk" do
     conference_session.title.should == talk.title

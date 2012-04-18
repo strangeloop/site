@@ -25,8 +25,10 @@ module Admin
       prepend_before_filter fltr, :only => [:new, :edit]
     end
 
-    expose(:current_conference_sessions) { ConferenceSession.paginate({:page => params[:page], :per_page => 30})}
-    
+    expose(:year) { params[:year] || Time.now.year }
+    expose(:current_conference_sessions) { ConferenceSession.from_year(year).paginate({:page => params[:page], :per_page => 30})}
+    expose(:all_years) { ConferenceSession.all_years }
+
     crudify :conference_session
 
     def new

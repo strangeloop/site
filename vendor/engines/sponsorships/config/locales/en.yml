@@ -13,6 +13,8 @@ en:
         reorder: Reorder Sponsorship Levels
         reorder_done: Done Reordering Sponsorship Levels
         view_sponsorships: Return to Sponsorships
+      records:
+        no_items_yet: There are no sponsorship levels setup yet.  Add one by clicking "Add New Sponsorship Level".
       sponsorship_level:
         edit: Edit this sponsorship level
         delete: Remove this sponsorship level forever
@@ -20,6 +22,7 @@ en:
       actions:
         create_new: Add New Sponsorship
         manage_sponsorship_levels: Manage Sponsorship Levels
+        manage_sponsorships_from: "Manage Sponsorships from %{year}"
         reorder: Reorder Sponsorships
         reorder_done: Done Reordering Sponsorships
       form:

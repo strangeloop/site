@@ -1,11 +1,10 @@
-Feature: As an anonymous user I can enter a workshop along with
+Feature: As an anonymous user I can submit an emerging languages camp talk along with
   speaker information so that it can be reviewed and determined
   if it is appropriate for the conference
 
-  Scenario: Users can enter a workshop
+  Scenario: Users can enter an elc talk
       Given an admin exists
-      And the workshop cfp is open
-      And I go to the new workshops page
+      And I go to the new elc talks page
       And I fill in the following:
       | Title | Squashing NP Hard Problems with Clojure |
       | Abstract | Using only functions, sequences and three toothpicks I will make 3 SAT solvable in O(n) time |
@@ -23,13 +22,14 @@ Feature: As an anonymous user I can enter a workshop along with
       | City | St. Louis |
       | State | MO |
 
-      And I select "Deep Dive" in "Workshop Type"
+      And I select "Deep Dive" in "Talk Type"
+      And I select "No" in "Video Approval"
       And I select "United States" in "Country"
       And I fill in "Tags" with "theory, clojure"
 
       And I should see "Max length: 2000 characters."
 
-      When I press "Send Workshop Proposal"
+      When I press "Send ELC Proposal"
       Then I should see "Squashing NP Hard Problems with Clojure"
       And I should see "Deep Dive"
       And I should see "Karp"
@@ -46,8 +46,4 @@ Feature: As an anonymous user I can enter a workshop along with
       And I should see "theory"
       And I should see "clojure"
       And an email should be sent
-
-
-
-
 

@@ -18,6 +18,9 @@ en:
         manage_rooms: Manage Conference Rooms
         manage_session_times: Manage Conference Session Times
         manage_tracks: Manage Conference Tracks
+        manage_sessions_from: "Manage Conference Sessions from %{year}"
+        export_sessions_from: "Export Conference Sessions from %{year}"
+        sessions_for_year: "Sessions for %{year}"
       conference_session:
         view_live_html: View this conference session live <br/><em>(opens in a new window)</em>
         edit: Edit this conference session
@@ -83,10 +86,18 @@ en:
       talk: Talks
       workshop: Workshops
     index_workshop:
+      call_for_workshops_message: "<p>The Strange Loop 2012 conference will take place Sept 24-25th. The preconf day (all workshops and the Emerging Languages Camp listed here) will take place on Sept 23rd. All events on Sept 23rd are optional and <strong>ARE NOT INCLUDED</strong> in the Strange Loop conference rate. You must register and pay for these events.</p>"
       no_sessions_message: "No workshops for the %{next_conf_year} conference have been announced yet. Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
-      ELC: Emerging Languages Camp
+      elc: Emerging Languages Camp
       workshop: Workshops
     schedule:
+      hide_schedule_details: "The schedule for the next Strange Loop conference has not yet been announced.  Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
       schedule: Schedule
     show:
+      elc_session_message: "This session is part of the optional Emerging Languages Camp on the preconference day, Sunday Sept. 23rd. You must be registered for Strange Loop to sign up for the Emerging Languages Camp.  Registering for the camp is an additional cost ($150)."
+      lightning_session_message: ""
+      keynote_session_message: ""
+      panel_session_message: ""
+      talk_session_message: ""
+      workshop_session_message: "This workshop is an optional paid event on the preconference day, Sunday Sept. 23rd. You must be registered for Strange Loop to sign up for this workshop. Registering for this workshop is an additional cost ($100)."
       other: Other Conference Sessions

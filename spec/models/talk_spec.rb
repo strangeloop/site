@@ -37,6 +37,7 @@ describe Talk do
   end
 
   it {should have_and_belong_to_many :speakers}
+  it {should belong_to :track}
 
   [:abstract, :prereqs, :comments, :av_requirement].each do |field|
     it {should have_db_column(field).of_type(:text)}
@@ -53,11 +54,21 @@ describe Talk do
   end
 
   test_enum_fields( {Talk.video_approvals => :video_approval,
-                      Talk.talk_types => :talk_type})
+                      Talk.talk_types => :talk_type,
+                      Talk.talk_durations => :duration})
 
   it{ should_not allow_value("x" * 56).for(:title)}
   it{ should allow_value("x" * 1201).for(:abstract)}
   it{ should allow_value("x" * 2000).for(:abstract)}
   it{ should_not allow_value("x" * 2001).for(:abstract)}
 
+  describe '#main_speaker' do
+    let(:speaker) { Speaker.new }
+    let(:mock_speaker) { mock 'speaker' }
+    subject { Talk.new(:speakers => [speaker]) }
+
+    it 'delegates to the first speaker' do
+      subject.main_speaker.should == speaker
+    end
+  end
 end

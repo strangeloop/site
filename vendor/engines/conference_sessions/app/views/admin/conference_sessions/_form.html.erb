@@ -14,11 +14,6 @@
     <%= collection_select(:conference_session, :room_id, @rooms, :id, :title) -%>
   </div>
 
-  <div class='field'>
-    <%= f.label :track_id, t('.track') -%>
-    <%= collection_select(:conference_session, :track_id, @tracks, :id, :title) -%>
-  </div>
-
   <div class="field">
     <%= f.label :position %>
     <%= f.text_field :position %>
@@ -52,6 +47,12 @@
 
     <%= talk_form.label :talk_type %>
     <%= talk_form.select :talk_type, Talk.talk_types %>
+
+    <%= talk_form.label :track_id, t('.track') -%>
+    <%= talk_form.collection_select :track_id, @tracks, :id, :name -%>
+
+    <%= talk_form.label :talk_duration %>
+    <%= talk_form.select :duration, Talk.talk_durations, :include_blank  => true %>
 
     <%= talk_form.label :video_approval %>
     <%= talk_form.select :video_approval, Talk.video_approvals %>
