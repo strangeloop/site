@@ -21,6 +21,9 @@
 # customizations are triggered after Rails has finished
 # loading the app in an after_initialize callback.
 
+require "net/http"
+require "net/https"
+
 class UserCustomizer
 
   def self.load
@@ -43,7 +46,7 @@ class UserCustomizer
         https = Net::HTTP.new(url.host, url.port)
         https.use_ssl = true
         resp = https.start { |cx| cx.request(req) }
-        successful_response resp
+        successful_response? resp.body
       end
     end
   end

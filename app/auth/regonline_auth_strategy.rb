@@ -1,10 +1,22 @@
-Warden::Strategies.add(:regonline) do 
-  def valid? 
-    return true
-  end 
+require 'devise/strategies/authenticatable'
 
-  def authenticate!
-    u = User.authenticate_user(params[:username], params[:password], "849922")
-    u.nil? ? fail!("Could not log in") : success!(u)
-  end 
-end 
+module Devise
+  module Strategies
+    # Default strategy for signing in a user, based on his email and password in the database.
+    class RegOnlineAuthenticatable < Authenticatable
+      def authenticate!
+        login = params[:user][:login]
+        password = params[:user][:password]
+        u = valid_password? && User.authenticate_user(login, password, "1066825")
+        if validate(u){u.valid_password?(password) }
+          u.after_database_authentication
+          success!(u)
+        elsif
+          fail!(:invalid)
+        end
+      end
+    end
+  end
+end
+
+Warden::Strategies.add(:regonline_authenticatable, Devise::Strategies::RegOnlineAuthenticatable)
