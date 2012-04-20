@@ -4,7 +4,6 @@ module Devise
   module Strategies
     class RegOnlineAuthenticatable < Authenticatable
       def authenticate!
-        debugger
         login = params[:attendee_cred][:email]
         password = params[:attendee_cred][:password]
         u = valid_password? && AttendeeCred.authenticate_user(login, password, "1066825")

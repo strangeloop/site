@@ -45,17 +45,23 @@ iI6T+Wo5K+WCEfa0rsTF</APIToken>
   </Data>
 </ResultsOfListOfRegistration>"}
   
-  it "should return true with a successful auth XML" do
-    AttendeeCred.successful_response?(example_xml).should be_true
-  end
-
   let(:bad_xml){"<?xml version=\"1.0\" encoding=\"utf-8\"?>
 <ResultsOfListOfRegistration xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://www.regonline.com/api\">
   <Success>false</Success>
 </ResultsOfListOfRegistration>"}
 
   it "should return false with a failed auth XML" do
-    AttendeeCred.successful_response?(bad_xml).should be_false
+    AttendeeCred.attendee_from_regonline(bad_xml).should be_nil
+  end
+
+  it "should populate an attendee with regonline info" do
+    a = AttendeeCred.attendee_from_regonline(example_xml)
+    a.first_name.should == "Ryan"
+    a.last_name.should == "Senior"
+    a.reg_id.should == "24331859"
+    a.city.should == "St Louis"
+    a.state.should == "MO"
+    a.email.should == "rsenior@revelytix.com"
   end
 
 end

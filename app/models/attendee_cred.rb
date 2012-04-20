@@ -21,6 +21,24 @@ class AttendeeCred < ActiveRecord::Base
     xml_doc.ResultsOfListOfRegistration.Success.content == "true"
   end
 
+  def self.attendee_from_regonline(xml)
+    xml_doc = Nokogiri::Slop(xml)
+    xml_doc.remove_namespaces!
+    if xml_doc.ResultsOfListOfRegistration.Success.content == "true" 
+      a = Attendee.new
+      reg_info = xml_doc.ResultsOfListOfRegistration.Data.APIRegistration
+      a.first_name = reg_info.FirstName.content
+      a.last_name = reg_info.LastName.content
+      a.city = reg_info.City.content
+      a.state = reg_info.State.content
+      a.email = reg_info.Email.content
+      a.reg_id = reg_info.ID.content
+      a
+    else
+      nil
+    end
+  end
+
   def self.authenticate_user(email, password, eventId)
     url = URI.parse "https://www.regonline.com/webservices/default.asmx/LoginRegistrant"
     req = Net::HTTP::Post.new(url.path)
