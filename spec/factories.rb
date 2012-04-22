@@ -98,6 +98,11 @@ Factory.define :talk do |t|
   t.video_approval 'Yes'
   t.duration       '50 Minutes'
   t.speakers       { [Factory(:speaker)] }
+  t.track          { Factory(:track) }
+end
+
+Factory.define :big_data_talk, :parent => :talk do |t|
+  t.track { Factory(:talk_track) }
 end
 
 Factory.define :keynote_speaker, :parent => :speaker do |ks|

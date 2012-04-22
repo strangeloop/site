@@ -13,7 +13,7 @@
 #- limitations under the License.
 #-
 
-
+require 'will_paginate/array'
 
 module Admin
   class ProposalsController < Admin::BaseController
@@ -21,6 +21,7 @@ module Admin
     expose(:current_proposals) { proposals_for_format.paginate({:page => params[:page], :per_page => 20})}
     expose(:session_times) { SessionTime.current_year }
     expose(:format) { params[:format] || 'talk' }
+    expose(:filters) { params[:filter] || [] }
     expose(:format_name) { format.capitalize.pluralize }
     expose(:tracks) { Track.current_year }
 
@@ -46,7 +47,9 @@ module Admin
     end
 
     def proposals_for_format
-      if (Proposal.format_options.include?(format))
+      if !filters.empty?
+        Proposal.by_current_track filters
+      elsif Proposal.format_options.include?(format)
         Proposal.current.send(format)
       else
         []

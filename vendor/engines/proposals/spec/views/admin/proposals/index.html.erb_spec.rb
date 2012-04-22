@@ -32,7 +32,9 @@ describe "admin/proposals/index.html.erb" do
 
   it "hides export link for non-organizers" do
     view.stub(:current_user).and_return(role_check)
+    view.stub(:format).and_return('talk')
     view.stub(:format_name).and_return('Talks')
+    view.stub(:tracks).and_return([])
     view.stub(:current_proposals).and_return([])
     render
     rendered.should_not =~ /Export Proposals/
@@ -40,7 +42,9 @@ describe "admin/proposals/index.html.erb" do
 
   it "shows the Export Pending Proposals link for organizers" do
     view.stub(:current_user).and_return(role_check(true))
+    view.stub(:format).and_return('talk')
     view.stub(:format_name).and_return('Talks')
+    view.stub(:tracks).and_return([])
     view.stub(:current_proposals).and_return([])
     render
     rendered.should =~ /Export Proposals/

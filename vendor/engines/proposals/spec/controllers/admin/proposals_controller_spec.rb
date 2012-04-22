@@ -24,6 +24,55 @@ describe Admin::ProposalsController do
     load(File.join(File.dirname(__FILE__),'..','..','..','app', 'controllers','admin', 'proposals_controller.rb'))
   end
 
+  describe '#current_proposals' do
+    let(:paginated_proposals) { mock 'paginated_proposals' }
+    let(:proposals) { mock 'proposals' }
+
+    context 'proposals are filtered' do
+      let(:param) { ['foo'] }
+
+      login_admin
+
+      it 'returns filtered proposals based on params' do
+        Proposal.should_receive(:by_current_track).with(param).and_return(proposals)
+        proposals.should_receive(:paginate).with({:page => nil, :per_page => 20}).and_return(paginated_proposals)
+
+        get :index, :filter => param
+
+        controller.current_proposals.should == paginated_proposals
+      end
+    end
+
+    context 'proposals with supported format' do
+      let(:current_proposal) { mock 'current proposal' }
+      let(:formats) { [ format ] }
+      let(:format) { 'foo' }
+
+      it 'returns proposals from the supplied format' do
+        Proposal.should_receive(:format_options).and_return(formats)
+        Proposal.should_receive(:current).and_return(current_proposal)
+        current_proposal.should_receive(:send).with(format).and_return(proposals)
+        proposals.should_receive(:paginate).with({:page => nil, :per_page => 20}).and_return(paginated_proposals)
+
+        get :index, :format => format
+
+        controller.current_proposals.should == paginated_proposals
+
+      end
+    end
+
+    context 'proposals with unsupported format' do
+      let(:formats) { [] }
+      it 'returns an empty list' do
+        Proposal.should_receive(:format_options).and_return(formats)
+
+        get :index, :format => 'foo'
+
+        controller.current_proposals.should be_empty
+      end
+    end
+  end
+
   context 'role checking' do
     login_admin
 
