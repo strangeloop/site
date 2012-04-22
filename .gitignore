@@ -57,6 +57,7 @@ nbproject
 # Vim
 *.swp
 *.swo
+tmp/tags
 
 # RubyMine
 .idea
