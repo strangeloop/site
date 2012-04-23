@@ -64,4 +64,39 @@ iI6T+Wo5K+WCEfa0rsTF</APIToken>
     a.email.should == "rsenior@revelytix.com"
   end
 
+  let(:attendee) do
+    a = Attendee.new
+    a.first_name= "Ryan"
+    a.last_name= "Senior"
+    a.reg_id= "112233445566"
+    a.city= "St Louis"
+    a.state= "MO"
+    a.email= "rsenior@revelytix.com"
+    a
+  end
+  
+  it "Should create a password for the new attendee cred" do
+    ac = AttendeeCred.create_attendee_cred(attendee)
+
+    ac.email.should == attendee.email
+    ac.password.should_not be_nil
+    ac.password.length.should == 20
+  end
+
+  it "should create a new attendee if one does not exist" do
+    Attendee.existing_attendee?(attendee.reg_id).should be_false
+    AttendeeCred.create_new_attendee(attendee)
+    Attendee.existing_attendee?(attendee.reg_id).should be_true
+  end
+
+  it "should not create a new attendee if it already exists" do
+    Attendee.existing_attendee?(attendee.reg_id).should be_false
+    AttendeeCred.create_new_attendee(attendee)
+    prev_attendee = Attendee.existing_attendee?(attendee.reg_id)
+    AttendeeCred.create_new_attendee(attendee)
+    curr_attendee = Attendee.existing_attendee?(attendee.reg_id)
+    prev_attendee.created_at.should == curr_attendee.created_at
+    prev_attendee.id.should == curr_attendee.id
+  end
+
 end

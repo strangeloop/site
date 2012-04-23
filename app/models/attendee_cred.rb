@@ -1,3 +1,5 @@
+  require 'active_support/secure_random'
+  
 class AttendeeCred < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable
@@ -39,6 +41,20 @@ class AttendeeCred < ActiveRecord::Base
     end
   end
 
+  def self.create_attendee_cred(attendee)
+    ac = AttendeeCred.new
+    ac.email= attendee.email
+    ac.password = ActiveSupport::SecureRandom.hex(10)
+    ac
+  end
+
+  def self.create_new_attendee(attendee)
+    if attendee && !Attendee.existing_attendee?(attendee.reg_id)
+      attendee.attendee_cred = create_attendee_cred attendee
+      attendee.save
+    end
+  end
+
   def self.authenticate_user(email, password, eventId)
     url = URI.parse "https://www.regonline.com/webservices/default.asmx/LoginRegistrant"
     req = Net::HTTP::Post.new(url.path)
@@ -48,6 +64,7 @@ class AttendeeCred < ActiveRecord::Base
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
     resp = https.start { |cx| cx.request(req) }
-    successful_response? resp.body
+    attendee = attendee_from_regonline(resp.body)
+    create_new_attendee(attendee)
   end
 end

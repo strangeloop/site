@@ -152,6 +152,10 @@ class Attendee < ActiveRecord::Base
     end
   end
 
+  def self.existing_attendee?(reg_id)
+    Attendee.where("reg_id = ?", reg_id).first
+  end
+
   private
 
   def self.decrypt_token (cipher_text)
