@@ -75,14 +75,6 @@ iI6T+Wo5K+WCEfa0rsTF</APIToken>
     a
   end
   
-  it "Should create a password for the new attendee cred" do
-    ac = AttendeeCred.create_attendee_cred(attendee)
-
-    ac.email.should == attendee.email
-    ac.password.should_not be_nil
-    ac.password.length.should == 20
-  end
-
   it "should create a new attendee if one does not exist" do
     Attendee.existing_attendee?(attendee.reg_id).should be_false
     AttendeeCred.create_new_attendee(attendee)
@@ -97,6 +89,22 @@ iI6T+Wo5K+WCEfa0rsTF</APIToken>
     curr_attendee = Attendee.existing_attendee?(attendee.reg_id)
     prev_attendee.created_at.should == curr_attendee.created_at
     prev_attendee.id.should == curr_attendee.id
+  end
+
+  it "should not allow empty passwords" do
+    ac = AttendeeCred.create_new_attendee(attendee).attendee_cred
+    ac.valid_password?("").should be_false
+  end
+  
+  it "should not allow invalid users" do
+    ac = AttendeeCred.create_new_attendee(attendee).attendee_cred
+    ac.encrypted_password= nil
+    ac.valid_password?("foo").should be_false
+  end
+
+  it "should validate real passwords" do
+    ac = AttendeeCred.create_new_attendee(attendee).attendee_cred
+    ac.valid_password?("foo").should be_true
   end
 
 end

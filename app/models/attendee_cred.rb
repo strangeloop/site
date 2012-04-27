@@ -41,17 +41,18 @@ class AttendeeCred < ActiveRecord::Base
     end
   end
 
-  def self.create_attendee_cred(attendee)
-    ac = AttendeeCred.new
-    ac.email= attendee.email
-    ac.password = ActiveSupport::SecureRandom.hex(10)
-    ac
-  end
 
   def self.create_new_attendee(attendee)
-    if attendee && !Attendee.existing_attendee?(attendee.reg_id)
-      attendee.attendee_cred = create_attendee_cred attendee
-      attendee.save
+    if attendee
+      db_attendee  = Attendee.existing_attendee?(attendee.reg_id)
+      if !db_attendee
+        attendee.build_attendee_cred({:email => attendee.email,
+                                       :password => ActiveSupport::SecureRandom.hex(10)})
+        attendee.save!
+        db_attendee = attendee
+      end
+
+      db_attendee
     end
   end
 
@@ -65,6 +66,11 @@ class AttendeeCred < ActiveRecord::Base
     https.use_ssl = true
     resp = https.start { |cx| cx.request(req) }
     attendee = attendee_from_regonline(resp.body)
-    create_new_attendee(attendee)
+    attendee = create_new_attendee(attendee) if attendee
+    attendee && attendee.attendee_cred
+  end
+
+  def valid_password?(password)
+    !encrypted_password.blank? && !password.blank?
   end
 end
