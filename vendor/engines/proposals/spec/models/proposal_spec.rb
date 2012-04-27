@@ -297,4 +297,15 @@ describe Proposal do
       subject.rejected?.should be_false
     end
   end
+
+  describe '.by_current_track' do
+    let!(:proposal) { Factory(:proposal) }
+    let(:track) { 'Ruby' }
+
+    before { Factory(:proposal, :talk => Factory(:big_data_talk)) }
+
+    it 'returns proposals from the current year for a given track name' do
+      described_class.by_current_track(track).should == [proposal]
+    end
+  end
 end

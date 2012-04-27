@@ -19,7 +19,7 @@
   display: inline-block;
 }
 
-#statusForm input[type="submit"] {
+#statusForm input[type='submit'] {
   margin: 1.5em 0 0 8em;
   width: 8em;
   float: left;
@@ -33,5 +33,14 @@
 #proposal-status {
   width: 30%;
   float: left;
+}
+
+#filter input[type='checkbox'] {
+  margin: 0 8px 0 0;
+  float: left;
+}
+
+#filter input[type='submit'] {
+  margin-top: 12px;
 }
 

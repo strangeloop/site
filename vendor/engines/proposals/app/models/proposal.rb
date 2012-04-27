@@ -31,17 +31,20 @@ class Proposal < ActiveRecord::Base
 
   accepts_nested_attributes_for :talk
 
+  def self.current_year
+    DateTime.parse("Jan 1, #{Time.now.year}")
+  end
+
   scope :pending, lambda {
     where(:status => ['submitted', 'under review'])
   }
 
   scope :current, lambda {
-    where('created_at > ?', DateTime.parse("Jan 1, #{Time.now.year}"))
+    where('created_at > ?', current_year)
   }
 
-  def self.by_taggings(*tags)
-    joins(:talk => :tags).where('tags.name' => tags).uniq
-  end
+  scope :by_current_track,
+    lambda {|track_name| joins(:talk => :track).where('tracks.name' => track_name).where('proposals.created_at > ?', current_year ) }
 
   format_options.each {|format| scope format, :conditions => { :format => format } }
 

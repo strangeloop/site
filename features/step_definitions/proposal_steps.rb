@@ -71,12 +71,24 @@ Given /^I have rated a proposal$/ do
   Factory(:proposal).rate(3, User.last, 'appeal')
 end
 
+Given /^there are proposals with tracks$/ do
+  Factory(:proposal) #default track
+  Factory(:proposal, :talk => Factory(:big_data_talk))
+end
+
 When /^I rate the proposal with (\d+) stars$/ do |rating|
   click_link rating
 end
 
 When /^I see all proposals$/ do
   visit admin_proposals_path
+end
+
+When /^I filter by one of the proposal tracks$/ do
+  visit admin_proposals_path
+  assert_record_count 2
+  check 'Big Data'
+  click_on 'Filter'
 end
 
 Then /^the proposal I rated should have a (\d+) out of (\d+) star rating$/ do |rating, maximum|
@@ -107,5 +119,15 @@ end
 Then /^I see that I have rated the proposal$/ do
   page.should have_content("")
   page.should have_css('li#proposal-1 span.stars-3')
+end
+
+Then /^I only see proposals from that track$/ do
+  assert_record_count 1
+end
+
+def assert_record_count(number)
+  within('#sortable_list') do
+    page.should have_css('li.record', :count => number)
+  end
 end
 

@@ -35,5 +35,21 @@
   <% if current_user.has_role? :organizer -%>
     <li><%= link_to "Export Proposals", export_admin_proposals_path("csv") %></li>
   <% end -%>
+  <% if format == 'talk' %>
+    <li>
+      <%= field_set_tag 'Filter By Track', :id => 'filter' do %>
+        <%= form_tag admin_proposals_path, :method => 'get' do %>
+          <%= hidden_field_tag :track_filter, true  %>
+          <% tracks.each do |track| %>
+            <div>
+              <%= check_box_tag "filter[]", track.name, filters.include?(track.name) %>
+              <%= label_tag "filter[]", track.name %>
+            </div>
+          <% end %>
+          <%= submit_tag 'Filter' %>
+        <% end %>
+      <% end %>
+    </li>
+  <% end %>
   </ul>
 </div>
