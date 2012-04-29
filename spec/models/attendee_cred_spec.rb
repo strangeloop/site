@@ -81,6 +81,26 @@ iI6T+Wo5K+WCEfa0rsTF</APIToken>
     ac.valid_password?("foo").should be_true
   end
 
+  REGONLINE = URI.parse("https://www.regonline.com/webservices/default.asmx/LoginRegistrant")
+
+  it "should register authenticated but unknown users" do
+    p = double("post")
+    p.should_receive(:set_form_data).with({'email' => 'foo@bar.com',
+                                            'password' => 'pass',
+                                            'eventID' => '12345'}).once
+    Net::HTTP::Post.should_receive(:new).with(REGONLINE.path).once.and_return(p)
+
+    
+    https = double("https")
+    resp = double("resp")
+    resp.stub(:body){example_xml}
+    https.stub(:start){ |x| resp }
+    https.should_receive(:use_ssl=).with(true)
+    Net::HTTP.should_receive(:new).with("www.regonline.com", 443).once.and_return(https)
+    AttendeeCred.authenticate_user('foo@bar.com','pass','12345').should_not be_nil
+  end
+  
+
   # it "should call post" do
   #   uri = URI.parse "https://www.regonline.com/webservices/default.asmx/LoginRegistrant"
   #   Net::HTTP::Post.should_receive(:new).with(uri.path).once.and_return("the stuff")

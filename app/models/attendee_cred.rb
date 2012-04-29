@@ -33,18 +33,18 @@ class AttendeeCred < ActiveRecord::Base
     end
   end
 
+  REGONLINE = URI.parse("https://www.regonline.com/webservices/default.asmx/LoginRegistrant")
+
   def self.authenticate_user(email, password, eventId)
-    url = URI.parse "https://www.regonline.com/webservices/default.asmx/LoginRegistrant"
-    req = Net::HTTP::Post.new(url.path)
+    req = Net::HTTP::Post.new(REGONLINE.path)
     req.set_form_data({'email' => email,
                         'password' => password,
                         'eventID' => eventId})
-    https = Net::HTTP.new(url.host, url.port)
+    https = Net::HTTP.new(REGONLINE.host, REGONLINE.port)
     https.use_ssl = true
     resp = https.start { |cx| cx.request(req) }
     attendee = attendee_from_regonline(resp.body)
-    attendee = attendee.create_new_attendee(attendee) if attendee
-    attendee && attendee.attendee_cred
+    attendee.register_attendee.attendee_cred if attendee
   end
 
   def valid_password?(password)

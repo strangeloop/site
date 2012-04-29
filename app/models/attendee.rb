@@ -98,9 +98,9 @@ class Attendee < ActiveRecord::Base
       build_attendee_cred({:email => email,
                             :password => ActiveSupport::SecureRandom.hex(10)})
       save!
+      self
+    else
+      db_attendee
     end
-    
-    db_attendee
   end
-
 end
