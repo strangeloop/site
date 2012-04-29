@@ -31,6 +31,11 @@ gem 'faraday_middleware','0.6.3'
 
 gem 'rbx-require-relative','0.0.5'
 
+gem 'execjs', '1.3.0'
+gem 'barista', '1.2.1'
+gem 'json_pure', '~> 1.5.1'
+gem 'backbonejs-rails', '~> 0.0.6'
+
 group :development, :test do
   gem 'mongrel', '~> 1.2.0.pre2'
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
@@ -77,7 +82,6 @@ group :development, :test do
   gem 'gherkin'
   gem 'spork', '>= 0.9.0.rc4' unless Bundler::WINDOWS
   gem 'rack-test',              '~> 0.5.6'
-  gem 'json_pure', '~> 1.5.1'
   # Factory Girl
   #gem 'factory_girl'
   gem "#{'j' if RUBY_PLATFORM == 'java'}ruby-prof" unless defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
