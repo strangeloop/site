@@ -156,9 +156,22 @@ class Attendee < ActiveRecord::Base
     Attendee.where("reg_id = ?", reg_id).first
   end
 
+  def register_attendee
+
+    db_attendee  = Attendee.existing_attendee?(reg_id)
+    if !db_attendee
+      build_attendee_cred({:email => email,
+                            :password => ActiveSupport::SecureRandom.hex(10)})
+      save!
+    end
+    
+    db_attendee
+  end
+
   private
 
   def self.decrypt_token (cipher_text)
     Crypto.decrypt(@@activation_key, Base64.decode64(cipher_text)).split("|")
   end
+
 end

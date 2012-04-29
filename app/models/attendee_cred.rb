@@ -41,21 +41,6 @@ class AttendeeCred < ActiveRecord::Base
     end
   end
 
-
-  def self.create_new_attendee(attendee)
-    if attendee
-      db_attendee  = Attendee.existing_attendee?(attendee.reg_id)
-      if !db_attendee
-        attendee.build_attendee_cred({:email => attendee.email,
-                                       :password => ActiveSupport::SecureRandom.hex(10)})
-        attendee.save!
-        db_attendee = attendee
-      end
-
-      db_attendee
-    end
-  end
-
   def self.authenticate_user(email, password, eventId)
     url = URI.parse "https://www.regonline.com/webservices/default.asmx/LoginRegistrant"
     req = Net::HTTP::Post.new(url.path)
@@ -66,7 +51,7 @@ class AttendeeCred < ActiveRecord::Base
     https.use_ssl = true
     resp = https.start { |cx| cx.request(req) }
     attendee = attendee_from_regonline(resp.body)
-    attendee = create_new_attendee(attendee) if attendee
+    attendee = attendee.create_new_attendee(attendee) if attendee
     attendee && attendee.attendee_cred
   end
 

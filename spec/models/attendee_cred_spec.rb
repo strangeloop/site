@@ -64,47 +64,27 @@ iI6T+Wo5K+WCEfa0rsTF</APIToken>
     a.email.should == "rsenior@revelytix.com"
   end
 
-  let(:attendee) do
-    a = Attendee.new
-    a.first_name= "Ryan"
-    a.last_name= "Senior"
-    a.reg_id= "112233445566"
-    a.city= "St Louis"
-    a.state= "MO"
-    a.email= "rsenior@revelytix.com"
-    a
-  end
-  
-  it "should create a new attendee if one does not exist" do
-    Attendee.existing_attendee?(attendee.reg_id).should be_false
-    AttendeeCred.create_new_attendee(attendee)
-    Attendee.existing_attendee?(attendee.reg_id).should be_true
-  end
-
-  it "should not create a new attendee if it already exists" do
-    Attendee.existing_attendee?(attendee.reg_id).should be_false
-    AttendeeCred.create_new_attendee(attendee)
-    prev_attendee = Attendee.existing_attendee?(attendee.reg_id)
-    AttendeeCred.create_new_attendee(attendee)
-    curr_attendee = Attendee.existing_attendee?(attendee.reg_id)
-    prev_attendee.created_at.should == curr_attendee.created_at
-    prev_attendee.id.should == curr_attendee.id
-  end
-
   it "should not allow empty passwords" do
-    ac = AttendeeCred.create_new_attendee(attendee).attendee_cred
+    ac = AttendeeCred.new({:email => "foo@bar.com", :password => "a really good password"})
     ac.valid_password?("").should be_false
   end
   
   it "should not allow invalid users" do
-    ac = AttendeeCred.create_new_attendee(attendee).attendee_cred
-    ac.encrypted_password= nil
+    ac = AttendeeCred.new({:email => "foo@bar.com", :password => nil})
     ac.valid_password?("foo").should be_false
   end
 
+
+
   it "should validate real passwords" do
-    ac = AttendeeCred.create_new_attendee(attendee).attendee_cred
+    ac = AttendeeCred.new({:email => "foo@bar.com", :password => "a really good password"})
     ac.valid_password?("foo").should be_true
   end
+
+  # it "should call post" do
+  #   uri = URI.parse "https://www.regonline.com/webservices/default.asmx/LoginRegistrant"
+  #   Net::HTTP::Post.should_receive(:new).with(uri.path).once.and_return("the stuff")
+  #   AttendeeCred.small_thing().should == "the stuff"
+  # end
 
 end

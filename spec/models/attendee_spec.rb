@@ -203,10 +203,37 @@ describe Attendee do
     attendee.token_created_at= nil
     lambda{attendee.activation_token}.should raise_error
   end
-
+  
   it "should raise an exception when attendee does not have an email" do
     attendee.email= nil
     lambda{attendee.activation_token}.should raise_error
+  end
+
+  let(:test_attendee) do
+    a = Attendee.new
+    a.first_name= "Ryan"
+    a.last_name= "Senior"
+    a.reg_id= "112233445566"
+    a.city= "St Louis"
+    a.state= "MO"
+    a.email= "rsenior@revelytix.com"
+    a
+  end
+
+  it "should create a new attendee if one does not exist" do
+    Attendee.existing_attendee?(test_attendee.reg_id).should be_false
+    test_attendee.register_attendee
+    Attendee.existing_attendee?(test_attendee.reg_id).should be_true
+  end
+
+  it "should not create a new attendee if it already exists" do
+    Attendee.existing_attendee?(test_attendee.reg_id).should be_false
+    test_attendee.register_attendee
+    prev_attendee = Attendee.existing_attendee?(test_attendee.reg_id)
+    prev_attendee.register_attendee
+    curr_attendee = Attendee.existing_attendee?(test_attendee.reg_id)
+    prev_attendee.created_at.should == curr_attendee.created_at
+    prev_attendee.id.should == curr_attendee.id
   end
 
 end
