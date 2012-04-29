@@ -83,22 +83,52 @@ iI6T+Wo5K+WCEfa0rsTF</APIToken>
 
   REGONLINE = URI.parse("https://www.regonline.com/webservices/default.asmx/LoginRegistrant")
 
-  it "should register authenticated but unknown users" do
+  def net_http_mock(n)
     p = double("post")
     p.should_receive(:set_form_data).with({'email' => 'foo@bar.com',
                                             'password' => 'pass',
-                                            'eventID' => '12345'}).once
-    Net::HTTP::Post.should_receive(:new).with(REGONLINE.path).once.and_return(p)
-
-    
+                                            'eventID' => '12345'}).exactly(n).times
+    Net::HTTP::Post.should_receive(:new).with(REGONLINE.path).exactly(n).times.and_return(p)
     https = double("https")
     resp = double("resp")
     resp.stub(:body){example_xml}
     https.stub(:start){ |x| resp }
-    https.should_receive(:use_ssl=).with(true)
-    Net::HTTP.should_receive(:new).with("www.regonline.com", 443).once.and_return(https)
-    AttendeeCred.authenticate_user('foo@bar.com','pass','12345').should_not be_nil
+    https.should_receive(:use_ssl=).with(true).exactly(n).times
+    Net::HTTP.should_receive(:new).with("www.regonline.com", 443).exactly(n).times.and_return(https)
   end
+
+
+  context "regonline tests" do
+    before do
+      net_http_mock(1)
+    end
+    
+    it "should register authenticated but unknown users" do
+      Attendee.existing_attendee?("24331859").should be_nil
+      new_registered = AttendeeCred.authenticate_user('foo@bar.com','pass','12345')
+      after_reg = Attendee.existing_attendee?("24331859")
+      after_reg.attendee_cred.should  == new_registered
+    end
+
+  end
+
+  context "multi login regonline tests" do
+
+    before do
+      net_http_mock(2)
+    end
+
+    it "should not register existing users" do
+      Attendee.existing_attendee?("24331859").should be_nil
+      new_registered = AttendeeCred.authenticate_user('foo@bar.com','pass','12345')
+      Attendee.existing_attendee?("24331859").should_not be_nil
+      second_login = AttendeeCred.authenticate_user('foo@bar.com','pass','12345')
+      new_registered.should == second_login
+    end
+
+  end
+
+
   
 
   # it "should call post" do
