@@ -21,7 +21,7 @@ class Attendee < ActiveRecord::Base
 
   @@activation_key = YAML::load_file('config/activation.yml')["activation_key"]
 
-  attr_protected :reg_id, :acct_activation_token, :token_created_at, :attendee_cred_id, :conf_year
+  attr_protected :reg_id, :attendee_cred_id, :conf_year
 
   has_and_belongs_to_many :conference_sessions,
                           :uniq => true
@@ -31,7 +31,7 @@ class Attendee < ActiveRecord::Base
     validates field, :presence => true
   end
 
-  [:email, :twitter_id, :acct_activation_token].each do |field|
+  [:email, :twitter_id].each do |field|
     validates field, :uniqueness => true, :allow_nil => (field != :email)
   end
 
@@ -39,7 +39,6 @@ class Attendee < ActiveRecord::Base
 
   has_friendly_id :full_name, :use_slug => true
 
-  scope :registered, lambda { where('acct_activation_token IS NULL') }
   scope :current_year, lambda { where('conf_year' => maximum('conf_year')).order('last_name ASC', 'first_name ASC') }
 
   def session_calendar

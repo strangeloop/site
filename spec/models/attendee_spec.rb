@@ -28,12 +28,10 @@ describe Attendee do
   it {should belong_to :attendee_cred}
 
   context "protected attributes" do
-    [ :reg_id, :acct_activation_token,
-      :attendee_cred_id, :conf_year].each do |field|
+    [ :reg_id, :attendee_cred_id, :conf_year].each do |field|
       it {should protect_attribute(field, 'foo')}
       end
 
-    it {should protect_attribute(:token_created_at, Time.now)}
     it {should protect_attribute(:conf_year, 1400)}
   end
 
@@ -47,20 +45,16 @@ describe Attendee do
       Factory(:attendee)
     end
     it {should validate_uniqueness_of :email}
-    it {should validate_uniqueness_of :acct_activation_token}
     it {should validate_uniqueness_of :twitter_id}
 
-    it "allows nil for twitter_id and acct_activation_token" do
-      2.times{ Factory(:attendee, :acct_activation_token => nil, :twitter_id => nil).should be_valid}
+    it "allows nil for twitter_id" do
+      2.times{ Factory(:attendee, :twitter_id => nil).should be_valid}
     end
   end
 
   it "strips @ symbol from twitter id" do
     Attendee.new(:twitter_id => '@mario').twitter_id.should eq('mario')
   end
-
-  it {should have_db_column(:token_created_at).of_type(:datetime)}
-
 
   it "retrieves attendees by the latest year" do
     previous_conf_attendee = Factory(:attendee, :conf_year => 2010)
