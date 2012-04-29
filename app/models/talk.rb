@@ -22,6 +22,7 @@ class Talk < ActiveRecord::Base
   end
 
   has_and_belongs_to_many :speakers
+  belongs_to :track
 
   accepts_nested_attributes_for :speakers
 

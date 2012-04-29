@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120405014530) do
+ActiveRecord::Schema.define(:version => 20120412044558) do
 
   create_table "attendee_creds", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20120405014530) do
     t.string   "cached_slug"
     t.string   "company_url"
     t.integer  "attendee_cred_id"
+    t.text     "bio"
   end
 
   add_index "attendees", ["acct_activation_token"], :name => "index_attendees_on_acct_activation_token", :unique => true
@@ -93,7 +94,6 @@ ActiveRecord::Schema.define(:version => 20120405014530) do
     t.integer  "conf_year"
     t.integer  "session_time_id"
     t.integer  "room_id"
-    t.integer  "track_id"
   end
 
   add_index "conference_sessions", ["cached_slug"], :name => "index_conference_sessions_on_cached_slug", :unique => true
@@ -102,7 +102,6 @@ ActiveRecord::Schema.define(:version => 20120405014530) do
   add_index "conference_sessions", ["session_time_id"], :name => "index_conference_sessions_on_session_time_id"
   add_index "conference_sessions", ["slides_id"], :name => "index_conference_sessions_on_slides_id"
   add_index "conference_sessions", ["talk_id"], :name => "index_conference_sessions_on_talk_id"
-  add_index "conference_sessions", ["track_id"], :name => "index_conference_sessions_on_track_id"
 
   create_table "contacts", :force => true do |t|
     t.string   "name"
@@ -137,13 +136,12 @@ ActiveRecord::Schema.define(:version => 20120405014530) do
     t.integer  "news_item_id"
     t.string   "locale"
     t.text     "body"
-    t.string   "title"
     t.string   "external_url"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "news_item_translations", ["locale"], :name => "index_news_item_translations_on_locale"
   add_index "news_item_translations", ["news_item_id"], :name => "index_news_item_translations_on_news_item_id"
 
   create_table "news_items", :force => true do |t|
@@ -167,7 +165,6 @@ ActiveRecord::Schema.define(:version => 20120405014530) do
     t.datetime "updated_at"
   end
 
-  add_index "page_part_translations", ["locale"], :name => "index_page_part_translations_on_locale"
   add_index "page_part_translations", ["page_part_id"], :name => "index_page_part_translations_on_page_part_id"
 
   create_table "page_parts", :force => true do |t|
@@ -191,7 +188,6 @@ ActiveRecord::Schema.define(:version => 20120405014530) do
     t.datetime "updated_at"
   end
 
-  add_index "page_translations", ["locale"], :name => "index_page_translations_on_locale"
   add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
@@ -417,6 +413,7 @@ ActiveRecord::Schema.define(:version => 20120405014530) do
     t.string   "video_approval"
     t.string   "talk_type"
     t.string   "duration"
+    t.integer  "track_id"
   end
 
   create_table "tracks", :force => true do |t|

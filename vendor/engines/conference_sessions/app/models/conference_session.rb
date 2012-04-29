@@ -24,7 +24,6 @@ class ConferenceSession < ActiveRecord::Base
   belongs_to :talk
   belongs_to :session_time
   belongs_to :room
-  belongs_to :track
 
   acts_as_indexed :fields => [:conf_year]
   accepts_nested_attributes_for :talk
@@ -39,7 +38,7 @@ class ConferenceSession < ActiveRecord::Base
   scope :defined_format, where('format <> ?', 'undefined')
   scope :by_start_time_and_room, includes(:session_time, :room).order('session_times.start_time', 'rooms.position ASC')
 
-  delegate :title, :to => :talk
+  [:title, :track, :track=].each {|field| delegate field, :to => :talk}
 
   def format
     self[:format] || 'undefined'

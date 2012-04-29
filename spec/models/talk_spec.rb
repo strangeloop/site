@@ -37,6 +37,7 @@ describe Talk do
   end
 
   it {should have_and_belong_to_many :speakers}
+  it {should belong_to :track}
 
   [:abstract, :prereqs, :comments, :av_requirement].each do |field|
     it {should have_db_column(field).of_type(:text)}

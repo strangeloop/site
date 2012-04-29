@@ -3,6 +3,10 @@ class ProposalsController < ApplicationController
   expose(:speaker) { talk.speakers.first }
   expose(:format) { params[:format] || params[:proposal][:format] }
   expose(:proposal) { Proposal.new :format => format, :talk => talk }
+  expose(:talk_types) { Talk.talk_types }
+  expose(:tracks) { Track.current_year }
+  expose(:video_approvals) { Talk.video_approvals }
+  expose(:durations) { Talk.talk_durations }
 
   def new
     if RefinerySetting.find_or_set("#{format}_proposals_accepted".to_sym, 'true') == true

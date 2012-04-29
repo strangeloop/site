@@ -98,6 +98,11 @@ Factory.define :talk do |t|
   t.video_approval 'Yes'
   t.duration       '50 Minutes'
   t.speakers       { [Factory(:speaker)] }
+  t.track          { Factory(:track) }
+end
+
+Factory.define :big_data_talk, :parent => :talk do |t|
+  t.track { Factory(:talk_track) }
 end
 
 Factory.define :keynote_speaker, :parent => :speaker do |ks|
@@ -266,6 +271,10 @@ end
 Factory.define :track do |t|
   t.name 'Ruby'
   t.color 'ff0000'
+end
+
+Factory.define :talk_track, :parent => :track do |t|
+  t.name 'Big Data'
 end
 
 Factory.define :scheduled_talk_session_for_this_year, :parent => :talk_session do |ses|

@@ -5,7 +5,7 @@ gem 'formtastic', '~> 1.2.3'
 gem 'carmen', '0.2.4'
 gem 'ajaxful_rating', '3.0.0.beta7'
 
-gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', '~> 2.2.2'
 
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '0.8.2'

@@ -151,4 +151,13 @@ Feature: As a conference talks reviewer
     When I see all proposals
     Then the proposal I rated should have a 3 out of 5 star rating
 
+  @66
+  Scenario: View proposals by track
+    Given I am a logged in reviewer
+    And there are proposals with tracks
+    When I filter by one of the proposal tracks
+    Then I only see proposals from that track
+
+
+
 
