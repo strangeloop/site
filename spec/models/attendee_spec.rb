@@ -62,68 +62,12 @@ describe Attendee do
   it {should have_db_column(:token_created_at).of_type(:datetime)}
 
 
-  it "should decrypt encrypted strings" do
-    encrypted_txt = attendee.activation_token
-    encrypted_txt.should_not ==  "#{attendee.email}|#{attendee.acct_activation_token}|#{attendee.token_created_at}"
-    decrypted_txt = Attendee.decrypt_token CGI.unescape(encrypted_txt)
-    decrypted_txt.should ==  [attendee.email,attendee.acct_activation_token,attendee.token_created_at.to_s]
-  end
-
-  it "should pass an auth check for a known users" do
-    token = CGI.unescape attendee.activation_token
-    Attendee.check_token(token).should be_true
-  end
-
-  it "should fail on incorrect uids" do
-    attendee.acct_activation_token = "foo"
-    token = CGI.unescape attendee.activation_token
-    Attendee.check_token(token).should be_false
-  end
-
-  it "should fail on incorrect date" do
-    token = CGI.unescape attendee.activation_token
-    attendee.token_created_at = DateTime.parse('1985-10-25')
-    attendee.save!
-    Attendee.check_token(token).should be_false
-  end
-
-  it "should fail on incorrect email" do
-    attendee.email = "something@different.net"
-    token = CGI.unescape attendee.activation_token
-    Attendee.check_token(token).should be_false
-  end
-
-  it "should generate an activation token upon save" do
-    activation_token = attendee.acct_activation_token
-    attendee.save!
-    activation_token.should != attendee.acct_activation_token
-  end
-
-  it "retrieves registered attendees who have a null activation token" do
-    attendee
-
-    registered_attendee
-
-    Attendee.registered.should eq([registered_attendee])
-  end
-
   it "retrieves attendees by the latest year" do
     previous_conf_attendee = Factory(:attendee, :conf_year => 2010)
 
     attendee
 
     Attendee.current_year.should eq([attendee])
-  end
-
-  it "#register clears activation fields" do
-    attendee.acct_activation_token.should_not be_nil
-    attendee.token_created_at.should_not be_nil
-    cred = Factory(:attendee_cred)
-
-    attendee.register(cred)
-
-    attendee.acct_activation_token.should be_nil
-    attendee.token_created_at.should be_nil
   end
 
   it "joins all names in #full_name" do
@@ -179,34 +123,6 @@ describe Attendee do
       event.location.should eq(session.location)
       event.url.should eq(session.url)
     end
-  end
-
-  it "should reset token for an existing attendee" do
-    attendee.acct_activation_token.should_not be_nil
-    attendee.token_created_at.should_not be_nil
-
-    old_token = attendee.acct_activation_token
-    old_created_dt = attendee.token_created_at
-
-    attendee.reset_token
-
-    old_token.should_not == attendee.acct_activation_token
-    old_created_dt.should_not == attendee.token_created_at
-  end
-
-  it "should raise an exception when attendee does not have a token" do
-    attendee.acct_activation_token= nil
-    lambda{attendee.activation_token}.should raise_error
-  end
-
-  it "should raise an exception when attendee does not have a token creation date" do
-    attendee.token_created_at= nil
-    lambda{attendee.activation_token}.should raise_error
-  end
-  
-  it "should raise an exception when attendee does not have an email" do
-    attendee.email= nil
-    lambda{attendee.activation_token}.should raise_error
   end
 
   let(:test_attendee) do

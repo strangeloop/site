@@ -35,12 +35,6 @@ class Attendee < ActiveRecord::Base
     validates field, :uniqueness => true, :allow_nil => (field != :email)
   end
 
-  def reset_token
-    self.acct_activation_token= UUIDTools::UUID.random_create.to_s
-    self.token_created_at= Time.now
-  end
-
-  before_create {|um| um.reset_token}
   before_create AddConfYear
 
   has_friendly_id :full_name, :use_slug => true
@@ -75,18 +69,6 @@ class Attendee < ActiveRecord::Base
     s.gsub(/\n/,'')
   end
 
-  def encrypt_str(s)
-    Crypto.encrypt(@@activation_key, s)
-  end
-
-  def encode(s)
-    CGI.escape(remove_newlines(Base64.encode64(s)))
-  end
-
-  def escaped_acct_token
-    CGI.escape acct_activation_token
-  end
-
   def sorted_interested_sessions
     conference_sessions.by_session_time
   end
@@ -106,52 +88,6 @@ class Attendee < ActiveRecord::Base
     end
   end
 
-  def activation_token
-    if email && acct_activation_token && token_created_at
-      encode(encrypt_str([email,acct_activation_token,token_created_at].join("|")))
-    else
-      raise "Error creating token. Email is #{email}, token is #{acct_activation_token}, creation date #{token_created_at}"
-    end
-  end
-
-  def register(cred)
-    self[:attendee_cred] = cred
-    self[:acct_activation_token] = nil
-    self[:token_created_at] = nil
-  end
-
-  def self.check_token (cipher_text)
-    begin
-      token = decrypt_token(cipher_text)
-      token_time = Time.parse(token[2]).to_i
-      attendee =  Attendee.where("acct_activation_token = ?", token[1]).first
-      if attendee && attendee.token_created_at.to_i == token_time && attendee.email == token[0]
-        attendee
-      else
-        nil
-      end
-    rescue
-      nil
-    end
-  end
-
-  def self.batch_load(file)
-    require 'csv'
-    CSV.open(file, 'r') do |row|
-      a = Attendee.new
-      a.first_name = row[1]
-      a.middle_name = row[2]
-      a.last_name = row[3]
-      a.city = row[4]
-      a.country = row[6]
-      a.email = row[7]
-      a.twitter_id = (row[8] && row[8].delete("@")) || ''
-      a.reg_id = row[9]
-      a.token_created_at = Time.now
-      a.save!
-    end
-  end
-
   def self.existing_attendee?(reg_id)
     Attendee.where("reg_id = ?", reg_id).first
   end
@@ -166,12 +102,6 @@ class Attendee < ActiveRecord::Base
     end
     
     db_attendee
-  end
-
-  private
-
-  def self.decrypt_token (cipher_text)
-    Crypto.decrypt(@@activation_key, Base64.decode64(cipher_text)).split("|")
   end
 
 end

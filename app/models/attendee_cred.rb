@@ -1,5 +1,3 @@
-  require 'active_support/secure_random'
-  
 class AttendeeCred < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable
@@ -16,12 +14,6 @@ class AttendeeCred < ActiveRecord::Base
   end
 
   has_one :attendee
-
-  def self.successful_response?(xml)
-    xml_doc = Nokogiri::Slop(xml)
-    xml_doc.remove_namespaces!
-    xml_doc.ResultsOfListOfRegistration.Success.content == "true"
-  end
 
   def self.attendee_from_regonline(xml)
     xml_doc = Nokogiri::Slop(xml)
