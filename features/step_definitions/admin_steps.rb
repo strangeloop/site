@@ -23,6 +23,7 @@ def login
 end
 
 def attendee_login(attendee_cred)
+  AttendeeCred.default_cred = attendee_cred
   visit new_attendee_session_path
   fill_in 'Email:', :with => attendee_cred.email
   fill_in 'Password:', :with => attendee_cred.password
