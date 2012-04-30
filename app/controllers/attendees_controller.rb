@@ -5,7 +5,7 @@ class AttendeesController < ApplicationController
   expose(:attendee)
 
   expose(:current_year_attendees) {
-    Attendee.registered.current_year.paginate :page => params[:page], :per_page => 60
+    Attendee.current_year.paginate :page => params[:page], :per_page => 60
   }
 
   expose(:sessions_for_schedule) { attendee.sorted_interested_sessions }
