@@ -40,7 +40,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
   Scenario: Authenticated attendees can see paginated list of current year attendees
     Given I am logged in as a registered attendee
     When I am on the attendees page
-    Then I should see a link with "Kaiser Von Sozhay" to "/attendees/kaiser-von-sozhay"
+    Then I should see a link with "Kaiser Von Sozhay" to "/connect/kaiser-von-sozhay"
     And I should see a link with "Happy Town" to "http://happytown.com"
     And I should see a twitter link with "@kaiser" to "https://twitter.com/kaiser"
 
