@@ -1,11 +1,11 @@
 class AttendeesController < ApplicationController
-  #before_filter :authenticate_attendee_cred!
+  before_filter :authenticate_attendee_cred!
   respond_to :html, :ics, :only => :show
 
   expose(:attendee)
 
   expose(:current_year_attendees) {
-    Attendee.registered.current_year.paginate :page => params[:page], :per_page => 60
+    Attendee.current_year.paginate :page => params[:page], :per_page => 60
   }
 
   expose(:sessions_for_schedule) { attendee.sorted_interested_sessions }

@@ -10,7 +10,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
   Background: The site requires a user before serving public content
     Given an admin exists
 
-  @wip
+
   Scenario: Authenticated attendee creates a profile
     Given I am logged in as a registered attendee
     And I am on the edit profile page
@@ -36,11 +36,11 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I should see a link with "MarioAquino" to "http://workforpie.com/MarioAquino"
     And I should see a link with "http://marioaquino.blogspot.com" to "http://marioaquino.blogspot.com"
 
-  @wip
+
   Scenario: Authenticated attendees can see paginated list of current year attendees
     Given I am logged in as a registered attendee
     When I am on the attendees page
-    Then I should see a link with "Kaiser Von Sozhay" to "/attendees/kaiser-von-sozhay"
+    Then I should see a link with "Kaiser Von Sozhay" to "/connect/kaiser-von-sozhay"
     And I should see a link with "Happy Town" to "http://happytown.com"
     And I should see a twitter link with "@kaiser" to "https://twitter.com/kaiser"
 
@@ -49,14 +49,14 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     When I am on the schedule page
     Then I should not see the add or remove icons
 
-  @wip
+
   Scenario: Authenticated attendees are urged to select which talks they want to attend on their profile page
     Given I am logged in as a registered attendee
     When I am on my profile page
     Then I should see "You have not indicated your interest in attending any talks"
     And I should see "visit the schedule page" as a link to the schedule page
 
-  @wip
+
   Scenario: Authenticated attendee sees a list of talks they are interested in attending
     Given I am logged in as a registered attendee
     And a scheduled talk session for this year exists
@@ -67,7 +67,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     And I should see "Tuesday"
     And I should see "12:30 PM - 01:30 PM"
 
-  @wip
+
   Scenario: Authenticated attendee can download an iCal schedule for the talks they are interested in attending
     Given I am logged in as a registered attendee
     And a scheduled talk session for this year exists
@@ -88,7 +88,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     Then I should see "Login" as a link to the attendee login page
     And I should not see "Log Out"
 
-  @javascript @wip
+  @javascript
   Scenario: Logout link only shown to authenticated visitors
     Given app logins have been enabled
     And a homepage exists
@@ -97,7 +97,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     Then I should see "Log Out" as a link to the attendee logout page
     And I should not see "Login"
 
-  @javascript @wip
+  @javascript
   Scenario: Authenticated attendee updates profile
     Given a homepage exists
     And app logins have been enabled
@@ -112,7 +112,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     Then I should be on the profile page for Mario Crimefighter Aquino
     And I should see "Mario Crimefighter Aquino"
 
-  @javascript @wip
+  @javascript
   Scenario: Authenticated attendees can select a talk they are interested in
     Given app logins have been enabled
     And I am logged in as a registered attendee
@@ -122,7 +122,7 @@ Feature: As an authenticated conference attendee, I can fill out and edit a prof
     Then I should see the remove icon
     And I should not see the add icon
 
-  @javascript @wip
+  @javascript
   Scenario: Authenticated attendees can deselect a talk they don't plan to attend
     Given app logins have been enabled
     And I am logged in as a registered attendee

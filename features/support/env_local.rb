@@ -19,6 +19,18 @@ require File.expand_path(File.dirname(__FILE__) + '/../../vendor/engines/proposa
 
 require 'factory_girl/step_definitions'
 
+# Hack to gut AttendeeCred during cuke runs
+if Rails.env == 'test'
+  class AttendeeCred
+    def self.default_cred=(attendee_cred)
+      @@default_cred = attendee_cred
+    end
+    def self.authenticate_user(login, pass, event_id)
+      @@default_cred
+    end
+  end
+end
+
 After do |scenario|
   if scenario.status == :failed
     save_and_open_page

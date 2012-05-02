@@ -313,15 +313,11 @@ Factory.define :attendee do |a|
   a.reg_id 'abc'
   a.company 'Happy Town'
   a.company_url 'http://happytown.com'
-  a.acct_activation_token "random-text-here"
-  a.token_created_at DateTime.parse('Thursday, July 4, 2011 11:19 AM')
 end
 
 Factory.define :registered_attendee, :parent => :attendee do |ra|
   ra.after_create do |a|
     a.attendee_cred = Factory(:attendee_cred, :email => a.email, :attendee => a)
-    a.acct_activation_token = nil
-    a.token_created_at = nil
     a.save!
   end
 end

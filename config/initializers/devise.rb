@@ -154,4 +154,11 @@
   #   end
   #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
   # end
+
+  require 'regonline_auth_strategy'
+  
+  config.warden do |manager|
+    manager.default_strategies(:scope => :attendee_cred).unshift :regonline_authenticatable
+  end
+  
 end

@@ -237,3 +237,12 @@ prospectus_page.parts.create({
             })
 
 
+password_reset_page = attendees_page.children.create(:title => "Password Reset",
+                                                :show_in_menu => false,
+                                                :deletable => true,
+                                                :position => (attendees_page_position),                                                                             :path => "Attendees - Password Reset")
+password_reset_page.parts.create({:title => "Body",
+                                   :body => "<p>Password reset instructions go here</p>",
+                                   :position => 0})
+
+
