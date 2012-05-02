@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120429144859) do
+ActiveRecord::Schema.define(:version => 20120502012420) do
 
   create_table "attendee_creds", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20120429144859) do
   add_index "attendees", ["email"], :name => "index_attendees_on_email", :unique => true
   add_index "attendees", ["first_name"], :name => "index_attendees_on_first_name"
   add_index "attendees", ["last_name"], :name => "index_attendees_on_last_name"
+  add_index "attendees", ["reg_id"], :name => "index_attendees_on_reg_id"
   add_index "attendees", ["twitter_id"], :name => "index_attendees_on_twitter_id", :unique => true
 
   create_table "attendees_conference_sessions", :id => false, :force => true do |t|
@@ -131,9 +132,9 @@ ActiveRecord::Schema.define(:version => 20120429144859) do
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
+    t.string   "external_url"
     t.text     "body"
     t.string   "title"
-    t.string   "external_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
