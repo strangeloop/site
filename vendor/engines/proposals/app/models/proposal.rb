@@ -117,14 +117,14 @@ class Proposal < ActiveRecord::Base
     # Returns an array of header values to be used in a pending CSV
     # header row.
     def pending_csv_header_values(reviewers)
-      ["title", "status", "speaker", "sp1 first name", "sp1 last name", "sp1 company", "sp1 email", "sp1 twitter id"] + reviewers
+      ["title", "status", "track", "speaker", "sp1 first name", "sp1 last name", "sp1 company", "sp1 email", "sp1 twitter id"] + reviewers
     end
 
     # Returns an array of values from a proposal to be used in a pending
     # CSV data row.
     def pending_csv_data_values(proposal, reviewers)
       speaker1 = proposal.talk.speakers[0]
-      data = [proposal.talk.title, proposal.status, proposal.talk.speakers.to_a.join(";"),
+      data = [proposal.talk.title, proposal.status, proposal.talk.track_name, proposal.talk.speakers.to_a.join(";"),
         speaker1.first_name, speaker1.last_name,
         speaker1.company, speaker1.email, speaker1.twitter_id]
       user_ratings = proposal.comments_and_appeal_ratings

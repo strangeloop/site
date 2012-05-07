@@ -24,9 +24,10 @@ describe Talk do
 
   context "Tests with tags" do
     before do
-      @model = Factory(:talk)
-      @model.tag_list = "Ruby, Rails"
-      @model.save
+      Factory(:talk).tap do |model|
+        model.tag_list = "Ruby, Rails"
+        model.save
+      end
     end
 
     it "Should be tagged" do
@@ -38,6 +39,22 @@ describe Talk do
 
   it {should have_and_belong_to_many :speakers}
   it {should belong_to :track}
+
+  describe '#track_name' do
+    let(:params) { {} }
+
+    subject { described_class.new(params).track_name }
+
+    context 'has a track' do
+      let(:params) { {:track => Factory(:track)} }
+
+      it { should == 'Ruby' }
+    end
+
+    context 'does not have a track' do
+      it { should == ''}
+    end
+  end
 
   [:abstract, :prereqs, :comments, :av_requirement].each do |field|
     it {should have_db_column(field).of_type(:text)}
