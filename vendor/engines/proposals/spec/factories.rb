@@ -20,3 +20,7 @@ Factory.define :proposal do |p|
   p.format 'talk'
   p.talk   { Factory(:talk) }
 end
+
+Factory.define :rejected_proposal, :parent => :proposal do |rp|
+  rp.status 'rejected'
+end
