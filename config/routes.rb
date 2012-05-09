@@ -22,15 +22,15 @@ Conf::Application.routes.draw do
     get '/login' => 'devise/sessions#new', :as => :new_attendee_session
     get '/logout' => 'devise/sessions#destroy', :as => :destroy_attendee_session
     get '/activation/:token', :to => 'devise/registrations#new', :as => :activation
-    #match '/attendees' => 'attendees#index', :as => :attendee_cred_root
+    match '/connect' => 'attendees#index', :as => :attendee_cred_root
   end
 
-  #resource :attendee, :only => [:edit]
-  #resources :attendees, :only => [:index]
+  resource :attendee, :only => [:edit]
+  resources :attendees, :only => [:index], :path => "/connect"
   resources :talks
 
-  #put 'attendees/update'
-  #get '/attendees/:id', :to => 'attendees#show', :as => :attendee
+  put '/connect/update', :to => 'attendees#update'
+  get '/connect/:id', :to => 'attendees#show', :as => :attendee
 
   match '/media/*dragonfly', :to => Dragonfly[:strangeloop]
 

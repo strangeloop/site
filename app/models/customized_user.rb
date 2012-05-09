@@ -21,6 +21,9 @@
 # customizations are triggered after Rails has finished
 # loading the app in an after_initialize callback.
 
+require "net/http"
+require "net/https"
+
 class UserCustomizer
 
   def self.load
