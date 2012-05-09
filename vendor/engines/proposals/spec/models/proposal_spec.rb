@@ -152,7 +152,7 @@ describe Proposal do
   end
 
   context "CSV export" do
-    NUM_STATIC_PROPOSAL_CSV_FIELDS = 8
+    NUM_STATIC_PROPOSAL_CSV_FIELDS = 9
 
     let(:proposal1){ Factory(:proposal) }
 
@@ -220,7 +220,7 @@ describe Proposal do
       pending = Proposal.pending
       reviewers = Proposal.sorted_reviewers(pending)
       header = Proposal.pending_csv_header_values(reviewers)
-      header.should == ["title", "status", "speaker", "sp1 first name", "sp1 last name",
+      header.should == ["title", "status", "track", "speaker", "sp1 first name", "sp1 last name",
         "sp1 company", "sp1 email", "sp1 twitter id", "alternate_reviewer",
         "alternate_reviewer2", "reviewer"]
     end
@@ -230,15 +230,15 @@ describe Proposal do
       reviewers = Proposal.sorted_reviewers(pending)
 
       data = Proposal.pending_csv_data_values(proposal1, reviewers)
-      data.should == ["Sample Talk", "submitted", "Earl Grey", "Earl", "Grey", "Twinings",
+      data.should == ["Sample Talk", "submitted", "Ruby", "Earl Grey", "Earl", "Grey", "Twinings",
         "earl@grey.com", "earlofgrey", "", "", ""]
 
       data = Proposal.pending_csv_data_values(proposal2, reviewers)
-      data.should == ["Sample Talk", "submitted", "Earl Grey",  "Earl", "Grey", "Twinings",
+      data.should == ["Sample Talk", "submitted", "Ruby", "Earl Grey",  "Earl", "Grey", "Twinings",
         "earl@grey.com", "earlofgrey", "2", "", "1"]
 
       data = Proposal.pending_csv_data_values(proposal3, reviewers)
-      data.should == ["Sample Talk", "submitted", "Earl Grey;Charlie Sheen",  "Earl", "Grey", "Twinings",
+      data.should == ["Sample Talk", "submitted", "Ruby", "Earl Grey;Charlie Sheen",  "Earl", "Grey", "Twinings",
         "earl@grey.com", "earlofgrey", "", "3", ""]
     end
 

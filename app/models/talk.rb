@@ -42,6 +42,10 @@ class Talk < ActiveRecord::Base
     self[:duration] || Talk.talk_durations.first
   end
 
+  def track_name
+    track ? track.name : ""
+  end
+
   validates_inclusion_of :video_approval, :in => video_approvals
   validates_inclusion_of :talk_type, :in => talk_types
   validates_inclusion_of :duration, :in => talk_durations, :allow_nil => true
