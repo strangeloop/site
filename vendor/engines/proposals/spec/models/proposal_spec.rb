@@ -318,6 +318,14 @@ describe Proposal do
       end
     end
 
+    describe 'handling accepted talks' do
+      let!(:accepted_proposal) { Factory(:accepted_proposal) }
+
+      it 'excludes accepted talks' do
+        described_class.by_current_track(track).should == [proposal]
+      end
+    end
+
     def new_proposal(rating)
       p = Factory(:proposal).tap do |p|
         p.rate(rating, reviewer, :appeal)

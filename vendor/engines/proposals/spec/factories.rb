@@ -24,3 +24,7 @@ end
 Factory.define :rejected_proposal, :parent => :proposal do |rp|
   rp.status 'rejected'
 end
+
+Factory.define :accepted_proposal, :parent => :proposal do |rp|
+  rp.status 'accepted'
+end

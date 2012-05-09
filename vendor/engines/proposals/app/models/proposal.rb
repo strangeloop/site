@@ -44,7 +44,7 @@ class Proposal < ActiveRecord::Base
   }
 
   scope :by_current_track,
-    lambda {|track_name| joins(:talk => :track).where('tracks.name' => track_name).where('proposals.created_at > ?', current_year ).where("proposals.status <> 'rejected'").joins('LEFT OUTER JOIN rates ON rates.rateable_id = proposals.id').order('rates.stars DESC') }
+    lambda {|track_name| joins(:talk => :track).where('tracks.name' => track_name).where('proposals.created_at > ?', current_year ).where("proposals.status not in ('rejected','accepted')").joins('LEFT OUTER JOIN rates ON rates.rateable_id = proposals.id').order('rates.stars DESC') }
 
   format_options.each {|format| scope format, :conditions => { :format => format } }
 
