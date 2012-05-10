@@ -304,8 +304,55 @@ describe Proposal do
 
     before { Factory(:proposal, :talk => Factory(:big_data_talk)) }
 
-    it 'returns proposals from the current year for a given track name' do
-      described_class.by_current_track(track).should == [proposal]
+    describe 'filtering by track' do
+      it 'returns proposals from the current year for a given track name' do
+        described_class.by_current_track(track).should == [proposal]
+      end
+    end
+
+    describe 'handling rejected talks' do
+      let!(:rejected_proposal) { Factory(:rejected_proposal) }
+
+      it 'excludes rejected talks' do
+        described_class.by_current_track(track).should == [proposal]
+      end
+    end
+
+    describe 'handling accepted talks' do
+      let!(:accepted_proposal) { Factory(:accepted_proposal) }
+
+      it 'excludes accepted talks' do
+        described_class.by_current_track(track).should == [proposal]
+      end
+    end
+
+    def new_proposal(rating)
+      p = Factory(:proposal).tap do |p|
+        p.rate(rating, reviewer, :appeal)
+      end
+      p.reload
+    end
+
+    describe 'ordering by rating' do
+      let!(:proposal1) { new_proposal 1 }
+      let!(:proposal2) { new_proposal 5 }
+      let!(:proposal3) { new_proposal 3 }
+
+      it 'orders proposals by ratings first then without rating' do
+        described_class.by_current_track(track).should == [proposal2, proposal3, proposal1, proposal]
+      end
+    end
+
+    describe 'ordering by rating with some not rated' do
+      let!(:proposal1) { new_proposal 1 }
+      let!(:proposal2) { new_proposal 5 }
+      let!(:proposal3) { new_proposal 3 }
+      let!(:proposal4) { Factory(:proposal) }
+      let!(:proposal5) { Factory(:proposal) }
+
+      it 'orders proposals by ratings first then without rating, those without a rating last' do
+        described_class.by_current_track(track).should == [proposal2, proposal3, proposal1, proposal, proposal4, proposal5]
+      end
     end
   end
 end
