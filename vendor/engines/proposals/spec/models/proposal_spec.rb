@@ -152,7 +152,7 @@ describe Proposal do
   end
 
   context "CSV export" do
-    NUM_STATIC_PROPOSAL_CSV_FIELDS = 9
+    NUM_STATIC_PROPOSAL_CSV_FIELDS = 13
 
     let(:proposal1){ Factory(:proposal) }
 
@@ -220,8 +220,8 @@ describe Proposal do
       pending = Proposal.pending
       reviewers = Proposal.sorted_reviewers(pending)
       header = Proposal.pending_csv_header_values(reviewers)
-      header.should == ["title", "status", "track", "speaker", "sp1 first name", "sp1 last name",
-        "sp1 company", "sp1 email", "sp1 twitter id", "alternate_reviewer",
+      header.should == ["duration", "title", "status", "track", "speaker", "sp1 first name", "sp1 last name",
+        "city", "state", "country", "sp1 company", "sp1 email", "sp1 twitter id", "alternate_reviewer",
         "alternate_reviewer2", "reviewer"]
     end
 
@@ -230,15 +230,15 @@ describe Proposal do
       reviewers = Proposal.sorted_reviewers(pending)
 
       data = Proposal.pending_csv_data_values(proposal1, reviewers)
-      data.should == ["Sample Talk", "submitted", "Ruby", "Earl Grey", "Earl", "Grey", "Twinings",
+      data.should == ["50 Minutes", "Sample Talk", "submitted", "Ruby", "Earl Grey", "Earl", "Grey", "Kirkwood", "MO", "US", "Twinings",
         "earl@grey.com", "earlofgrey", "", "", ""]
 
       data = Proposal.pending_csv_data_values(proposal2, reviewers)
-      data.should == ["Sample Talk", "submitted", "Ruby", "Earl Grey",  "Earl", "Grey", "Twinings",
+      data.should == ["50 Minutes", "Sample Talk", "submitted", "Ruby", "Earl Grey",  "Earl", "Grey", "Kirkwood", "MO", "US", "Twinings",
         "earl@grey.com", "earlofgrey", "2", "", "1"]
 
       data = Proposal.pending_csv_data_values(proposal3, reviewers)
-      data.should == ["Sample Talk", "submitted", "Ruby", "Earl Grey;Charlie Sheen",  "Earl", "Grey", "Twinings",
+      data.should == ["50 Minutes", "Sample Talk", "submitted", "Ruby", "Earl Grey;Charlie Sheen",  "Earl", "Grey", "Kirkwood", "MO", "US", "Twinings",
         "earl@grey.com", "earlofgrey", "", "3", ""]
     end
 
@@ -266,11 +266,11 @@ describe Proposal do
 
       # Test that proposals are ordered by status.
       data_row_1 = arr_of_proposals[1]
-      data_row_1[1].should == "submitted"
+      data_row_1[2].should == "submitted"
       data_row_2 = arr_of_proposals[2]
-      data_row_2[1].should == "under review"
+      data_row_2[2].should == "under review"
       data_row_3 = arr_of_proposals[2]
-      data_row_3[1].should == "under review"
+      data_row_3[2].should == "under review"
     end
   end
 

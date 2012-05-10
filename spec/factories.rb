@@ -85,6 +85,7 @@ Factory.define :speaker do |s|
   s.company_url 'http://teabaggery.com'
   s.bio         'Hot tea afficionado'
   s.phone       '314-444-1234'
+  s.city        'Kirkwood'
   s.state       'MO'
   s.country     'US'
   s.company     'Twinings'
