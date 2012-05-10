@@ -342,5 +342,17 @@ describe Proposal do
         described_class.by_current_track(track).should == [proposal2, proposal3, proposal1, proposal]
       end
     end
+
+    describe 'ordering by rating with some not rated' do
+      let!(:proposal1) { new_proposal 1 }
+      let!(:proposal2) { new_proposal 5 }
+      let!(:proposal3) { new_proposal 3 }
+      let!(:proposal4) { Factory(:proposal) }
+      let!(:proposal5) { Factory(:proposal) }
+
+      it 'orders proposals by ratings first then without rating, those without a rating last' do
+        described_class.by_current_track(track).should == [proposal2, proposal3, proposal1, proposal, proposal4, proposal5]
+      end
+    end
   end
 end
