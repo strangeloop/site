@@ -12,6 +12,27 @@ $(document).ready(function() {
     attending($('#' + sessionIdList[index]));
   }
 
+  $('#elc').click(function(e) {
+    e.preventDefault();
+    $('#preconf-elc').removeClass('hidden');
+    $('#preconf-workshops').addClass('hidden');
+    $('#main-conf-sessions').addClass('hidden');
+  });
+
+  $('#workshops').click(function(e) {
+    e.preventDefault();
+    $('#preconf-workshops').removeClass('hidden');
+    $('#preconf-elc').addClass('hidden');
+    $('#main-conf-sessions').addClass('hidden');
+  });
+
+  $('#main-conf').click(function(e) {
+    e.preventDefault();
+    $('#main-conf-sessions').removeClass('hidden');
+    $('#preconf-elc').addClass('hidden');
+    $('#preconf-workshops').addClass('hidden');
+  });
+
   $('li.column2').click(function() {
     var self = this,
     sessionid = sessionId(this);

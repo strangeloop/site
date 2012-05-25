@@ -1,7 +1,24 @@
 <%= cache cache_key do %>
   <div id="main" class="shape">
     <div class="pad3">
-  <%= render :partial => 'shared/schedule', :locals => { :cache_key => cache_key } %>
+      <div class="container_12">
+        <div class="schedule-sections">
+          <h4 id="elc">Emerging Languages Camp</h4>
+          <h4 id="workshops">Workshops</h4>
+          <h4 id="main-conf">Strange Loop</h4>
+        </div>
+        <div id='preconf-elc' class="preconf hidden">
+          <h3>Emerging Languages Camp</h3>
+          <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[elc], :schedule_sessions => elc_schedule } %>
+        </div>
+        <div id='preconf-workshops' class="preconf hidden">
+          <h3>Workshops</h3>
+          <%= render :partial => 'shared/schedule', :locals => { :cache_key => cache_key, :formats => %w[workshop], :schedule_sessions => workshop_schedule }%>
+        </div>
+        <div id="main-conf-sessions">
+          <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[keynote talk], :schedule_sessions => main_schedule }%>
+        </div>
+      </div>
     </div>
   </div>
 <% end -%>

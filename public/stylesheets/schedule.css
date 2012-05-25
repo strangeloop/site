@@ -30,6 +30,82 @@
   transition: opacity .3s ease;
 }
 
+.schedule {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.schedule-sections {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  background-color: #317ec3;
+  text-align: center;
+}
+
+.schedule-sections a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.schedule-header {
+  margin-left: 141px;
+  margin-bottom: -9px;
+}
+
+.schedule-header .header {
+  display: block;
+  float: left;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  padding: 3px 5px;
+  width: 150px;
+  border-left: 1px solid #ccc;
+}
+
+.schedule .cell {
+  display: block;
+  float: left;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  padding: 3px 5px;
+  height: 100px;
+  width: 150px;
+  border-left: 1px solid #ccc;
+}
+
+
+.column1 {
+  margin-left: 0;
+  margin-right: 10px;
+  padding: 10px 5px 10px 5px;
+  float: left;
+  background-color: #3a3a3a;
+}
+
+.column2 {
+  float: left;
+  padding: 0.14em 0.26em;
+  margin: 1.0em 0.5em 0.1em 0.1em;
+  cursor: pointer;
+  background: url(../images/csg-4e4c59169f943.png) no-repeat top left;
+}
+
+.column3 {
+  margin-left: 15%;
+  padding: 5px 5px 0 5px;
+}
+
+.column3 .title a {
+  font-size: 1.4em;
+  color: #fff;
+  text-decoration: none;
+}
+
+.column3 .speaker { padding-right: 7px; }
+.column3 .room { padding: 2px 7px 2px 7px; }
+
 .attend { background-position: 0 0px; width: 24px; height: 24px; }
 
 .miss { background-position: 0 -74px; width: 24px; height: 24px; }

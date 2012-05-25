@@ -36,7 +36,10 @@ class ConferenceSession < ActiveRecord::Base
   has_friendly_id :title, :use_slug => true
 
   scope :defined_format, where('format <> ?', 'undefined')
+  scope :for_formats, lambda{ |formats| where(:format => formats) }
   scope :by_start_time_and_room, includes(:session_time, :room).order('session_times.start_time', 'rooms.position ASC')
+
+  scope :rooms_by_day_and_formats, lambda {|day, formats| includes(:session_time, :room).where('session_times.start_time >= ? and session_times.start_time < ?', day.strftime('%Y-%m-%d'), day.strftime('%Y-%m-%d').to_time + 1.day).where(:format => formats).order('rooms.position ASC') }
 
   [:title, :track, :track=].each {|field| delegate field, :to => :talk}
 
@@ -81,6 +84,13 @@ class ConferenceSession < ActiveRecord::Base
   #the current year, keyed by session day, then session_time (ascending)
   def self.by_session_time
     sessions = defined_format.from_year.by_start_time_and_room
+    hash = ActiveSupport::OrderedHash.new{|h, k| h[k] = ConferenceSession::new_ordered_hash_of_arrays }
+    sessions.each{|session| hash[session.day][session.session_time] << session }
+    hash
+  end
+
+  def self.by_session_time_for_formats(*formats)
+    sessions = for_formats(formats).from_year(Time.now.year).by_start_time_and_room
     hash = ActiveSupport::OrderedHash.new{|h, k| h[k] = ConferenceSession::new_ordered_hash_of_arrays }
     sessions.each{|session| hash[session.day][session.session_time] << session }
     hash
