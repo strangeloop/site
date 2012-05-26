@@ -37,16 +37,47 @@
 }
 
 .schedule-sections {
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
-  background-color: #317ec3;
-  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 60px;
 }
 
-.schedule-sections a {
+.schedule-sections div {
+  height: 30px;
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.schedule-sections div cufon {
+  margin-top: 6px;
+}
+
+.schedule-sections .selected {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  border-bottom: 1px solid #fff;
+  border-right: 1px solid #fff;
+  background-color: #317ec3;
+}
+
+#elc { float: left; }
+
+#workshops {
+  float: left;
+  margin-left: 5%;
+}
+
+#main-conf {
+  float: right;
+  margin-right: 10%;
+}
+
+.schedule-sections div {
   color: #fff;
-  text-decoration: none;
+  font-size: 1.4em;
+  cursor: pointer;
 }
 
 .schedule-header {

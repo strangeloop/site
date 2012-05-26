@@ -14,6 +14,9 @@ $(document).ready(function() {
 
   $('#elc').click(function(e) {
     e.preventDefault();
+    $('#elc').addClass('selected');
+    $('#workshops').removeClass('selected');
+    $('#main-conf').removeClass('selected');
     $('#preconf-elc').removeClass('hidden');
     $('#preconf-workshops').addClass('hidden');
     $('#main-conf-sessions').addClass('hidden');
@@ -21,6 +24,9 @@ $(document).ready(function() {
 
   $('#workshops').click(function(e) {
     e.preventDefault();
+    $('#elc').removeClass('selected');
+    $('#workshops').addClass('selected');
+    $('#main-conf').removeClass('selected');
     $('#preconf-workshops').removeClass('hidden');
     $('#preconf-elc').addClass('hidden');
     $('#main-conf-sessions').addClass('hidden');
@@ -28,6 +34,9 @@ $(document).ready(function() {
 
   $('#main-conf').click(function(e) {
     e.preventDefault();
+    $('#elc').removeClass('selected');
+    $('#workshops').removeClass('selected');
+    $('#main-conf').addClass('selected');
     $('#main-conf-sessions').removeClass('hidden');
     $('#preconf-elc').addClass('hidden');
     $('#preconf-workshops').addClass('hidden');
