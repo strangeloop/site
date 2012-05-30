@@ -24,12 +24,12 @@
               <%= image_tag 'loader.gif', :class => 'hidden loading' %>
             </li>
             <% end -%>
-            <li class="cell" data-track="<%= track_name session %>">
-              <div class="title"><%= link_to session.talk.title, session %></div>
-              <span class="speaker"><%= speaker_for session.talk %></span>
+            <li class="cell shadeable" data-track="<%= track_name session %>">
               <% if is_technical_track? session %>
               <span class="track" style="background: #<%= track_color session %>"><%= track_name session %></span>
-            <% end -%>
+              <% end -%>
+              <div class="title"><%= link_to session.talk.title, session %></div>
+              <span class="speaker"><%= speaker_for session.talk %></span>
             </li>
           <% end -%>
         </ul>

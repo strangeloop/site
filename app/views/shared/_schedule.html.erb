@@ -13,7 +13,7 @@
               <%= image_tag 'loader.gif', :class => 'hidden loading' %>
             </li>
             <% end -%>
-            <li class="column3" data-track="<%= track_name session %>">
+            <li class="column3 shadeable" data-track="<%= track_name session %>">
               <div class="title"><%= link_to session.talk.title, session %></div>
               <span class="speaker"><%= speaker_for session.talk %></span> &middot;
               <span class="room"><%= room_for session %></span>
