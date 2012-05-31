@@ -17,7 +17,7 @@
               <div class="title"><%= link_to session.talk.title, session %></div>
               <span class="speaker"><%= speaker_for session.talk %></span> &middot;
               <span class="room"><%= room_for session %></span>
-              <% if display_track && is_technical_track?(session) %>
+              <% if (defined?(display_track) && display_track) && is_technical_track?(session) %>
               &middot;
               <span class="track" style="background: #<%= track_color session %>"><%= track_name session %></span>
             <% end -%>
