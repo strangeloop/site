@@ -9,7 +9,7 @@
           </li>
           <% sessions.each do |session| %>
             <% if defined?(cache_key) && show_schedule_selection?(cache_key) -%>
-            <li title="Click to Attend" class="column2 miss attend" id="<%= session.id %>">
+            <li title="Click to Attend" class="list-selector miss attend" id="<%= session.id %>">
               <%= image_tag 'loader.gif', :class => 'hidden loading' %>
             </li>
             <% end -%>

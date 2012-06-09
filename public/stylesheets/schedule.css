@@ -8,8 +8,8 @@
   color: #000;
   font-size: 90%;
   line-height: 2.4;
-  margin: 2px 7px 2px 7px;
-  padding: 3px 10px;
+  margin: 0 0 0 5px;
+  padding: 3px 5px;
   white-space: nowrap;
   cursor: pointer;
 }
@@ -90,8 +90,8 @@
   float: left;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
-  padding: 3px 5px;
-  width: 150px;
+  padding: 3px;
+  width: 154px;
   border-left: 1px solid #ccc;
 }
 
@@ -100,9 +100,9 @@
   float: left;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
-  padding: 3px 5px;
+  padding: 3px;
   height: 100px;
-  width: 150px;
+  width: 154px;
   border-left: 1px solid #ccc;
 }
 
@@ -115,10 +115,18 @@
   background-color: #3a3a3a;
 }
 
-.column2 {
+.list-selector {
   float: left;
   padding: 0.14em 0.26em;
   margin: 1.0em 0.5em 0.1em 0.1em;
+  cursor: pointer;
+  background: url(../images/csg-4e4c59169f943.png) no-repeat top left;
+}
+
+.table-selector {
+  float: left;
+  padding: 0;
+  margin: 2px 5px 2px 3px;
   cursor: pointer;
   background: url(../images/csg-4e4c59169f943.png) no-repeat top left;
 }
@@ -140,5 +148,6 @@
 .attend { background-position: 0 0px; width: 24px; height: 24px; }
 
 .miss { background-position: 0 -74px; width: 24px; height: 24px; }
+
 
 

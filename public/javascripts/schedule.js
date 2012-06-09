@@ -81,7 +81,7 @@ $(document).ready(function() {
     $('#preconf-workshops').addClass('hidden');
   });
 
-  $('li.column2').click(function() {
+  $('.table-selector, .list-selector').click(function() {
     var self = this,
     sessionid = sessionId(this);
 
