@@ -18,7 +18,7 @@
 require 'spec_helper'
 
 describe ApplicationHelper do
-  context '#link_tree' do
+  describe '#link_tree' do
     it "is empty when no pages are supplied" do
       link_tree.should be_empty
     end
@@ -51,7 +51,7 @@ describe ApplicationHelper do
     end
   end
 
-  context "#twitter_link" do
+  describe "#twitter_link" do
     it "returns a link when a string is passed" do
       twitter_link('foo').should == "<a href=\"https://twitter.com/foo\"><strong>@foo</strong></a>"
     end
@@ -69,7 +69,7 @@ describe ApplicationHelper do
     end
   end
 
-  context "#github_link" do
+  describe "#github_link" do
     it "returns a link when a string is passed" do
       github_link('foo').should == "<a href=\"https://github.com/foo\"><strong>foo</strong></a>"
     end
@@ -83,7 +83,7 @@ describe ApplicationHelper do
     end
   end
 
-  context "#workforpie_link" do
+  describe "#workforpie_link" do
     it "returns a link when a string is passed" do
       work_for_pie_link('foo').should == "<a href=\"http://workforpie.com/foo\"><strong>foo</strong></a>"
     end
@@ -97,7 +97,7 @@ describe ApplicationHelper do
     end
   end
 
-  context "#image_tag_for" do
+  describe "#image_tag_for" do
     #class MockView < ActionView::Base
       #include ApplicationHelper
     #end
@@ -121,6 +121,23 @@ describe ApplicationHelper do
     #it "returns datastore-backed image tags" do
       #view.image_tag_for(Factory(:image)).should match(medium_default_image)
     #end
+  end
+
+  describe '#time_period_for_sessions' do
+    let(:time_period) { mock 'time period' }
+    let(:one) { mock('one', :session_time => time1) }
+    let(:two) { mock('two', :session_time => time2) }
+    let(:three) { mock('three', :session_time => time3) }
+    let(:time1) { Factory(:session_time, :duration_hours => 0, :duration_minutes => 30) }
+    let(:time2) { Factory(:session_time, :duration_hours => 0, :duration_minutes => 50) }
+    let(:time3) { Factory(:session_time, :duration_hours => 0, :duration_minutes => 45) }
+    let(:room_sessions) { {'one' => [one], 'two' => [two], 'three' => [three] } }
+
+
+    it 'returns the period for the longest session passed in' do
+      two.stub_chain(:session_time, :time_period).and_return(time_period)
+      helper.time_period_for_sessions(room_sessions).should == time_period
+    end
   end
 
   let(:helper) { Object.new.extend ApplicationHelper }
@@ -150,14 +167,14 @@ describe ApplicationHelper do
   end
 
   it "#time_column_height calculates for various session sizes" do
-    helper.time_column_height(1).should == 300
-    helper.time_column_height(2).should == 640
-    helper.time_column_height(3).should == 1050
-    helper.time_column_height(4).should == 1500
-    helper.time_column_height(5).should == 1875
-    helper.time_column_height(6).should == 2310
-    helper.time_column_height(7).should == 2695
-    helper.time_column_height(8).should == 3080
+    helper.time_column_height(1).should == 250
+    helper.time_column_height(2).should == 530
+    helper.time_column_height(3).should == 870
+    helper.time_column_height(4).should == 1240
+    helper.time_column_height(5).should == 1550
+    helper.time_column_height(6).should == 1920
+    helper.time_column_height(7).should == 2240
+    helper.time_column_height(8).should == 2560
   end
 
   it "exposes a key for authenticated attendee sessions" do

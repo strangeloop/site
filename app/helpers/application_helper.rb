@@ -34,9 +34,13 @@ module ApplicationHelper
     end.map{|groups| groups[:pages]}
   end
 
-  def speaker_for(talk)
-    speaker = talk.speakers.first
-    "#{speaker.first_name} #{speaker.last_name}"
+  def speaker_for(talk, show_all = false)
+    if show_all
+      talk.speakers.join(', ')
+    else
+      speaker = talk.speakers.first
+      "#{speaker.first_name} #{speaker.last_name}"
+    end
   end
 
   def twitter_link(twitter_id = '', tag_type = :strong)
@@ -58,20 +62,29 @@ module ApplicationHelper
   def time_column_height(session_count)
     session_count * (case session_count
                       when 1
-                        300
+                        250
                       when 2
-                        320
+                        265
                       when 3
-                        350
+                        290
                       when 4..5
-                        375
+                        310
                       else
-                        385
+                        320
                     end)
   end
 
   def time_period_for(session_time)
     session_time.nil? ? "00:00 AM - 00:00 PM" : session_time.time_period
+  end
+
+  def time_period_for_sessions(rooms_sessions)
+    rooms_sessions.empty? ? "00:00 AM - 00:00 PM" : longest_session(rooms_sessions).session_time.time_period
+  end
+
+  def longest_session(rooms_sessions)
+    sessions = rooms_sessions.values.flatten
+    sessions.inject(sessions.first) {|session, memo| session.session_time.total_duration_minutes > memo.session_time.total_duration_minutes ? session : memo }
   end
 
   def show_schedule_selection?(key = 'schedule')

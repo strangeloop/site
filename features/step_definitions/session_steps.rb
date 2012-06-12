@@ -31,14 +31,14 @@ end
 Then /^I should see the (\w+) icon$/ do |icon|
   case icon
   when 'remove'
-    page.has_no_css?('li.miss').should be_true
+    page.has_no_css?('span.miss').should be_true
   when 'add'
-    page.has_css?('li.miss').should be_true
+    page.has_css?('span.miss').should be_true
   end
 end
 
 Then /^I should not see the (\w+) icon$/ do |icon|
-  page.has_css?('li.miss').should eq(icon == 'remove')
+  page.has_css?('span.miss').should eq(icon == 'remove')
 end
 
 Then /^I should not see the add or remove icons$/ do

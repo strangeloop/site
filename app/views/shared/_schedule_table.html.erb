@@ -1,0 +1,26 @@
+<div class="container_12">
+  <% schedule_sessions.each_pair do |session_day, session_start_hours| %>
+    <div class="p3">
+      <h3><%= session_day %></h3>
+        <ul class="free clearfix schedule-header">
+          <% room_names = room_names_for(session_day, formats) %>
+          <% room_names.each do |room| %>
+            <li class="header"><%= room %></li>
+          <% end%>
+        </ul>
+      <% session_start_hours.each_pair do |session_start_hour, session_rooms| %>
+        <ul class="free clearfix schedule">
+          <li class="column1 table-column1">
+            <%= time_period_for_sessions session_rooms %>
+          </li>
+
+          <% session_rooms.each_pair do |_, sessions| %>
+          <li class="cell">
+            <%= render :partial => 'shared/schedule/session', :collection => sessions, :locals => {:display_track => display_track, :cache_key => (defined?(cache_key) ? cache_key : 'schedule') } %>
+          </li>
+          <% end -%>
+        </ul>
+      <% end -%>
+    </div>
+  <% end -%>
+</div>

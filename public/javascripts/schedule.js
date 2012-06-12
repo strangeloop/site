@@ -12,7 +12,76 @@ $(document).ready(function() {
     attending($('#' + sessionIdList[index]));
   }
 
-  $('li.column2').click(function() {
+  function track(self) {
+    return $(self).parent().attr("data-track");
+  }
+
+  function isShaded(self) {
+    return $(self).parent().hasClass("shaded");
+  }
+
+  function similarTracks(self) {
+    return $('.shadeable:[data-track="' + track(self) + '"]');
+  }
+
+  function differentTracks(self) {
+    return $('.shadeable:not([data-track="' + track(self) + '"])');
+  }
+
+  function removeShade(tracks) {
+    tracks.removeClass("shaded");
+  }
+
+  function addShade(tracks) {
+    tracks.addClass("shaded");
+  }
+
+  $('.track').toggle(function() {
+    if (isShaded(this)) {
+      removeShade(similarTracks(this));
+    } else {
+      addShade(differentTracks(this));
+    }
+  },
+  function() {
+    if (isShaded(this)) {
+      addShade(similarTracks(this));
+    } else {
+      removeShade(differentTracks(this));
+    }
+  });
+
+  $('#elc').click(function(e) {
+    e.preventDefault();
+    $('#elc').addClass('selected');
+    $('#workshops').removeClass('selected');
+    $('#main-conf').removeClass('selected');
+    $('#preconf-elc').removeClass('hidden');
+    $('#preconf-workshops').addClass('hidden');
+    $('#main-conf-sessions').addClass('hidden');
+  });
+
+  $('#workshops').click(function(e) {
+    e.preventDefault();
+    $('#elc').removeClass('selected');
+    $('#workshops').addClass('selected');
+    $('#main-conf').removeClass('selected');
+    $('#preconf-workshops').removeClass('hidden');
+    $('#preconf-elc').addClass('hidden');
+    $('#main-conf-sessions').addClass('hidden');
+  });
+
+  $('#main-conf').click(function(e) {
+    e.preventDefault();
+    $('#elc').removeClass('selected');
+    $('#workshops').removeClass('selected');
+    $('#main-conf').addClass('selected');
+    $('#main-conf-sessions').removeClass('hidden');
+    $('#preconf-elc').addClass('hidden');
+    $('#preconf-workshops').addClass('hidden');
+  });
+
+  $('.table-selector, .list-selector').click(function() {
     var self = this,
     sessionid = sessionId(this);
 

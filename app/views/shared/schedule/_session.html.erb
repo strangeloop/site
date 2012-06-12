@@ -1,0 +1,13 @@
+<div class="shadeable session" data-track="<%= track_name session %>">
+<% if defined?(cache_key) && show_schedule_selection?(cache_key) -%>
+<span title="Click to Attend" class="table-selector miss attend" id="<%= session.id %>">
+  <%= image_tag 'loader.gif', :class => 'hidden loading' %>
+</span>
+<% end -%>
+  <% if display_track && is_technical_track?(session) %>
+  <span class="track" style="background: #<%= track_color session %>"><%= track_name session %></span>
+  <% end -%>
+  <div class="title"><%= link_to session.talk.title, session %></div>
+  <span class="speaker"><%= speaker_for session.talk, true %></span>
+  <%= session_time_period session %>
+</div>

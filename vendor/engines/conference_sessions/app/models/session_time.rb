@@ -24,6 +24,10 @@ class SessionTime < ActiveRecord::Base
     "#{hr_min start_time} - #{hr_min end_time}"
   end
 
+  def total_duration_minutes
+    (duration_hours * 60) + duration_minutes
+  end
+
   def title
     return "" unless start_time && duration_hours && duration_minutes
     "#{start_time.strftime('%A from %I:%M')} to #{end_time.strftime('%I:%M %p')}"
