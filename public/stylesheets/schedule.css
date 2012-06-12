@@ -101,11 +101,15 @@
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
   padding: 3px;
-  height: 100px;
+  height: 250px;
   width: 154px;
   border-left: 1px solid #ccc;
 }
 
+.schedule .cell .session { height: 125px; }
+.session-time {
+  font-size: 0.8em;
+}
 
 .column1 {
   margin-left: 0;
@@ -113,6 +117,12 @@
   padding: 10px 5px 10px 5px;
   float: left;
   background-color: #3a3a3a;
+}
+
+.table-column1 {
+  height: 127px;
+  margin-top: 5px;
+  padding-top: 105px;
 }
 
 .list-selector {

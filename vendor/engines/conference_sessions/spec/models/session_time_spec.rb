@@ -43,6 +43,10 @@ describe SessionTime do
     Factory(:morning_session_time).time_period.should eq('09:00 AM - 10:00 AM')
   end
 
+  it "calculates total duration minutes" do
+    Factory(:morning_session_time).total_duration_minutes.should == 60
+  end
+
   it "formats #day as day of the week, month day" do
     marios_birthday_session_time.day.should eq('Tuesday, July 06')
   end

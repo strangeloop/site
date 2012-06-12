@@ -96,6 +96,13 @@ class ConferenceSession < ActiveRecord::Base
     hash
   end
 
+  def self.by_session_time_and_location_for_formats(*formats)
+    sessions = for_formats(formats).from_year(Time.now.year).by_start_time_and_room
+    hash = ActiveSupport::OrderedHash.new{|h, k| h[k] = ConferenceSession::new_ordered_hash_of_arrays_of_arrays }
+    sessions.each{|session| hash[session.day][session.session_time.start_time.hour][session.location] << session }
+    hash
+  end
+
   def self.to_csv(year = nil)
     FasterCSV.generate({:force_quotes => true}) do |csv|
       csv << ["conf_year", "start_time", "position",
@@ -115,7 +122,11 @@ class ConferenceSession < ActiveRecord::Base
   private
   class <<self
     def new_ordered_hash_of_arrays
-      ActiveSupport::OrderedHash.new{|h, k| h[k] = []}
+      ActiveSupport::OrderedHash.new{|h, k| h[k] = [] }
+    end
+
+    def new_ordered_hash_of_arrays_of_arrays
+      ActiveSupport::OrderedHash.new{|h, k| h[k] = ActiveSupport::OrderedHash.new{|h, k| h[k] = []} }
     end
   end
 end

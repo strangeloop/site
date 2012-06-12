@@ -1,5 +1,5 @@
 <div class="container_12">
-  <% schedule_sessions.each_pair do |session_day, session_times| %>
+  <% schedule_sessions.each_pair do |session_day, session_start_hours| %>
     <div class="p3">
       <h3><%= session_day %></h3>
         <ul class="free clearfix schedule-header">
@@ -8,29 +8,16 @@
             <li class="header"><%= room %></li>
           <% end%>
         </ul>
-      <% session_times.each_pair do |session_time, sessions| %>
+      <% session_start_hours.each_pair do |session_start_hour, session_rooms| %>
         <ul class="free clearfix schedule">
-          <li class="column1">
-            <%= time_period_for session_time %>
+          <li class="column1 table-column1">
+            <%= time_period_for_sessions session_rooms %>
           </li>
 
-          <% sessions.each_with_index do |session, index| %>
-            <% spacers_needed_count(room_names, session, index).times do %>
-              <li class="cell"></li>
-            <% end %>
-
-            <li class="cell shadeable" data-track="<%= track_name session %>">
-            <% if defined?(cache_key) && show_schedule_selection?(cache_key) -%>
-            <span title="Click to Attend" class="table-selector miss attend" id="<%= session.id %>">
-              <%= image_tag 'loader.gif', :class => 'hidden loading' %>
-            </span>
-            <% end -%>
-              <% if display_track && is_technical_track?(session) %>
-              <span class="track" style="background: #<%= track_color session %>"><%= track_name session %></span>
-              <% end -%>
-              <div class="title"><%= link_to session.talk.title, session %></div>
-              <span class="speaker"><%= speaker_for session.talk %></span>
-            </li>
+          <% session_rooms.each_pair do |_, sessions| %>
+          <li class="cell">
+            <%= render :partial => 'shared/schedule/session', :collection => sessions, :locals => {:display_track => display_track, :cache_key => (defined?(cache_key) ? cache_key : 'schedule') } %>
+          </li>
           <% end -%>
         </ul>
       <% end -%>
