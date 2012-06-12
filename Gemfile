@@ -31,6 +31,8 @@ gem 'faraday_middleware','0.6.3'
 
 gem 'rbx-require-relative','0.0.5'
 
+gem 'nokogiri', '1.5.0'
+
 group :development, :test do
   gem 'mongrel', '~> 1.2.0.pre2'
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
