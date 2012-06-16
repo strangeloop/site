@@ -3,15 +3,15 @@ module ConferenceSessionsHelper
     ConferenceSession.rooms_by_day_and_formats(session_day.to_date, formats).map(&:room).map(&:name).uniq
   end
 
-  def spacers_needed_count(rooms, session, index)
-    (rooms.index(room_for(session).to_s) || index) - index
-  end
-
   def session_time_period(session)
     if session.session_time.total_duration_minutes < 50
       content_tag :div, session.session_time.time_period, :class => 'session-time'
     else
       ''
     end
+  end
+
+  def row_height(room_sessions)
+    room_sessions.values.select{|sessions| sessions.size > 1 }.empty? ? 'short' : 'tall'
   end
 end
