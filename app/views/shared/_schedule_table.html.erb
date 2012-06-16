@@ -8,16 +8,19 @@
             <li class="header"><%= room %></li>
           <% end%>
         </ul>
-      <% session_start_hours.each_pair do |session_start_hour, session_rooms| %>
-        <ul class="free clearfix schedule">
-          <li class="column1 table-column1">
-            <%= time_period_for_sessions session_rooms %>
+      <% session_start_hours.each_pair do |session_start_hour, room_sessions| %>
+        <% row_height_class = row_height(room_sessions) %>
+        <ul class="free clearfix schedule <%= row_height_class %>">
+          <li class="column1 table-column1-<%= row_height_class %>">
+            <div class="time-period-<%= row_height_class %>">
+            <%= time_period_for_sessions room_sessions %>
+            </div>
           </li>
 
-          <% session_rooms.each_pair do |_, sessions| %>
-          <li class="cell">
-            <%= render :partial => 'shared/schedule/session', :collection => sessions, :locals => {:display_track => display_track, :cache_key => (defined?(cache_key) ? cache_key : 'schedule') } %>
-          </li>
+          <% room_names.each do |room_name| %>
+            <li class="cell">
+              <%= render :partial => 'shared/schedule/session', :collection => room_sessions[room_name], :locals => {:display_track => display_track, :cache_key => (defined?(cache_key) ? cache_key : 'schedule') } %>
+            </li>
           <% end -%>
         </ul>
       <% end -%>

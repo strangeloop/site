@@ -33,7 +33,6 @@
 .schedule {
   list-style: none;
   margin: 0;
-  padding: 0;
 }
 
 .schedule-sections {
@@ -82,28 +81,32 @@
 
 .schedule-header {
   margin-left: 141px;
-  margin-bottom: -9px;
+  margin-bottom: -10px;
 }
 
 .schedule-header .header {
   display: block;
   float: left;
-  border-bottom: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+  border: 1px solid #ccc;
   padding: 3px;
   width: 154px;
-  border-left: 1px solid #ccc;
 }
 
+.tall {
+  height: 250px;
+  padding-top: 0px;
+}
+.short {
+  height: 125px;
+  padding-top: 0px;
+}
 .schedule .cell {
   display: block;
   float: left;
-  border-bottom: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  padding: 3px;
-  height: 250px;
+  border: 1px solid #ccc;
+  padding: 5px 3px 3px;
+  height: inherit;
   width: 154px;
-  border-left: 1px solid #ccc;
 }
 
 .schedule .cell .session { height: 125px; }
@@ -113,16 +116,30 @@
 
 .column1 {
   margin-left: 0;
-  margin-right: 10px;
+  margin-right: 9px;
   padding: 10px 5px 10px 5px;
   float: left;
   background-color: #3a3a3a;
+  width: 122px;
+  font-size: 0.98em;
 }
 
-.table-column1 {
-  height: 127px;
-  margin-top: 5px;
-  padding-top: 105px;
+.table-column1-tall {
+  height: 86%;
+  margin-top: 10px;
+}
+
+.table-column1-short {
+  height: 78%;
+  margin-top: 9px;
+}
+
+.time-period-tall {
+  margin-top: 95px;
+}
+
+.time-period-short {
+  margin-top: 38px;
 }
 
 .list-selector {
