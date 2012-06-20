@@ -1,10 +1,9 @@
 $(document).ready(function() {
   if (typeof attendee_login_enabled != 'undefined') {
     if(username === '') {
-      SL.appendNav('Login', login_path);
+      SL.appendNav(SL.listLink('Login', login_path));
     } else {
-      SL.prependNav(username, attendee_path);
-      SL.appendNav('Log Out', logout_path);
+      SL.appendNav( SL.listLink(username, attendee_path).append($('<ul/>' , { html : SL.listLink('Log Out', logout_path)})));
     }
 
     $('#flash_notice').delay(5000).fadeOut('fast');
@@ -12,19 +11,15 @@ $(document).ready(function() {
 });
 
 var SL = function() {
-  function listLink(text, path) {
-    return $('<li/>', {
-      html : $('<a/>', {
-        html : $('<span/>', { html: text })
-      }).attr('href', path)});
-  };
-
   return {
-    prependNav : function(text, path) {
-      listLink(text, path).prependTo($('#menu > ul'));
+    listLink : function(text, path) {
+      return $('<li/>', {
+          html : $('<a/>', {
+              html : $('<span/>', { html: text })
+          }).attr('href', path)});
     },
-    appendNav : function(text, path) {
-      listLink(text, path).appendTo($('#menu > ul'));
+    appendNav : function(item) {
+      item.appendTo($('#menu > ul'));
     }
   };
 }();
