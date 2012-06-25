@@ -64,13 +64,13 @@ module ApplicationHelper
                       when 1
                         250
                       when 2
-                        265
+                        280
                       when 3
-                        290
-                      when 4..5
                         310
+                      when 4..5
+                        325
                       else
-                        320
+                        345
                     end)
   end
 
