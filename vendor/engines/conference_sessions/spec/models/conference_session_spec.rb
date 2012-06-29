@@ -196,14 +196,15 @@ describe ConferenceSession do
     end
   end
 
-  describe ".by_short_session_time_and_location_for_formats" do
+  let(:evening_30_session_time) { Factory(:evening_30_session_time) }
+  let(:morning_30_session_time) { Factory(:morning_30_session_time) }
+  let(:seventh) { Factory(:talk_session, :session_time => evening_30_session_time, :room => small_room) }
+  let(:sixth) { Factory(:talk_session, :session_time => morning_30_session_time, :room => big_room) }
 
-    let(:evening_30_session_time) { Factory(:evening_30_session_time) }
-    let(:morning_30_session_time) { Factory(:morning_30_session_time) }
-    let(:seventh) { Factory(:talk_session, :session_time => evening_30_session_time, :room => small_room) }
-    let(:sixth) { Factory(:talk_session, :session_time => evening_30_session_time, :room => big_room) }
-    
-    it "sorts by session time then room size" do
+  describe ".by_session_time_and_location_for_formats" do
+    it "sorts by session time then room size grouping by starting hour" do
+      seventh
+      sixth
       fourth
       fifth
       second
@@ -211,7 +212,22 @@ describe ConferenceSession do
       third
 
       sessions = ConferenceSession::by_session_time_and_location_for_formats('talk')
-      sessions['Thursday, July 01, 2010'].keys.count.should == 3 
+      sessions['Thursday, July 01, 2010'].keys.count.should == 3
+    end
+  end
+
+  describe ".by_short_session_time_and_location_for_formats" do
+    it "sorts by session time then room size grouping by starting time" do
+      seventh
+      sixth
+      fourth
+      fifth
+      second
+      first
+      third
+
+      sessions = ConferenceSession::by_short_session_time_and_location_for_formats('talk')
+      sessions['Thursday, July 01, 2010'].keys.count.should == 5 
     end
   end
 end
