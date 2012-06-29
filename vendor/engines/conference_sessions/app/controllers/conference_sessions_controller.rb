@@ -42,7 +42,7 @@ class ConferenceSessionsController < ApplicationController
 
   expose(:elc_schedule) { ConferenceSession::by_session_time_and_location_for_formats('elc') }
   expose(:workshop_schedule) { ConferenceSession::by_session_time_for_formats('workshop') }
-  expose(:main_schedule) { ConferenceSession::by_session_time_and_location_for_formats('keynote', 'talk') }
+  expose(:main_schedule) { ConferenceSession::by_short_session_time_and_location_for_formats('keynote', 'talk') }
 
   def index
   end

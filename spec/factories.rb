@@ -265,6 +265,14 @@ Factory.define :evening_session_time, :parent => :session_time do |es|
   es.start_time DateTime.parse('Thursday, July 1, 2010 05:00 PM')
 end
 
+Factory.define :morning_30_session_time, :parent => :session_time do |ms|
+  ms.start_time DateTime.parse('Thursday, July 1, 2010 09:30 AM')
+end
+
+Factory.define :evening_30_session_time, :parent => :session_time do |es|
+  es.start_time DateTime.parse('Thursday, July 1, 2010 05:30 PM')
+end
+
 Factory.define :session_time_2009, :parent => :session_time do |lyst|
   lyst.start_time DateTime.parse("July 6, 2009, 12:30 PM")
 end

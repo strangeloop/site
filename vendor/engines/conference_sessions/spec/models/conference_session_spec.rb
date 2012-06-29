@@ -155,17 +155,18 @@ describe ConferenceSession do
     end
   end
 
+  let(:small_room) { Factory(:small_room) }
+  let(:big_room) { Factory(:big_room) }
+  let(:evening_session_time) { Factory(:evening_session_time) }
+  let(:morning_session_time) { Factory(:morning_session_time) }
+  let(:session_time) { Factory(:session_time) }
+  let(:fifth) {  Factory(:talk_session, :session_time => evening_session_time, :room => small_room) }
+  let(:fourth) { Factory(:talk_session, :session_time => evening_session_time, :room => big_room) }
+  let(:third) {  Factory(:talk_session, :session_time => session_time,         :room => small_room) }
+  let(:first) {  Factory(:talk_session, :session_time => morning_session_time, :room => big_room) }
+  let(:second) { Factory(:talk_session, :session_time => morning_session_time, :room => Factory(:room)) }
+
   describe ".by_session_time" do
-    let(:small_room) { Factory(:small_room) }
-    let(:big_room) { Factory(:big_room) }
-    let(:evening_session_time) { Factory(:evening_session_time) }
-    let(:morning_session_time) { Factory(:morning_session_time) }
-    let(:session_time) { Factory(:session_time) }
-    let(:fifth) {  Factory(:talk_session, :session_time => evening_session_time, :room => small_room) }
-    let(:fourth) { Factory(:talk_session, :session_time => evening_session_time, :room => big_room) }
-    let(:third) {  Factory(:talk_session, :session_time => session_time,         :room => small_room) }
-    let(:first) {  Factory(:talk_session, :session_time => morning_session_time, :room => big_room) }
-    let(:second) { Factory(:talk_session, :session_time => morning_session_time, :room => Factory(:room)) }
 
     it "sorts by session time then room size" do
       fourth
@@ -192,6 +193,25 @@ describe ConferenceSession do
       Factory(:conference_session, :talk => Factory(:talk), :session_time => session_time, :room => big_room)
 
       ConferenceSession::by_session_time.should be_empty
+    end
+  end
+
+  describe ".by_short_session_time_and_location_for_formats" do
+
+    let(:evening_30_session_time) { Factory(:evening_30_session_time) }
+    let(:morning_30_session_time) { Factory(:morning_30_session_time) }
+    let(:seventh) { Factory(:talk_session, :session_time => evening_30_session_time, :room => small_room) }
+    let(:sixth) { Factory(:talk_session, :session_time => evening_30_session_time, :room => big_room) }
+    
+    it "sorts by session time then room size" do
+      fourth
+      fifth
+      second
+      first
+      third
+
+      sessions = ConferenceSession::by_session_time_and_location_for_formats('talk')
+      sessions['Thursday, July 01, 2010'].keys.count.should == 3 
     end
   end
 end
