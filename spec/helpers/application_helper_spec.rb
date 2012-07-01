@@ -53,11 +53,11 @@ describe ApplicationHelper do
 
   describe "#twitter_link" do
     it "returns a link when a string is passed" do
-      twitter_link('foo').should == "<a href=\"https://twitter.com/foo\"><strong>@foo</strong></a>"
+      twitter_link('foo').should == "<a href=\"https://twitter.com/foo\" target=\"_blank\"><strong>@foo</strong></a>"
     end
 
     it "supports a supplied content tag for the twitter name" do
-      twitter_link('foo', :fart).should == "<a href=\"https://twitter.com/foo\"><fart>@foo</fart></a>"
+      twitter_link('foo', :fart).should == "<a href=\"https://twitter.com/foo\" target=\"_blank\"><fart>@foo</fart></a>"
     end
 
     it "returns nil if no twitter id is supplied" do
@@ -71,7 +71,7 @@ describe ApplicationHelper do
 
   describe "#github_link" do
     it "returns a link when a string is passed" do
-      github_link('foo').should == "<a href=\"https://github.com/foo\"><strong>foo</strong></a>"
+      github_link('foo').should == "<a href=\"https://github.com/foo\" target=\"_blank\"><strong>foo</strong></a>"
     end
 
     it "returns nil if no github id is supplied" do
@@ -85,7 +85,7 @@ describe ApplicationHelper do
 
   describe "#workforpie_link" do
     it "returns a link when a string is passed" do
-      work_for_pie_link('foo').should == "<a href=\"http://workforpie.com/foo\"><strong>foo</strong></a>"
+      work_for_pie_link('foo').should == "<a href=\"http://workforpie.com/foo\" target=\"_blank\"><strong>foo</strong></a>"
     end
 
     it "returns nil if no workforpie id is supplied" do
@@ -168,13 +168,13 @@ describe ApplicationHelper do
 
   it "#time_column_height calculates for various session sizes" do
     helper.time_column_height(1).should == 250
-    helper.time_column_height(2).should == 530
-    helper.time_column_height(3).should == 870
-    helper.time_column_height(4).should == 1240
-    helper.time_column_height(5).should == 1550
-    helper.time_column_height(6).should == 1920
-    helper.time_column_height(7).should == 2240
-    helper.time_column_height(8).should == 2560
+    helper.time_column_height(2).should == 560
+    helper.time_column_height(3).should == 930
+    helper.time_column_height(4).should == 1300
+    helper.time_column_height(5).should == 1625
+    helper.time_column_height(6).should == 2070
+    helper.time_column_height(7).should == 2415
+    helper.time_column_height(8).should == 2760
   end
 
   it "exposes a key for authenticated attendee sessions" do
