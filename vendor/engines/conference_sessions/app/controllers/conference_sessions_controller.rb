@@ -40,7 +40,7 @@ class ConferenceSessionsController < ApplicationController
   expose(:talk) { conference_session.talk }
   expose(:speaker) { talk.speakers.first }
 
-  expose(:elc_schedule) { ConferenceSession::by_session_time_and_location_for_formats('elc') }
+  expose(:elc_schedule) { ConferenceSession::by_short_session_time_and_location_for_formats('elc') }
   expose(:workshop_schedule) { ConferenceSession::by_session_time_for_formats('workshop') }
   expose(:main_schedule) { ConferenceSession::by_session_time_and_location_for_formats('keynote', 'talk') }
 
