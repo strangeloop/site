@@ -49,6 +49,7 @@ Feature: As a user I can see talks I might want to attend
     And I should see a link with "Earl Grey" to "http://teabaggery.com"
     And I should see a link with "@earlofgrey" to "https://twitter.com/earlofgrey"
 
+  @99
   Scenario: Site visitor views a session detail
     Given a keynote session exists
     And I am on the sessions page
@@ -60,6 +61,8 @@ Feature: As a user I can see talks I might want to attend
     And I should see a link with "@hankypanky" to "https://twitter.com/hankypanky"
     And I should see "God Hates Us All"
     And I should see "A writer tries to juggle his career, his relationship with his daughter and his ex-girlfriend, as well as his appetite for beautiful women."
+    And I should see "Before watching this talk, shower, people!"
+    And I should see "Zip, Zap, Zoop"
     And I should see "Single father, living a player lifestyle in California."
 
   Scenario: Check back message when no sessions scheduled

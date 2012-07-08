@@ -98,8 +98,12 @@ Factory.define :talk do |t|
   t.talk_type      'Intro'
   t.video_approval 'Yes'
   t.duration       '50 Minutes'
+  t.prereqs        'Before watching this talk, shower, people!'
   t.speakers       { [Factory(:speaker)] }
   t.track          { Factory(:track) }
+  t.after_create do |talk|
+    talk.tag_list = 'Zip, Zap, Zoop'
+  end
 end
 
 Factory.define :big_data_talk, :parent => :talk do |t|

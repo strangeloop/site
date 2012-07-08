@@ -8,6 +8,15 @@
       <h3><%= talk.title %></h3>
       <%= raw textilize(talk.abstract) %>
       <p></p>
+      <% unless talk.prereqs.blank? %>
+        <h4>Prerequisites</h4>
+        <p><%= talk.prereqs %></p>
+      <% end %>
+      <% unless talk.tag_list.empty? %>
+        <h4>Tag List</h4>
+        <%= talk.tag_list %>
+        <p></p>
+      <% end %>
       <% talk.speakers.each do |speaker| %>
         <h4><%= "#{speaker.first_name} #{speaker.last_name}" %></h4>
         <h5><%= link_to speaker.company, speaker.company_url, :target => '_blank' %></h5>
