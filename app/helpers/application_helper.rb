@@ -51,10 +51,6 @@ module ApplicationHelper
     custom_link github_id, github_id, 'github.com'
   end
 
-  def work_for_pie_link(work_for_pie_id = '')
-    custom_link work_for_pie_id, work_for_pie_id, 'workforpie.com', :protocol => 'http'
-  end
-
   def schedule_key
     current_attendee_cred.nil? ? 'schedule' : 'auth-schedule'
   end
