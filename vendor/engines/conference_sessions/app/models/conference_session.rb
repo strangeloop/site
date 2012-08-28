@@ -112,16 +112,19 @@ class ConferenceSession < ActiveRecord::Base
 
   def self.to_csv(year = nil)
     FasterCSV.generate({:force_quotes => true}) do |csv|
-      csv << ["conf_year", "start_time", "position",
-        "title", "format", "talk_type",
-        "abstract", "comments", "prereqs",
-        "av_requirement", "video_approval", "speaker"]
+      csv << ["conf_year", "start_time", "end_time", "location", "position",
+        "title", "format", "talk_type", "track", "abstract", "comments", "prereqs",
+        "av_requirement", "video_approval", "speaker", "speaker_bio", "twitter_id", "company"]
       from_year(year).each do |c|
         speakers = c.talk.speakers.to_a
-        csv << [c.conf_year, c.start_time, c.position,
-          c.title, c.format, c.talk.talk_type,
+        speaker_bios = c.talk.speakers.collect { |s| s.bio }
+        speaker_ids = c.talk.speakers.collect { |s| s.twitter_id }
+        speaker_companies = c.talk.speakers.collect { |s| s.company }        
+        csv << [c.conf_year, c.start_time, c.end_time, c.location, c.position,
+          c.title, c.format, c.talk.talk_type, c.talk.track_name,
           c.talk.abstract, c.talk.comments, c.talk.prereqs,
-          c.talk.av_requirement, c.talk.video_approval, speakers.join(";")]
+          c.talk.av_requirement, c.talk.video_approval, speakers.join(";"),
+          speaker_bios.join(";"), speaker_ids.join(";"), speaker_companies.join(";")]
       end
     end
   end
