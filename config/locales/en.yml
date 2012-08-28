@@ -28,8 +28,6 @@ en:
       profile: Your Conference Profile
       twitter_id: Twitter ID
       twitter_hint: "https://twitter.com/<Your_ID> - no '@' symbol"
-      work_for_pie_hint: "http://workforpie.com/<Your_ID>"
-      work_for_pie_id: WorkForPie ID
     index:
       attendees: Conference Attendees
   devise:
