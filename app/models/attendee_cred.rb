@@ -15,21 +15,25 @@ class AttendeeCred < ActiveRecord::Base
 
   has_one :attendee
 
+  def self.safe_content(xml, path)
+    ele = xml.at_xpath(path)
+    ele.content if ele
+  end
+
   def self.attendee_from_regonline(xml)
-    xml_doc = Nokogiri::Slop(xml)
+    xml_doc = Nokogiri::XML(xml)
     xml_doc.remove_namespaces!
-    if xml_doc.ResultsOfListOfRegistration.Success.content == "true" 
+
+    if !xml_doc.xpath("//ResultsOfListOfRegistration/Success[text()='true']").empty?
       a = Attendee.new
-      reg_info = xml_doc.ResultsOfListOfRegistration.Data.APIRegistration
-      a.first_name = reg_info.FirstName.content
-      a.last_name = reg_info.LastName.content
-      a.city = reg_info.City.content
-      a.state = reg_info.State.content
-      a.email = reg_info.Email.content
-      a.reg_id = reg_info.ID.content
+      reg_info = xml_doc.xpath("//ResultsOfListOfRegistration/Data/APIRegistration")
+      a.first_name = safe_content(reg_info, "FirstName")
+      a.last_name = safe_content(reg_info, "LastName")
+      a.city = safe_content(reg_info, "City")
+      a.state = safe_content(reg_info, "State")
+      a.email = safe_content(reg_info, "Email")
+      a.reg_id = safe_content(reg_info, "ID")
       a
-    else
-      nil
     end
   end
 
