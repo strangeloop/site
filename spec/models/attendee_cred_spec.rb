@@ -81,6 +81,59 @@ iI6T+Wo5K+WCEfa0rsTF</APIToken>
     ac.valid_password?("foo").should be_true
   end
 
+    let(:example_xml_without_state){"<?xml version=\"1.0\" encoding=\"utf-8\"?>
+<ResultsOfListOfRegistration xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://www.regonline.com/api\">
+  <Success>true</Success>
+  <Data>
+    <APIRegistration>
+      <ID>24331859</ID>
+      <EventID>849922</EventID>
+      <GroupID>24331859</GroupID>
+      <RegTypeID>354270</RegTypeID>
+      <RegistrationType>Attendee</RegistrationType>
+      <StatusID>2</StatusID>
+      <StatusDescription>Confirmed</StatusDescription>
+      <FirstName>Ryan</FirstName>
+      <LastName>Senior</LastName>
+      <Email>rsenior@revelytix.com</Email>
+      <Company>Revelytix</Company>
+      <City>St Louis</City>
+      <BalanceDue>0</BalanceDue>
+      <Phone>3147865362</Phone>
+      <CellPhone>3146145286</CellPhone>
+      <DateOfBirth xsi:nil=\"true\" />
+      <NationalityID xsi:nil=\"true\" />
+      <RoomSharerID>24331859</RoomSharerID>
+      <CheckedIn>false</CheckedIn>
+      <CancelDate xsi:nil=\"true\" />
+      <DirectoryOptOut>false</DirectoryOptOut>
+      <IsSubstitute>false</IsSubstitute>
+      <AddBy>Attendee</AddBy>
+      <AddDate>2010-04-22T15:06:48.65</AddDate>
+      <ModBy>System Process</ModBy>
+      <ModDate>2011-02-07T21:00:54.807</ModDate>
+      <PaymentDocNumber />
+      <APIToken>A4ZiFZ5L3w7HqLRlfG1wQG8/Vd6SuWJIlPkSXHnZlNuOmYpuYigAa+6vDrDaoYvKj20hw7QLzbPu
+iI6T+Wo5K+WCEfa0rsTF</APIToken>
+    </APIRegistration>
+  </Data>
+</ResultsOfListOfRegistration>"}
+
+  it "should allow users without states" do
+    a = AttendeeCred.attendee_from_regonline(example_xml_without_state)
+    a.first_name.should == "Ryan"
+    a.last_name.should == "Senior"
+    a.reg_id.should == "24331859"
+    a.city.should == "St Louis"
+    a.state.should be_nil
+    a.email.should == "rsenior@revelytix.com"
+  end
+
+  it "should return content when available" do
+    AttendeeCred.safe_content(Nokogiri::XML("<a><b>some text</b></a>"), "//a/b").should == "some text"
+    AttendeeCred.safe_content(Nokogiri::XML("<a><b>some text</b></a>"), "//a/c").should be_nil
+  end
+
   REGONLINE = URI.parse("https://www.regonline.com/webservices/default.asmx/LoginRegistrant")
 
   def net_http_mock(n)
