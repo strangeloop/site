@@ -45,7 +45,6 @@ describe Attendee do
       Factory(:attendee)
     end
     it {should validate_uniqueness_of :email}
-    it {should validate_uniqueness_of :twitter_id}
 
     it "allows nil for twitter_id" do
       2.times{ Factory(:attendee, :twitter_id => nil).should be_valid}
