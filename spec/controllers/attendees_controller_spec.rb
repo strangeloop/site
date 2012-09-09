@@ -25,11 +25,6 @@ describe AttendeesController do
   end
 
   context ".update" do
-    it "writes flash error when an attendee unique attribute update fails" do
-      post :update, :attendee => {:twitter_id => attendee.twitter_id}
-      flash[:alert].should eq('The update failed: Twitter has already been taken')
-    end
-
     it "writes a flash error when an attendee required attribute is updated to nil" do
       post :update, :attendee => {:email => nil}
       flash[:alert].should eq("The update failed: Email can't be blank")

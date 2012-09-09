@@ -31,9 +31,7 @@ class Attendee < ActiveRecord::Base
     validates field, :presence => true
   end
 
-  [:email, :twitter_id].each do |field|
-    validates field, :uniqueness => true, :allow_nil => (field != :email)
-  end
+  validates :email, :uniqueness => true, :allow_nil => false
 
   before_create AddConfYear
 
