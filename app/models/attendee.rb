@@ -45,13 +45,17 @@ class Attendee < ActiveRecord::Base
         cal.event do |e|
           e.summary     = session.title
           e.description = session.description
-          e.dtstart     = session.start_time
-          e.dtend       = session.end_time
+          e.dtstart     = convert_to_cst session.start_time
+          e.dtend       = convert_to_cst session.end_time
           e.location    = session.location
           e.url         = session.url
         end
       end
     end
+  end
+
+  def convert_to_cst(datetime)
+    "TZID=America/Chicago:#{datetime.strftime('%Y%m%dT%H%M%S')}"
   end
 
   def twitter_id=(name)
