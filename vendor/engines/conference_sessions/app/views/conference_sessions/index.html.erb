@@ -24,7 +24,7 @@
     </div>
     <% end -%>
 
-    <% %w(talk lightning strange_passions panel).each do |format| -%>
+    <% %w(talk lightning strange_passions panel unsession).each do |format| -%>
 
     <%= render 'session_groups',  :sessions_by_format => sessions_by_format,
                                   :format => format.gsub('_', ' '),
@@ -32,7 +32,7 @@
 
     <% end -%>
 
-    <% unless sessions_by_format.keys.any? {|session| %w(keynote talk lightning strange_passions panel).include? session} -%>
+    <% unless sessions_by_format.keys.any? {|session| %w(keynote talk lightning strange_passions panel unsession).include? session} -%>
       <%= t('.no_sessions_message', :next_conf_year => Time.now.year).html_safe %>
     <% end -%>
   </div>
