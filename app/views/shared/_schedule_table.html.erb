@@ -1,15 +1,16 @@
 <div class="container_12">
   <% schedule_sessions.each_pair do |session_day, session_start_hours| %>
+    <% room_names = room_names_for(session_day, formats) %>
+    <%- next if room_names.empty? %>
     <div class="p3">
       <h3><%= session_day %></h3>
         <ul class="free clearfix schedule-header">
-          <% room_names = room_names_for(session_day, formats) %>
           <% room_names.each do |room| %>
             <li class="header"><%= room %></li>
           <% end%>
         </ul>
       <% session_start_hours.each_pair do |session_start_hour, room_sessions| %>
-        <% row_height_class = row_height(room_sessions) %>
+        <% row_height_class = row_height(room_sessions, room_names) %>
         <ul class="free clearfix schedule <%= row_height_class %>">
           <li class="column1 table-column1-<%= row_height_class %>">
             <div class="time-period-<%= row_height_class %>">

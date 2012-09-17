@@ -14,7 +14,10 @@
           <%= render :partial => 'shared/schedule', :locals => { :cache_key => cache_key, :formats => %w[workshop], :schedule_sessions => workshop_schedule, :display_track => false }%>
         </div>
         <div id="main-conf-sessions">
-          <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[keynote talk], :schedule_sessions => main_schedule, :display_track => true }%>
+        <% main_schedule.each_pair do |session_day, session_start_hours| %>
+          <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[keynote talk], :schedule_sessions => {session_day => session_start_hours}, :display_track => true }%>
+          <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[unsession], :schedule_sessions => {session_day, session_start_hours}, :display_track => false }%>
+        <% end %>
         </div>
       </div>
     </div>

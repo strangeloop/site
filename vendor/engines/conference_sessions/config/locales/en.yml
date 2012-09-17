@@ -84,6 +84,7 @@ en:
       panel: Panels
       strange_passions: Strange Passions
       talk: Talks
+      unsession: Unsessions
       workshop: Workshops
     index_workshop:
       call_for_workshops_message: "<p>The Strange Loop 2012 conference will take place Sept 24-25th. The preconf day (all workshops and the Emerging Languages Camp listed here) will take place on Sept 23rd. All events on Sept 23rd are optional and <strong>ARE NOT INCLUDED</strong> in the Strange Loop conference rate. You must register and pay for these events.</p>"
@@ -99,5 +100,6 @@ en:
       keynote_session_message: ""
       panel_session_message: ""
       talk_session_message: ""
+      unsession_session_message: "This 'unsession' will take place at the Union Station Marriot on Monday night and not at the Peabody Opera House"
       workshop_session_message: "This workshop is an optional paid event on the preconference day, Sunday Sept. 23rd. You must be registered for Strange Loop to sign up for this workshop. Registering for this workshop is an additional cost ($100)."
       other: Other Conference Sessions

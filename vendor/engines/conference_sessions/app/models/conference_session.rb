@@ -119,7 +119,7 @@ class ConferenceSession < ActiveRecord::Base
         speakers = c.talk.speakers.to_a
         speaker_bios = c.talk.speakers.collect { |s| s.bio }
         speaker_ids = c.talk.speakers.collect { |s| s.twitter_id }
-        speaker_companies = c.talk.speakers.collect { |s| s.company }        
+        speaker_companies = c.talk.speakers.collect { |s| s.company }
         csv << [c.conf_year, c.start_time, c.end_time, c.location, c.position,
           c.title, c.format, c.talk.talk_type, c.talk.track_name,
           c.talk.abstract, c.talk.comments, c.talk.prereqs,

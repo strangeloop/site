@@ -11,7 +11,9 @@ module ConferenceSessionsHelper
     end
   end
 
-  def row_height(room_sessions)
+  def row_height(room_sessions, room_names)
+    room_sessions = room_sessions.reject{|_, sessions| sessions.empty? }
+    return 'hidden' unless (room_sessions.keys - room_names).empty?
     room_sessions.values.select{|sessions| sessions.size > 1 }.empty? ? 'short' : 'tall'
   end
 end
