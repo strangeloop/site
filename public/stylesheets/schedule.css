@@ -61,22 +61,35 @@
   background-color: #317ec3;
 }
 
-#elc { float: left; }
+#elc {
+  float: left;
+  margin-left: -6%;
+}
 
 #workshops {
   float: left;
-  margin-left: 5%;
+  margin-left: -3%;
 }
 
 #main-conf {
   float: right;
-  margin-right: 10%;
+  margin-right: 30%;
+}
+
+#unsessions {
+  float: right;
+  margin-right: -43%;
 }
 
 .schedule-sections div {
   color: #fff;
   font-size: 1.4em;
   cursor: pointer;
+}
+
+.schedule-sections div a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .schedule-header {

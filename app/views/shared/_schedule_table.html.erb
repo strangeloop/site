@@ -3,7 +3,7 @@
     <% room_names = room_names_for(session_day, formats) %>
     <%- next if room_names.empty? %>
     <div class="p3">
-      <h3><%= session_day %></h3>
+      <h3><a name='<%= sessions_type %>'><%= session_day %></a></h3>
         <ul class="free clearfix schedule-header">
           <% room_names.each do |room| %>
             <li class="header"><%= room %></li>
