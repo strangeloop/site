@@ -6,7 +6,7 @@
           <div id="elc" class="title">Emerging Languages Camp</div>
           <div id="workshops" class="title">Workshops</div>
           <div id="main-conf" class="title selected">Conference</div>
-          <div id="unsessions" class="title"><a href='#unsessions'>Unsessions</a></div>
+          <div id="unsessions-conf" class="title"><a href='#unsessions'>Unsessions</a></div>
         </div>
         <div id='preconf-elc' class="preconf hidden">
           <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[elc], :schedule_sessions => elc_schedule, :display_track => false, :sessions_type => 'elc' } %>
