@@ -6,18 +6,22 @@
           <div id="elc" class="title">Emerging Languages Camp</div>
           <div id="workshops" class="title">Workshops</div>
           <div id="main-conf" class="title selected">Conference</div>
-          <div id="unsessions-conf" class="title"><a href='#unsessions'>Unsessions</a></div>
+          <div id="unsessions-conf" class="title">Unsessions</div>
         </div>
         <div id='preconf-elc' class="preconf hidden">
-          <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[elc], :schedule_sessions => elc_schedule, :display_track => false, :sessions_type => 'elc' } %>
+          <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[elc], :schedule_sessions => elc_schedule, :display_track => false } %>
         </div>
         <div id='preconf-workshops' class="preconf hidden">
           <%= render :partial => 'shared/schedule', :locals => { :cache_key => cache_key, :formats => %w[workshop], :schedule_sessions => workshop_schedule, :display_track => false }%>
         </div>
         <div id="main-conf-sessions">
         <% main_schedule.each_pair do |session_day, session_start_hours| %>
-          <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[keynote talk], :schedule_sessions => {session_day => session_start_hours}, :display_track => true, :sessions_type => 'sessions' }%>
-          <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[unsession], :schedule_sessions => {session_day, session_start_hours}, :display_track => false, :sessions_type => 'unsessions' }%>
+          <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[keynote talk], :schedule_sessions => {session_day => session_start_hours}, :display_track => true }%>
+        <% end %>
+        </div>
+        <div id="unsessions" class="hidden">
+        <% main_schedule.each_pair do |session_day, session_start_hours| %>
+          <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[unsession], :schedule_sessions => {session_day, session_start_hours}, :display_track => false }%>
         <% end %>
         </div>
       </div>

@@ -60,6 +60,7 @@ $(document).ready(function() {
     $('#preconf-elc').removeClass('hidden');
     $('#preconf-workshops').addClass('hidden');
     $('#main-conf-sessions').addClass('hidden');
+    $('#unsessions').addClass('hidden');
   });
 
   $('#workshops').click(function(e) {
@@ -71,6 +72,7 @@ $(document).ready(function() {
     $('#preconf-workshops').removeClass('hidden');
     $('#preconf-elc').addClass('hidden');
     $('#main-conf-sessions').addClass('hidden');
+    $('#unsessions').addClass('hidden');
   });
 
   $('#main-conf').click(function(e) {
@@ -78,19 +80,21 @@ $(document).ready(function() {
     $('#elc').removeClass('selected');
     $('#workshops').removeClass('selected');
     $('#main-conf').addClass('selected');
+    $('#unsessions-conf').removeClass('selected');
     $('#main-conf-sessions').removeClass('hidden');
     $('#preconf-elc').addClass('hidden');
     $('#preconf-workshops').addClass('hidden');
+    $('#unsessions').addClass('hidden');
   });
 
   $('#unsessions-conf').click(function(e) {
-    //e.preventDefault();
+    e.preventDefault();
     $('#elc').removeClass('selected');
     $('#workshops').removeClass('selected');
-    $('#main-conf').addClass('selected');
+    $('#main-conf').removeClass('selected');
     $('#unsessions-conf').addClass('selected');
-    $('#main-conf-sessions').removeClass('hidden');
-    $('#unsessions-conf').removeClass('hidden');
+    $('#main-conf-sessions').addClass('hidden');
+    $('#unsessions').removeClass('hidden');
     $('#preconf-elc').addClass('hidden');
     $('#preconf-workshops').addClass('hidden');
   });
