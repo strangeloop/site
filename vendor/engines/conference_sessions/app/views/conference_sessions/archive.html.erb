@@ -25,17 +25,17 @@
     <% end -%>
 
     <% formats = sessions_by_format.keys %>
-    <% formats = %w(talk lightning strange_passions panel unsession).select{|f| formats.include? f } %>
+    <% formats = %w(talk lightning strange_passions panel elc workshop unsession).select{|f| formats.include? f } %>
     <% formats.each do |format| -%>
 
       <%= render 'session_groups', :sessions_by_format => sessions_by_format,
                                    :format => format.gsub('_', ' '),
-                                   :label => t(".#{format}") %>
+                                   :label => t("conference_sessions.index.#{format}") %>
 
     <% end -%>
 
     <% unless sessions_by_format.keys.any? {|session| %w(keynote talk lightning strange_passions panel unsession).include? session} -%>
-      <%= t('.no_sessions_message', :next_conf_year => Time.now.year).html_safe %>
+      <%= t('conference_sessions.index.no_sessions_message', :next_conf_year => Time.now.year).html_safe %>
     <% end -%>
   </div>
 </div>

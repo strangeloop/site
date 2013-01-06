@@ -79,6 +79,7 @@ en:
 
   conference_sessions:
     index:
+      elc: Emerging Languages Camp
       lightning: Lightning Talks
       no_sessions_message: "No sessions for the %{next_conf_year} conference have been announced yet. Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
       panel: Panels
