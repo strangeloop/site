@@ -9,7 +9,7 @@
 </div>
 <div id="main" class="shape">
   <div class="container_12 pad3">
-    <%= raw t('.call_for_workshops_message') %>
+    <%= raw t('.call_for_workshops_message', :next_conf_year => Time.now.year) %>
     <% %w(elc workshop).each do |format| -%>
 
     <%= render 'session_groups',  :sessions_by_format => sessions_by_format,
