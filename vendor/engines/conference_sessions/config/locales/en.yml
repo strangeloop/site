@@ -88,7 +88,7 @@ en:
       unsession: Unsessions
       workshop: Workshops
     index_workshop:
-      call_for_workshops_message: "<p>The Strange Loop 2012 conference will take place Sept 24-25th. The preconf day (all workshops and the Emerging Languages Camp listed here) will take place on Sept 23rd. All events on Sept 23rd are optional and <strong>ARE NOT INCLUDED</strong> in the Strange Loop conference rate. You must register and pay for these events.</p>"
+      call_for_workshops_message: "<p>The Strange Loop %{next_conf_year} conference will take place Sept 19-20th. The preconf day (all workshops and the Emerging Languages Camp) will take place on Sept 18th. All events on Sept 18th are optional and <strong>ARE NOT INCLUDED</strong> in the Strange Loop conference rate. You must register and pay for these events.</p>"
       no_sessions_message: "No workshops for the %{next_conf_year} conference have been announced yet. Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
       elc: Emerging Languages Camp
       workshop: Workshops
