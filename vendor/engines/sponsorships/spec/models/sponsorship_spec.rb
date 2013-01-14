@@ -32,6 +32,7 @@ describe Sponsorship do
   context "#current_sponsorships" do
     let(:platinum_sponsorship) { Factory(:platinum_sponsorship) }
     let(:platinum_sponsorship_last_year) { Factory(:platinum_sponsorship_last_year) }
+    let!(:platinum_sponsorship_next_year) { Factory(:platinum_sponsorship_next_year) }
     let(:silver_sponsorship) { Factory(:silver_sponsorship) }
     let(:bronze_sponsorship) { Factory(:bronze_sponsorship) }
 
@@ -47,6 +48,11 @@ describe Sponsorship do
         {platinum_sponsorship.sponsorship_level.name => [platinum_sponsorship],
           silver_sponsorship.sponsorship_level.name => [silver_sponsorship],
           bronze_sponsorship.sponsorship_level.name => [bronze_sponsorship]}
+    end
+
+    it "should allow specifying year" do
+      Sponsorship.visible_sponsorships_by_level_name(Time.now.year + 1).should ==
+        {platinum_sponsorship_next_year.sponsorship_level.name => [platinum_sponsorship_next_year]}
     end
 
     it "hides non-visible sponsorships" do
