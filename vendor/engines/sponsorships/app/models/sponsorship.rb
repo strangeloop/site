@@ -27,7 +27,7 @@ class Sponsorship < ActiveRecord::Base
   end
 
   #For specific or latest year
-  scope :for_year, lambda {|year| where(:year => year || maximum('year')) }
+  scope :for_year, lambda {|year| where(:year => year || Time.now.year ) }
   scope :visible, where(:visible => true)
 
   def title
