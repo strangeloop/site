@@ -1,1 +1,1 @@
-rvm ree@strangeloop-site
+rvm ruby-1.9.3-p385@strangeloop-site --create
