@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20120909013419) do
     t.string   "cached_slug"
     t.string   "company_url"
     t.integer  "attendee_cred_id"
+    t.text     "bio"
   end
 
   add_index "attendees", ["cached_slug"], :name => "index_attendees_on_cached_slug", :unique => true
@@ -130,14 +131,13 @@ ActiveRecord::Schema.define(:version => 20120909013419) do
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
+    t.text     "body"
     t.string   "external_url"
     t.string   "title"
-    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "news_item_translations", ["locale"], :name => "index_news_item_translations_on_locale"
   add_index "news_item_translations", ["news_item_id"], :name => "index_news_item_translations_on_news_item_id"
 
   create_table "news_items", :force => true do |t|
@@ -161,7 +161,6 @@ ActiveRecord::Schema.define(:version => 20120909013419) do
     t.datetime "updated_at"
   end
 
-  add_index "page_part_translations", ["locale"], :name => "index_page_part_translations_on_locale"
   add_index "page_part_translations", ["page_part_id"], :name => "index_page_part_translations_on_page_part_id"
 
   create_table "page_parts", :force => true do |t|
@@ -185,7 +184,6 @@ ActiveRecord::Schema.define(:version => 20120909013419) do
     t.datetime "updated_at"
   end
 
-  add_index "page_translations", ["locale"], :name => "index_page_translations_on_locale"
   add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|

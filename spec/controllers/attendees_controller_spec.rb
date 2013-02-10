@@ -1,4 +1,5 @@
 require 'spec_helper'
+require_relative '../../app/controllers/attendees_controller'
 
 describe AttendeesController do
   let(:attendee) { Factory(:attendee) }

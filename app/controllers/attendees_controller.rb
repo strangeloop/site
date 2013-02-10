@@ -1,3 +1,5 @@
+require_relative 'application_controller'
+
 class AttendeesController < ApplicationController
   before_filter :authenticate_attendee_cred!
   respond_to :html, :ics, :only => :show

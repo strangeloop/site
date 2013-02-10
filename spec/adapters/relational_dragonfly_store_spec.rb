@@ -16,6 +16,7 @@
 
 
 require 'spec_helper'
+require_relative '../../app/adapters/relational_dragonfly_store'
 
 describe RelationalDragonflyStore do
 

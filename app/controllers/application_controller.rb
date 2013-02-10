@@ -20,6 +20,9 @@
 
 # You can extend refinery with your own functions here and they will likely not get overriden in an update.
 
+require 'action_controller'
+require 'decent_exposure'
+
 class ApplicationController < ActionController::Base
 
   expose(:current_attendee) { Attendee.find_by_attendee_cred_id(current_attendee_cred.id) if current_attendee_cred }
