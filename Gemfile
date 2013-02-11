@@ -32,7 +32,7 @@ group :development, :test do
   gem 'sqlite3-ruby', '~> 1.3.2', :require => 'sqlite3'
   gem 'awesome_print', '~> 0.4.0'
   #gem 'ruby-debug', '~> 0.10.4'
-  gem 'ruby-debug19', '~> 0.11.6'
+  gem 'debugger', '~> 1.3'
 end
 
 group :production do
