@@ -125,7 +125,7 @@ describe ConferenceSession do
     it "Should generate CSV with only conference sessions in current year" do
       csv = ConferenceSession.to_csv()
 
-      arr_of_conference_sessions = FasterCSV.parse(csv)
+      arr_of_conference_sessions = CSV.parse(csv)
       arr_of_conference_sessions.length.should == 3
 
       header_row = arr_of_conference_sessions[0]
@@ -141,7 +141,7 @@ describe ConferenceSession do
     it "Should generate CSV with only conference sessions in 2010" do
       csv = ConferenceSession.to_csv(2010)
 
-      arr_of_conference_sessions = FasterCSV.parse(csv)
+      arr_of_conference_sessions = CSV.parse(csv)
       arr_of_conference_sessions.length.should == 2
 
       header_row = arr_of_conference_sessions[0]

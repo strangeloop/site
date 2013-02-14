@@ -111,7 +111,7 @@ class ConferenceSession < ActiveRecord::Base
   end
 
   def self.to_csv(year = nil)
-    FasterCSV.generate({:force_quotes => true}) do |csv|
+    CSV.generate({:force_quotes => true}) do |csv|
       csv << ["conf_year", "start_time", "end_time", "location", "position",
         "title", "format", "talk_type", "track", "abstract", "comments", "prereqs",
         "av_requirement", "video_approval", "speaker", "speaker_bio", "twitter_id", "company"]

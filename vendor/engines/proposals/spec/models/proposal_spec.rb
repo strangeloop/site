@@ -256,7 +256,7 @@ describe Proposal do
 
     it "Should generate CSV for all proposals in the current year" do
       csv = Proposal.all_to_csv
-      arr_of_proposals = FasterCSV.parse(csv)
+      arr_of_proposals = CSV.parse(csv)
 
       arr_of_proposals.length.should == 4
       header_row = arr_of_proposals[0]
