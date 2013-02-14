@@ -85,7 +85,7 @@ class Proposal < ActiveRecord::Base
     def all_to_csv
       proposals = Proposal.current.order("status ASC")
       reviewers = sorted_reviewers(proposals)
-      FasterCSV.generate({:force_quotes => true}) do |csv|
+      CSV.generate({:force_quotes => true}) do |csv|
         csv << pending_csv_header_values(reviewers)
         proposals.each do |proposal|
           csv << pending_csv_data_values(proposal, reviewers)
