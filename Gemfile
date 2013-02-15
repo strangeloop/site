@@ -45,6 +45,14 @@ group :test do
   gem 'factory_girl_rails', '~> 1.0.1'
   gem 'rails3-generators', '~> 0.17.2'
   gem 'jasmine'
+  gem 'rspec-rails', '~> 2.5.0'
+  gem 'capybara', '~> 1.1.2'
+  gem 'database_cleaner', '~> 0.6.0'
+  gem 'cucumber-rails', '~> 1.0.2'
+  gem 'launchy', '~> 0.3.7'
+  gem 'gherkin'
+  gem 'rack-test',              '~> 0.5.6'
+  gem 'json_pure', '~> 1.5.1'
   #gem 'capybara-envjs'
 end
 
@@ -59,17 +67,6 @@ end
 #And with Google Analytics _trackPageLoadTime
 #And switching defaults that would otherwise say 'Company Name' to 'Strange Loop'
 gem 'refinerycms', :git => "git://github.com/strangeloop/refinerycms.git", :branch => 'path_not_url_ssl_fix', :ref => 'aeaaef2078903cb9ec9f8b80f45aeb335f7acc13'
-
-group :development, :test do
-  gem 'rspec-rails', '~> 2.5.0'
-  gem 'capybara', '~> 1.1.2'
-  gem 'database_cleaner', '~> 0.6.0'
-  gem 'cucumber-rails', '~> 1.0.2'
-  gem 'launchy', '~> 0.3.7'
-  gem 'gherkin'
-  gem 'rack-test',              '~> 0.5.6'
-  gem 'json_pure', '~> 1.5.1'
-end
 
 # END REFINERY CMS ============================================================
 
