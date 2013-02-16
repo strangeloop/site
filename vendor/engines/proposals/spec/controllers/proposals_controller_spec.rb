@@ -1,4 +1,5 @@
 require 'spec_helper'
+require_relative '../../app/controllers/proposals_controller'
 
 describe ProposalsController do
   #necessary because refinery serves admin creation page unless an admin acct exists
@@ -7,7 +8,7 @@ describe ProposalsController do
   shared_examples_for "proposal format" do |proposal_format|
     context 'CFP expired' do
       describe '#new' do
-        before { RefinerySetting.set("#{proposal_format}_proposals_accepted".to_sym, 'false') }
+        before { Refinery::Setting.set("#{proposal_format}_proposals_accepted".to_sym, 'false') }
 
         it 'renders the cfp_expired template' do
           get :new, :format => proposal_format
@@ -18,7 +19,7 @@ describe ProposalsController do
 
     context 'CFP open' do
       describe '#new' do
-        before { RefinerySetting.set("#{proposal_format}_proposals_accepted".to_sym, 'true') }
+        before { Refinery::Setting.set("#{proposal_format}_proposals_accepted".to_sym, 'true') }
         it 'renders the new template' do
           get :new, :format => proposal_format
           response.should render_template("proposals/new_#{proposal_format}")

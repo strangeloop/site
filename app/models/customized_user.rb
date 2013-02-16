@@ -27,7 +27,7 @@ require "net/https"
 class UserCustomizer
 
   def self.load
-    User.class_eval do
+    Refinery::User.class_eval do
       has_many :services, :dependent => :destroy
       ajaxful_rater
     end

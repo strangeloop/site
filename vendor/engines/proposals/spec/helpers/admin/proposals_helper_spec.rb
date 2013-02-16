@@ -16,6 +16,7 @@
 
 
 require 'spec_helper'
+require_relative '../../../app/helpers/admin/proposals_helper'
 
 describe Admin::ProposalsHelper do
   class MockView < ActionView::Base

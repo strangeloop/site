@@ -7,7 +7,7 @@ module Devise
       def authenticate!
         login = params[:attendee_cred][:email]
         password = params[:attendee_cred][:password]
-        u = valid_password? && AttendeeCred.authenticate_user(login, password, RefinerySetting.find_or_set(:regonline_event_id, ""))
+        u = valid_password? && AttendeeCred.authenticate_user(login, password, Refinery::Setting.find_or_set(:regonline_event_id, ""))
 
         if validate(u){u.valid_password?(password) }
           u.after_database_authentication

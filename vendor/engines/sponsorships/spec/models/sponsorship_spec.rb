@@ -16,6 +16,7 @@
 
 
 require 'spec_helper'
+require_relative '../../app/models/sponsorship'
 
 describe Sponsorship do
 

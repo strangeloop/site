@@ -37,7 +37,7 @@ end
 
 
 Given /^app logins have been enabled$/ do
-  RefinerySetting.set(:attendee_login_enabled, 'true')
+  Refinery::Setting.set(:attendee_login_enabled, 'true')
 end
 
 Given /^I am logged in as a registered attendee$/ do

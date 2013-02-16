@@ -15,8 +15,21 @@
 
 
 
-require 'spec_helper'
+module Refinery
+  module ConferenceSessions
+    class Engine < Rails::Engine
+      initializer "static assets" do |app|
+        app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
+      end
 
-describe Contact do
-  pending "add some examples to (or delete) #{__FILE__}"
+      config.after_initialize do
+        Refinery::Plugin.register do |plugin|
+          plugin.name = "conference_sessions"
+          plugin.menu_match = /(admin|refinery)\/(conference_sessions|rooms|session_times|tracks)$/
+          plugin.activity = {
+            :class_name => 'ConferenceSession'}
+        end
+      end
+    end
+  end
 end

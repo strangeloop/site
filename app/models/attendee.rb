@@ -15,6 +15,7 @@
 
 class Attendee < ActiveRecord::Base
   include Gravtastic
+  extend FriendlyId
 
   acts_as_indexed :fields => [:conf_year]
   gravtastic
@@ -35,7 +36,7 @@ class Attendee < ActiveRecord::Base
 
   before_create AddConfYear
 
-  has_friendly_id :full_name, :use_slug => true
+  friendly_id :full_name, :use => :slugged
 
   scope :current_year, lambda { where('conf_year' => maximum('conf_year')).order('last_name ASC', 'first_name ASC') }
 

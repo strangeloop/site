@@ -28,7 +28,7 @@ Conf::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
-  config.action_view.debug_rjs             = true
+  #config.action_view.debug_rjs             = true
   config.action_controller.perform_caching = false
 
   config.action_mailer.raise_delivery_errors = true
@@ -38,7 +38,7 @@ Conf::Application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
-  config.action_mailer.default_url_options = { :host => "example.com" }	
+  config.action_mailer.default_url_options = { :host => "example.com" }
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -47,4 +47,4 @@ Conf::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 end
 
-Refinery.rescue_not_found = false
+#Refinery.rescue_not_found = false

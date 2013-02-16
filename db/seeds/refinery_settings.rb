@@ -15,5 +15,5 @@
     }
   }
 ].each do |setting|
-  RefinerySetting.create(:name => setting[:name].to_s, :value => setting[:value], :destroyable => false, :form_value_type => (setting[:form_type] || 'text_area'))
+  Refinery::Setting.create(:name => setting[:name].to_s, :value => setting[:value], :destroyable => false, :form_value_type => (setting[:form_type] || 'text_area'))
 end

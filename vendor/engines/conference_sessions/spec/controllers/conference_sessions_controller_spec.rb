@@ -16,6 +16,7 @@
 
 
 require 'spec_helper'
+require_relative '../../app/controllers/conference_sessions_controller'
 
 describe ConferenceSessionsController do
   let(:session) { Factory(:keynote_session) }
@@ -45,7 +46,7 @@ describe ConferenceSessionsController do
       session #load a current year session
       get :index
       controller.sessions_from_year.should == [session]
-    end    
+    end
     context "discriminates on conf_year" do
       before { last_years_session }
 

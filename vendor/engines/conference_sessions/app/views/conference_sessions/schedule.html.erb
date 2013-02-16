@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<% if RefinerySetting.find_or_set(:hide_schedule_details, 'false') == true %>
+<% if Refinery::Setting.find_or_set(:hide_schedule_details, 'false') == true %>
   <div id="main" class="shape">
     <div class="container_12 pad3">
       <p><%= raw t('.hide_schedule_details') %></p>

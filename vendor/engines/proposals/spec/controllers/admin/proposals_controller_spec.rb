@@ -16,6 +16,7 @@
 
 
 require 'spec_helper'
+require_relative '../../../app/controllers/admin/proposals_controller'
 
 describe Admin::ProposalsController do
 

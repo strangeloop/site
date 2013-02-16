@@ -16,6 +16,7 @@
 
 
 require 'spec_helper'
+require_relative '../../../app/controllers/admin/conference_sessions_controller'
 
 describe Admin::ConferenceSessionsController do
   login_organizer

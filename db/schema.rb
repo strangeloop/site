@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120909013419) do
+ActiveRecord::Schema.define(:version => 20130216172057) do
 
   create_table "attendee_creds", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -49,7 +50,6 @@ ActiveRecord::Schema.define(:version => 20120909013419) do
     t.string   "cached_slug"
     t.string   "company_url"
     t.integer  "attendee_cred_id"
-    t.text     "bio"
   end
 
   add_index "attendees", ["cached_slug"], :name => "index_attendees_on_cached_slug", :unique => true
@@ -131,27 +131,15 @@ ActiveRecord::Schema.define(:version => 20120909013419) do
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
+    t.string   "title"
     t.text     "body"
     t.string   "external_url"
-    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "news_item_translations", ["locale"], :name => "index_news_item_translations_on_locale"
   add_index "news_item_translations", ["news_item_id"], :name => "index_news_item_translations_on_news_item_id"
-
-  create_table "news_items", :force => true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.datetime "publish_date"
-    t.integer  "image_id"
-    t.string   "external_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "news_items", ["id"], :name => "index_news_items_on_id"
-  add_index "news_items", ["image_id"], :name => "index_news_items_on_image_id"
 
   create_table "page_part_translations", :force => true do |t|
     t.integer  "page_part_id"
@@ -161,6 +149,7 @@ ActiveRecord::Schema.define(:version => 20120909013419) do
     t.datetime "updated_at"
   end
 
+  add_index "page_part_translations", ["locale"], :name => "index_page_part_translations_on_locale"
   add_index "page_part_translations", ["page_part_id"], :name => "index_page_part_translations_on_page_part_id"
 
   create_table "page_parts", :force => true do |t|
@@ -178,12 +167,13 @@ ActiveRecord::Schema.define(:version => 20120909013419) do
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
     t.string   "locale"
-    t.string   "custom_title"
     t.string   "title"
+    t.string   "custom_title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "page_translations", ["locale"], :name => "index_page_translations_on_locale"
   add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
@@ -234,6 +224,32 @@ ActiveRecord::Schema.define(:version => 20120909013419) do
 
   add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
   add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
+
+  create_table "refinery_news_item_translations", :force => true do |t|
+    t.integer  "refinery_news_item_id"
+    t.string   "locale"
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "source"
+  end
+
+  add_index "refinery_news_item_translations", ["locale"], :name => "index_refinery_news_item_translations_on_locale"
+  add_index "refinery_news_item_translations", ["refinery_news_item_id"], :name => "index_2fe5614a8b4e9a5c34c0f93f230e423e36d53bda"
+
+  create_table "refinery_news_items", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "publish_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "expiration_date"
+    t.string   "source"
+    t.string   "slug"
+  end
+
+  add_index "refinery_news_items", ["id"], :name => "index_news_items_on_id"
 
   create_table "refinery_settings", :force => true do |t|
     t.string   "name"

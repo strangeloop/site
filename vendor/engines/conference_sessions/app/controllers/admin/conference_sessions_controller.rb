@@ -13,10 +13,10 @@
 #- limitations under the License.
 #-
 
-
+require_relative '../../sweepers/clear_schedule_cache'
 
 module Admin
-  class ConferenceSessionsController < Admin::BaseController
+  class ConferenceSessionsController < Refinery::AdminController
     include ImageUploadFix
 
     cache_sweeper :clear_schedule_cache, :only => [:create, :update, :destroy]

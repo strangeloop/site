@@ -16,6 +16,7 @@
 
 
 require 'spec_helper'
+require_relative '../../app/models/sponsorship_level'
 
 describe SponsorshipLevel do
   [:name, :year].each do |f|

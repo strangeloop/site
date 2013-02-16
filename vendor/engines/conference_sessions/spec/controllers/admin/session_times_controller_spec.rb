@@ -1,4 +1,5 @@
 require 'spec_helper'
+require_relative '../../../app/controllers/admin/session_times_controller'
 
 describe Admin::SessionTimesController do
   it "sorts by start time ascending" do

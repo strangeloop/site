@@ -15,8 +15,21 @@
 
 
 
-require 'spec_helper'
+module Refinery
+  module Sponsorships
+    class Engine < Rails::Engine
+      initializer "static assets" do |app|
+        app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
+      end
 
-describe Sponsor do
-  pending "add some examples to (or delete) #{__FILE__}"
+      config.after_initialize do
+        Refinery::Plugin.register do |plugin|
+          plugin.name = "sponsorships"
+          plugin.menu_match = /(admin|refinery)\/(sponsorships|sponsorship_levels)$/
+          plugin.activity = {
+            :class_name => 'Sponsorship'}
+        end
+      end
+    end
+  end
 end

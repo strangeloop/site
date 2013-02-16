@@ -16,6 +16,7 @@
 require 'session_formats'
 
 class ConferenceSession < ActiveRecord::Base
+  extend FriendlyId
   include Rails.application.routes.url_helpers
   include SessionFormats
   default_url_options[:host] = 'thestrangeloop.com'
@@ -33,7 +34,7 @@ class ConferenceSession < ActiveRecord::Base
 
   before_create AddConfYear
 
-  has_friendly_id :title, :use_slug => true
+  friendly_id :title, :use => :slugged
 
   scope :defined_format, where('format <> ?', 'undefined')
   scope :for_formats, lambda{ |formats| where(:format => formats) }

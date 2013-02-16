@@ -22,7 +22,7 @@
 #bar links at the top and bottom of all pages can be regenerated.
 class PageCustomizer
   def self.load
-    Page.class_eval do
+    Refinery::Page.class_eval do
       class << self
         alias orig_expire_page_caching expire_page_caching
 

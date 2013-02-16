@@ -1,3 +1,8 @@
+require_relative '../models/conference_session'
+require_relative '../models/room'
+require_relative '../models/session_time'
+require_relative '../models/track'
+
 class ClearScheduleCache < ActionController::Caching::Sweeper
   observe ConferenceSession, Room, SessionTime, Track
 

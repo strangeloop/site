@@ -3,7 +3,7 @@
   <div class="footer">
     <div class="copy">
       <%= t('.copyright1') -%> &copy; <%= t('.copyright2', :year => Time.now.year,
-                                            :site_name => RefinerySetting.find_or_set(:site_name, "Strange Loop")) %>
+                                            :site_name => Refinery::Setting.find_or_set(:site_name, "Strange Loop")) %>
       <p></p>
       <%= raw t('.attribution') %>
     </div>

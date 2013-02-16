@@ -15,8 +15,6 @@
 
 
 
-require 'refinery'
-
 module Refinery
   module Proposals
     class Engine < Rails::Engine
@@ -28,7 +26,7 @@ module Refinery
         Refinery::Plugin.register do |plugin|
           plugin.name = "proposals"
           plugin.activity = {
-            :class => Proposal,
+            :class_name => 'Proposal',
             :title => 'status'
           }
 

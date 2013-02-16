@@ -14,6 +14,7 @@
 #-
 
 
+require 'acts_as_indexed'
 
 ActsAsIndexed.configure do |config|
   config.index_file = Rails.root.join('tmp', 'index')

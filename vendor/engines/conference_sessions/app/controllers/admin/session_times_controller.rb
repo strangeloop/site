@@ -1,5 +1,7 @@
+require_relative '../../sweepers/clear_schedule_cache'
+
 module Admin
-  class SessionTimesController < Admin::BaseController
+  class SessionTimesController < Refinery::AdminController
 
     cache_sweeper :clear_schedule_cache, :only => [:update, :destroy]
 

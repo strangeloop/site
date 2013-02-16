@@ -16,6 +16,7 @@
 
 
 require 'spec_helper'
+require_relative '../../lib/refinery/proposals'
 
 describe Refinery::Proposals::Engine do
   describe "Plugin#title" do

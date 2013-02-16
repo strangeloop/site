@@ -14,9 +14,10 @@
 #-
 
 require 'will_paginate/array'
+require_relative '../../models/proposal'
 
 module Admin
-  class ProposalsController < Admin::BaseController
+  class ProposalsController < Refinery::AdminController
     expose(:proposal)
     expose(:current_proposals) { proposals_for_format.paginate({:page => params[:page], :per_page => 20})}
     expose(:session_times) { SessionTime.current_year }

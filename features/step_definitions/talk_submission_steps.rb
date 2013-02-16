@@ -20,12 +20,12 @@ Given /^a refinery user exists$/ do
 end
 
 Given /^the (\w+) cfp is open$/ do |talk_format|
-  RefinerySetting::set("#{talk_format}_proposals_accepted".to_sym, 'true')
+  Refinery::Setting::set("#{talk_format}_proposals_accepted".to_sym, 'true')
 end
 
 
 Given /^the period for submitting (\w+) proposals has expired$/ do |talk_format|
-  RefinerySetting::set("#{talk_format}_proposals_accepted".to_sym, 'false')
+  Refinery::Setting::set("#{talk_format}_proposals_accepted".to_sym, 'false')
 end
 
 Given /^I change the (\w+\s?\w*) field to "([^"]*)"$/ do |field_name, content|

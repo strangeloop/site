@@ -27,7 +27,7 @@ Given /^there are no tracks$/ do
 end
 
 Given /^schedule details are configured to be hidden$/ do
-  RefinerySetting.set(:hide_schedule_details, 'true')
+  Refinery::Setting.set(:hide_schedule_details, 'true')
 end
 
 Then /^I should see "([^"]*)" as a link to the schedule page$/ do |link_text|
