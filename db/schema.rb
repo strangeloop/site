@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130216172057) do
+ActiveRecord::Schema.define(:version => 20130221020306) do
 
   create_table "attendee_creds", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -141,65 +141,6 @@ ActiveRecord::Schema.define(:version => 20130216172057) do
   add_index "news_item_translations", ["locale"], :name => "index_news_item_translations_on_locale"
   add_index "news_item_translations", ["news_item_id"], :name => "index_news_item_translations_on_news_item_id"
 
-  create_table "page_part_translations", :force => true do |t|
-    t.integer  "page_part_id"
-    t.string   "locale"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "page_part_translations", ["locale"], :name => "index_page_part_translations_on_locale"
-  add_index "page_part_translations", ["page_part_id"], :name => "index_page_part_translations_on_page_part_id"
-
-  create_table "page_parts", :force => true do |t|
-    t.integer  "page_id"
-    t.string   "title"
-    t.text     "body"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "page_parts", ["id"], :name => "index_page_parts_on_id"
-  add_index "page_parts", ["page_id"], :name => "index_page_parts_on_page_id"
-
-  create_table "page_translations", :force => true do |t|
-    t.integer  "page_id"
-    t.string   "locale"
-    t.string   "title"
-    t.string   "custom_title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "page_translations", ["locale"], :name => "index_page_translations_on_locale"
-  add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
-
-  create_table "pages", :force => true do |t|
-    t.integer  "parent_id"
-    t.integer  "position"
-    t.string   "path"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "show_in_menu",        :default => true
-    t.string   "link_url"
-    t.string   "menu_match"
-    t.boolean  "deletable",           :default => true
-    t.string   "custom_title_type",   :default => "none"
-    t.boolean  "draft",               :default => false
-    t.boolean  "skip_to_first_child", :default => false
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.integer  "depth"
-  end
-
-  add_index "pages", ["depth"], :name => "index_pages_on_depth"
-  add_index "pages", ["id"], :name => "index_pages_on_id"
-  add_index "pages", ["lft"], :name => "index_pages_on_lft"
-  add_index "pages", ["parent_id"], :name => "index_pages_on_parent_id"
-  add_index "pages", ["rgt"], :name => "index_pages_on_rgt"
-
   create_table "proposals", :force => true do |t|
     t.string   "status"
     t.integer  "position"
@@ -251,6 +192,88 @@ ActiveRecord::Schema.define(:version => 20130216172057) do
 
   add_index "refinery_news_items", ["id"], :name => "index_news_items_on_id"
 
+  create_table "refinery_page_part_translations", :force => true do |t|
+    t.integer  "page_part_id"
+    t.string   "locale"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "refinery_page_part_translations", ["locale"], :name => "index_page_part_translations_on_locale"
+  add_index "refinery_page_part_translations", ["locale"], :name => "index_refinery_page_part_translations_on_locale"
+  add_index "refinery_page_part_translations", ["page_part_id"], :name => "index_page_part_translations_on_page_part_id"
+  add_index "refinery_page_part_translations", ["page_part_id"], :name => "index_refinery_page_part_translations_on_page_part_id"
+
+  create_table "refinery_page_parts", :force => true do |t|
+    t.integer  "page_id"
+    t.string   "title"
+    t.text     "body"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "refinery_page_parts", ["id"], :name => "index_page_parts_on_id"
+  add_index "refinery_page_parts", ["page_id"], :name => "index_page_parts_on_page_id"
+  add_index "refinery_page_parts", ["page_id"], :name => "index_refinery_page_parts_on_page_id"
+
+  create_table "refinery_page_translations", :force => true do |t|
+    t.integer  "page_id"
+    t.string   "locale"
+    t.string   "title"
+    t.string   "custom_title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "refinery_page_translations", ["locale"], :name => "index_page_translations_on_locale"
+  add_index "refinery_page_translations", ["locale"], :name => "index_refinery_page_translations_on_locale"
+  add_index "refinery_page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
+  add_index "refinery_page_translations", ["page_id"], :name => "index_refinery_page_translations_on_page_id"
+
+  create_table "refinery_pages", :force => true do |t|
+    t.integer  "parent_id"
+    t.integer  "position"
+    t.string   "path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "show_in_menu",        :default => true
+    t.string   "link_url"
+    t.string   "menu_match"
+    t.boolean  "deletable",           :default => true
+    t.string   "custom_title_type",   :default => "none"
+    t.boolean  "draft",               :default => false
+    t.boolean  "skip_to_first_child", :default => false
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "depth"
+  end
+
+  add_index "refinery_pages", ["depth"], :name => "index_pages_on_depth"
+  add_index "refinery_pages", ["depth"], :name => "index_refinery_pages_on_depth"
+  add_index "refinery_pages", ["id"], :name => "index_pages_on_id"
+  add_index "refinery_pages", ["lft"], :name => "index_pages_on_lft"
+  add_index "refinery_pages", ["lft"], :name => "index_refinery_pages_on_lft"
+  add_index "refinery_pages", ["parent_id"], :name => "index_pages_on_parent_id"
+  add_index "refinery_pages", ["parent_id"], :name => "index_refinery_pages_on_parent_id"
+  add_index "refinery_pages", ["rgt"], :name => "index_pages_on_rgt"
+  add_index "refinery_pages", ["rgt"], :name => "index_refinery_pages_on_rgt"
+
+  create_table "refinery_roles", :force => true do |t|
+    t.string "title"
+  end
+
+  create_table "refinery_roles_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "refinery_roles_users", ["role_id", "user_id"], :name => "index_refinery_roles_users_on_role_id_and_user_id"
+  add_index "refinery_roles_users", ["role_id", "user_id"], :name => "index_roles_users_on_role_id_and_user_id"
+  add_index "refinery_roles_users", ["user_id", "role_id"], :name => "index_refinery_roles_users_on_user_id_and_role_id"
+  add_index "refinery_roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id"
+
   create_table "refinery_settings", :force => true do |t|
     t.string   "name"
     t.text     "value"
@@ -265,6 +288,39 @@ ActiveRecord::Schema.define(:version => 20130216172057) do
 
   add_index "refinery_settings", ["name"], :name => "index_refinery_settings_on_name"
 
+  create_table "refinery_user_plugins", :force => true do |t|
+    t.integer "user_id"
+    t.string  "name"
+    t.integer "position"
+  end
+
+  add_index "refinery_user_plugins", ["name"], :name => "index_refinery_user_plugins_on_name"
+  add_index "refinery_user_plugins", ["name"], :name => "index_user_plugins_on_title"
+  add_index "refinery_user_plugins", ["user_id", "name"], :name => "index_refinery_user_plugins_on_user_id_and_name", :unique => true
+  add_index "refinery_user_plugins", ["user_id", "name"], :name => "index_unique_user_plugins", :unique => true
+
+  create_table "refinery_users", :force => true do |t|
+    t.string   "username",               :null => false
+    t.string   "email",                  :null => false
+    t.string   "encrypted_password",     :null => false
+    t.string   "persistence_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "perishable_token"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.integer  "sign_in_count"
+    t.string   "remember_token"
+    t.string   "reset_password_token"
+    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at"
+  end
+
+  add_index "refinery_users", ["id"], :name => "index_refinery_users_on_id"
+  add_index "refinery_users", ["id"], :name => "index_users_on_id"
+
   create_table "resources", :force => true do |t|
     t.string   "file_mime_type"
     t.string   "file_name"
@@ -274,18 +330,6 @@ ActiveRecord::Schema.define(:version => 20130216172057) do
     t.string   "file_uid"
     t.string   "file_ext"
   end
-
-  create_table "roles", :force => true do |t|
-    t.string "title"
-  end
-
-  create_table "roles_users", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "role_id"
-  end
-
-  add_index "roles_users", ["role_id", "user_id"], :name => "index_roles_users_on_role_id_and_user_id"
-  add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id"
 
   create_table "rooms", :force => true do |t|
     t.string   "name"
@@ -435,34 +479,5 @@ ActiveRecord::Schema.define(:version => 20130216172057) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "user_plugins", :force => true do |t|
-    t.integer "user_id"
-    t.string  "name"
-    t.integer "position"
-  end
-
-  add_index "user_plugins", ["name"], :name => "index_user_plugins_on_title"
-  add_index "user_plugins", ["user_id", "name"], :name => "index_unique_user_plugins", :unique => true
-
-  create_table "users", :force => true do |t|
-    t.string   "username",             :null => false
-    t.string   "email",                :null => false
-    t.string   "encrypted_password",   :null => false
-    t.string   "persistence_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "perishable_token"
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.integer  "sign_in_count"
-    t.string   "remember_token"
-    t.string   "reset_password_token"
-    t.datetime "remember_created_at"
-  end
-
-  add_index "users", ["id"], :name => "index_users_on_id"
 
 end

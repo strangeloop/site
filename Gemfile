@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.12'
 gem 'formtastic', '~> 1.2.3'
 gem 'carmen', '0.2.4'
-gem 'ajaxful_rating', '3.0.0.beta7'
+gem 'ajaxful_rating', '3.0.0.beta8'
 
 gem 'acts-as-taggable-on', '~> 2.2.2'
 

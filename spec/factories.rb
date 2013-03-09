@@ -13,9 +13,11 @@
 #- limitations under the License.
 #-
 
+require_relative '../vendor/engines/conference_sessions/app/models/track'
+require_relative '../vendor/engines/sponsorships/app/models/contact'
+require_relative '../vendor/engines/sponsorships/app/models/sponsor'
 
-
-Factory.define :user do |u|
+Factory.define :user, class: Refinery::User do |u|
   u.sequence(:username) { |n| "person#{n}" }
   u.sequence(:email) { |n| "person#{n}@cucumber.com" }
   u.password  "greenandjuicy"
@@ -23,7 +25,7 @@ Factory.define :user do |u|
 end
 
 Factory.define :admin, :parent => :user do |u|
-  u.roles { [ Role[:refinery] ] }
+  u.roles { [ Refinery::Role[:refinery] ] }
 
   u.after_create do |user|
     Refinery::Plugins.registered.each_with_index do |plugin, index|
@@ -37,20 +39,20 @@ Factory.define :reviewer, :parent => :user do |u|
   u.after_create do |user|
     user.plugins.create(:name => "refinery_dashboard", :position => 0)
     user.plugins.create(:name => "proposals", :position => 1)
-    [:refinery, :reviewer].each{|role| user.roles << Role[role] }
+    [:refinery, :reviewer].each{|role| user.roles << Refinery::Role[role] }
   end
 end
 
 Factory.define :submission_admin1, :parent => :user do |u|
   u.username "submissionadm1"
   u.email "subadmin1@strangloop.com"
-  u.roles {[Role["Submission Admin"]]}
+  u.roles {[Refinery::Role["Submission Admin"]]}
 end
 
 Factory.define :submission_admin2, :parent => :user do |u|
   u.username "submissionadm2"
   u.email "subadmin2@strangloop.com"
-  u.roles {[Role["Submission Admin"]]}
+  u.roles {[Refinery::Role["Submission Admin"]]}
 end
 
 Factory.define :alternate_reviewer, :parent => :reviewer do |u|
@@ -69,7 +71,7 @@ Factory.define :organizer, :parent => :reviewer do |u|
   u.username 'organizer'
   u.after_create do |user|
     user.plugins.create(:name => "conference_sessions", :position => 1)
-    user.roles << Role[:organizer]
+    user.roles << Refinery::Role[:organizer]
   end
 end
 

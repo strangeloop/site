@@ -16,6 +16,7 @@
 
 
 require 'spec_helper'
+require_relative '../../app/models/proposal'
 
 describe Proposal do
 
@@ -94,7 +95,7 @@ describe Proposal do
     }
 
     it "knows who rated" do
-      prop.raters(:appeal).should == User.find(:all)
+      prop.raters(:appeal).should == Refinery::User.all
     end
 
     it "knows the rating" do
