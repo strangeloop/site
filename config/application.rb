@@ -72,6 +72,8 @@ module Conf
       :entitystore => "file:#{Rails.root}/tmp/dragonfly/cache/body"
     }
 
+    config.paths['app/views'].unshift("#{Rails.root}/vendor/engines/proposals/app/views")
+
     #config.to_prepare do
       #Refinery.searchable_models = [Page, Talk, Speaker]
     #end
