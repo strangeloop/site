@@ -14,6 +14,7 @@
 #-
 
 require_relative '../config/environment'
+
 require 'rspec/rails'
 require 'rspec/autorun'
 
@@ -28,9 +29,8 @@ require_relative 'custom_matchers'
 require_relative '../vendor/engines/proposals/spec/factories'
 
 def setup_environment
-  # This file is copied to ~/spec when you run 'rails generate rspec'
-  # from the project root directory.
-  require 'shoulda/integrations/rspec2'
+  require 'shoulda/matchers/integrations/rspec'
+  require 'shoulda-matchers'
 
   # Requires supporting files with custom matchers and macros, etc,
   # in ./support/ and its subdirectories.

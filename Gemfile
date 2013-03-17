@@ -39,11 +39,11 @@ group :production do
 end
 
 group :test do
-  gem 'shoulda', '~> 2.11.3'
+  gem 'shoulda', '~> 3.3.2'
   gem 'factory_girl_rails', '~> 1.0.1'
   gem 'rails3-generators', '~> 0.17.2'
   gem 'jasmine'
-  gem 'rspec-rails', '~> 2.5.0'
+  gem 'rspec-rails', '~> 2.13.0'
   gem 'capybara', '~> 1.1.2'
   gem 'database_cleaner', '~> 0.6.0'
   gem 'cucumber-rails', '~> 1.0.2'
