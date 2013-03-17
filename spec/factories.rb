@@ -13,6 +13,8 @@
 #- limitations under the License.
 #-
 
+require_relative '../vendor/engines/conference_sessions/app/models/room'
+require_relative '../vendor/engines/conference_sessions/app/models/session_time'
 require_relative '../vendor/engines/conference_sessions/app/models/track'
 require_relative '../vendor/engines/sponsorships/app/models/contact'
 require_relative '../vendor/engines/sponsorships/app/models/sponsor'

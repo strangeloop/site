@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221020306) do
+ActiveRecord::Schema.define(:version => 20130317201748) do
 
   create_table "attendee_creds", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -47,16 +47,16 @@ ActiveRecord::Schema.define(:version => 20130221020306) do
     t.string   "state"
     t.integer  "conf_year"
     t.string   "github_id"
-    t.string   "cached_slug"
+    t.string   "slug"
     t.string   "company_url"
     t.integer  "attendee_cred_id"
   end
 
-  add_index "attendees", ["cached_slug"], :name => "index_attendees_on_cached_slug", :unique => true
   add_index "attendees", ["email"], :name => "index_attendees_on_email", :unique => true
   add_index "attendees", ["first_name"], :name => "index_attendees_on_first_name"
   add_index "attendees", ["last_name"], :name => "index_attendees_on_last_name"
   add_index "attendees", ["reg_id"], :name => "index_attendees_on_reg_id"
+  add_index "attendees", ["slug"], :name => "index_attendees_on_cached_slug", :unique => true
 
   create_table "attendees_conference_sessions", :id => false, :force => true do |t|
     t.integer "attendee_id",           :null => false
@@ -86,17 +86,17 @@ ActiveRecord::Schema.define(:version => 20130221020306) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cached_slug"
+    t.string   "slug"
     t.integer  "conf_year"
     t.integer  "session_time_id"
     t.integer  "room_id"
   end
 
-  add_index "conference_sessions", ["cached_slug"], :name => "index_conference_sessions_on_cached_slug", :unique => true
   add_index "conference_sessions", ["id"], :name => "index_conference_sessions_on_id"
   add_index "conference_sessions", ["room_id"], :name => "index_conference_sessions_on_room_id"
   add_index "conference_sessions", ["session_time_id"], :name => "index_conference_sessions_on_session_time_id"
   add_index "conference_sessions", ["slides_id"], :name => "index_conference_sessions_on_slides_id"
+  add_index "conference_sessions", ["slug"], :name => "index_conference_sessions_on_cached_slug", :unique => true
   add_index "conference_sessions", ["talk_id"], :name => "index_conference_sessions_on_talk_id"
 
   create_table "contacts", :force => true do |t|

@@ -17,6 +17,8 @@
 
 require 'spec_helper'
 
+require_relative '../../app/models/conference_session'
+
 describe ConferenceSession do
   let(:talk) { Factory(:talk) }
   let(:conference_session) { ConferenceSession.new(:talk => talk) }
@@ -24,11 +26,11 @@ describe ConferenceSession do
   describe "validations" do
 
     it "rejects empty format" do
-      ConferenceSession.new(:format => '').should_not be_valid
+      ConferenceSession.new(format: '', talk: Talk.new).should_not be_valid
     end
 
     it "rejects invalid format" do
-      ConferenceSession.new(:format => 'heynow').should_not be_valid
+      ConferenceSession.new(format: 'heynow', talk: Talk.new).should_not be_valid
     end
 
     context "the simplest form" do
@@ -227,7 +229,7 @@ describe ConferenceSession do
       third
 
       sessions = ConferenceSession::by_short_session_time_and_location_for_formats('talk')
-      sessions['Thursday, July 01, 2010'].keys.count.should == 5 
+      sessions['Thursday, July 01, 2010'].keys.count.should == 5
     end
   end
 end

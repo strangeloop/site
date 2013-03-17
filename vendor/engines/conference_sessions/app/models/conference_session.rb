@@ -14,6 +14,7 @@
 #-
 
 require 'session_formats'
+require 'csv'
 
 class ConferenceSession < ActiveRecord::Base
   extend FriendlyId
