@@ -87,10 +87,9 @@ describe Proposal do
   end
 
   context "stores ratings" do
-    let (:prop) {
+    let!(:prop) {
       Factory(:proposal).tap{ |p|
         p.rate(3, reviewer, :appeal)
-        p.save
       }
     }
 
@@ -155,43 +154,36 @@ describe Proposal do
   context "CSV export" do
     NUM_STATIC_PROPOSAL_CSV_FIELDS = 13
 
-    let(:proposal1){ Factory(:proposal) }
+    let!(:proposal1){ Factory(:proposal) }
 
-    let(:proposal2){
+    let!(:proposal2){
       Factory(:proposal).tap{ |p|
         p.rate(1, reviewer, :appeal)
         p.rate(2, alternate_reviewer, :appeal)
       }
     }
 
-    let(:proposal3){
+    let!(:proposal3){
       Factory(:proposal).tap{ |p|
         p.rate(3, alternate_reviewer2, :appeal)
+        p.talk.speakers << [Factory(:workshop_speaker)]
+        p.save
       }
     }
 
-    let(:proposal4){
+    let!(:proposal4){
       Factory(:proposal, :created_at => DateTime.parse('July 6, 2010')).tap{ |p|
         p.rate(3, alternate_reviewer3, :appeal)
+        p.status = 'accepted'
+        p.save
       }
     }
 
     let(:proposal5){
       Factory(:proposal).tap{ |p|
         p.comments.create(:title => "foo", :comment => "comment1", :user => alternate_reviewer2)
-#        p.rate(4, alternate_reviewer3, :appeal)
       }
     }
-
-    before do
-      proposal1
-      proposal2
-      proposal3
-      proposal3.talk.speakers << [Factory(:workshop_speaker)]
-
-      proposal4.status = "accepted"
-      proposal4.save
-    end
 
     it "Should create a sorted list of unique reviewers for pending proposals" do
       pending = Proposal.pending

@@ -14,6 +14,7 @@
 #-
 
 require 'session_formats'
+require 'csv'
 
 class Proposal < ActiveRecord::Base
   extend ActiveSupport::Memoizable

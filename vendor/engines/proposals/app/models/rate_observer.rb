@@ -13,7 +13,7 @@
 #- limitations under the License.
 #-
 
-
+require_relative '../observers/proposal_status_updater'
 
 class RateObserver < ActiveRecord::Observer
   include ProposalStatusUpdater
