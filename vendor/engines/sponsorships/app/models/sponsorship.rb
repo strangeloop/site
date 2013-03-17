@@ -13,7 +13,9 @@
 #- limitations under the License.
 #-
 
-
+require_relative 'contact'
+require_relative 'sponsor'
+require_relative 'sponsorship_level'
 
 class Sponsorship < ActiveRecord::Base
   belongs_to :sponsor

@@ -25,7 +25,7 @@ describe Sponsorship do
      it {should validate_presence_of field}
    end
 
-   [:sponsor, :contact].each do |relation|
+   [:sponsor, :contact, :sponsorship_level].each do |relation|
      it {should belong_to relation}
    end
   end
