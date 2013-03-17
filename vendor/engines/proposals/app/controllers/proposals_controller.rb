@@ -1,3 +1,5 @@
+require_relative '../models/proposal'
+
 class ProposalsController < ApplicationController
   expose(:talk) { build_talk }
   expose(:speaker) { talk.speakers.first }
