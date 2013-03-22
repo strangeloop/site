@@ -5,7 +5,7 @@ RSpec::Matchers.define :protect_attribute do |attribute, value|
     record[attribute] == old_value
   end
 
-  failure_message do
+  failure_message_for_should do
     "#{subject.class} should protect attribute #{attribute.inspect}"
   end
 end
