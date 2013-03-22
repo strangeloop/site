@@ -69,7 +69,7 @@ describe ConferenceSessionsController do
         end
 
         it '#year gets its year from the year param' do
-          controller.year.should == Time.now.year - 1
+          controller.year.to_i.should == Time.now.year - 1
         end
       end
     end
