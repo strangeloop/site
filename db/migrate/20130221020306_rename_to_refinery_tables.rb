@@ -31,9 +31,14 @@ class RenameToRefineryTables < ActiveRecord::Migration
     add_index :refinery_page_part_translations, :locale
     add_index :refinery_page_part_translations, :page_part_id
 
+    rename_table :images, :refinery_images
+
+
   end
 
   def down
+    rename_table :refinery_images, :images
+
     rename_table :refinery_page_part_translations, :page_part_translations
 
     rename_table :refinery_page_parts, :page_parts

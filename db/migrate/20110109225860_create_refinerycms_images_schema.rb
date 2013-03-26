@@ -1,6 +1,6 @@
 class CreateRefinerycmsImagesSchema < ActiveRecord::Migration
   def self.up
-    create_table ::Image.table_name, :force => true do |t|
+    create_table Refinery::Image.table_name, :force => true do |t|
       t.string   "image_mime_type"
       t.string   "image_name"
       t.integer  "image_size"
@@ -14,7 +14,7 @@ class CreateRefinerycmsImagesSchema < ActiveRecord::Migration
   end
 
   def self.down
-    [::Image].reject{|m|
+    [Refinery::Image].reject{|m|
       !(defined?(m) and m.respond_to?(:table_name))
     }.each do |model|
       drop_table model.table_name

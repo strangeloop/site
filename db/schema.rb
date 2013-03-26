@@ -116,18 +116,6 @@ ActiveRecord::Schema.define(:version => 20130317201748) do
 
   add_index "datastore_images", ["uid"], :name => "index_datastore_images_on_uid"
 
-  create_table "images", :force => true do |t|
-    t.string   "image_mime_type"
-    t.string   "image_name"
-    t.integer  "image_size"
-    t.integer  "image_width"
-    t.integer  "image_height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_uid"
-    t.string   "image_ext"
-  end
-
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
@@ -165,6 +153,18 @@ ActiveRecord::Schema.define(:version => 20130317201748) do
 
   add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
   add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
+
+  create_table "refinery_images", :force => true do |t|
+    t.string   "image_mime_type"
+    t.string   "image_name"
+    t.integer  "image_size"
+    t.integer  "image_width"
+    t.integer  "image_height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_uid"
+    t.string   "image_ext"
+  end
 
   create_table "refinery_news_item_translations", :force => true do |t|
     t.integer  "refinery_news_item_id"
