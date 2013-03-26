@@ -1,8 +1,16 @@
 PATH
-  remote: vendor/engines
+  remote: vendor/engines/conference_sessions
   specs:
     refinerycms-conference_sessions (1.0)
+
+PATH
+  remote: vendor/engines/proposals
+  specs:
     refinerycms-proposals (1.0)
+
+PATH
+  remote: vendor/engines/sponsorships
+  specs:
     refinerycms-sponsorships (1.0)
 
 GEM

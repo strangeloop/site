@@ -76,8 +76,8 @@ gem 'refinerycms-news',         '~> 2.0.0'
 
 # END USER DEFINED
 
-gem 'refinerycms-proposals', '1.0', :path => 'vendor/engines'
+gem 'refinerycms-proposals', '1.0', :path => 'vendor/engines/proposals'
 
-gem 'refinerycms-conference_sessions', '1.0', :path => 'vendor/engines'
+gem 'refinerycms-conference_sessions', '1.0', :path => 'vendor/engines/conference_sessions'
 
-gem 'refinerycms-sponsorships', '1.0', :path => 'vendor/engines'
+gem 'refinerycms-sponsorships', '1.0', :path => 'vendor/engines/sponsorships'
