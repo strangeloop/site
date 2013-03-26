@@ -13,11 +13,15 @@
 #- limitations under the License.
 #-
 
+require_relative '../vendor/engines/conference_sessions/app/models/conference_session'
 require_relative '../vendor/engines/conference_sessions/app/models/room'
 require_relative '../vendor/engines/conference_sessions/app/models/session_time'
 require_relative '../vendor/engines/conference_sessions/app/models/track'
+require_relative '../vendor/engines/proposals/app/models/proposal'
 require_relative '../vendor/engines/sponsorships/app/models/contact'
 require_relative '../vendor/engines/sponsorships/app/models/sponsor'
+require_relative '../vendor/engines/sponsorships/app/models/sponsorship'
+require_relative '../vendor/engines/sponsorships/app/models/sponsorship_level'
 
 Factory.define :user, class: Refinery::User do |u|
   u.sequence(:username) { |n| "person#{n}" }
@@ -77,7 +81,7 @@ Factory.define :organizer, :parent => :reviewer do |u|
   end
 end
 
-Factory.define :image do |i|
+Factory.define :image, class: Refinery::Image do |i|
   i.image File.new(File.expand_path('../uploads/image.jpeg', __FILE__))
 end
 
@@ -344,10 +348,10 @@ Factory.define :registered_attendee, :parent => :attendee do |ra|
   end
 end
 
-Factory.define :page do
+Factory.define :page, class: Refinery::Page do
 end
 
-Factory.define :page_part do |pp|
+Factory.define :page_part, class: Refinery::PagePart do |pp|
   pp.title 'Homepage'
   pp.body 'This is the homepage'
 end
