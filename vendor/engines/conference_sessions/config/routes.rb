@@ -15,7 +15,7 @@
 
 
 
-Refinery::Application.routes.draw do
+Refinery::Core::Engine.routes.draw do
   resources :conference_sessions, :path => '/sessions', :only => [:index, :show]
 
   get '/preconf', :to => 'conference_sessions#index_workshop', :as => 'workshops'
@@ -26,7 +26,7 @@ Refinery::Application.routes.draw do
 
   put '/toggle_session', :to => 'conference_sessions#toggle_session'
 
-  scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
+  namespace :admin, path: 'refinery' do
     resources :conference_sessions, :except => :show do
       collection do
         post :update_positions

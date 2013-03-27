@@ -1,0 +1,13 @@
+source 'http://rubygems.org'
+
+gemspec
+
+gem 'refinerycms', '~> 2.0.1'
+
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
+
+gem 'jquery-rails'

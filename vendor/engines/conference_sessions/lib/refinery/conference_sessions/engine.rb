@@ -13,23 +13,25 @@
 #- limitations under the License.
 #-
 
-require 'refinerycms-core'
-require 'refinerycms-settings'
 
 module Refinery
-  #autoload :ConferenceSessionsGenerator, 'generators/refinery_conference_sessions_generator'
   module ConferenceSessions
-    require 'refinery/conference_sessions/engine'
+    class Engine < Rails::Engine
+      include Refinery::Engine
 
-    class << self
-      attr_writer :root
+      isolate_namespace Refinery::ConferenceSessions
 
-      def root
-        @root ||= Pathname.new(File.expand_path('../../../', __FILE__))
+      config.after_initialize do
+        Refinery.register_engine Refinery::ConferenceSessions
       end
 
-      def factory_paths
-        []
+      initializer 'init plugin' do
+        Refinery::Plugin.register do |plugin|
+          plugin.name = "conference_sessions"
+          plugin.menu_match = /(admin|refinery)\/(conference_sessions|rooms|session_times|tracks)$/
+          plugin.activity = {class_name: 'ConferenceSession'}
+          plugin.url = Proc.new { Refinery::Core::Engine.routes.url_helpers.conference_sessions_admin_conference_sessions_path }
+        end
       end
     end
   end
