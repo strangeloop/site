@@ -19,6 +19,7 @@ require 'csv'
 class ConferenceSession < ActiveRecord::Base
   extend FriendlyId
   include Rails.application.routes.url_helpers
+  include Refinery::Core::Engine.routes.url_helpers
   include SessionFormats
   default_url_options[:host] = 'thestrangeloop.com'
 
