@@ -22,7 +22,7 @@ Refinery::Core::Engine.routes.draw do
 
   match '/schedule', :to => 'conference_sessions#schedule'
 
-  match 'archive/*year', :to => 'conference_sessions#archive'
+  match '/archive/*year', :to => 'conference_sessions#archive'
 
   put '/toggle_session', :to => 'conference_sessions#toggle_session'
 

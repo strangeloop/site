@@ -16,9 +16,9 @@
 
 
 require 'spec_helper'
-require_relative '../../../app/controllers/admin/conference_sessions_controller'
+require_relative '../../../../app/controllers/refinery/admin/conference_sessions_controller'
 
-describe Admin::ConferenceSessionsController do
+describe Refinery::Admin::ConferenceSessionsController do
   login_organizer
 
   let(:conf_session) { mock_model(ConferenceSession).as_null_object }

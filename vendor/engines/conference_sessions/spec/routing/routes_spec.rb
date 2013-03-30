@@ -19,7 +19,7 @@ require 'spec_helper'
 
 describe "routes for archive" do
   it "routes /archive/2010 to conference_sessions controller index action" do
-    { :get => '/archive/2010' }.should route_to(:controller => 'conference_sessions',
+    { :get => '/archive/2010', use_route: :refinery_conference_sessions }.should route_to(:controller => 'conference_sessions',
                                                 :action => 'archive',
                                                 :year => '2010')
   end

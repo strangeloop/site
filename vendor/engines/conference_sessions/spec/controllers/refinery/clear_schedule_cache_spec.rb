@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::ConferenceSessionsController do
+describe Refinery::Admin::ConferenceSessionsController do
   login_organizer
 
   let (:conf_session_params) do

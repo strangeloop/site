@@ -16,9 +16,9 @@
 
 
 require 'spec_helper'
-require_relative '../../app/controllers/conference_sessions_controller'
+require_relative '../../../app/controllers/refinery/conference_sessions_controller'
 
-describe ConferenceSessionsController do
+describe Refinery::ConferenceSessionsController do
   let(:session) { Factory(:keynote_session) }
   let(:talk) { session.talk }
   let(:speaker) { talk.speakers.first }

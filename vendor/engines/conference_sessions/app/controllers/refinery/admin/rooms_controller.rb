@@ -15,14 +15,14 @@
 
 
 
+module Refinery
+  module Admin
+    class RoomsController < Admin::BaseController
 
-module Admin
-  class RoomsController < Admin::BaseController
+      cache_sweeper :clear_schedule_cache, :only => [:update, :destroy]
 
-    cache_sweeper :clear_schedule_cache, :only => [:update, :destroy]
+      crudify :room, :order => 'position ASC'
 
-    crudify :room, :order => 'position ASC'
-
+    end
   end
 end
-
