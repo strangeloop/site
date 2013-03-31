@@ -16,7 +16,7 @@
 
 
 module Admin
-  class SponsorshipsController < Admin::BaseController
+  class SponsorshipsController < Refinery::AdminController
     include ImageUploadFix
 
     prepend_before_filter :find_all_levels, :only => [:new, :edit]
@@ -26,7 +26,7 @@ module Admin
     expose(:year) { params[:year] || Time.now.year }
     expose(:all_years) { Sponsorship.all_years }
     expose(:current_sponsorships){ Sponsorship.from_year(year).paginate({:page => params[:page], :per_page => 30})}
-    
+
     def new
       @sponsorship = Sponsorship.new(:contact => Contact.new, :sponsor => Sponsor.new)
     end

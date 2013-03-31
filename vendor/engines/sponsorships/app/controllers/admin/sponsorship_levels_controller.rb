@@ -16,7 +16,7 @@
 
 
 module Admin
-  class SponsorshipLevelsController < Admin::BaseController
+  class SponsorshipLevelsController < Refinery::AdminController
 
     crudify :sponsorship_level, :xhr_paging => true
 

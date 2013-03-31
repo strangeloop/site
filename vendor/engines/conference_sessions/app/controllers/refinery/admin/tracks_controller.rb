@@ -1,6 +1,6 @@
 module Refinery
   module Admin
-    class TracksController < Admin::BaseController
+    class TracksController < Refinery::AdminController
 
       cache_sweeper :clear_schedule_cache, :only => [:update, :destroy]
 
