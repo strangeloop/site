@@ -16,13 +16,13 @@
 
 
 require 'spec_helper'
-require_relative '../../../app/controllers/admin/proposals_controller'
+require_relative '../../../../app/controllers/refinery/admin/proposals_controller'
 
-describe Admin::ProposalsController do
+describe Refinery::Admin::ProposalsController do
 
   it "by creation date descending" do
-    Admin::ProposalsController.should_receive(:crudify).with(:proposal, {:title_attribute => 'status', :order => 'created_at DESC'})
-    load(File.join(File.dirname(__FILE__),'..','..','..','app', 'controllers','admin', 'proposals_controller.rb'))
+    Refinery::Admin::ProposalsController.should_receive(:crudify).with(:proposal, {:title_attribute => 'status', :order => 'created_at DESC'})
+    load(File.join(File.dirname(__FILE__),'..','..','..', '..','app', 'controllers', 'refinery', 'admin', 'proposals_controller.rb'))
   end
 
   describe '#current_proposals' do
@@ -78,14 +78,14 @@ describe Admin::ProposalsController do
     login_admin
 
     it "ensures the current user has the reviewer role before allowing rating" do
-      post :rate, :id => 1, :format => 'js'
+      post :rate, :id => '1', :format => 'js'
       assigns[:proposal].should be_nil
-      response.should redirect_to(root_path)
+      response.should redirect_to('/')
     end
 
     it "redirects if non-organizers try to call export" do
       get :export, :format => 'csv'
-      response.should redirect_to(root_path)
+      response.should redirect_to('/')
     end
   end
 
@@ -97,8 +97,8 @@ describe Admin::ProposalsController do
 
     let(:approval_params) do
       { :status => 'accepted',
-        :conference_session => { :session_time_id => 1 },
-        :id => 2 }
+        :conference_session => { :session_time_id => '1' },
+        :id => '2' }
     end
 
     let(:proposal_approval) do
@@ -109,11 +109,11 @@ describe Admin::ProposalsController do
       post :proposal_update, approval_params.merge(:sendmail => '1')
     end
 
-    let(:session_time) { mock_model(SessionTime).as_null_object }
+    let(:session_time) { mock }
 
     before do
-      Proposal.stub(:find).with(2).and_return(proposal)
-      SessionTime.stub(:find).with(1).and_return(session_time)
+      Proposal.stub(:find).with('2').and_return(proposal)
+      SessionTime.stub(:find).with('1').and_return(session_time)
       ConferenceSession.stub(:create).with(:talk => talk, :session_time => session_time)
       proposal.should_receive(:talk).and_return(talk)
     end
@@ -139,7 +139,7 @@ describe Admin::ProposalsController do
     login_admin
 
     let(:rejection_options) do
-      {:status => 'rejected', :id => 1}
+      {:status => 'rejected', :id => '1'}
     end
 
     let(:proposal_rejection) do
@@ -147,11 +147,11 @@ describe Admin::ProposalsController do
     end
 
     let(:proposal_rejection_email) do
-      post :proposal_update, rejection_options.merge(:sendmail => "1")
+      post :proposal_update, rejection_options.merge(:sendmail => '1')
     end
 
     before do
-      Proposal.stub(:find).with(1).and_return(proposal)
+      Proposal.stub(:find).with('1').and_return(proposal)
     end
 
     it "updates the proposal status to 'rejected'" do

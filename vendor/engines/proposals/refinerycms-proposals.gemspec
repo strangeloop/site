@@ -7,4 +7,6 @@ Gem::Specification.new do |s|
   s.summary           = 'Proposals engine for Refinery CMS'
   s.require_paths     = %w(lib)
   s.files             = Dir['lib/**/*', 'config/**/*', 'app/**/*']
+  s.add_dependency    'refinerycms-core',     '~> 2.0.1'
+  s.add_dependency    'refinerycms-settings', '~> 2.0.0'
 end

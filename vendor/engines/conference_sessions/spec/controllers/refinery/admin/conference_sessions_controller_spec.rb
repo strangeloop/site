@@ -23,7 +23,7 @@ describe Refinery::Admin::ConferenceSessionsController do
 
   let(:conf_session) { mock_model(ConferenceSession).as_null_object }
   let(:params) do
-    { :id => 1,
+    { :id => '1',
       :conference_session => {
         'talk_attributes' => {
           'title' => 'A new title',
@@ -44,7 +44,7 @@ describe Refinery::Admin::ConferenceSessionsController do
   context "#update" do
 
     before do
-      ConferenceSession.stub(:find).with(1, {:include=>[]}).and_return(conf_session)
+      ConferenceSession.stub(:find).with('1', {:include=>[]}).and_return(conf_session)
     end
 
     it "writes to flash on successful update" do

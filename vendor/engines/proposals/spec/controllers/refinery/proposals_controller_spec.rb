@@ -1,7 +1,7 @@
 require 'spec_helper'
-require_relative '../../app/controllers/proposals_controller'
+require_relative '../../../app/controllers/refinery/proposals_controller'
 
-describe ProposalsController do
+describe Refinery::ProposalsController do
   #necessary because refinery serves admin creation page unless an admin acct exists
   login_admin
 

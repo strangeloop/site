@@ -13,33 +13,24 @@
 #- limitations under the License.
 #-
 
-
+require 'refinerycms-core'
+require 'refinerycms-settings'
 
 module Refinery
   module Proposals
-    class Engine < Rails::Engine
-      initializer "static assets" do |app|
-        app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
+    class << self
+      attr_writer :root
+
+      def root
+        @root ||= Pathname.new(File.expand_path('../../../', __FILE__))
       end
 
-      config.after_initialize do
-        Refinery::Plugin.register do |plugin|
-          plugin.name = "proposals"
-          plugin.activity = {
-            :class_name => 'Proposal',
-            :title => 'status'
-          }
-
-          class <<plugin
-            alias old_title title
-            def title
-              pending = Proposal.pending_count
-              return "#{old_title} (#{pending})" unless pending == 0
-              old_title
-            end
-          end
-        end
+      def factory_paths
+        []
       end
     end
+
+    require 'refinery/proposals/engine'
   end
 end
+

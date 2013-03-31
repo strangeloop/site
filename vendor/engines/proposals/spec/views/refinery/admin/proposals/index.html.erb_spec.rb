@@ -16,12 +16,13 @@
 
 
 require 'spec_helper'
+require_relative '../../../../../app/controllers/refinery/admin/proposals_controller'
 
-describe "admin/proposals/index.html.erb" do
+describe "refinery/admin/proposals/index.html.erb" do
   before do
     view.stub(:searching?).and_return(false)
     assign(:proposals, [])
-    Admin::ProposalsController.stub(:searchable?).and_return(false)
+    Refinery::Admin::ProposalsController.stub(:searchable?).and_return(false)
   end
 
   def role_check(val = false)

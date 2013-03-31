@@ -15,9 +15,8 @@ gem 'acts_as_commentable', '3.0.1'
 gem 'gravtastic'
 
 gem 'mmcopyrights'
-gem 'decent_exposure', '~> 1.0'
+gem 'decent_exposure', '~> 2.1.0'
 gem 'RedCloth', '~> 4.2'
-#gem 'jammit', '~> 0.6'
 gem 'client_side_validations', '~> 3.0.4'
 gem 'ri_cal', '~> 0.8.8'
 

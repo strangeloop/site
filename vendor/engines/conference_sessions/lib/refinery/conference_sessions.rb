@@ -17,10 +17,7 @@ require 'refinerycms-core'
 require 'refinerycms-settings'
 
 module Refinery
-  #autoload :ConferenceSessionsGenerator, 'generators/refinery_conference_sessions_generator'
   module ConferenceSessions
-    require 'refinery/conference_sessions/engine'
-
     class << self
       attr_writer :root
 
@@ -32,5 +29,7 @@ module Refinery
         []
       end
     end
+
+    require 'refinery/conference_sessions/engine'
   end
 end

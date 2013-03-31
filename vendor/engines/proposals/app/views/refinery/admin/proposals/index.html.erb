@@ -24,7 +24,7 @@
 </div>
 <div id='actions'>
   <ul>
-    <% if Admin::ProposalsController.searchable? %>
+    <% if Refinery::Admin::ProposalsController.searchable? %>
       <li>
         <%= render "/shared/admin/search", :url => admin_proposals_url %>
       </li>

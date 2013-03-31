@@ -15,12 +15,12 @@
 
 
 
-Refinery::Application.routes.draw do
+Refinery::Core::Engine.routes.draw do
   resources :proposals, :only => [:new, :create]
 
   get '/proposals/new/:format' => 'proposals#new', :as => :new_proposal_of
 
-  scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
+  namespace :admin, path: 'refinery' do
     resources :proposals, :except => :show do
       collection do
         post :update_positions
