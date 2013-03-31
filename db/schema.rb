@@ -177,7 +177,7 @@ ActiveRecord::Schema.define(:version => 20130317201748) do
   end
 
   add_index "refinery_news_item_translations", ["locale"], :name => "index_refinery_news_item_translations_on_locale"
-  add_index "refinery_news_item_translations", ["refinery_news_item_id"], :name => "index_2fe5614a8b4e9a5c34c0f93f230e423e36d53bda"
+  add_index "refinery_news_item_translations", ["refinery_news_item_id"], :name => "index_refinery_news_item_translations_on_refinery_news_item_id"
 
   create_table "refinery_news_items", :force => true do |t|
     t.string   "title"
@@ -260,6 +260,16 @@ ActiveRecord::Schema.define(:version => 20130317201748) do
   add_index "refinery_pages", ["rgt"], :name => "index_pages_on_rgt"
   add_index "refinery_pages", ["rgt"], :name => "index_refinery_pages_on_rgt"
 
+  create_table "refinery_resources", :force => true do |t|
+    t.string   "file_mime_type"
+    t.string   "file_name"
+    t.integer  "file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_uid"
+    t.string   "file_ext"
+  end
+
   create_table "refinery_roles", :force => true do |t|
     t.string "title"
   end
@@ -320,16 +330,6 @@ ActiveRecord::Schema.define(:version => 20130317201748) do
 
   add_index "refinery_users", ["id"], :name => "index_refinery_users_on_id"
   add_index "refinery_users", ["id"], :name => "index_users_on_id"
-
-  create_table "resources", :force => true do |t|
-    t.string   "file_mime_type"
-    t.string   "file_name"
-    t.integer  "file_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "file_uid"
-    t.string   "file_ext"
-  end
 
   create_table "rooms", :force => true do |t|
     t.string   "name"

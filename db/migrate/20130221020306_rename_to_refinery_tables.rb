@@ -33,10 +33,12 @@ class RenameToRefineryTables < ActiveRecord::Migration
 
     rename_table :images, :refinery_images
 
-
+    rename_table :resources, :refinery_resources
   end
 
   def down
+    rename_table :refinery_resources, :resources
+
     rename_table :refinery_images, :images
 
     rename_table :refinery_page_part_translations, :page_part_translations
