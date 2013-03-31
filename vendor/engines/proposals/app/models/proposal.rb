@@ -17,7 +17,6 @@ require 'session_formats'
 require 'csv'
 
 class Proposal < ActiveRecord::Base
-  extend ActiveSupport::Memoizable
   include SessionFormats
 
   belongs_to :talk
@@ -66,16 +65,8 @@ class Proposal < ActiveRecord::Base
   # The :comments value is a list of comments from the user for this proposal
   # The :rating is a single rating
   def comments_and_appeal_ratings
-    collector = Hash.new{|hash, key| hash[key] = {} }
-    comments_ordered_by_submitted.each{|comment|
-      values_hash = collector[comment.user]
-      (values_hash[:comments] ||= []) << comment
-    }
-    rates(:appeal).each{|rating| collector[rating.rater][:rating] = rating }
-    collector
+    @collector ||= collect_comments_and_appeal_ratings
   end
-
-  memoize :comments_and_appeal_ratings
 
   class << self
 
@@ -132,5 +123,16 @@ class Proposal < ActiveRecord::Base
       user_ratings = proposal.comments_and_appeal_ratings
       reviewers.inject(data){|d, reviewer| d << user_rating(reviewer, user_ratings)}
     end
+  end
+
+  private
+  def collect_comments_and_appeal_ratings
+    collector ||= Hash.new{|hash, key| hash[key] = {} }
+    comments_ordered_by_submitted.each{|comment|
+      values_hash = collector[comment.user]
+      (values_hash[:comments] ||= []) << comment
+    }
+    rates(:appeal).each{|rating| collector[rating.rater][:rating] = rating }
+    collector
   end
 end
