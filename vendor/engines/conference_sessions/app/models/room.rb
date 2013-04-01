@@ -17,6 +17,8 @@
 class Room < ActiveRecord::Base
   before_create AddConfYear
 
+  attr_accessible :name, :capacity
+
   validates_uniqueness_of :name, :scope => :conf_year, :message => 'Rooms must have unique names within a conference year'
 
   [:name, :capacity].each do |field|
