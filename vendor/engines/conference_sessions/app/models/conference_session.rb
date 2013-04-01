@@ -28,6 +28,9 @@ class ConferenceSession < ActiveRecord::Base
   belongs_to :session_time
   belongs_to :room
 
+  attr_accessible :talk_attributes, :position, :talk, :title, :abstract, :talk_type, :video_approval, :duration, :speakers_attributes, :format
+
+
   acts_as_indexed :fields => [:conf_year]
   accepts_nested_attributes_for :talk
 
