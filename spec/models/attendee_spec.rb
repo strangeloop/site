@@ -29,10 +29,10 @@ describe Attendee do
 
   context "protected attributes" do
     [ :reg_id, :attendee_cred_id, :conf_year].each do |field|
-      it {should protect_attribute(field, 'foo')}
+      it {should_not allow_mass_assignment_of(field)}
       end
 
-    it {should protect_attribute(:conf_year, 1400)}
+    it {should_not allow_mass_assignment_of(:conf_year)}
   end
 
   [:middle_name, :city, :state, :country, :email,
