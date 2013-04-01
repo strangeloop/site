@@ -21,9 +21,12 @@ require 'rails/all'
 require_relative '../vendor/engines/proposals/app/models/comment_observer'
 require_relative '../vendor/engines/proposals/app/models/rate_observer'
 
-# If you have a Gemfile, require the gems listed there, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+if defined?(Bundler)
+  # If you precompile assets before deploying to production, use this line
+  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  # If you want your assets lazily compiled in production, use this line
+  # Bundler.require(:default, :assets, Rails.env)
+end
 
 module Conf
   class Application < Rails::Application
@@ -58,24 +61,36 @@ module Conf
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
-    config.generators do |g|
-      g.test_framework :rspec, :fixture => true, :views => false
-      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
-      g.template_engine :erubis
-    end
+    #config.generators do |g|
+      #g.test_framework :rspec, :fixture => true, :views => false
+      #g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+      #g.template_engine :erubis
+    #end
 
     #config.middleware.insert_after 'Rack::Lock', 'Dragonfly::Middleware', :strangeloop, '/tsl-media'
-    config.middleware.insert_after 'Rack::Lock', 'Dragonfly::Middleware', :strangeloop
-    config.middleware.insert_before 'Dragonfly::Middleware', 'Rack::Cache', {
-      :verbose     => true,
-      :metastore   => "file:#{Rails.root}/tmp/dragonfly/cache/meta",
-      :entitystore => "file:#{Rails.root}/tmp/dragonfly/cache/body"
-    }
+    #config.middleware.insert_after 'Rack::Lock', 'Dragonfly::Middleware', :strangeloop
+    #config.middleware.insert_before 'Dragonfly::Middleware', 'Rack::Cache', {
+      #:verbose     => true,
+      #:metastore   => "file:#{Rails.root}/tmp/dragonfly/cache/meta",
+      #:entitystore => "file:#{Rails.root}/tmp/dragonfly/cache/body"
+    #}
 
     config.paths['app/views'].unshift("#{Rails.root}/vendor/engines/proposals/app/views")
 
     #config.to_prepare do
       #Refinery.searchable_models = [Page, Talk, Speaker]
     #end
+
+    # Enforce whitelist mode for mass assignment.
+    # This will create an empty whitelist of attributes available for mass-assignment for all models
+    # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
+    # parameters by using an attr_accessible or attr_protected declaration.
+    config.active_record.whitelist_attributes = true
+
+    # Enable the asset pipeline
+    config.assets.enabled = true
+
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
   end
 end

@@ -1,0 +1,72 @@
+/*--- kwicks ---*/
+	.kwicks-wrapper {
+		width:940px;
+		overflow:hidden;
+		margin: 0 auto
+	}
+	.kwicks-box {
+		border:1px solid #323232;
+		padding:12px;
+	}
+
+	.kwicks {
+		/* recommended styles for kwicks ul container */
+		list-style: none;
+		position: relative;
+		margin: 0;
+		padding: 0 !important;
+		overflow:hidden;
+		height:348px !important;
+		margin-bottom:40px;
+	}
+	.kwicks li{
+		/* these are required, but the values are up to you (must be pixel) */
+		width: 320px;
+		height: 396px;
+		/*do not change these */
+		display: block;
+		overflow: hidden;
+		padding: 0 !important;  /* if you need padding, do so with an inner div (or implement your own box-model hack) */
+		cursor:pointer;
+		opacity:1;
+		filter: alpha(opacity=80);
+		background:none !important;
+	}
+	.kwicks li.active {
+		opacity:1;
+		filter: alpha(opacity=100);
+	}
+	.kwicks.horizontal li {
+		/* This is optional and will be disregarded by the script.  However, it should be provided for non-JS enabled browsers. */
+		margin-right: 0; /*Set to same as spacing option. */
+		float: left;
+	}
+
+	.kwicks_vertical {
+		/* recommended styles for kwicks ul container */
+		list-style: none;
+		position: relative;
+		margin: 0;
+		padding: 0 !important;
+		overflow:hidden;
+		width:950px;
+		height:396px;
+		background:#000;
+	}
+	.kwicks_vertical li{
+		/* these are required, but the values are up to you (must be pixel) */
+		height: 196px;
+		/*do not change these */
+		display: block;
+		overflow: hidden;
+		padding: 0 !important;  /* if you need padding, do so with an inner div (or implement your own box-model hack) */
+		cursor:pointer;
+		float:none;
+		opacity:.8;
+		filter: alpha(opacity=80);
+	}
+	.kwicks_vertical li.active {
+		opacity:1;
+		filter: alpha(opacity=100);
+	}
+

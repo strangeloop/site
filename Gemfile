@@ -8,7 +8,7 @@ gem 'ajaxful_rating', '3.0.0.beta8'
 gem 'acts-as-taggable-on', '~> 2.2.2'
 
 gem 'rack-cache', :require => 'rack/cache'
-gem 'dragonfly', '~> 0.9.14'
+#gem 'dragonfly', '~> 0.9.14'
 gem 'uuidtools', '~> 2.1.2'
 
 gem 'acts_as_commentable', '3.0.1'
@@ -36,7 +36,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
