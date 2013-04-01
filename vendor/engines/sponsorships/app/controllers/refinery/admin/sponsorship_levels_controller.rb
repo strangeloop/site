@@ -14,7 +14,12 @@
 #-
 
 
+module Refinery
+  module Admin
+    class SponsorshipLevelsController < Refinery::AdminController
 
-class SponsorshipsController < ApplicationController
-  expose(:sponsorships) { Sponsorship.visible_sponsorships_by_level_name }
+      crudify :sponsorship_level, :xhr_paging => true
+
+    end
+  end
 end

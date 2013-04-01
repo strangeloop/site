@@ -13,23 +13,24 @@
 #- limitations under the License.
 #-
 
-
+require 'refinerycms-core'
+require 'refinerycms-settings'
 
 module Refinery
   module Sponsorships
-    class Engine < Rails::Engine
-      initializer "static assets" do |app|
-        app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
+    class << self
+      attr_writer :root
+
+      def root
+        @root ||= Pathname.new(File.expand_path('../../../', __FILE__))
       end
 
-      config.after_initialize do
-        Refinery::Plugin.register do |plugin|
-          plugin.name = "sponsorships"
-          plugin.menu_match = /(admin|refinery)\/(sponsorships|sponsorship_levels)$/
-          plugin.activity = {
-            :class_name => 'Sponsorship'}
-        end
+      def factory_paths
+        []
       end
     end
+
+    require 'refinery/sponsorships/engine'
   end
 end
+

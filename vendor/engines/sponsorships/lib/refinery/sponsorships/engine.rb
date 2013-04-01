@@ -15,18 +15,23 @@
 
 
 
-Refinery::Core::Engine.routes.draw do
-  resources :sponsorships, :path => 'sponsors', :only => [:index]
+module Refinery
+  module Sponsorships
+    class Engine < Rails::Engine
+      include Refinery::Engine
 
-  namespace :admin, path: 'refinery' do
-    resources :sponsorships, :except => :show do
-      collection do
-        post :update_positions
+      config.after_initialize do
+        Refinery.register_engine Refinery::Sponsorships
       end
-    end
-    resources :sponsorship_levels, :except => :show do
-      collection do
-        post :update_positions
+
+      initializer 'init plugin' do
+        Refinery::Plugin.register do |plugin|
+          plugin.name = "sponsorships"
+          plugin.menu_match = /(admin|refinery)\/(sponsorships|sponsorship_levels)$/
+          plugin.activity = {
+            :class_name => 'Sponsorship'}
+          plugin.url = Proc.new { Refinery::Core::Engine.routes.url_helpers.sponsorships_admin_sponsorships_path }
+        end
       end
     end
   end

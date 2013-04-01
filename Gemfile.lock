@@ -61,6 +61,8 @@ PATH
   remote: vendor/engines/sponsorships
   specs:
     refinerycms-sponsorships (1.0)
+      refinerycms-core (~> 2.0.1)
+      refinerycms-settings (~> 2.0.0)
 
 GEM
   remote: http://rubygems.org/
