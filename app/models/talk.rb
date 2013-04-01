@@ -17,6 +17,8 @@
 
 class Talk < ActiveRecord::Base
 
+  attr_accessible :talk, :abstract, :video_approval, :talk_type, :speakers
+  
   [:title, :abstract, :video_approval, :talk_type].each do |field|
     validates field, :presence => true
   end
