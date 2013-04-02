@@ -17,6 +17,8 @@
 
 class DatastoreImage < ActiveRecord::Base
 
+  attr_accessible :uid, :image
+
   [:uid, :image].each do |field|
     validates field, :presence => true
   end
