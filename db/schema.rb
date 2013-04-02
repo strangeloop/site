@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130317201748) do
     t.string   "slug"
     t.string   "company_url"
     t.integer  "attendee_cred_id"
+    t.text     "bio"
   end
 
   add_index "attendees", ["email"], :name => "index_attendees_on_email", :unique => true
@@ -119,14 +120,13 @@ ActiveRecord::Schema.define(:version => 20130317201748) do
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
-    t.string   "title"
     t.text     "body"
     t.string   "external_url"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "news_item_translations", ["locale"], :name => "index_news_item_translations_on_locale"
   add_index "news_item_translations", ["news_item_id"], :name => "index_news_item_translations_on_news_item_id"
 
   create_table "proposals", :force => true do |t|
@@ -193,20 +193,19 @@ ActiveRecord::Schema.define(:version => 20130317201748) do
   add_index "refinery_news_items", ["id"], :name => "index_news_items_on_id"
 
   create_table "refinery_page_part_translations", :force => true do |t|
-    t.integer  "page_part_id"
+    t.integer  "refinery_page_part_id"
     t.string   "locale"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "refinery_page_part_translations", ["locale"], :name => "index_page_part_translations_on_locale"
   add_index "refinery_page_part_translations", ["locale"], :name => "index_refinery_page_part_translations_on_locale"
-  add_index "refinery_page_part_translations", ["page_part_id"], :name => "index_page_part_translations_on_page_part_id"
-  add_index "refinery_page_part_translations", ["page_part_id"], :name => "index_refinery_page_part_translations_on_page_part_id"
+  add_index "refinery_page_part_translations", ["refinery_page_part_id"], :name => "index_page_part_translations_on_page_part_id"
+  add_index "refinery_page_part_translations", ["refinery_page_part_id"], :name => "index_refinery_page_part_translations_on_refinery_page_part_id"
 
   create_table "refinery_page_parts", :force => true do |t|
-    t.integer  "page_id"
+    t.integer  "refinery_page_id"
     t.string   "title"
     t.text     "body"
     t.integer  "position"
@@ -215,26 +214,24 @@ ActiveRecord::Schema.define(:version => 20130317201748) do
   end
 
   add_index "refinery_page_parts", ["id"], :name => "index_page_parts_on_id"
-  add_index "refinery_page_parts", ["page_id"], :name => "index_page_parts_on_page_id"
-  add_index "refinery_page_parts", ["page_id"], :name => "index_refinery_page_parts_on_page_id"
+  add_index "refinery_page_parts", ["refinery_page_id"], :name => "index_page_parts_on_page_id"
+  add_index "refinery_page_parts", ["refinery_page_id"], :name => "index_refinery_page_parts_on_refinery_page_id"
 
   create_table "refinery_page_translations", :force => true do |t|
-    t.integer  "page_id"
+    t.integer  "refinery_page_id"
     t.string   "locale"
-    t.string   "title"
     t.string   "custom_title"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "refinery_page_translations", ["locale"], :name => "index_page_translations_on_locale"
   add_index "refinery_page_translations", ["locale"], :name => "index_refinery_page_translations_on_locale"
-  add_index "refinery_page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
-  add_index "refinery_page_translations", ["page_id"], :name => "index_refinery_page_translations_on_page_id"
+  add_index "refinery_page_translations", ["refinery_page_id"], :name => "index_page_translations_on_page_id"
+  add_index "refinery_page_translations", ["refinery_page_id"], :name => "index_refinery_page_translations_on_refinery_page_id"
 
   create_table "refinery_pages", :force => true do |t|
     t.integer  "parent_id"
-    t.integer  "position"
     t.string   "path"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -242,12 +239,14 @@ ActiveRecord::Schema.define(:version => 20130317201748) do
     t.string   "link_url"
     t.string   "menu_match"
     t.boolean  "deletable",           :default => true
-    t.string   "custom_title_type",   :default => "none"
     t.boolean  "draft",               :default => false
     t.boolean  "skip_to_first_child", :default => false
     t.integer  "lft"
     t.integer  "rgt"
     t.integer  "depth"
+    t.string   "slug"
+    t.string   "view_template"
+    t.string   "layout_template"
   end
 
   add_index "refinery_pages", ["depth"], :name => "index_pages_on_depth"

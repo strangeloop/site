@@ -15,21 +15,29 @@ class RenameToRefineryTables < ActiveRecord::Migration
     add_index :refinery_roles_users, [:user_id, :role_id]
 
     rename_table :pages, :refinery_pages
+    add_column :refinery_pages, :slug, :string
+    add_column :refinery_pages, :view_template, :string
+    add_column :refinery_pages, :layout_template, :string
+    remove_column :refinery_pages, :position
+    remove_column :refinery_pages, :custom_title_type
     add_index :refinery_pages, :depth
     add_index :refinery_pages, :lft
     add_index :refinery_pages, :parent_id
     add_index :refinery_pages, :rgt
 
     rename_table :page_translations, :refinery_page_translations
-    add_index :refinery_page_translations, :page_id
+    rename_column :refinery_page_translations, :page_id, :refinery_page_id
+    add_index :refinery_page_translations, :refinery_page_id
     add_index :refinery_page_translations, :locale
 
     rename_table :page_parts, :refinery_page_parts
-    add_index :refinery_page_parts, :page_id
+    rename_column :refinery_page_parts, :page_id, :refinery_page_id
+    add_index :refinery_page_parts, :refinery_page_id
 
     rename_table :page_part_translations, :refinery_page_part_translations
+    rename_column :refinery_page_part_translations, :page_part_id, :refinery_page_part_id
     add_index :refinery_page_part_translations, :locale
-    add_index :refinery_page_part_translations, :page_part_id
+    add_index :refinery_page_part_translations, :refinery_page_part_id
 
     rename_table :images, :refinery_images
 
@@ -42,12 +50,20 @@ class RenameToRefineryTables < ActiveRecord::Migration
     rename_table :refinery_images, :images
 
     rename_table :refinery_page_part_translations, :page_part_translations
+    rename_column :page_part_translations, :refinery_page_part_id, :page_part_id
 
     rename_table :refinery_page_parts, :page_parts
+    rename_column :page_parts, :refinery_page_id, :page_id
 
     rename_table :refinery_page_translations, :page_translations
+    rename_column :page_translations, :refinery_page_id, :page_id
 
     rename_table :refinery_pages, :pages
+    remove_column :pages, :slug
+    remove_column :pages, :view_template
+    remove_column :pages, :layout_template
+    add_column :pages, :position, :integer
+    add_column :pages, :custom_title_type, :string, default: 'none'
 
     rename_table :refinery_roles_users, :roles_users
 
