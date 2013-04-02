@@ -31,6 +31,8 @@ class Proposal < ActiveRecord::Base
 
   accepts_nested_attributes_for :talk
 
+  attr_accessible :id, :status
+
   def self.current_year
     DateTime.parse("Jan 1, #{Time.now.year}")
   end
