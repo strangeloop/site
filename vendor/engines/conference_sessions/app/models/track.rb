@@ -3,6 +3,8 @@ class Track < ActiveRecord::Base
 
   validates_presence_of :name
 
+  attr_accessible :name
+
   scope :current_year, lambda { where(:conf_year => Time.now.year).order('name ASC') }
 
   def color
