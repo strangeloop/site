@@ -1,6 +1,8 @@
 class SessionTime < ActiveRecord::Base
   validates_presence_of :start_time
 
+  attr_accessible :start_time, :duration_hours, :duration_minutes
+
   validates_numericality_of :duration_hours, :greater_than => 0,
     :unless => Proc.new {|st| st.is_greater_than_zero? :duration_minutes }
 
