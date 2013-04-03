@@ -27,6 +27,10 @@ class RenameToRefineryTables < ActiveRecord::Migration
 
     rename_table :page_translations, :refinery_page_translations
     rename_column :refinery_page_translations, :page_id, :refinery_page_id
+    add_column :refinery_page_translations, :slug, :string
+    add_column :refinery_page_translations, :custom_slug, :string
+    add_column :refinery_page_translations, :menu_title, :string
+    remove_column :refinery_page_translations, :custom_title
     add_index :refinery_page_translations, :refinery_page_id
     add_index :refinery_page_translations, :locale
 
@@ -57,6 +61,10 @@ class RenameToRefineryTables < ActiveRecord::Migration
 
     rename_table :refinery_page_translations, :page_translations
     rename_column :page_translations, :refinery_page_id, :page_id
+    remove_column :page_translations, :slug
+    remove_column :page_translations, :custom_slug
+    remove_column :page_translations, :menu_title
+    add_column :page_translations, :custom_title, :string
 
     rename_table :refinery_pages, :pages
     remove_column :pages, :slug

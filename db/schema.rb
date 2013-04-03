@@ -220,10 +220,12 @@ ActiveRecord::Schema.define(:version => 20130317201748) do
   create_table "refinery_page_translations", :force => true do |t|
     t.integer  "refinery_page_id"
     t.string   "locale"
-    t.string   "custom_title"
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
+    t.string   "custom_slug"
+    t.string   "menu_title"
   end
 
   add_index "refinery_page_translations", ["locale"], :name => "index_refinery_page_translations_on_locale"
