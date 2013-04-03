@@ -8,7 +8,7 @@
       <%= raw t('.attribution') %>
     </div>
 
-    <% link_tree(@menu_pages).reverse.each do |page_group| -%>
+    <% link_tree(refinery_menu_pages).reverse.each do |page_group| -%>
     <div class="footer_box resources_box">
       <%= render :partial => 'shared/footer_menu', :collection => page_group %>
     </div>

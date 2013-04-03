@@ -2,12 +2,12 @@
 <div class="logo">
   <%= link_to image_tag('logo2.png', :alt => Refinery::Setting.find_or_set(:site_name, "Strange Loop")) , root_path %>
 </div>
-<%= render "/shared/menu", :dom_id => 'menu', :css => 'menu' -%>
+<%= render "/refinery/menu", :dom_id => 'menu', :css => 'menu' -%>
 
 <% end -%>
 <% if Refinery::Setting.find_or_set(:attendee_login_enabled, 'false').to_s =~ /true/ -%>
   <%= render '/shared/current_attendee', :username => current_attendee.try(:full_name),
     :attendee_path => (current_attendee ? attendee_path(current_attendee) : ''),
-    :login_path => new_attendee_cred_session_path,
-    :logout_path => destroy_attendee_cred_session_path %>
+    :login_path => main_app.new_attendee_cred_session_path,
+    :logout_path => main_app.destroy_attendee_cred_session_path %>
 <% end -%>

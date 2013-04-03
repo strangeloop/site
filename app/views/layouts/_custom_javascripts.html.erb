@@ -1,7 +1,9 @@
 <% content_for :javascripts do %>
   <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js' %>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="assets/libs/jquery-1.4.2.min.js"%3E%3C/script%3E'))</script>
-  <%= javascript_include_tag 'rails' %>
-  <%= include_javascripts :workspace %>
+  <%= javascript_include_tag 'application', 'jquery.validate.pack', 'cycle/jquery.cycle.all.latest', 'superfish/js/hoverIntent',
+                             'superfish/js/superfish', 'rails.validations', 'script', 'libs/cufon-yui', 'libs/modernizr-1.6.min',
+                             'font/Myriad_Pro_400.font', 'font/Myriad_Pro_600.font', 'font/Myriad_Pro_700.font',
+                             'font/UkrainianFuturis_400.font', 'cufon-replace' %>
 <% end %>
 
