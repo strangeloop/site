@@ -26,19 +26,19 @@
   <ul>
     <% if Refinery::Admin::ProposalsController.searchable? %>
       <li>
-        <%= render "/shared/admin/search", :url => admin_proposals_url %>
+        <%= render "/shared/admin/search", :url => refinery.admin_proposals_url %>
       </li>
     <% end %>
-    <li><%= link_to "Current Year Talk Proposals", admin_proposals_path(:format => 'talk') %></li>
-    <li><%= link_to "Current Year Workshop Proposals", admin_proposals_path(:format => 'workshop') %></li>
-    <li><%= link_to "Current Year ELC Proposals", admin_proposals_path(:format => 'elc') %></li>
+    <li><%= link_to "Current Year Talk Proposals", refinery.admin_proposals_path(:format => 'talk') %></li>
+    <li><%= link_to "Current Year Workshop Proposals", refinery.admin_proposals_path(:format => 'workshop') %></li>
+    <li><%= link_to "Current Year ELC Proposals", refinery.admin_proposals_path(:format => 'elc') %></li>
   <% if current_user.has_role? :organizer -%>
-    <li><%= link_to "Export Proposals", export_admin_proposals_path("csv") %></li>
+    <li><%= link_to "Export Proposals", refinery.export_admin_proposals_path("csv") %></li>
   <% end -%>
   <% if format == 'talk' %>
     <li>
       <%= field_set_tag 'Filter By Track', :id => 'filter' do %>
-        <%= form_tag admin_proposals_path, :method => 'get' do %>
+        <%= form_tag refinery.admin_proposals_path, :method => 'get' do %>
           <%= hidden_field_tag :track_filter, true  %>
           <% tracks.each do |track| %>
             <div>

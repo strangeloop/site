@@ -33,7 +33,7 @@ module Refinery
             :class_name => 'Proposal',
             :title => 'status'
           }
-          plugin.url = Proc.new { Refinery::Core::Engine.routes.url_helpers.proposals_admin_proposals_path }
+          plugin.url = Proc.new { Refinery::Core::Engine.routes.url_helpers.admin_proposals_path }
 
           class <<plugin
             alias old_title title

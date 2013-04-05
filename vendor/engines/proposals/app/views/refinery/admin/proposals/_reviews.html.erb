@@ -1,6 +1,6 @@
 <div>
   <%= ratings_for proposal, rater,
-    :remote_options => { :url => rate_admin_proposal_path(proposal) },
+    :remote_options => { :url => refinery.rate_admin_proposal_path(proposal) },
     :force_static => true,
     :small => true,
     :dimension => :appeal,

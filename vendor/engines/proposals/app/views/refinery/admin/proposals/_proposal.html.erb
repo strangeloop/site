@@ -1,7 +1,7 @@
 <li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(proposal) -%>">
   <span style="float: right;"><%= ratings_for proposal, :show_user_rating => true, :dimension => :appeal, :wrap => false, :remote_options => { :url => '' } %></span>
   <span class='title'>
-    <%= link_to "#{title_for proposal} ( #{speaker_for proposal.talk } )", edit_admin_proposal_path(proposal) %>
+    <%= link_to "#{title_for proposal} ( #{speaker_for proposal.talk } )", refinery.edit_admin_proposal_path(proposal) %>
   </span>
   <span class="title"><%= proposal.status %></span>
 </li>
