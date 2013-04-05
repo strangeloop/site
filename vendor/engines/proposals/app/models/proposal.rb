@@ -90,15 +90,11 @@ class Proposal < ActiveRecord::Base
     # Returns a sorted array of unique reviewer usernames for the current
     # pending proposals.
     def sorted_reviewers(proposals)
-      reviewers = []
-      proposals.each do|proposal|
+      reviewers = proposals.each_with_object([]) do|proposal, reviewers|
         hash = proposal.comments_and_appeal_ratings
-        hash.each_key do |user|
-          reviewer_name = user.username
-          reviewers << reviewer_name unless reviewers.include?(reviewer_name)
-        end
+        reviewers << hash.keys.map(&:username)
       end
-      reviewers.sort
+      reviewers.flatten.uniq.sort
     end
 
     def user_rating(username, user_ratings)
