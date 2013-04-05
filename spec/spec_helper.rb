@@ -41,6 +41,7 @@ def setup_environment
 
     config.fixture_path = ::Rails.root.join('spec', 'fixtures').to_s
     config.include ::Rails.application.routes.url_helpers, type: :controller
+    config.include Refinery::Core::Engine.routes.url_helpers, type: :controller
 
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, comment the following line or assign false
