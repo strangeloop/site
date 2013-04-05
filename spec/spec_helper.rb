@@ -13,12 +13,12 @@
 #- limitations under the License.
 #-
 
+ENV["RAILS_ENV"] ||= 'test'
 require_relative '../config/environment'
 
 require 'rspec/rails'
 require 'rspec/autorun'
 
-ENV["RAILS_ENV"] ||= 'test'
 require 'rbconfig'
 require 'factory_girl'
 require 'factory_girl_rails'
