@@ -30,7 +30,7 @@ module Refinery
           plugin.menu_match = /(admin|refinery)\/(sponsorships|sponsorship_levels)$/
           plugin.activity = {
             :class_name => 'Sponsorship'}
-          plugin.url = Proc.new { Refinery::Core::Engine.routes.url_helpers.sponsorships_admin_sponsorships_path }
+          plugin.url = Proc.new { Refinery::Core::Engine.routes.url_helpers.admin_sponsorships_path }
         end
       end
     end

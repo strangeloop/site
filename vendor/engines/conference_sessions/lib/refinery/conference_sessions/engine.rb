@@ -30,7 +30,7 @@ module Refinery
           plugin.name = "conference_sessions"
           plugin.menu_match = /(admin|refinery)\/(conference_sessions|rooms|session_times|tracks)$/
           plugin.activity = {class_name: 'ConferenceSession'}
-          plugin.url = Proc.new { Refinery::Core::Engine.routes.url_helpers.conference_sessions_admin_conference_sessions_path }
+          plugin.url = Proc.new { Refinery::Core::Engine.routes.url_helpers.admin_conference_sessions_path }
         end
       end
     end
