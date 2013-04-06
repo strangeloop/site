@@ -1,106 +1,107 @@
 en:
-  shared:
-    admin:
-      image_picker:
-        image: image
-  plugins:
-    conference_sessions:
-      title: Conference Sessions
-  admin:
-    conference_sessions:
-      index:
+  refinery:
+    shared:
+      admin:
+        image_picker:
+          image: image
+    plugins:
+      conference_sessions:
         title: Conference Sessions
-        create_new: Add New Conference Session
-        reorder: Reorder Conference Sessions
-        reorder_done: Done Reordering Conference Sessions
-        sorry_no_results: Sorry! There are no results found.
-        no_items_yet: There are no Conference Sessions yet. Click "Add New Conference Session" to add your first conference session.
-        manage_rooms: Manage Conference Rooms
-        manage_session_times: Manage Conference Session Times
-        manage_tracks: Manage Conference Tracks
-        manage_sessions_from: "Manage Conference Sessions from %{year}"
-        export_sessions_from: "Export Conference Sessions from %{year}"
-        sessions_for_year: "Sessions for %{year}"
-      conference_session:
-        view_live_html: View this conference session live <br/><em>(opens in a new window)</em>
-        edit: Edit this conference session
-        delete: Remove this conference session forever
-      edit:
-        conference_session: Conference Session
-        title: Title
-        abstract: Abstract
-        talk_type: Talk Type
-        format: Format
-        bio: Bio
-        name: Name
-        image: Speaker Image
-      form:
-        session_time: Session Time
-        room: Room
-        track: Track
-      grid_view:
-        view_live_html: View this image <br/><em>Opens in a new window</em>
-        create_new_image: Add Image to this Speaker
-    rooms:
-      edit:
-        room: Room
-      index:
-        create_new: Add a Room
-        no_items_yet: No rooms exist for the current conference year
-        back_to_conf_sessions: Back to All Conference Sessions
-        reorder: Reorder Rooms
-        reorder_done: Done Reordering Rooms
-      room:
-        edit: Edit this Room
-        delete: Delete this Room
-    session_times:
-      edit:
-        session_time: Session Time
-      form:
-        start_time: Start Time
-        duration: Duration (Hours:Minutes)
-      index:
-        no_items_yet: No session times exist for the current conference year
-        create_new: Add a Session Time
-        back_to_conf_sessions: Back to All Conference Sessions
-      session_time:
-        edit: Edit this Session Time
-        delete: Delete this Session Time
-    tracks:
-      edit:
-        track: Track
-      index:
-        no_items_yet: No tracks exist for the current conference year
-        create_new: Add a Track
-        back_to_conf_sessions: Back to All Conference Sessions
-      track:
-        edit: Edit this Track
-        delete: Delete this Track
+    admin:
+      conference_sessions:
+        index:
+          title: Conference Sessions
+          create_new: Add New Conference Session
+          reorder: Reorder Conference Sessions
+          reorder_done: Done Reordering Conference Sessions
+          sorry_no_results: Sorry! There are no results found.
+          no_items_yet: There are no Conference Sessions yet. Click "Add New Conference Session" to add your first conference session.
+          manage_rooms: Manage Conference Rooms
+          manage_session_times: Manage Conference Session Times
+          manage_tracks: Manage Conference Tracks
+          manage_sessions_from: "Manage Conference Sessions from %{year}"
+          export_sessions_from: "Export Conference Sessions from %{year}"
+          sessions_for_year: "Sessions for %{year}"
+        conference_session:
+          view_live_html: View this conference session live <br/><em>(opens in a new window)</em>
+          edit: Edit this conference session
+          delete: Remove this conference session forever
+        edit:
+          conference_session: Conference Session
+          title: Title
+          abstract: Abstract
+          talk_type: Talk Type
+          format: Format
+          bio: Bio
+          name: Name
+          image: Speaker Image
+        form:
+          session_time: Session Time
+          room: Room
+          track: Track
+        grid_view:
+          view_live_html: View this image <br/><em>Opens in a new window</em>
+          create_new_image: Add Image to this Speaker
+      rooms:
+        edit:
+          room: Room
+        index:
+          create_new: Add a Room
+          no_items_yet: No rooms exist for the current conference year
+          back_to_conf_sessions: Back to All Conference Sessions
+          reorder: Reorder Rooms
+          reorder_done: Done Reordering Rooms
+        room:
+          edit: Edit this Room
+          delete: Delete this Room
+      session_times:
+        edit:
+          session_time: Session Time
+        form:
+          start_time: Start Time
+          duration: Duration (Hours:Minutes)
+        index:
+          no_items_yet: No session times exist for the current conference year
+          create_new: Add a Session Time
+          back_to_conf_sessions: Back to All Conference Sessions
+        session_time:
+          edit: Edit this Session Time
+          delete: Delete this Session Time
+      tracks:
+        edit:
+          track: Track
+        index:
+          no_items_yet: No tracks exist for the current conference year
+          create_new: Add a Track
+          back_to_conf_sessions: Back to All Conference Sessions
+        track:
+          edit: Edit this Track
+          delete: Delete this Track
 
-  conference_sessions:
-    index:
-      elc: Emerging Languages Camp
-      lightning: Lightning Talks
-      no_sessions_message: "No sessions for the %{next_conf_year} conference have been announced yet. Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
-      panel: Panels
-      strange_passions: Strange Passions
-      talk: Talks
-      unsession: Unsessions
-      workshop: Workshops
-    index_workshop:
-      call_for_workshops_message: "<p>The Strange Loop %{next_conf_year} conference will take place Sept 19-20th. The preconf day (all workshops and the Emerging Languages Camp) will take place on Sept 18th. All events on Sept 18th are optional and <strong>ARE NOT INCLUDED</strong> in the Strange Loop conference rate. You must register and pay for these events.</p>"
-      no_sessions_message: "No workshops for the %{next_conf_year} conference have been announced yet. Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
-      elc: Emerging Languages Camp
-      workshop: Workshops
-    schedule:
-      hide_schedule_details: "The schedule for the next Strange Loop conference has not yet been announced.  Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
-      schedule: Schedule
-    show:
-      elc_session_message: "This session is part of the optional Emerging Languages Camp on the preconference day, Sunday Sept. 23rd. You must be registered for Strange Loop to sign up for the Emerging Languages Camp.  Registering for the camp is an additional cost ($150)."
-      lightning_session_message: ""
-      keynote_session_message: ""
-      panel_session_message: ""
-      talk_session_message: ""
-      unsession_session_message: "This 'unsession' will take place at the Union Station Marriot on Monday night and not at the Peabody Opera House"
-      workshop_session_message: "This workshop is an optional paid event on the preconference day, Sunday Sept. 23rd. You must be registered for Strange Loop to sign up for this workshop. Registering for this workshop is an additional cost ($100)."
-      other: Other Conference Sessions
+    conference_sessions:
+      index:
+        elc: Emerging Languages Camp
+        lightning: Lightning Talks
+        no_sessions_message: "No sessions for the %{next_conf_year} conference have been announced yet. Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
+        panel: Panels
+        strange_passions: Strange Passions
+        talk: Talks
+        unsession: Unsessions
+        workshop: Workshops
+      index_workshop:
+        call_for_workshops_message: "<p>The Strange Loop %{next_conf_year} conference will take place Sept 19-20th. The preconf day (all workshops and the Emerging Languages Camp) will take place on Sept 18th. All events on Sept 18th are optional and <strong>ARE NOT INCLUDED</strong> in the Strange Loop conference rate. You must register and pay for these events.</p>"
+        no_sessions_message: "No workshops for the %{next_conf_year} conference have been announced yet. Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
+        elc: Emerging Languages Camp
+        workshop: Workshops
+      schedule:
+        hide_schedule_details: "The schedule for the next Strange Loop conference has not yet been announced.  Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
+        schedule: Schedule
+      show:
+        elc_session_message: "This session is part of the optional Emerging Languages Camp on the preconference day, Sunday Sept. 23rd. You must be registered for Strange Loop to sign up for the Emerging Languages Camp.  Registering for the camp is an additional cost ($150)."
+        lightning_session_message: ""
+        keynote_session_message: ""
+        panel_session_message: ""
+        talk_session_message: ""
+        unsession_session_message: "This 'unsession' will take place at the Union Station Marriot on Monday night and not at the Peabody Opera House"
+        workshop_session_message: "This workshop is an optional paid event on the preconference day, Sunday Sept. 23rd. You must be registered for Strange Loop to sign up for this workshop. Registering for this workshop is an additional cost ($100)."
+        other: Other Conference Sessions
