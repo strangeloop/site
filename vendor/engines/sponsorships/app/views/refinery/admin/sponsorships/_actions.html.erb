@@ -1,31 +1,31 @@
 <ul>
-  <% if Admin::SponsorshipsController.searchable? %>
+  <% if Refinery::Admin::SponsorshipsController.searchable? %>
     <li>
-      <%= render "/shared/admin/search", :url => admin_sponsorships_url %>
+      <%= render "/refinery/admin/search", :url => refinery.admin_sponsorships_url %>
     </li>
   <% end %>
   <li>
-    <%= link_to t('.create_new'), new_admin_sponsorship_url,
+    <%= link_to t('.create_new'), refinery.new_admin_sponsorship_url,
                  :class => "add_icon" %>
   </li>
-<% if !searching? and Admin::SponsorshipsController.sortable? and Sponsorship.count > 1 %>
+<% if !searching? and Refinery::Admin::SponsorshipsController.sortable? and Sponsorship.count > 1 %>
   <li>
     <%= link_to t('.reorder', :what => "Sponsorships"),
-                 admin_sponsorships_url,
+                 refinery.admin_sponsorships_url,
                  :id => "reorder_action",
                  :class => "reorder_icon" %>
 
     <%= link_to t('.reorder_done', :what => "Sponsorships"),
-                 admin_sponsorships_url,
+                 refinery.admin_sponsorships_url,
                  :id => "reorder_action_done",
                  :style => "display: none;",
                  :class => "reorder_icon" %>
   </li>
 <% end %>
 <li>
-  <%= link_to t('.manage_sponsorship_levels'), admin_sponsorship_levels_url %>
+  <%= link_to t('.manage_sponsorship_levels'), refinery.admin_sponsorship_levels_url %>
 </li>
 <% for year in all_years %>
-      <li><%= link_to t(".manage_sponsorships_from", :year => year), admin_sponsorships_path(:year => year) %></li>
+      <li><%= link_to t(".manage_sponsorships_from", :year => year), refinery.admin_sponsorships_path(:year => year) %></li>
 <% end %>
 </ul>

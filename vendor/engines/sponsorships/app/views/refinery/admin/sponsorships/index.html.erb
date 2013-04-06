@@ -4,4 +4,4 @@
 <aside id='actions'>
   <%= render 'actions' %>
 </aside>
-<%= render('/shared/admin/make_sortable', :tree => false) if !searching? and Admin::SponsorshipsController.sortable? and Sponsorship.count > 1 %>
+<%= render('/refinery/admin/make_sortable', :tree => false) if !searching? and Refinery::Admin::SponsorshipsController.sortable? and Sponsorship.count > 1 %>

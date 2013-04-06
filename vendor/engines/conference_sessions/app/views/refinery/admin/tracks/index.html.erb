@@ -20,16 +20,16 @@
 </div>
 <div id='actions'>
   <ul>
-    <% if Admin::TracksController.searchable? %>
+    <% if Refinery::Admin::TracksController.searchable? %>
       <li>
-        <%= render "/shared/admin/search", :url => admin_tracks_url %>
+        <%= render "/refinery/admin/search", :url => refinery.admin_tracks_url %>
       </li>
     <% end %>
     <li>
-      <%= link_to t('.create_new'), new_admin_track_url, :class => "add_icon" %>
+      <%= link_to t('.create_new'), refinery.new_admin_track_url, :class => "add_icon" %>
     </li>
     <li>
-      <%= link_to t('.back_to_conf_sessions'), admin_conference_sessions_url, :class => "back_icon" %>
+      <%= link_to t('.back_to_conf_sessions'), refinery.admin_conference_sessions_url, :class => "back_icon" %>
     </li>
   </ul>
 </div>

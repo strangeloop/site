@@ -20,32 +20,32 @@
 </div>
 <div id='actions'>
   <ul>
-    <% if Admin::RoomsController.searchable? %>
+    <% if Refinery::Admin::RoomsController.searchable? %>
       <li>
-        <%= render "/shared/admin/search", :url => admin_rooms_url %>
+        <%= render "/refinery/admin/search", :url => refinery.admin_rooms_url %>
       </li>
     <% end %>
     <li>
-      <%= link_to t('.create_new'), new_admin_room_url, :class => "add_icon" %>
+      <%= link_to t('.create_new'), refinery.new_admin_room_url, :class => "add_icon" %>
     </li>
-    <% if !searching? and Admin::RoomsController.sortable? and Room.count > 1 %>
+    <% if !searching? and Refinery::Admin::RoomsController.sortable? and Room.count > 1 %>
       <li>
         <%= link_to t('.reorder', :what => "Rooms"),
-          admin_rooms_url,
+          refinery.admin_rooms_url,
           :id => "reorder_action",
           :class => "reorder_icon" %>
 
           <%= link_to t('.reorder_done', :what => "Rooms"),
-            admin_rooms_url,
+            refinery.admin_rooms_url,
             :id => "reorder_action_done",
             :style => "display: none;",
             :class => "reorder_icon" %>
       </li>
     <% end %>
     <li>
-      <%= link_to t('.back_to_conf_sessions'), admin_conference_sessions_url, :class => "back_icon" %>
+      <%= link_to t('.back_to_conf_sessions'), refinery.admin_conference_sessions_url, :class => "back_icon" %>
     </li>
   </ul>
 </div>
-<%= render("/shared/admin/make_sortable", :tree => false) if !searching? and Admin::RoomsController.sortable? and Room.count > 1 %>
+<%= render("/refinery/admin/make_sortable", :tree => false) if !searching? and Refinery::Admin::RoomsController.sortable? and Room.count > 1 %>
 

@@ -1,29 +1,29 @@
 <ul>
-  <% if Admin::SponsorshipLevelsController.searchable? %>
+  <% if Refinery::Admin::SponsorshipLevelsController.searchable? %>
     <li>
-      <%= render "/shared/admin/search", :url => admin_sponsorship_levels_url %>
+      <%= render "/refinery/admin/search", :url => refinery.admin_sponsorship_levels_url %>
     </li>
   <% end %>
   <li>
-    <%= link_to t('.create_new'), new_admin_sponsorship_level_url,
+    <%= link_to t('.create_new'), refinery.new_admin_sponsorship_level_url,
                  :class => "add_icon" %>
   </li>
-<% if !searching? and Admin::SponsorshipLevelsController.sortable? and SponsorshipLevel.count > 1 %>
+<% if !searching? and Refinery::Admin::SponsorshipLevelsController.sortable? and SponsorshipLevel.count > 1 %>
   <li>
     <%= link_to t('.reorder', :what => "SponsorshipLevels"),
-                 admin_sponsorship_levels_url,
+                 refinery.admin_sponsorship_levels_url,
                  :id => "reorder_action",
                  :class => "reorder_icon" %>
 
     <%= link_to t('.reorder_done', :what => "SponsorshipLevels"),
-                 admin_sponsorship_levels_url,
+                 refinery.admin_sponsorship_levels_url,
                  :id => "reorder_action_done",
                  :style => "display: none;",
                  :class => "reorder_icon" %>
   </li>
 <% end %>
 <li>
-  <%= link_to t('.view_sponsorships'), admin_sponsorships_url,
+  <%= link_to t('.view_sponsorships'), refinery.admin_sponsorships_url,
       :class => "back_icon" %>
 </li>
 </ul>

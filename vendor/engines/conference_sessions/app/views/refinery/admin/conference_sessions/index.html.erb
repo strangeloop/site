@@ -20,16 +20,16 @@
 </div>
 <div id='actions'>
   <ul>
-    <% if Admin::ConferenceSessionsController.searchable? %>
+    <% if Refinery::Admin::ConferenceSessionsController.searchable? %>
       <li>
-        <%= render "/shared/admin/search", :url => admin_conference_sessions_url %>
+        <%= render "/refinery/admin/search", :url => refinery.admin_conference_sessions_url %>
       </li>
     <% end %>
     <li>
       <%= link_to t('.create_new'), new_admin_conference_session_url,
                    :class => "add_icon" %>
     </li>
-  <% if !searching? and Admin::ConferenceSessionsController.sortable? and ConferenceSession.count > 1 %>
+  <% if !searching? and Refinery::Admin::ConferenceSessionsController.sortable? and ConferenceSession.count > 1 %>
     <li>
       <%= link_to t('.reorder', :what => "Conference Sessions"),
                    admin_conference_sessions_url,
@@ -54,4 +54,4 @@
     <% end %>
   </ul>
 </div>
-<%= render("/shared/admin/make_sortable", :tree => false) if !searching? and Admin::ConferenceSessionsController.sortable? and ConferenceSession.count > 1 %>
+<%= render("/refinery/admin/make_sortable", :tree => false) if !searching? and Refinery::Admin::ConferenceSessionsController.sortable? and ConferenceSession.count > 1 %>

@@ -26,13 +26,13 @@
   <ul>
     <% if Refinery::Admin::ProposalsController.searchable? %>
       <li>
-        <%= render "/shared/admin/search", :url => refinery.admin_proposals_url %>
+        <%= render "/refinery/admin/search", :url => refinery.admin_proposals_url %>
       </li>
     <% end %>
     <li><%= link_to "Current Year Talk Proposals", refinery.admin_proposals_path(:format => 'talk') %></li>
     <li><%= link_to "Current Year Workshop Proposals", refinery.admin_proposals_path(:format => 'workshop') %></li>
     <li><%= link_to "Current Year ELC Proposals", refinery.admin_proposals_path(:format => 'elc') %></li>
-  <% if current_user.has_role? :organizer -%>
+  <% if current_refinery_user.has_role? :organizer -%>
     <li><%= link_to "Export Proposals", refinery.export_admin_proposals_path("csv") %></li>
   <% end -%>
   <% if format == 'talk' %>
