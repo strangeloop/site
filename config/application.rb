@@ -18,8 +18,8 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-require_relative '../vendor/engines/proposals/app/models/comment_observer'
-require_relative '../vendor/engines/proposals/app/models/rate_observer'
+#require_relative '../vendor/engines/proposals/app/models/comment_observer'
+#require_relative '../vendor/engines/proposals/app/models/rate_observer'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -68,14 +68,12 @@ module Conf
     #end
 
     #config.middleware.insert_after 'Rack::Lock', 'Dragonfly::Middleware', :strangeloop, '/tsl-media'
-    #config.middleware.insert_after 'Rack::Lock', 'Dragonfly::Middleware', :strangeloop
-    #config.middleware.insert_before 'Dragonfly::Middleware', 'Rack::Cache', {
-      #:verbose     => true,
-      #:metastore   => "file:#{Rails.root}/tmp/dragonfly/cache/meta",
-      #:entitystore => "file:#{Rails.root}/tmp/dragonfly/cache/body"
-    #}
-
-    config.paths['app/views'].unshift("#{Rails.root}/vendor/engines/proposals/app/views")
+    config.middleware.insert 0, 'Rack::Cache', {
+      :verbose     => true,
+      :metastore   => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"),
+      :entitystore => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
+    }
+    config.middleware.insert_after 'Rack::Cache', 'Dragonfly::Middleware', :images
 
     #config.to_prepare do
       #Refinery.searchable_models = [Page, Talk, Speaker]

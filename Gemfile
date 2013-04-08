@@ -8,7 +8,7 @@ gem 'ajaxful_rating', '3.0.0.beta8'
 gem 'acts-as-taggable-on', '~> 2.2.2'
 
 gem 'rack-cache', :require => 'rack/cache'
-#gem 'dragonfly', '~> 0.9.14'
+gem 'dragonfly', '~> 0.9.14'
 gem 'uuidtools', '~> 2.1.2'
 
 gem 'acts_as_commentable', '3.0.1'
