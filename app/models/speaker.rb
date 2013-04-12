@@ -24,7 +24,7 @@ class Speaker < ActiveRecord::Base
 
   validates_length_of :bio, :maximum => 800
 
-  belongs_to :image
+  belongs_to :image, class_name: 'Refinery::Image'
 
   before_create AddConfYear
 
