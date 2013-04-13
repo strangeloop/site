@@ -27,10 +27,10 @@ Feature: As a conference talks reviewer
 
   Scenario: Reviewer views submitted proposal
     Given the following talks have been submitted:
-      | title     | by       | abstract              | bio    | av req    | approve video | talk type |  status    |
-      | Free Beer | Bud Hops | Talk about cold gold. | My bio | Projector | Yes           | Intro     |  submitted |
-		And I am a logged in reviewer
-		And I am on the review proposals page
+      | title     | by       | abstract              | bio    | av req    | approve video |  status    |
+      | Free Beer | Bud Hops | Talk about cold gold. | My bio | Projector | Yes           |  submitted |
+    And I am a logged in reviewer
+    And I am on the review proposals page
     When I follow "Free Beer"
     Then I should see "Free Beer"
     And I should see "Bud Hops"
@@ -38,7 +38,6 @@ Feature: As a conference talks reviewer
     And I should see "My bio"
     And I should see "Projector"
     And I should see "Yes"
-    And I should see "Intro"
     And I should see "submitted"
 
   Scenario: Conference Organizer views proposal review ratings

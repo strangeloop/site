@@ -71,13 +71,12 @@ describe Talk do
   end
 
   test_enum_fields( {Talk.video_approvals => :video_approval,
-                      Talk.talk_types => :talk_type,
                       Talk.talk_durations => :duration})
 
   it{ should_not allow_value("x" * 56).for(:title)}
   it{ should allow_value("x" * 1201).for(:abstract)}
-  it{ should allow_value("x" * 2000).for(:abstract)}
-  it{ should_not allow_value("x" * 2001).for(:abstract)}
+  it{ should allow_value("x" * 4000).for(:abstract)}
+  it{ should_not allow_value("x" * 4001).for(:abstract)}
 
   describe '#main_speaker' do
     let(:speaker) { Speaker.new }

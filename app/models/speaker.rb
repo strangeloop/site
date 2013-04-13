@@ -22,7 +22,7 @@ class Speaker < ActiveRecord::Base
     validates field, :presence => true
   end
 
-  validates_length_of :bio, :maximum => 800
+  validates_length_of :bio, :maximum => 4000
 
   belongs_to :image
 
