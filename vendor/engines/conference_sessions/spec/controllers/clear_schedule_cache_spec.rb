@@ -9,7 +9,7 @@ describe Admin::ConferenceSessionsController do
       'abstract' => 'foo',
       'talk_type' => 'Intro',
       'video_approval' => 'Yes',
-      'duration' => '50 Minutes',
+      'duration' => '40 Minutes',
       'speakers_attributes' => {
         '0' => {
           'first_name' => 'Mario',

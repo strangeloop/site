@@ -35,7 +35,7 @@ class Talk < ActiveRecord::Base
   end
 
   def self.talk_durations
-    ["50 Minutes", "20 Minutes"]
+    ["40 Minutes"]
   end
 
   def duration

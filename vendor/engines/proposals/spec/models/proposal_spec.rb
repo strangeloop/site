@@ -47,7 +47,7 @@ describe Proposal do
     it "requires valid attributes and a related Talk" do
       p = Proposal.new(valid_attributes)
       p.talk = Talk.new(:title => 'Writing a conf site', :abstract => 'Moar codez',
-                        :video_approval => 'Yes', :talk_type => 'Intro', :duration => '50 Minutes')
+                        :video_approval => 'Yes', :talk_type => 'Intro', :duration => '40 Minutes')
       p.should be_valid
     end
   end
@@ -230,15 +230,15 @@ describe Proposal do
       reviewers = Proposal.sorted_reviewers(pending)
 
       data = Proposal.pending_csv_data_values(proposal1, reviewers)
-      data.should == ["50 Minutes", "Sample Talk", "submitted", "Ruby", "Earl Grey", "Earl", "Grey", "Kirkwood", "MO", "US", "Twinings",
+      data.should == ["40 Minutes", "Sample Talk", "submitted", "Ruby", "Earl Grey", "Earl", "Grey", "Kirkwood", "MO", "US", "Twinings",
         "earl@grey.com", "earlofgrey", "", "", ""]
 
       data = Proposal.pending_csv_data_values(proposal2, reviewers)
-      data.should == ["50 Minutes", "Sample Talk", "submitted", "Ruby", "Earl Grey",  "Earl", "Grey", "Kirkwood", "MO", "US", "Twinings",
+      data.should == ["40 Minutes", "Sample Talk", "submitted", "Ruby", "Earl Grey",  "Earl", "Grey", "Kirkwood", "MO", "US", "Twinings",
         "earl@grey.com", "earlofgrey", "2", "", "1"]
 
       data = Proposal.pending_csv_data_values(proposal3, reviewers)
-      data.should == ["50 Minutes", "Sample Talk", "submitted", "Ruby", "Earl Grey;Charlie Sheen",  "Earl", "Grey", "Kirkwood", "MO", "US", "Twinings",
+      data.should == ["40 Minutes", "Sample Talk", "submitted", "Ruby", "Earl Grey;Charlie Sheen",  "Earl", "Grey", "Kirkwood", "MO", "US", "Twinings",
         "earl@grey.com", "earlofgrey", "", "3", ""]
     end
 
