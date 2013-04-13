@@ -59,7 +59,7 @@ en:
       title: Title
       title_hint: "Max length: 55 characters."
       abstract: Abstract
-      abstract_hint: "Max length: 2000 characters."
+      abstract_hint: "Max length: 4000 characters."
       workshop_type: Workshop Type
       talk_length: Workshop Format
       comments: Reviewer Comments
@@ -93,7 +93,7 @@ en:
       title: Title
       title_hint: "Max length: 55 characters."
       abstract: Abstract
-      abstract_hint: "Max length: 2000 characters."
+      abstract_hint: "Max length: 4000 characters."
       talk_type: Talk Type
       talk_length: Talk Format
       track: Track
@@ -131,7 +131,7 @@ en:
       title: Title
       title_hint: "Max length: 55 characters."
       abstract: Abstract
-      abstract_hint: "Max length: 2000 characters."
+      abstract_hint: "Max length: 4000 characters."
       talk_type: Talk Type
       talk_length: Talk Format
       video_approval: Video Approval
