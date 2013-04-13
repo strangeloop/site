@@ -26,7 +26,7 @@ Feature: As an anonymous user I can enter a workshop along with
       And I select "United States" in "Country"
       And I fill in "Tags" with "theory, clojure"
 
-      And I should see "Max length: 2000 characters."
+      And I should see "Max length: 4000 characters."
 
       When I press "Send Workshop Proposal"
       Then I should see "Squashing NP Hard Problems with Clojure"
