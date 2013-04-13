@@ -22,7 +22,6 @@ Feature: As an anonymous user I can submit an emerging languages camp talk along
       | City | St. Louis |
       | State | MO |
 
-      And I select "Deep Dive" in "Talk Type"
       And I select "No" in "Video Approval"
       And I select "United States" in "Country"
       And I fill in "Tags" with "theory, clojure"
@@ -31,7 +30,6 @@ Feature: As an anonymous user I can submit an emerging languages camp talk along
 
       When I press "Send ELC Proposal"
       Then I should see "Squashing NP Hard Problems with Clojure"
-      And I should see "Deep Dive"
       And I should see "Karp"
       And I should see "projector"
       And I should see "Clem Esterbill"

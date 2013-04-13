@@ -10,8 +10,6 @@
           <%= talk_form.input :title, :label => t('.title'), :hint => t('.title_hint')%>
           <%= talk_form.input :abstract, :label => t('.abstract'),
               :input_html => { :class => "freetext" }, :hint => t('.abstract_hint')%>
-          <%= talk_form.input :talk_type, :label => t('.talk_type'),
-              :as => :select, :collection => talk_types %>
           <%= talk_form.input :track, :label => t('.track'),
               :as => :select, :collection => tracks %>
           <%= talk_form.input :video_approval, :label => t('.video_approval'),

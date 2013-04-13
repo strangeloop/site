@@ -13,7 +13,6 @@ Feature: As a user I can see talks I might want to attend
     Then I am on the default conference session page
     And I should see "Title"
     And I should see "Abstract"
-    And I should see "Talk type"
 
   Scenario: Site visitors see published keynote
     Given a keynote session exists

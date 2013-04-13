@@ -95,7 +95,7 @@ describe ConferenceSession do
   end
 
   describe "CSV export tests" do
-    NUM_CONF_SESSION_CSV_FIELDS = 18
+    NUM_CONF_SESSION_CSV_FIELDS = 17
 
     before do
       # This talk will be for the current year.
@@ -118,8 +118,8 @@ describe ConferenceSession do
       # Only the header row should be returned.
       csv = ConferenceSession.to_csv(2008)
       csv.length.should > 0
-      csv.count(",").should == 17
-      csv.count('"').should == 36
+      csv.count(",").should == 16
+      csv.count('"').should == 34
     end
 
     it "Should generate CSV with only conference sessions in current year" do

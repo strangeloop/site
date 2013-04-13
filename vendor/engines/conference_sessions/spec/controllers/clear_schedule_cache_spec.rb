@@ -7,7 +7,6 @@ describe Admin::ConferenceSessionsController do
     {'talk_attributes' => {
       'title' => 'A new title',
       'abstract' => 'foo',
-      'talk_type' => 'Intro',
       'video_approval' => 'Yes',
       'duration' => '40 Minutes',
       'speakers_attributes' => {

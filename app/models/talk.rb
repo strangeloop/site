@@ -17,7 +17,7 @@
 
 class Talk < ActiveRecord::Base
 
-  [:title, :abstract, :video_approval, :talk_type].each do |field|
+  [:title, :abstract, :video_approval].each do |field|
     validates field, :presence => true
   end
 
@@ -28,10 +28,6 @@ class Talk < ActiveRecord::Base
 
   def self.video_approvals
     ["Yes", "No", "Maybe"]
-  end
-
-  def self.talk_types
-    ["Deep Dive", "Intro", "Survey", "Other"]
   end
 
   def self.talk_durations
@@ -47,7 +43,6 @@ class Talk < ActiveRecord::Base
   end
 
   validates_inclusion_of :video_approval, :in => video_approvals
-  validates_inclusion_of :talk_type, :in => talk_types
   validates_inclusion_of :duration, :in => talk_durations, :allow_nil => true
 
   validates_length_of :title, :maximum => 55

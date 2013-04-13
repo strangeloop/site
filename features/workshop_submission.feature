@@ -23,7 +23,6 @@ Feature: As an anonymous user I can enter a workshop along with
       | City | St. Louis |
       | State | MO |
 
-      And I select "Deep Dive" in "Workshop Type"
       And I select "United States" in "Country"
       And I fill in "Tags" with "theory, clojure"
 
@@ -31,7 +30,6 @@ Feature: As an anonymous user I can enter a workshop along with
 
       When I press "Send Workshop Proposal"
       Then I should see "Squashing NP Hard Problems with Clojure"
-      And I should see "Deep Dive"
       And I should see "Karp"
       And I should see "projector"
       And I should see "Clem Esterbill"

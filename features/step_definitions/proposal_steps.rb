@@ -29,14 +29,13 @@ Transform /^table:title,by,status$/ do |table|
   end
 end
 
-Transform /^table:title,by,abstract,bio,av req,approve video,talk type,status$/ do |table|
+Transform /^table:title,by,abstract,bio,av req,approve video,status$/ do |table|
   table.hashes.map do |hash|
     talk = Factory.create(:talk,
                           :title          => hash[:title],
                           :abstract       => hash[:abstract],
                           :av_requirement => hash[:"av req"],
-                          :video_approval => hash[:"approve video"],
-                          :talk_type      => hash[:"talk type"])
+                          :video_approval => hash[:"approve video"])
     name = hash[:by].split(' ')
     speaker = Factory.create(:speaker,
                              :first_name => name.first,
