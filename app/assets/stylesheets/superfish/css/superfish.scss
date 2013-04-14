@@ -75,13 +75,13 @@ ul.sf-menu li li li.sfHover ul {
 }
 .sf-menu a strong	  { /* visited pseudo selector so IE6 applies text colour*/
 	position:absolute; width:100%; height:59px;
-	background:url(../../../images/menu_hover.gif) repeat-x 50% 0;
+	background: asset-url('menu_hover.gif', image) repeat-x 50% 0;
 	top:0; left:1px;
 	z-index:5
 }
 .sf-menu li a strong	  { /* visited pseudo selector so IE6 applies text colour*/
 	position:absolute; width:100%; height:59px;
-	background:url(../../../images/menu_hover.gif) repeat-x 50% 0;
+	background: asset-url('menu_hover.gif', image) repeat-x 50% 0;
 	top:0; left:0px;
 	z-index:5
 }
@@ -92,7 +92,7 @@ ul.sf-menu li li li.sfHover ul {
 .sf-menu li {
 	float:left;
 	font-size:16px;
-	background:url(../../../images/menu_spacer.gif) no-repeat 0% 22px !important;
+	background: asset-url('menu_spacer.gif', image) no-repeat 0% 22px !important;
 }
 .sf-menu li li {
 	float:left;
@@ -111,7 +111,7 @@ ul.sf-menu li li li.sfHover ul {
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:13px;
 	font-weight:normal;
-	background:url(../../../images/csg-4e56307fa551f.gif) repeat-x 0% 0% !important; background-position: 0 -432px;
+	background: asset-url('csg-4e56307fa551f.gif', image) repeat-x 0% 0% !important; background-position: 0 -432px;
 	border:1px solid #1a1a1a;
   width:173px;
 	line-height:46px
@@ -161,6 +161,15 @@ a > .sf-sub-indicator {  /* give all except IE6 the correct values */
 }
 
 /* point right for anchors in subs */
-#container ul ul .sf-sub-indicator { right:10px !important; top:18px;position:absolute !important; 	background:url(../../../images/marker_list.png) no-repeat 100% 0% !important; width:8px; height:14px; display:block !important; visibility:visible !important}
+#container ul ul .sf-sub-indicator {
+  right:10px !important;
+  top:18px;
+  position:absolute !important;
+  background: asset-url('marker_list.png', image) no-repeat 100% 0% !important;
+  width:8px;
+  height:14px;
+  display:block !important;
+  visibility:visible !important
+}
 .sf-menu ul a > .sf-sub-indicator { }
 
