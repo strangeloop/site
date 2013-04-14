@@ -18,7 +18,7 @@
 	height:289px !important;
 }
 .white {
-	background:url(../../images/nivo_white_bg.png) no-repeat 0% 0%;
+	background: asset-url('nivo_white_bg.png', image) no-repeat 0% 0%;
 	width:902px !important;
 	height:289px !important;
 	overflow:hidden !important;
@@ -89,21 +89,21 @@
 }
 .nivo-prevNav {
 	left:-19px;
-	background:url(../../images/buttons/np_buttons.png) 0% -63px
+	background: asset-url('buttons/np_buttons.png', image) 0% -63px
 }
 .nivo-prevNav:hover{
-	background:url(../../images/buttons/np_buttons.png) 0% 0
+	background: asset-url('buttons/np_buttons.png', image) 0% 0
 }
 .nivo-nextNav {
 	right:-19px;
-	background:url(../../images/buttons/np_buttons.png) 100% -63px
+	background: asset-url('buttons/np_buttons.png', image) 100% -63px
 }
 .nivo-nextNav:hover {
-	background:url(../../images/buttons/np_buttons.png) 100% 0
+	background: asset-url('buttons/np_buttons.png', image) 100% 0
 }
 /* Control nav styles (e.g. 1,2,3...) */
 .nivo-controlNav {position:absolute; bottom:-58px; right:0}
-.nivo-controlNav a {display:inline-block;  background:url(../../images/slider_dot.png) repeat 0% 0%; width:12px; height:13px;text-indent:-9000px; margin-right:4px;z-index:99; position:relative; cursor:pointer }
-.nivo-controlNav a:hover, .nivo-controlNav a.active {background:url(../../images/slider_dot.png) repeat 0% 100% !important; width:12px; height:13px;}
+.nivo-controlNav a {display:inline-block;  background: asset-url('slider_dot.png', image) repeat 0% 0%; width:12px; height:13px;text-indent:-9000px; margin-right:4px;z-index:99; position:relative; cursor:pointer }
+.nivo-controlNav a:hover, .nivo-controlNav a.active {background: asset-url('slider_dot.png', image) repeat 0% 100% !important; width:12px; height:13px;}
 .nivo-caption  {background:#000; opacity: 1 !important; color:#fff; font-size:22px; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; position:absolute; -moz-border-radius: 5px; /* Firefox */   -webkit-border-radius: 5px; /* Safari, Chrome */  -khtml-border-radius: 5px; /* KHTML */  border-radius: 5px; /* CSS3 */ position:absolute; padding:10px 23px; width:327px; left:-26px; bottom:13px}
 

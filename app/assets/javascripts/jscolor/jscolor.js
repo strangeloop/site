@@ -660,9 +660,9 @@ var jscolor = {
 				case 0: var padImg = 'hs.png'; break;
 				case 1: var padImg = 'hv.png'; break;
 			}
-			p.padM.style.background = "url('"+jscolor.getDir()+"cross.gif') no-repeat";
-			p.sldM.style.background = "url('"+jscolor.getDir()+"arrow.gif') no-repeat";
-			p.pad.style.background = "url('"+jscolor.getDir()+padImg+"') 0 0 no-repeat";
+			p.padM.style.background = "url('assets/"+jscolor.getDir()+"cross.gif') no-repeat";
+			p.sldM.style.background = "url('assets/"+jscolor.getDir()+"arrow.gif') no-repeat";
+			p.pad.style.background = "url('assets/"+jscolor.getDir()+padImg+"') 0 0 no-repeat";
 
 			// place pointers
 			redrawPad();
