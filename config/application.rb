@@ -61,20 +61,6 @@ module Conf
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
-    #config.generators do |g|
-      #g.test_framework :rspec, :fixture => true, :views => false
-      #g.fixture_replacement :factory_girl, :dir => 'spec/factories'
-      #g.template_engine :erubis
-    #end
-
-    #config.middleware.insert_after 'Rack::Lock', 'Dragonfly::Middleware', :strangeloop, '/tsl-media'
-    config.middleware.insert 0, 'Rack::Cache', {
-      :verbose     => true,
-      :metastore   => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"),
-      :entitystore => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
-    }
-    config.middleware.insert_after 'Rack::Cache', 'Dragonfly::Middleware', :images
-
     #config.to_prepare do
       #Refinery.searchable_models = [Page, Talk, Speaker]
     #end

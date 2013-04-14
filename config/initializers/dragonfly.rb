@@ -18,9 +18,9 @@
 require 'dragonfly'
 
 Rails.configuration.after_initialize do
-  app = Dragonfly[:images]
-  app.configure_with(:rails) do |c|
-    c.datastore = RelationalDragonflyStore.new
+  app = Dragonfly[:refinery_images]
+  app.datastore = RelationalDragonflyStore.new
+  app.configure do |c|
     c.url_format = '/system/images'
     c.secret = Refinery::Setting.find_or_set(:dragonfly_secret,
                                           Array.new(24) { rand(256) }.pack('C*').unpack('H*').first)
