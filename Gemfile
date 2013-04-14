@@ -44,7 +44,7 @@ end
 gem 'jquery-rails', '~> 2.0.0'
 
 group :production do
-  gem 'mysql2', '0.2.7'
+  gem "mysql2", "~> 0.3.11"
   gem 'unicorn', '3.6.0'
   gem 'rack-ssl', :require => 'rack/ssl'
 end
