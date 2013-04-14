@@ -106,7 +106,19 @@ module ApplicationHelper
   # expects an Image object as the first param and a display size (:small or :medium)
   # returns a "default" image tag if no/nil Image is supplied
   def image_tag_for(image = nil, size = :medium)
-    image.nil? ? image_tag(default_image[size]) : image_fu(image, size)
+    default_size = default_image[size]
+    size = case size
+    when :small
+      '110x110>'
+    when :medium
+      '225x225>'
+    when :large
+      '450x450>'
+    else
+      nil
+    end
+
+    image.nil? ? image_tag(default_size) : image_fu(image, size)
   end
 
   private
