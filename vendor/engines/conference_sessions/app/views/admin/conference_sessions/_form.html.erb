@@ -45,9 +45,6 @@
     <%= talk_form.label :abstract %>
     <%= talk_form.text_area :abstract, :class => 'field', :rows => 5 %>
 
-    <%= talk_form.label :talk_type %>
-    <%= talk_form.select :talk_type, Talk.talk_types %>
-
     <%= talk_form.label :track_id, t('.track') -%>
     <%= talk_form.collection_select :track_id, @tracks, :id, :name -%>
 

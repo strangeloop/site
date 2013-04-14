@@ -35,8 +35,8 @@ describe ProposalsController do
       context 'valid workshop and speaker data is submitted' do
         let(:mock_talk) { mock 'talk', :tap => self }
         let(:mock_email) { mock 'email', :deliver => nil }
-        let(:talk_params) { ActiveSupport::HashWithIndifferentAccess.new :title => 'F', :abstract => 'a', :talk_type => 'Intro',
-                              :speakers_attributes => { '0' => { :first_name => 'm', :last_name => 'a',
+        let(:talk_params) { ActiveSupport::HashWithIndifferentAccess.new :title => 'F', :abstract => 'a',
+          :speakers_attributes => { '0' => { :first_name => 'm', :last_name => 'a',
                                                            :email => 'a@a.com', :bio => 'a' }} }
         let(:params) { {:proposal => {:talk_attributes => talk_params, :format => 'workshop' }} }
 
