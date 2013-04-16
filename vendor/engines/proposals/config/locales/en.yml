@@ -65,7 +65,7 @@ en:
       comments: Reviewer Comments
       comments_hint: "These comments will not be released publicly but will be available to those reviewing your workshop. It's a good place to include an outline of the workshop, indicate whether you have or have not done this workshop before, your speaking experience, bribes, etc."
       prereqs: Prerequisites
-      prereq_hint: "Please list a brief list of expected background for the workshop.  This section is especially helpful if you are doing a Deep Dive workshop to indicate what an attendee is expected to know."
+      prereq_hint: "Please list a brief list of expected background for the workshop."
       av_req: Audio/Video Requirement
       av_req_hint: "All speakers will be provided with power and a VGA cable connector for the projector, and a wireless mic as appropriate to the room.  If you need anything else (for example: sound from your computer), please indicate it here."
       tags: Tags
@@ -103,7 +103,7 @@ en:
       comments: Reviewer Comments
       comments_hint: "These comments will not be released publicly but will be available to those reviewing your talk. It's a good place to include an outline of the talk, indicate whether you have or have not done this talk before, your speaking experience, bribes, etc."
       prereqs: Prerequisites
-      prereq_hint: "Please list a brief list of expected background for the talk.  This section is especially helpful if you are doing a Deep Dive talk to indicate what an attendee is expected to know."
+      prereq_hint: "Please list a brief list of expected background for the talk."
       av_req: Audio/Video Requirement
       av_req_hint: "All speakers will be provided with power and a VGA cable connector for the projector, and a wireless mic as appropriate to the room.  If you need anything else (for example: sound from your computer), please indicate it here."
       tags: Tags
@@ -139,7 +139,7 @@ en:
       comments: Reviewer Comments
       comments_hint: "These comments will not be released publicly but will be available to those reviewing your talk. It's a good place to include an outline of the talk, indicate whether you have or have not done this talk before, your speaking experience, bribes, etc."
       prereqs: Prerequisites
-      prereq_hint: "Please list a brief list of expected background for the talk.  This section is especially helpful if you are doing a Deep Dive talk to indicate what an attendee is expected to know."
+      prereq_hint: "Please list a brief list of expected background for the talk."
       av_req: Audio/Video Requirement
       av_req_hint: "All speakers will be provided with power and a VGA cable connector for the projector, and a wireless mic as appropriate to the room.  If you need anything else (for example: sound from your computer), please indicate it here."
       tags: Tags
