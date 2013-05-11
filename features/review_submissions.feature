@@ -22,7 +22,7 @@ Feature: As a conference talks reviewer
     When I follow "Proposals (1)"
     Then I should see "Proposed Talks"
     And I should see "Free Beer"
-    And I should see "Bud Hops"
+    And I should not see "Bud Hops"
     And I should see "submitted"
 
   Scenario: Reviewer views submitted proposal
@@ -33,9 +33,9 @@ Feature: As a conference talks reviewer
 		And I am on the review proposals page
     When I follow "Free Beer"
     Then I should see "Free Beer"
-    And I should see "Bud Hops"
+    And I should not see "Bud Hops"
     And I should see "Talk about cold gold."
-    And I should see "My bio"
+    And I should not see "My bio"
     And I should see "Projector"
     And I should see "Yes"
     And I should see "Intro"
