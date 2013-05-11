@@ -52,50 +52,52 @@
 
         <% end %>
 
-        <% for speaker in @proposal.talk.speakers %>
+        <% if current_user.has_role? :organizer -%>
+          <% for speaker in @proposal.talk.speakers %>
 
-          <tr>
-            <td>
-              <strong><%= t('.image') %></strong>
-            </td>
-            <td><%= image_fu speaker.image, :medium  %></td>
-          </tr>
-          <tr>
-            <td>
-              <strong><%= t('.by') -%></strong>
-            </td>
-            <td>
-              <%= speaker_for @proposal.talk -%>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong><%= t('.twitter_id') %></strong>
-            </td>
-            <td><%= twitter_link speaker.twitter_id %></td>
-          </tr>
-          <tr>
-            <td>
-              <strong><%= t('.company') %></strong>
-            </td>
-            <td><%= link_to speaker.company, speaker.company_url %></td>
-          </tr>
-          <tr>
-            <td>
-              <strong><%= t('.bio') -%></strong>
-            </td>
-            <td>
-              <%= raw textilize(speaker.bio) -%>
-            </td>
-          </tr>
-          <% [:email, :city, :state, :country].each do |field| -%>
             <tr>
               <td>
-                <strong><%= t(".#{field.to_s}") %></strong>
+                <strong><%= t('.image') %></strong>
               </td>
-              <td><%= speaker.send(field) %></td>
+              <td><%= image_fu speaker.image, :medium  %></td>
             </tr>
-          <% end -%>
+            <tr>
+              <td>
+                <strong><%= t('.by') -%></strong>
+              </td>
+              <td>
+                <%= speaker_for @proposal.talk -%>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong><%= t('.twitter_id') %></strong>
+              </td>
+              <td><%= twitter_link speaker.twitter_id %></td>
+            </tr>
+            <tr>
+              <td>
+                <strong><%= t('.company') %></strong>
+              </td>
+              <td><%= link_to speaker.company, speaker.company_url %></td>
+            </tr>
+            <tr>
+              <td>
+                <strong><%= t('.bio') -%></strong>
+              </td>
+              <td>
+                <%= raw textilize(speaker.bio) -%>
+              </td>
+            </tr>
+            <% [:email, :city, :state, :country].each do |field| -%>
+              <tr>
+                <td>
+                  <strong><%= t(".#{field.to_s}") %></strong>
+                </td>
+                <td><%= speaker.send(field) %></td>
+              </tr>
+            <% end -%>
+          <% end %>
         <% end %>
 
         <tr>
