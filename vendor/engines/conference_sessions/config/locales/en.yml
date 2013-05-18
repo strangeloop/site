@@ -96,11 +96,11 @@ en:
       hide_schedule_details: "The schedule for the next Strange Loop conference has not yet been announced.  Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
       schedule: Schedule
     show:
-      elc_session_message: "This session is part of the optional Emerging Languages Camp on the preconference day, Sunday Sept. 23rd. You must be registered for Strange Loop to sign up for the Emerging Languages Camp.  Registering for the camp is an additional cost ($150)."
+      elc_session_message: "This session is part of the optional Emerging Languages Camp on the preconference day, Wednesday Sept. 18th. You must be registered for Strange Loop to sign up for the Emerging Languages Camp.  Registering for the camp is an additional cost ($150)."
       lightning_session_message: ""
       keynote_session_message: ""
       panel_session_message: ""
       talk_session_message: ""
       unsession_session_message: "This 'unsession' will take place at the Union Station Marriot on Monday night and not at the Peabody Opera House"
-      workshop_session_message: "This workshop is an optional paid event on the preconference day, Sunday Sept. 23rd. You must be registered for Strange Loop to sign up for this workshop. Registering for this workshop is an additional cost ($100)."
+      workshop_session_message: "This workshop is an optional paid event on the preconference day, Wednesday Sept. 18th. You must be registered for Strange Loop to sign up for this workshop. Registering for this workshop is an additional cost ($100)."
       other: Other Conference Sessions
