@@ -16,7 +16,7 @@
         </div>
         <div id="main-conf-sessions">
         <% main_schedule.each_pair do |session_day, session_start_hours| %>
-          <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[keynote talk], :schedule_sessions => {session_day => session_start_hours}, :display_track => true }%>
+          <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[keynote talk miscellaneous], :schedule_sessions => {session_day => session_start_hours}, :display_track => true }%>
         <% end %>
         </div>
         <div id="unsessions" class="hidden">
