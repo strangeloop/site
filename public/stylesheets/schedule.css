@@ -102,7 +102,7 @@
   float: left;
   border: 1px solid #ccc;
   padding: 3px;
-  width: 154px;
+  width: 146px;
 }
 
 .tall {
@@ -119,7 +119,7 @@
   border: 1px solid #ccc;
   padding: 5px 3px 3px;
   height: inherit;
-  width: 154px;
+  width: 146px;
 }
 
 .schedule .cell .session { height: 125px; }
@@ -189,5 +189,6 @@
 
 .miss { background-position: 0 -74px; width: 24px; height: 24px; }
 
+.container_13 {margin-left: auto;margin-right: auto; width: 1070px; overflow:hidden}
 
 
