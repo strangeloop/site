@@ -41,7 +41,7 @@ class ConferenceSessionsController < ApplicationController
   expose(:speaker) { talk.speakers.first }
 
   expose(:elc_schedule) { ConferenceSession::by_short_session_time_and_location_for_formats('elc') }
-  expose(:workshop_schedule) { ConferenceSession::by_session_time_for_formats('workshop') }
+  expose(:workshop_schedule) { ConferenceSession::by_session_time_for_formats('workshop', 'free workshop') }
   expose(:main_schedule) { ConferenceSession::by_short_session_time_and_location_for_formats('keynote', 'talk', 'miscellaneous', 'unsession') }
 
   def index

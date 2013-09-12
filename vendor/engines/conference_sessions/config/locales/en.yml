@@ -80,6 +80,7 @@ en:
   conference_sessions:
     index:
       elc: Emerging Languages Camp
+      free_workshop: Free Workshops
       lightning: Lightning Talks
       no_sessions_message: "No sessions for the %{next_conf_year} conference have been announced yet. Please check back later, follow us on <a href='http://twitter.com/strangeloop_stl'>Twitter</a>, or subscribe to our mailing list."
       panel: Panels
@@ -97,6 +98,7 @@ en:
       schedule: Schedule
     show:
       elc_session_message: "This session is part of the optional Emerging Languages Camp on the preconference day, Wednesday Sept. 18th. You must be registered for Strange Loop to sign up for the Emerging Languages Camp.  Registering for the camp is an additional cost ($150)."
+      free workshop_session_message: ""
       lightning_session_message: ""
       keynote_session_message: ""
       miscellaneous_session_message: ""

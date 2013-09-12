@@ -12,7 +12,7 @@
           <%= render :partial => 'shared/schedule_table', :locals => { :cache_key => cache_key, :formats => %w[elc], :schedule_sessions => elc_schedule, :display_track => false } %>
         </div>
         <div id='preconf-workshops' class="preconf hidden">
-          <%= render :partial => 'shared/schedule', :locals => { :cache_key => cache_key, :formats => %w[workshop], :schedule_sessions => workshop_schedule, :display_track => false }%>
+          <%= render :partial => 'shared/schedule', :locals => { :cache_key => cache_key, :formats => %w[workshop free\ workshop], :schedule_sessions => workshop_schedule, :display_track => false }%>
         </div>
         <div id="main-conf-sessions">
         <% main_schedule.each_pair do |session_day, session_start_hours| %>

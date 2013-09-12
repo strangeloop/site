@@ -25,7 +25,7 @@
     <% end -%>
 
     <% formats = sessions_by_format.keys %>
-    <% formats = %w(talk lightning strange_passions panel elc workshop unsession).select{|f| formats.include? f } %>
+    <% formats = %w(talk lightning strange_passions panel elc workshop free\ workshop unsession).select{|f| formats.include? f } %>
     <% formats.each do |format| -%>
 
       <%= render 'session_groups', :sessions_by_format => sessions_by_format,
