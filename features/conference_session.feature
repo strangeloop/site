@@ -54,6 +54,7 @@ Feature: As a user I can see talks I might want to attend
     When I follow "God Hates Us All"
     Then I should be on the session details page for God Hates Us All
     Then I should see "Hank Moody"
+    And the page title should be "God Hates Us All"
     And I should see the medium default speaker image
     And I should see a link with "Unemployable" to "http://unemployable.com"
     And I should see a link with "@hankypanky" to "https://twitter.com/hankypanky"

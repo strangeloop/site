@@ -66,3 +66,7 @@ Then /^I should not see the come back later message$/ do
   page.should_not have_content("Please check back later, follow us on Twitter")
 end
 
+Then /^the page title should be "(.*?)"$/ do |title|
+  find('title').native.text.should have_content(title)
+end
+
