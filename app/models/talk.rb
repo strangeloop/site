@@ -45,7 +45,6 @@ class Talk < ActiveRecord::Base
   validates_inclusion_of :video_approval, :in => video_approvals
   validates_inclusion_of :duration, :in => talk_durations, :allow_nil => true
 
-  validates_length_of :title, :maximum => 55
   validates_length_of :abstract, :maximum => 4000
 
   acts_as_taggable_on :tags

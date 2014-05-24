@@ -73,7 +73,6 @@ describe Talk do
   test_enum_fields( {Talk.video_approvals => :video_approval,
                       Talk.talk_durations => :duration})
 
-  it{ should_not allow_value("x" * 56).for(:title)}
   it{ should allow_value("x" * 1201).for(:abstract)}
   it{ should allow_value("x" * 4000).for(:abstract)}
   it{ should_not allow_value("x" * 4001).for(:abstract)}
