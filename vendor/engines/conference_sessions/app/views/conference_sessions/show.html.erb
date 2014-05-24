@@ -14,7 +14,9 @@
       <p></p>
       <% talk.speakers.each do |speaker| %>
         <h4><%= "#{speaker.first_name} #{speaker.last_name}" %></h4>
-        <h5><%= link_to speaker.company, speaker.company_url, :target => '_blank' %></h5>
+        <%- unless speaker.company.blank? %>
+          <h5><%= link_to speaker.company, speaker.company_url, :target => '_blank' %></h5>
+        <% end %>
         <%= twitter_link speaker.twitter_id %>
         <p>
           <strong>Bio:</strong>
