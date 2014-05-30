@@ -105,5 +105,5 @@ en:
       panel_session_message: ""
       talk_session_message: ""
       unsession_session_message: "This 'unsession' will take place at the Union Station Marriot on Wednesday night and not at the Peabody Opera House"
-      workshop_session_message: "This workshop is an optional paid event on the preconference day, Wednesday Sept. 17th. You must be registered for Strange Loop to sign up for this workshop. Registering for this workshop is an additional cost ($100)."
+      workshop_session_message: ""
       other: Other Conference Sessions
