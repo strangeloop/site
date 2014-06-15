@@ -620,3 +620,11 @@ form fieldset input[type="submit"] {
   font-size: 1.2em;
 }
 
+table.white-table td {
+  background: #2591d2;
+  padding: 10px 20px;
+}
+
+.white-table {
+  margin-bottom: 30px;
+}
