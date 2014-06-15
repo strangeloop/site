@@ -621,6 +621,8 @@ form fieldset input[type="submit"] {
 }
 
 table.white-table td {
+  align: center;
+  vertical-align: middle;
   background: #2591d2;
   padding: 10px 20px;
 }
