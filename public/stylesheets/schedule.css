@@ -61,14 +61,10 @@
   background-color: #317ec3;
 }
 
-#elc {
-  float: left;
-  margin-left: -6%;
-}
-
 #workshops {
-  float: left;
+  float: right;
   margin-left: -3%;
+  margin-right: 200px;
 }
 
 #main-conf {
