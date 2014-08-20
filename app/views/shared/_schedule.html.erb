@@ -15,7 +15,7 @@
             <% end -%>
             <li class="column3 shadeable" data-track="<%= track_name session %>">
               <div class="title"><%= link_to session.talk.title, session %></div>
-              <span class="speaker"><%= speaker_for session.talk %></span> &middot;
+              <span class="speaker"><%= speaker_for session.talk, true %></span> &middot;
               <span class="room"><%= room_for session %></span>
               <% if (defined?(display_track) && display_track) && is_technical_track?(session) %>
               &middot;
