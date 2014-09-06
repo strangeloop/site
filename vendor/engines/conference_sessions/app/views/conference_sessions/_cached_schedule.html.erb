@@ -3,9 +3,13 @@
     <div class="pad3">
       <div class="container_13">
         <div class="schedule-sections">
+          <div id="fpw" class="title">Future of Programming</div>
           <div id="workshops" class="title">Workshops</div>
           <div id="main-conf" class="title selected">Conference</div>
           <div id="unsessions-conf" class="title">Unsessions</div>
+        </div>
+        <div id='preconf-fpw' class="preconf hidden">
+          <%= render :partial => 'shared/schedule', :locals => { :cache_key => cache_key, :formats => %w[fpw], :schedule_sessions => fpw_schedule, :display_track => false } %>
         </div>
         <div id='preconf-workshops' class="preconf hidden">
           <%= render :partial => 'shared/schedule', :locals => { :cache_key => cache_key, :formats => %w[workshop free\ workshop], :schedule_sessions => workshop_schedule, :display_track => false }%>

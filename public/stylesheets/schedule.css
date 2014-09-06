@@ -61,10 +61,14 @@
   background-color: #317ec3;
 }
 
+#fpw {
+  float: left;
+  margin-left: -5%;
+}
+
 #workshops {
-  float: right;
+  float: left;
   margin-left: -3%;
-  margin-right: 200px;
 }
 
 #main-conf {

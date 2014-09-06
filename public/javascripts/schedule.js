@@ -51,13 +51,13 @@ $(document).ready(function() {
     }
   });
 
-  $('#elc').click(function(e) {
+  $('#fpw').click(function(e) {
     e.preventDefault();
-    $('#elc').addClass('selected');
+    $('#fpw').addClass('selected');
     $('#workshops').removeClass('selected');
     $('#main-conf').removeClass('selected');
     $('#unsessions-conf').removeClass('selected');
-    $('#preconf-elc').removeClass('hidden');
+    $('#preconf-fpw').removeClass('hidden');
     $('#preconf-workshops').addClass('hidden');
     $('#main-conf-sessions').addClass('hidden');
     $('#unsessions').addClass('hidden');
@@ -65,37 +65,37 @@ $(document).ready(function() {
 
   $('#workshops').click(function(e) {
     e.preventDefault();
-    $('#elc').removeClass('selected');
+    $('#fpw').removeClass('selected');
     $('#workshops').addClass('selected');
     $('#main-conf').removeClass('selected');
     $('#unsessions-conf').removeClass('selected');
     $('#preconf-workshops').removeClass('hidden');
-    $('#preconf-elc').addClass('hidden');
+    $('#preconf-fpw').addClass('hidden');
     $('#main-conf-sessions').addClass('hidden');
     $('#unsessions').addClass('hidden');
   });
 
   $('#main-conf').click(function(e) {
     e.preventDefault();
-    $('#elc').removeClass('selected');
+    $('#fpw').removeClass('selected');
     $('#workshops').removeClass('selected');
     $('#main-conf').addClass('selected');
     $('#unsessions-conf').removeClass('selected');
     $('#main-conf-sessions').removeClass('hidden');
-    $('#preconf-elc').addClass('hidden');
+    $('#preconf-fpw').addClass('hidden');
     $('#preconf-workshops').addClass('hidden');
     $('#unsessions').addClass('hidden');
   });
 
   $('#unsessions-conf').click(function(e) {
     e.preventDefault();
-    $('#elc').removeClass('selected');
+    $('#fpw').removeClass('selected');
     $('#workshops').removeClass('selected');
     $('#main-conf').removeClass('selected');
     $('#unsessions-conf').addClass('selected');
     $('#main-conf-sessions').addClass('hidden');
     $('#unsessions').removeClass('hidden');
-    $('#preconf-elc').addClass('hidden');
+    $('#preconf-fpw').addClass('hidden');
     $('#preconf-workshops').addClass('hidden');
   });
 
