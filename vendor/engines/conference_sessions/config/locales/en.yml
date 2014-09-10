@@ -101,6 +101,7 @@ en:
       free workshop_session_message: ""
       lightning_session_message: ""
       keynote_session_message: ""
+      fpw_session_message: ""
       miscellaneous_session_message: ""
       panel_session_message: ""
       talk_session_message: ""
