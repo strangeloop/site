@@ -29,6 +29,8 @@ Conf::Application.routes.draw do
   resources :attendees, :only => [:index], :path => "/connect"
   resources :talks
 
+  get '/stream', :to => 'stream#show'
+
   put '/connect/update', :to => 'attendees#update'
   get '/connect/:id', :to => 'attendees#show', :as => :attendee
 

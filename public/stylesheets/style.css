@@ -630,3 +630,13 @@ table.white-table td {
 .white-table {
   margin-bottom: 30px;
 }
+
+.stream {
+  background-color: white;
+}
+
+.stream iframe {
+  height: 800px;
+  width: 100%;
+}
+
