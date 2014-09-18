@@ -640,3 +640,11 @@ table.white-table td {
   width: 100%;
 }
 
+.stream-theater {
+  background-color: white;
+}
+
+.stream-theater iframe {
+  height: 400px;
+  width: 100%;
+}
