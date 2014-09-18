@@ -645,6 +645,10 @@ table.white-table td {
 }
 
 .stream-theater iframe {
-  height: 400px;
+  height: 460px;
   width: 100%;
+}
+
+#twoslogo {
+  height: 180px;
 }
